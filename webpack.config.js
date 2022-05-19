@@ -29,8 +29,12 @@ module.exports = {
       // Second rule is to check for css files and load them with the following loaders
       {
         test: /\.css$/,
-        use: ['style-loader','css-loader']
-      }
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+      },
     ]
   },
     // [devtool] this is an additional source map that will let the browser know what files are running our code.
