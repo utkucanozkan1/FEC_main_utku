@@ -7,7 +7,13 @@ const root = createRoot(document.getElementById("root"));
 
 // Here is out base App component.
 // Notice we are NOT using jsx here. This is because we have not set up babel yet.
-const App = React.createElement("h1",null,"Hello World");
+// const App = React.createElement("h1",null,"Hello World");
+
+class App extends React.Component {
+  render () {
+    return <h1> Hello World</h1>
+  }
+}
 
 // render the root element with the provided component
 root.render(<App />);
