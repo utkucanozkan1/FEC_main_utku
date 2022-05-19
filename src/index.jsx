@@ -13,7 +13,9 @@ class App extends React.Component {
   render () {
     return <h1> Hello World</h1>
   }
-}
+// creates component in js syntax (hence, no <> allowed, js doesn't know what it means)
+// const App = React.createElement("h1",null,"Hello World");
+// root.render(<App />); -> will NOT render!! root.render(App); -> will
 
 // render the root element with the provided component
 root.render(<App />);

@@ -16,7 +16,7 @@
   \***********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/client */ \"./node_modules/react-dom/client.js\");\nfunction _typeof(obj) { \"@babel/helpers - typeof\"; return _typeof = \"function\" == typeof Symbol && \"symbol\" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && \"function\" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; }, _typeof(obj); }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }\n\nfunction _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, \"prototype\", { writable: false }); return Constructor; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function\"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, \"prototype\", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }\n\nfunction _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }\n\nfunction _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }\n\nfunction _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === \"object\" || typeof call === \"function\")) { return call; } else if (call !== void 0) { throw new TypeError(\"Derived constructors may only return object or undefined\"); } return _assertThisInitialized(self); }\n\nfunction _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return self; }\n\nfunction _isNativeReflectConstruct() { if (typeof Reflect === \"undefined\" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === \"function\") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }\n\nfunction _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }\n\n// Bring React in to build a component.\n // Import from react-dom the ability to create a root render\n\n // create the root of the app by selection where the app should be mounted in the dom\n\nvar root = (0,react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot)(document.getElementById(\"root\")); // Here is out base App component.\n// Notice we are NOT using jsx here. This is because we have not set up babel yet.\n// const App = React.createElement(\"h1\",null,\"Hello World\");\n\nvar App = /*#__PURE__*/function (_React$Component) {\n  _inherits(App, _React$Component);\n\n  var _super = _createSuper(App);\n\n  function App() {\n    _classCallCheck(this, App);\n\n    return _super.apply(this, arguments);\n  }\n\n  _createClass(App, [{\n    key: \"render\",\n    value: function render() {\n      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"h1\", null, \" Hello World\");\n    }\n  }]);\n\n  return App;\n}((react__WEBPACK_IMPORTED_MODULE_0___default().Component)); // render the root element with the provided component\n\n\nroot.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(App, null));//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvaW5kZXguanN4LmpzIiwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBQUE7QUFDQTs7QUFFQTs7QUFFQTtBQUdBO0FBQ0E7O0FBRUE7Ozs7Ozs7Ozs7Ozs7QUFDQTtBQUNBO0FBQ0E7Ozs7QUFIQTs7O0FBT0EiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9GRUNfbWFpbi8uL3NyYy9pbmRleC5qc3g/ZWQxMiJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyBCcmluZyBSZWFjdCBpbiB0byBidWlsZCBhIGNvbXBvbmVudC5cbmltcG9ydCBSZWFjdCBmcm9tIFwicmVhY3RcIjtcbi8vIEltcG9ydCBmcm9tIHJlYWN0LWRvbSB0aGUgYWJpbGl0eSB0byBjcmVhdGUgYSByb290IHJlbmRlclxuaW1wb3J0IHsgY3JlYXRlUm9vdCB9IGZyb20gXCJyZWFjdC1kb20vY2xpZW50XCI7XG4vLyBjcmVhdGUgdGhlIHJvb3Qgb2YgdGhlIGFwcCBieSBzZWxlY3Rpb24gd2hlcmUgdGhlIGFwcCBzaG91bGQgYmUgbW91bnRlZCBpbiB0aGUgZG9tXG5jb25zdCByb290ID0gY3JlYXRlUm9vdChkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcInJvb3RcIikpO1xuXG4vLyBIZXJlIGlzIG91dCBiYXNlIEFwcCBjb21wb25lbnQuXG4vLyBOb3RpY2Ugd2UgYXJlIE5PVCB1c2luZyBqc3ggaGVyZS4gVGhpcyBpcyBiZWNhdXNlIHdlIGhhdmUgbm90IHNldCB1cCBiYWJlbCB5ZXQuXG4vLyBjb25zdCBBcHAgPSBSZWFjdC5jcmVhdGVFbGVtZW50KFwiaDFcIixudWxsLFwiSGVsbG8gV29ybGRcIik7XG5cbmNsYXNzIEFwcCBleHRlbmRzIFJlYWN0LkNvbXBvbmVudCB7XG4gIHJlbmRlciAoKSB7XG4gICAgcmV0dXJuIDxoMT4gSGVsbG8gV29ybGQ8L2gxPlxuICB9XG59XG5cbi8vIHJlbmRlciB0aGUgcm9vdCBlbGVtZW50IHdpdGggdGhlIHByb3ZpZGVkIGNvbXBvbmVudFxucm9vdC5yZW5kZXIoPEFwcCAvPik7Il0sIm5hbWVzIjpbXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./src/index.jsx\n");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/client */ \"./node_modules/react-dom/client.js\");\n// Bring React in to build a component.\n // Import from react-dom the ability to create a root render\n\n // create the root of the app by selection where the app should be mounted in the dom\n\nvar root = (0,react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot)(document.getElementById(\"root\")); // Here is out base App component.\n// Notice we are NOT using jsx here. This is because we have not set up babel yet.\n// creates component in js syntax (hence, no <> allowed, js doesn't know what it means)\n// root.render(<App />); -> will NOT render!!\n// const App = React.createElement(\"h1\",null,\"Hello World\");\n\nvar App = function App() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"h1\", null, \"Hello World\");\n}; // render the root element with the provided component\n\n\nroot.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(App, null));//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvaW5kZXguanN4LmpzIiwibWFwcGluZ3MiOiI7Ozs7QUFBQTtBQUNBOztBQUVBOztBQUVBO0FBR0E7QUFDQTtBQUNBO0FBQ0E7O0FBQ0E7QUFDQTtBQUNBOzs7QUFHQSIsInNvdXJjZXMiOlsid2VicGFjazovL0ZFQ19tYWluLy4vc3JjL2luZGV4LmpzeD9lZDEyIl0sInNvdXJjZXNDb250ZW50IjpbIi8vIEJyaW5nIFJlYWN0IGluIHRvIGJ1aWxkIGEgY29tcG9uZW50LlxuaW1wb3J0IFJlYWN0IGZyb20gXCJyZWFjdFwiO1xuLy8gSW1wb3J0IGZyb20gcmVhY3QtZG9tIHRoZSBhYmlsaXR5IHRvIGNyZWF0ZSBhIHJvb3QgcmVuZGVyXG5pbXBvcnQgeyBjcmVhdGVSb290IH0gZnJvbSBcInJlYWN0LWRvbS9jbGllbnRcIjtcbi8vIGNyZWF0ZSB0aGUgcm9vdCBvZiB0aGUgYXBwIGJ5IHNlbGVjdGlvbiB3aGVyZSB0aGUgYXBwIHNob3VsZCBiZSBtb3VudGVkIGluIHRoZSBkb21cbmNvbnN0IHJvb3QgPSBjcmVhdGVSb290KGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKFwicm9vdFwiKSk7XG5cbi8vIEhlcmUgaXMgb3V0IGJhc2UgQXBwIGNvbXBvbmVudC5cbi8vIE5vdGljZSB3ZSBhcmUgTk9UIHVzaW5nIGpzeCBoZXJlLiBUaGlzIGlzIGJlY2F1c2Ugd2UgaGF2ZSBub3Qgc2V0IHVwIGJhYmVsIHlldC5cbi8vIGNyZWF0ZXMgY29tcG9uZW50IGluIGpzIHN5bnRheCAoaGVuY2UsIG5vIDw+IGFsbG93ZWQsIGpzIGRvZXNuJ3Qga25vdyB3aGF0IGl0IG1lYW5zKVxuLy8gcm9vdC5yZW5kZXIoPEFwcCAvPik7IC0+IHdpbGwgTk9UIHJlbmRlciEhXG4vLyBjb25zdCBBcHAgPSBSZWFjdC5jcmVhdGVFbGVtZW50KFwiaDFcIixudWxsLFwiSGVsbG8gV29ybGRcIik7XG5jb25zdCBBcHAgPSAoKSA9PiB7XG4gIHJldHVybiA8aDE+SGVsbG8gV29ybGQ8L2gxPlxufVxuXG4vLyByZW5kZXIgdGhlIHJvb3QgZWxlbWVudCB3aXRoIHRoZSBwcm92aWRlZCBjb21wb25lbnRcbnJvb3QucmVuZGVyKDxBcHAgLz4pOyJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./src/index.jsx\n");
 
 /***/ }),
 
@@ -94,7 +94,7 @@ eval("\n\nif (false) {} else {\n  module.exports = __webpack_require__(/*! ./cjs
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/ 	
+/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -108,17 +108,17 @@ eval("\n\nif (false) {} else {\n  module.exports = __webpack_require__(/*! ./cjs
 /******/ 			loaded: false,
 /******/ 			exports: {}
 /******/ 		};
-/******/ 	
+/******/
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/ 	
+/******/
 /******/ 		// Flag the module as loaded
 /******/ 		module.loaded = true;
-/******/ 	
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/ 	
+/******/
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
@@ -131,7 +131,7 @@ eval("\n\nif (false) {} else {\n  module.exports = __webpack_require__(/*! ./cjs
 /******/ 			return getter;
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -143,12 +143,12 @@ eval("\n\nif (false) {} else {\n  module.exports = __webpack_require__(/*! ./cjs
 /******/ 			}
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -159,7 +159,7 @@ eval("\n\nif (false) {} else {\n  module.exports = __webpack_require__(/*! ./cjs
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/node module decorator */
 /******/ 	(() => {
 /******/ 		__webpack_require__.nmd = (module) => {
@@ -168,13 +168,13 @@ eval("\n\nif (false) {} else {\n  module.exports = __webpack_require__(/*! ./cjs
 /******/ 			return module;
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /************************************************************************/
-/******/ 	
+/******/
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval-source-map devtool is used.
 /******/ 	var __webpack_exports__ = __webpack_require__("./src/index.jsx");
-/******/ 	
+/******/
 /******/ })()
 ;
