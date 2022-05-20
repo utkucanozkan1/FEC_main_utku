@@ -35,7 +35,8 @@
   "scripts": {
     "start": "webpack --watch --mode=development",
     "build": "webpack --watch --mode=production",
-    "dev": "webpack --watch serve --open",
+
+    "client-dev": "webpack --watch --mode=development",
     "server-dev": "nodemon --watch server server/index.js"
   }
 }
