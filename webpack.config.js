@@ -8,11 +8,11 @@ module.exports = {
   // "production" will be minified
   mode: "development",
   // [entry] this is the file where the bundling starts from.
-  entry: "./src/index.jsx",
+  entry: "./client/src/index.jsx",
   // [output] is a configuration object to determine how and where to bundle our code
   output: {
     // [path] is where to output
-    path: path.join(__dirname, 'public'),
+    path: path.join(__dirname, "client/dist"),
     // [filename] is the name of the file
     filename: "bundle.js"
   },
@@ -29,8 +29,12 @@ module.exports = {
       // Second rule is to check for css files and load them with the following loaders
       {
         test: /\.css$/,
-        use: ['style-loader','css-loader']
-      }
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+      },
     ]
   },
     // [devtool] this is an additional source map that will let the browser know what files are running our code.
