@@ -1,0 +1,86 @@
+.fa-star-fill-0 {
+  font-family: FontAwesome;
+  font-style: normal;
+  position: relative;
+  color: #ddd;
+}
+
+.fa-star-fill-0::after {
+  content: "\f005";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0%;
+  overflow: hidden;
+  color: #f80;
+}
+
+.fa-star-fill-25 {
+  font-family: FontAwesome;
+  font-style: normal;
+  position: relative;
+  color: #ddd;
+}
+
+.fa-star-fill-25::after {
+  content: "\f005";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 25%;
+  overflow: hidden;
+  color: #f80;
+}
+
+.fa-star-fill-50 {
+  font-family: FontAwesome;
+  font-style: normal;
+  position: relative;
+  color: #ddd;
+}
+
+.fa-star-fill-50::after {
+  content: "\f005";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50%;
+  overflow: hidden;
+  color: #f80;
+}
+
+.fa-star-fill-75 {
+  font-family: FontAwesome;
+  font-style: normal;
+  position: relative;
+  color: #ddd;
+}
+
+.fa-star-fill-75::after {
+  content: "\f005";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 75%;
+  overflow: hidden;
+  color: #f80;
+}
+
+.fa-star-fill-100 {
+  font-family: FontAwesome;
+  font-style: normal;
+  position: relative;
+  color: #ddd;
+}
+
+.fa-star-fill-100::after {
+  content: "\f005";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  overflow: hidden;
+  color: #f80;
+}
+
+/*# sourceMappingURL=star-rating.css.map */
