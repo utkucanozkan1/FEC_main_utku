@@ -1,5 +1,6 @@
 // Bring React in to build a component.
 import React from 'react';
+import QuestionsAndAnswers from './q-a/QuestionAndAnswers.jsx';
 // Import from react-dom the ability to create a root render
 import { createRoot } from 'react-dom/client';
 // Major component imports
