@@ -5,11 +5,11 @@ import ReviewList from './ReviewList/ReviewList.jsx';
 
 export default function RatingReviews() {
   return (
-    <>
+    <section className="RRsection">
       <h3>Ratings and Reviews</h3>
       <RatingSummary />
       <ProductBreakdown />
       <ReviewList />
-    </>
+    </section>
   );
 }

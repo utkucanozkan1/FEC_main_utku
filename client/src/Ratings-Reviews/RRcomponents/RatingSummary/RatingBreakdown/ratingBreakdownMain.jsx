@@ -5,11 +5,10 @@ import StarLabels from './starLabels.jsx';
 
 export default function RatingBreakdownMain() {
   return (
-    <>
-      <div>ratingsbreakdown</div>
-      <BarChart />
-      <RatingCount />
-      <StarLabels />
-    </>
+      <div className="ratingsbreakdown head">ratingsbreakdown>
+        <BarChart />
+        <RatingCount />
+        <StarLabels />
+      </div>
   );
 }
