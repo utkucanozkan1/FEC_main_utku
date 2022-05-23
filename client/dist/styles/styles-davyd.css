@@ -6,6 +6,10 @@
   color: rgb(59, 59, 59);
 }
 
+#root {
+  background-color: red;
+}
+
 .item-overview-section {
   display: flex;
   justify-content: space-around;

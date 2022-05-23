@@ -10,6 +10,10 @@ $defaultBorder: 0.075vw solid black;
   color: $darkGray;
 }
 
+#root {
+  background-color: red;
+}
+
 .item-overview-section {
   display: flex;
   justify-content: space-around;
