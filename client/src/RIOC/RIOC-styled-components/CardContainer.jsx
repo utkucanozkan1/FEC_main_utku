@@ -1,11 +1,8 @@
 import styled from 'styled-components';
 
 const CardContainer = styled.div`
-  dispay: inline-block;
-  border-style: solid;
-  border-color: blue;
-  height: 400px;
-  width: 100px;
+  display: flex;
+  justify-content: space-around;
 `;
 
 export default CardContainer;
