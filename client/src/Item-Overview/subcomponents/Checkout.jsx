@@ -30,7 +30,7 @@ function Checkout() {
       {/* Rating and Title */}
       <div className="rating-title">
         <div className="reviews-wrapper">
-          <StarRating rating={3.99} />
+          <StarRating rating={1} />
           <a href="https://www.google.com/" className="reviews-link" target="_blank" rel="noreferrer">
             Read all reviews
           </a>
