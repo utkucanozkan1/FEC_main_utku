@@ -1,12 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
-import RatingBreakdownMain from './RatingBreakdown/ratingBreakdownMain.jsx'
-
-const SummaryLeft = styled.div`
-display: flex;
-flex-flow: column wrap;
-align-self: flex-end;
-`;
+import SummaryLeft from '../../RR-styled-components/RatingSummary';
+import RatingBreakdownMain from './RatingBreakdown/ratingBreakdownMain';
 
 export default function RatingSummary() {
   return (

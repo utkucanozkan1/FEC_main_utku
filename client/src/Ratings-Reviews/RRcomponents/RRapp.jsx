@@ -1,26 +1,16 @@
 import React from 'react';
-import styled from 'styled-components';
-import RatingSummary from './RatingSummary/RatingSummary.jsx';
-import ProductBreakdown from './ProductBreakdown/ProductBreakdown.jsx';
-import ReviewList from './ReviewList/ReviewList.jsx';
-
-const RatingReview = styled.section`
-display: flex;
-flex-flow: column wrap;
-align-items: flex-start;
-align-self: flex-start;
-max-width: 100%;
-`;
+import RatingReviewContainer from '../RR-styled-components/RRsectionContainerStyle';
+import RatingSummary from './RatingSummary/RatingSummary';
+import ProductBreakdown from './ProductBreakdown/ProductBreakdown';
+import ReviewList from './ReviewList/ReviewList';
 
 export default function RatingReviews() {
   return (
-    <>
+    <RatingReviewContainer>
       <h3>Ratings and Reviews</h3>
-      <RatingReview className="RRsection">
-        <RatingSummary />
-        <ProductBreakdown />
-        <ReviewList />
-      </RatingReview>
-    </>
+      <RatingSummary />
+      <ProductBreakdown />
+      <ReviewList />
+    </RatingReviewContainer>
   );
 }

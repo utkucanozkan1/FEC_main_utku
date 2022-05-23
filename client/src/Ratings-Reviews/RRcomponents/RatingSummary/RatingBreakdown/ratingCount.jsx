@@ -1,7 +1,8 @@
 import React from 'react';
+import RatingsCount from '../../../RR-styled-components/RatingsCountStyle';
 
 export default function RatingCount() {
   return (
-    <span className="ratingsbreakdown ratingcount">ratingCount placeholder</span>
+    <RatingsCount>ratingCount placeholder</RatingsCount>
   );
 }

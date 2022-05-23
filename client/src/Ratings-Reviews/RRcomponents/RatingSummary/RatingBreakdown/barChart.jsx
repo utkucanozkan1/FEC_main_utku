@@ -1,7 +1,8 @@
 import React from 'react';
+import BarChartStyle from '../../../RR-styled-components/BarChartStyle';
 
 export default function BarChart() {
   return (
-    <span className="ratingsbreakdown barchart">barChart placeholder</span>
+    <BarChartStyle>barChart placeholder</BarChartStyle>
   );
 }

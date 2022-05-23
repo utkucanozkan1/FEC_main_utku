@@ -1,7 +1,8 @@
 import React from 'react';
+import ReviewListContainer from '../../RR-styled-components/ReviewListContainer';
 
 export default function RatingSummary() {
   return (
-    <div>Review List placeholder</div>
+    <ReviewListContainer>Review List placeholder</ReviewListContainer>
   );
 }
