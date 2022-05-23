@@ -14,7 +14,7 @@ function Checkout() {
       </li>
     );
 
-    if (i === 1) {
+    if (i === 3) {
       style = (
         <li>
           <a className="style-thumbnail style-selected-anchor" href="https://www.google.com/"> </a>
@@ -30,7 +30,7 @@ function Checkout() {
       {/* Rating and Title */}
       <div className="rating-title">
         <div className="reviews-wrapper">
-          <StarRating rating={3.63} />
+          <StarRating rating={5} />
           <a href="https://www.google.com/" className="reviews-link" target="_blank" rel="noreferrer">
             Read all reviews
           </a>

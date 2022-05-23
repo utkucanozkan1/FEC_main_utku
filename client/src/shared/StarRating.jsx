@@ -22,10 +22,10 @@ function StarRating(props) {
   // Generate filled stars
   for (let starCount = 1; starCount <= 5; starCount += 1) {
     let star = null;
-    if (starCount === Math.floor(rating)) {
+    if (starCount === Math.floor(rating) + 1) {
       // At rating (subrated)
       star = <i className={`fa-star fa-star-fill-${subrating}`} />;
-    } else if (starCount < Math.floor(rating)) {
+    } else if (starCount < Math.floor(rating) + 1) {
       // Below rating (full)
       star = <i className="fa-star fa-star-fill-100" />;
     } else {
