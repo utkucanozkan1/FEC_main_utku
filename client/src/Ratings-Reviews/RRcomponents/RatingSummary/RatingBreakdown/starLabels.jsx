@@ -3,6 +3,6 @@ import StarLabel from '../../../RR-styled-components/StarLabelStyle';
 
 export default function StarLabels() {
   return (
-    <StarLabel>starLabels placeholder</StarLabel>
+    <StarLabel>starLabels</StarLabel>
   );
 }

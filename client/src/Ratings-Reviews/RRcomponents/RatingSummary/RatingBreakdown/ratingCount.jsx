@@ -3,6 +3,6 @@ import RatingsCount from '../../../RR-styled-components/RatingsCountStyle';
 
 export default function RatingCount() {
   return (
-    <RatingsCount>ratingCount placeholder</RatingsCount>
+    <RatingsCount>ratingCount</RatingsCount>
   );
 }

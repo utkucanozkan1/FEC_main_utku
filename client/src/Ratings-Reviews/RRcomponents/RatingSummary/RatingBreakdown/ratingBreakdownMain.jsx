@@ -7,10 +7,10 @@ import StarLabels from './starLabels';
 export default function RatingBreakdownMain() {
   return (
     <RatingsBreakdown>
-      ratingsbreakdown
+      <h4>ratingsbreakdown</h4>
+      <StarLabels />
       <BarChart />
       <RatingCount />
-      <StarLabels />
     </RatingsBreakdown>
   );
 }
