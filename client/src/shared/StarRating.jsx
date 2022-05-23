@@ -10,7 +10,9 @@ function StarRating(props) {
   const stars = [];
   // subrating is used for class naming -> (fa-star-fill-{subrating})
   let subrating = (rating % 1) * 100; // Given operation => 3.63 -> (rating % 1) * 100 -> 63
-  if (subrating < 50) {
+  if (subrating < 25) {
+    subrating = 0;
+  } else if (subrating < 50) {
     subrating = 25;
   } else if (subrating < 75) {
     subrating = 50;
