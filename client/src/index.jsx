@@ -3,6 +3,8 @@ import React from 'react';
 import QuestionsAndAnswers from './q-a/QuestionAndAnswers.jsx';
 // Import from react-dom the ability to create a root render
 import { createRoot } from 'react-dom/client';
+// Major component imports
+import ItemOverview from './Item-Overview/ItemOverview.jsx';
 // create the root of the app by selection where the app should be mounted in the dom
 const root = createRoot(document.getElementById('root'));
 
@@ -13,10 +15,7 @@ const root = createRoot(document.getElementById('root'));
 class App extends React.Component {
   render () {
     return (
-    <>
-    <h1> Hello World</h1>
-    <QuestionsAndAnswers></QuestionsAndAnswers>
-    </>
+      <ItemOverview />
     )
   }
 };
