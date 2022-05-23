@@ -1,5 +1,5 @@
 import React from 'react';
-import RelatedView from './RelatedView.jsx';
+import RelatedView from './RelatedView';
 import OutfitView from './OutfitView';
 
 function RelatedOutfitView() {

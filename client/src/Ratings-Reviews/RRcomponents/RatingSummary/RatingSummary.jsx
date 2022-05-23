@@ -1,11 +1,18 @@
 import React from 'react';
-import RatingBreakdownMain from './RatingBreakdown/ratingBreakdownMain.jsx';
+import styled from 'styled-components';
+import RatingBreakdownMain from './RatingBreakdown/ratingBreakdownMain.jsx'
 
-export default function RatingReviews() {
+const SummaryLeft = styled.div`
+display: flex;
+flex-flow: column wrap;
+align-self: flex-end;
+`;
+
+export default function RatingSummary() {
   return (
-    <>
+    <SummaryLeft>
+      Ratings summary
       <RatingBreakdownMain />
-      <div>product breakdown</div>
-    </>
+    </SummaryLeft>
   );
 }

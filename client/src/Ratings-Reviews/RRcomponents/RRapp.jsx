@@ -7,7 +7,9 @@ import ReviewList from './ReviewList/ReviewList.jsx';
 const RatingReview = styled.section`
 display: flex;
 flex-flow: column wrap;
-align-items: center;
+align-items: flex-start;
+align-self: flex-start;
+max-width: 100%;
 `;
 
 export default function RatingReviews() {
