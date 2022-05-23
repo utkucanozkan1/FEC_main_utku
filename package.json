@@ -10,7 +10,8 @@
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "react": "^18.1.0",
-    "react-dom": "^18.1.0"
+    "react-dom": "^18.1.0",
+    "styled-components": "^5.3.5"
   },
   "devDependencies": {
     "@babel/core": "^7.17.12",
@@ -35,7 +36,6 @@
   "scripts": {
     "start": "webpack --watch --mode=development",
     "build": "webpack --watch --mode=production",
-
     "client-dev": "webpack --watch --mode=development",
     "server-dev": "nodemon --watch server server/index.js"
   }
