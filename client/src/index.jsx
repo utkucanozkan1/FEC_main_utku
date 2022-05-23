@@ -1,10 +1,13 @@
 // Bring React in to build a component.
 import React from 'react';
-import QuestionsAndAnswers from './q-a/QuestionAndAnswers';
-import RelatedOutfitView from './RIOC/RelatedOutfitView';
-import RatingReviews from './Ratings-Reviews/components/RRapp';
-// Import from react-dom the ability to create a root render
 import { createRoot } from 'react-dom/client';
+import ItemOverview from './Item-Overview/ItemOverview';
+import RelatedOutfitView from './RIOC/RelatedOutfitView';
+import QuestionsAndAnswers from './q-a/QuestionAndAnswers';
+import RatingReviews from './Ratings-Reviews/RRcomponents/RRapp';
+// Import from react-dom the ability to create a root render
+
+// Major component imports
 // create the root of the app by selection where the app should be mounted in the dom
 const root = createRoot(document.getElementById('root'));
 
@@ -15,9 +18,10 @@ const root = createRoot(document.getElementById('root'));
 function App() {
   return (
     <div>
+      <ItemOverview />
       <RelatedOutfitView />
-      <RatingReviews />
       <QuestionsAndAnswers />
+      <RatingReviews />
     </div>
   );
 }
