@@ -1,24 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import ReviewListContainer from '../../RR-styled-components/ReviewListContainer';
-import ReviewEntry from './ReviewEntry';
-import config from '../../../../../config';
+import ReviewCard from './ReviewCard';
+import { retrieve2Reviews } from './serverAction';
 
 // require('dotenv').config();
 
-export default function ReviewList({ product_id }) {
+export default function ReviewList({ productId = 37313 }) {
   const [reviews, setReviews] = useState([]);
   const [page, setPage] = useState(1);
 
   function retrieveReviews() {
-    console.log('testing retrieveReviews');
-    return axios.get('/reviews', {
-      params: {
-        product_id: 37311,
-        page,
-        count: 2,
-      },
-    })
+    console.log('testing retrieveReviews', productId, page);
+    return retrieve2Reviews(productId, page)
       .then((res) => {
         setReviews([...res.data.results]);
       })
@@ -27,28 +20,31 @@ export default function ReviewList({ product_id }) {
       });
   }
 
-  useEffect(() => {
-    console.log('testing useEffect');
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=37311', {
-      headers: {
-        Authorization: config.TOKEN,
-        'Content-Type': 'application/json',
-      },
-    })
+  function clickMoreReviews() {
+    return retrieve2Reviews(productId, page + 1)
       .then((res) => {
-        console.log(res.data.results);
-        setReviews([...res.data.results]);
+        setReviews([...reviews, ...res.data.results]);
+      })
+      .then(() => {
+        setPage(page + 1);
       })
       .catch((err) => {
-        console.log('Error, could not retrieve reviews, useEffect', err);
+        console.log('Error, could not retrieve reviews, clickMore', err);
       });
+  }
+
+  useEffect(() => {
+    console.log('testing useEffect');
+    retrieveReviews();
   }, []);
 
   return (
     <ReviewListContainer>
+      <form>Filter</form>
       {reviews.map((review) => (
-        <ReviewEntry retrieveReviews={retrieveReviews} key={review.review_id} review={review} />
+        <ReviewCard retrieveReviews={retrieveReviews} key={review.review_id} review={review} />
       ))}
+      <button onClick={clickMoreReviews}>MoreReviews</button><button>Add Review</button>
     </ReviewListContainer>
   );
 }
