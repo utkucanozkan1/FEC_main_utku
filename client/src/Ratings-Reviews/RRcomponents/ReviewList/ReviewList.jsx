@@ -41,9 +41,10 @@ export default function ReviewList({ productId }) {
 
   return (
     <ReviewListContainer>
-      {reviews.map((review) => (
+      Reviews
+      {/* {reviews.map((review) => (
         <ReviewEntry retrieveReviews={retrieveReviews} key={review.review_id} review={review} />
-      ))}
+      ))} */}
     </ReviewListContainer>
   );
 }

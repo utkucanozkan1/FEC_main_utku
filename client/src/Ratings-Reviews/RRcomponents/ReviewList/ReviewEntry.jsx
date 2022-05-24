@@ -3,6 +3,7 @@ import { format, parseISO } from 'date-fns';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import ReviewEntryStyle from '../../RR-styled-components/ReviewEntryStyle';
+import StarRating from '../../../shared/StarRating';
 
 export default function ReviewEntry({ review, retrieveReviews }) {
   const [isHelpful, setIsHelpful] = useState(false);
@@ -35,7 +36,7 @@ export default function ReviewEntry({ review, retrieveReviews }) {
   return (
     <ReviewEntryStyle>
       <hr />
-      {/* Star Rating */}
+      <StarRating />
       <span>
         {review.reviewer_name}
         ,
