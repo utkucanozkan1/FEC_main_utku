@@ -14,7 +14,7 @@ function RelatedCard({ cardProduct, cardStyle, cardRating }) {
       <p>{cardProduct.category}</p>
       <h6>{cardProduct.name}</h6>
       <p>{cardProduct.default_price}</p>
-      <StarRating rating={cardRating} />
+      <StarRating className="relRating" rating={cardRating} />
     </CardDiv>
   );
 }
