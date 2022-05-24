@@ -74,7 +74,7 @@ function RelatedView() {
       });
   }, [products]);
   return (
-    <div>
+    <section>
       <h6>RELATED PRODUCTS</h6>
       <CardContainer>
         <LeftArrow />
@@ -83,7 +83,7 @@ function RelatedView() {
         ))}
         <RightArrow />
       </CardContainer>
-    </div>
+    </section>
   );
 }
 
