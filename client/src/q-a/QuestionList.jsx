@@ -19,10 +19,10 @@ const QuestionList = function(props) {
   );
 
   return (
-    <div>
+    <div className="qa-main-div">
     &nbsp;
         &nbsp;
-      <div>
+      <div className="question-div">
         <b>
       Q: {props.question.question_body}
       </b>
