@@ -23,11 +23,13 @@ function Checkout(props) {
       </li>
     );
   }) || [];
+  // Fill size options for current style
   const sizeOptions = Object.entries(styles[styleIndex].skus).map(([sku, data]) => (
     <option data-sku={sku}>
       {data.size}
     </option>
   )) || [];
+  // Define quantity options
   const [quantityOptions, setQuantityOptions] = useState([]);
 
   // Event Handlers
@@ -39,6 +41,8 @@ function Checkout(props) {
         .classList.remove('style-thumbnail-selected');
       e.target.classList.add('style-thumbnail-selected');
       setStyleIndex(e.target.getAttribute('data-index' || 0));
+      setQuantityOptions([]);
+      document.querySelector('.size').value = 'SELECT SIZE';
     }
   };
   const sizeChange = (e) => {
