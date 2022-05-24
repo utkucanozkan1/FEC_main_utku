@@ -19,3 +19,42 @@
 .main-q-a {
   margin-left: 20%;
 }
+
+/* Button styling */
+.top-btn{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 40em;
+}
+.astext-btn {
+  background:none;
+  border:none;
+  margin:0;
+  padding:0;
+  cursor: pointer;
+  font-size: small;
+}
+
+
+.astext-btn-answer {
+  background:none;
+  border:none;
+  margin:0;
+  padding:0;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: small;
+}
+
+/* Image Styling */
+
+.image-component {
+display: inline-block;
+margin-left: 2em;
+border-color: black;
+border-style: solid;
+}
+
+.answer-text {
+  font-size: medium;
+}

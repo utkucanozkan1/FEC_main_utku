@@ -1,0 +1,44 @@
+/* * {
+  margin: 0;
+  padding: 0;
+}
+
+#RRsection {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.ratingsbreakdown {
+  display: flex;
+}
+
+.ratingsbreakdown .head{
+  width: 35vw;
+  min-height: 35vh;
+  justify-content: flex-start;
+  flex-flow: row wrap;
+  margin: auto;
+  border: 1px solid red;
+}
+.ratingsbreakdown .starlabel {
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 75%;
+  list-style: none;
+}
+.ratingsbreakdown .ratingcount {
+  flex-basis: 25%;
+  margin: 1vw 0;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.ratingsbreakdown .barchart {
+  padding: 2.2vw;
+  justify-content: flex-end;
+  align-items: flex-end;
+  background-color: rgb(217, 216, 216);
+  border: 0.075vw solid black;
+} */
+

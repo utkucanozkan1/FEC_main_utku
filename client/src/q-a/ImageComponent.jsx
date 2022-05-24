@@ -15,7 +15,7 @@ export default class ImageComponent extends React.Component {
   render() {
     console.log(this.props);
     return (
-      <div style={{display:'inline-block', marginLeft: 10 + 'px'}} >
+      <div className="image-component">
         <img
           className="small"
           src={this.props.photo}
