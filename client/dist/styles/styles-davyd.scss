@@ -21,6 +21,11 @@ $defaultBorder: 0.075vw solid black;
     background-color: $gray;
 
     .gallery-container {
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      max-height: 100%;
+
       display: flex;
       flex-wrap: wrap;
       justify-content: space-around;
@@ -49,10 +54,12 @@ $defaultBorder: 0.075vw solid black;
           text-align: center;
 
           .thumbnail {
-            padding: 2vw;
+            padding: 2.3vw;
             margin: 0.5vw;
 
             background-color: white;
+            background-size: cover;
+            background-position: center;
             border: $defaultBorder;
           }
 
@@ -79,6 +86,7 @@ $defaultBorder: 0.075vw solid black;
         display: flex;
         justify-content: space-between;
         margin-right: 3vw;
+        max-height: 60vh;
       }
 
       // other
@@ -87,7 +95,13 @@ $defaultBorder: 0.075vw solid black;
         cursor: pointer;
         background-color: transparent;
         border: none;
+
+        &:hover {
+          box-shadow: 0px 0px 25px 16px rgba(0, 0, 0, 0.1);
+          border-radius: 15%;
+        }
       }
+
     }
 
     // expanded view

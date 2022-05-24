@@ -57,7 +57,7 @@ function Checkout(props) {
       {/* Rating and Title */}
       <div className="rating-title">
         <div className="reviews-wrapper">
-          <StarRating rating={1} />
+          <StarRating rating={item.rating} />
           <a href="https://www.google.com/" className="reviews-link" target="_blank" rel="noreferrer">
             Read all reviews
           </a>

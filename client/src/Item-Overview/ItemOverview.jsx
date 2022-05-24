@@ -20,6 +20,8 @@ function ItemOverview() {
 
   // Feed live data(TODO: read id from props)
   useEffect(() => {
+    // ReviewUrl -> TODO: temp
+    const reviewUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta?product_id=37313';
     const itemUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/37313/';
     axios.get(itemUrl, { headers: {
       Authorization: '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',
@@ -29,8 +31,22 @@ function ItemOverview() {
           Authorization: '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',
         } })
           .then((stylesRes) => {
-            setItem({ ...itemData.data });
-            setStyles(stylesRes.data.results);
+            // Get rating info
+            axios.get(reviewUrl, { headers: {
+              Authorization: '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',
+            } })
+              .then((ratingsRes) => {
+                const { ratings } = ratingsRes.data;
+                let sum = 0;
+                let amount = 0;
+                const stars = Object.keys(ratings);
+                for (let i = 0; i < stars.length; i += 1) {
+                  sum += ratings[stars[i]] * stars[i];
+                  amount += parseInt(ratings[stars[i]], 10);
+                }
+                setItem({ ...itemData.data, rating: sum / amount });
+                setStyles(stylesRes.data.results);
+              });
           });
       });
   }, []);
