@@ -1,15 +1,14 @@
 import React from "react";
 
 export default class ImageComponent extends React.Component {
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = { isOpen: false };
     this.handleShowDialog = this.handleShowDialog.bind(this)
   }
 
   handleShowDialog = () => {
     this.setState({ isOpen: !this.state.isOpen });
-    console.log("clicked");
 
   };
 
