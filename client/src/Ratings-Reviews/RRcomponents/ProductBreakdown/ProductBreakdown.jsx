@@ -1,7 +1,8 @@
 import React from 'react';
+import ProductBreakdownContainer from '../../RR-styled-components/ProductBreakdownContainer';
 
 export default function ProductBreakdown() {
   return (
-    <div>Product Breakdown placeholder</div>
+    <ProductBreakdownContainer>Product Breakdown placeholder</ProductBreakdownContainer>
   );
 }

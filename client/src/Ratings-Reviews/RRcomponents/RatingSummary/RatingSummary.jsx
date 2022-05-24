@@ -1,7 +1,18 @@
 import React from 'react';
+import SummaryLeft from '../../RR-styled-components/RatingSummary';
+import RatingBreakdownMain from './RatingBreakdown/ratingBreakdownMain';
+import PercentageOfRecs from './PercentageOfRecs';
+import ProductBreakdown from '../ProductBreakdown/ProductBreakdown';
+import AverageStarRating from '../AverageRating/AverageRating';
 
 export default function RatingSummary() {
   return (
-    <div>Ratings summary placeholder</div>
+    <SummaryLeft>
+      Ratings summary
+      <AverageStarRating />
+      <PercentageOfRecs />
+      <RatingBreakdownMain />
+      <ProductBreakdown />
+    </SummaryLeft>
   );
 }

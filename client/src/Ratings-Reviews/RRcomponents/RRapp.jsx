@@ -1,15 +1,16 @@
 import React from 'react';
-import RatingSummary from './RatingSummary/RatingSummary.jsx';
-import ProductBreakdown from './ProductBreakdown/ProductBreakdown.jsx';
-import ReviewList from './ReviewList/ReviewList.jsx';
+import RatingReviewContainer from '../RR-styled-components/RRsectionContainerStyle';
+import RatingSummary from './RatingSummary/RatingSummary';
+import ReviewList from './ReviewList/ReviewList';
 
 export default function RatingReviews() {
   return (
     <>
       <h3>Ratings and Reviews</h3>
-      <RatingSummary />
-      <ProductBreakdown />
-      <ReviewList />
+      <RatingReviewContainer>
+        <RatingSummary />
+        <ReviewList />
+      </RatingReviewContainer>
     </>
   );
 }
