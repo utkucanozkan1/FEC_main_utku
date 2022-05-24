@@ -1,16 +1,19 @@
 /* image Modal */
 .small {
-  width: 200px;
+  width: 90px;
 }
 .dialog {
   box-shadow: 0 8px 6px -6px black;
-  position: static;
+  position: absolute;
+  right: 50%;
   left: 20%;
-  top: 10%;
+  top: 95%;
+  width: max-content;
 }
 
 .image {
-  width: 600px;
+  width: 60em;
+  height: 30em;
 }
 
 .main-q-a {
