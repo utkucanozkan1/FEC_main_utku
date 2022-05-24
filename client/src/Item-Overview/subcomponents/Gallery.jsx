@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function Gallery(props) {
   const {
@@ -44,14 +44,7 @@ function Gallery(props) {
   const thumbnailClick = (e) => {
     e.preventDefault();
     if (e.target.classList.contains('thumbnail')) {
-      const index = e.target.getAttribute('data-index');
-      // TODO: Bug fix -> tech debt ticket
-      document.querySelectorAll('[data-index]').forEach((thumbnail) => {
-        thumbnail.classList.remove('thumbnail-selected');
-        if (thumbnail.getAttribute('data-index') === index) {
-          thumbnail.classList.add('thumbnail-selected');
-        }
-      });
+      const index = parseInt(e.target.getAttribute('data-index'), 10);
       setImageIndex(index);
     }
   };
@@ -59,13 +52,15 @@ function Gallery(props) {
   const arrowNavigationClick = (e) => {
     e.preventDefault();
     const action = e.target.getAttribute('data-action');
-    if (action === 'imageNext') {
-      if (imageIndex + 1 < photos.length) {
-        setImageIndex(imageIndex + 1);
-      }
-    } else if (action === 'imagePrev') {
-      if (imageIndex - 1 >= 0) {
-        setImageIndex(imageIndex - 1);
+    if (action) {
+      if (action === 'imageNext') {
+        if (imageIndex + 1 < photos.length) {
+          setImageIndex(imageIndex + 1);
+        }
+      } else if (action === 'imagePrev') {
+        if (imageIndex - 1 >= 0) {
+          setImageIndex(imageIndex - 1);
+        }
       }
     }
   };
@@ -86,6 +81,47 @@ function Gallery(props) {
       }
     }
   };
+
+  useEffect(() => {
+    // Make sure the correct image index is displaying
+    document.querySelectorAll('[data-index]').forEach((thumbnail) => {
+      thumbnail.classList.remove('thumbnail-selected');
+      if (parseInt(thumbnail.getAttribute('data-index'), 10) === imageIndex) {
+        thumbnail.classList.add('thumbnail-selected');
+      }
+    });
+
+    // Hide/display nav buttons -> TODO: tech debt refactor
+    const carouselUp = document.querySelector('.gallery-up');
+    const carouselDown = document.querySelector('.gallery-down');
+    const navLeft = document.querySelector('.gallery-left');
+    const navRight = document.querySelector('.gallery-right');
+
+    if (imageIndex < 4) {
+      carouselDown.style.display = 'block';
+      carouselUp.style.display = 'none';
+      if (imageIndex === 0) {
+        navLeft.style.display = 'none';
+      } else {
+        navLeft.style.display = 'block';
+      }
+    } else if (imageIndex > photos.length - 4) {
+      carouselUp.style.display = 'block';
+      carouselDown.style.display = 'none';
+      if (imageIndex === photos.length - 1) {
+        navRight.style.display = 'none';
+      } else {
+        navRight.style.display = 'block';
+      }
+    }
+
+    if (imageIndex + 1 < photos.length) {
+      navRight.style.display = 'block';
+    }
+    if (imageIndex > 0) {
+      navLeft.style.display = 'block';
+    }
+  });
 
   return (
     <section className="gallery-section">
@@ -120,12 +156,16 @@ function Gallery(props) {
         </div>
 
         <div className="image-navigation">
-          <button type="button" className="gallery-left" data-action="imagePrev" onClick={arrowNavigationClick}>
-            <i className="fa-solid fa-arrow-left" />
-          </button>
-          <button type="button" className="gallery-right" data-action="imageNext" onClick={arrowNavigationClick}>
-            <i className="fa-solid fa-arrow-right" />
-          </button>
+          <div className="nav-button-wrapper">
+            <button type="button" className="gallery-left" data-action="imagePrev" onClick={arrowNavigationClick}>
+              <i className="fa-solid fa-arrow-left" data-action="imagePrev" />
+            </button>
+          </div>
+          <div className="nav-button-wrapper">
+            <button type="button" className="gallery-right" data-action="imageNext" onClick={arrowNavigationClick}>
+              <i className="fa-solid fa-arrow-right" data-action="imageNext" />
+            </button>
+          </div>
         </div>
       </section>
     </section>

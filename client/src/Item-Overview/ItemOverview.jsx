@@ -2,6 +2,7 @@
 /* eslint-disable import/extensions */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import config from '../../../config.js';
 
 // Subcomponent imports
 import mockData from './mockData.json';
@@ -26,16 +27,16 @@ function ItemOverview() {
     const reviewUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta?product_id=37311';
     const itemUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/37311/';
     axios.get(itemUrl, { headers: {
-      Authorization: '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',
+      Authorization: config.TOKEN,
     } })
       .then((itemData) => {
         axios.get(`${itemUrl}styles`, { headers: {
-          Authorization: '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',
+          Authorization: config.TOKEN,
         } })
           .then((stylesRes) => {
             // Get rating info
             axios.get(reviewUrl, { headers: {
-              Authorization: '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',
+              Authorization: config.TOKEN,
             } })
               .then((ratingsRes) => {
                 const { ratings } = ratingsRes.data;

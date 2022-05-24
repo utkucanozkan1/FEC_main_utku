@@ -13,7 +13,7 @@
 }
 .item-overview-section .gallery-section {
   width: 65vw;
-  max-height: 75vh;
+  height: 75vh;
   margin: 0 5vw;
   background-color: rgb(59, 59, 59);
 }
@@ -30,6 +30,7 @@
   flex-basis: 100%;
   display: flex;
   justify-content: flex-end;
+  max-height: 0vh;
 }
 .item-overview-section .gallery-section .gallery-container .expand-view-wrapper #expand-view {
   margin: 1vw 2vw 0 0;
@@ -81,6 +82,10 @@
   margin-right: 3vw;
   max-height: 60vh;
 }
+.item-overview-section .gallery-section .gallery-container .image-navigation .nav-button-wrapper {
+  height: 50vh;
+  display: flex;
+}
 .item-overview-section .gallery-section .gallery-container button {
   padding: 1vw;
   cursor: pointer;
@@ -107,6 +112,7 @@
 .item-overview-section .checkout-section .rating-title .reviews-wrapper {
   margin-top: 8%;
   margin-bottom: 4%;
+  display: flex;
 }
 .item-overview-section .checkout-section .rating-title .reviews-wrapper a {
   margin-left: 1vw;

@@ -18,7 +18,7 @@ $defaultBorder: 0.075vw solid black;
 
   .gallery-section {
     width: 65vw;
-    max-height: 75vh;
+    height: 75vh;
     margin: 0 5vw;
     background-color: $darkGray;
 
@@ -36,6 +36,7 @@ $defaultBorder: 0.075vw solid black;
         flex-basis: 100%;
         display: flex;
         justify-content: flex-end;
+        max-height: 0vh;
 
         #expand-view {
           margin: 1vw 2vw 0 0;
@@ -94,6 +95,11 @@ $defaultBorder: 0.075vw solid black;
         justify-content: space-between;
         margin-right: 3vw;
         max-height: 60vh;
+
+        .nav-button-wrapper {
+          height: 50vh;
+          display: flex;
+        }
       }
 
       // other
@@ -134,6 +140,8 @@ $defaultBorder: 0.075vw solid black;
       .reviews-wrapper {
         margin-top: 8%;
         margin-bottom: 4%;
+
+        display: flex;
 
         a{
           margin-left: 1vw;
