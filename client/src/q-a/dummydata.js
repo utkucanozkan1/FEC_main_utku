@@ -26,24 +26,6 @@ const questionArray = [
       }
   },
   {
-      "question_id": 543487,
-      "question_body": "question should pop up",
-      "question_date": "2021-11-09T00:00:00.000Z",
-      "asker_name": "test",
-      "question_helpfulness": 6,
-      "reported": false,
-      "answers": {
-          "5361204": {
-              "id": 5361204,
-              "body": "Gatorade",
-              "date": "2022-02-27T00:00:00.000Z",
-              "answerer_name": "Cookie",
-              "helpfulness": 1,
-              "photos": []
-          }
-      }
-  },
-  {
       "question_id": 573742,
       "question_body": "THIS IS A TEST TO SEE IF IT WORKED",
       "question_date": "2022-02-26T00:00:00.000Z",
