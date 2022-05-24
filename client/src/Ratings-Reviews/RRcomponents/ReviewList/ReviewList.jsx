@@ -12,13 +12,10 @@ export default function ReviewList({ product_id }) {
 
   function retrieveReviews() {
     console.log('testing retrieveReviews');
-    return axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews', {
-      headers: {
-        Authorization: config.TOKEN,
-      },
+    return axios.get('/reviews', {
       params: {
-        product_id: 2,
-        page: 1,
+        product_id: 37311,
+        page,
         count: 2,
       },
     })
@@ -32,17 +29,14 @@ export default function ReviewList({ product_id }) {
 
   useEffect(() => {
     console.log('testing useEffect');
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/reviews', {
+    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=37311', {
       headers: {
         Authorization: config.TOKEN,
-      },
-      params: {
-        product_id: 2,
-        page: 1,
-        count: 2,
+        'Content-Type': 'application/json',
       },
     })
       .then((res) => {
+        console.log(res.data.results);
         setReviews([...res.data.results]);
       })
       .catch((err) => {
