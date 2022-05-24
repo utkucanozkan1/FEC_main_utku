@@ -20,13 +20,13 @@ $defaultBorder: 0.075vw solid black;
     width: 65vw;
     max-height: 75vh;
     margin: 0 5vw;
-    background-color: $gray;
+    background-color: $darkGray;
 
     .gallery-container {
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
-      min-height: 100%;
+      height: 100%;
 
       display: flex;
       flex-wrap: wrap;
@@ -54,6 +54,11 @@ $defaultBorder: 0.075vw solid black;
         .thumbnails {
           list-style: none;
           text-align: center;
+          background-color: rgba(225, 225, 225, 0.785);
+          border-radius: 1vw;
+          width: 75%;
+          margin-left: 15%;
+          padding: 1vw 0;
 
           .thumbnail {
             padding: 2.3vw;
@@ -102,6 +107,12 @@ $defaultBorder: 0.075vw solid black;
           >* {
             color: red;
           }
+        }
+
+        i {
+          background-color: rgba(227, 227, 227, 0.795);
+          padding: 1vw;
+          border-radius: 1vw;
         }
       }
 
@@ -224,5 +235,39 @@ $defaultBorder: 0.075vw solid black;
       }
 
     }
+  }
+}
+
+.description-subsection {
+  margin: 3vw 15vw 3vw 20vw;
+
+  padding: 2vw;
+
+  display: flex;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+
+  .description {
+    flex-basis: 70%;
+    padding-right: 2.5vw;
+  }
+
+  .features {
+    flex-basis: 20%;
+    padding-left: 2.5vw;
+    border-left: 0.2vw solid black;
+
+    ul {
+      list-style: none;
+    }
+
+    ul li:before {
+      content: '✓';
+    }
+  }
+
+  h5, li {
+    margin-bottom: 1vw;
   }
 }

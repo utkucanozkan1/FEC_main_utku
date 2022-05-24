@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 function Gallery(props) {
   const {
@@ -70,7 +70,6 @@ function Gallery(props) {
     }
   };
 
-  
   const arrowThumbnailClick = (e) => {
     e.preventDefault();
     const action = e.target.getAttribute('data-action');

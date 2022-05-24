@@ -23,8 +23,8 @@ function ItemOverview() {
   // Feed live data(TODO: read id from props)
   useEffect(() => {
     // ReviewUrl -> TODO: temp
-    const reviewUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta?product_id=37313';
-    const itemUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/37313/';
+    const reviewUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta?product_id=37311';
+    const itemUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/37311/';
     axios.get(itemUrl, { headers: {
       Authorization: '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',
     } })
@@ -56,10 +56,23 @@ function ItemOverview() {
 
   if (!loading) {
     return (
-      <section className="item-overview-section">
-        <Gallery data={{ item, styles, styleIndex }} />
-        <Checkout data={{ item, styles, styleIndex, setStyleIndex }} />
-      </section>
+      <>
+        <section className="item-overview-section">
+          <Gallery data={{ item, styles, styleIndex }} />
+          <Checkout data={{ item, styles, styleIndex, setStyleIndex }} />
+        </section>
+        <section className="description-subsection">
+          <div className="description">
+            <h5>{item.slogan}</h5>
+            <p>{item.description}</p>
+          </div>
+          <div className="features">
+            <ul>
+              {item.features.map((feature) => <li key={feature.value}>{feature.value}</li>)}
+            </ul>
+          </div>
+        </section>
+      </>
     );
   // eslint-disable-next-line no-else-return
   } else {
