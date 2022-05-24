@@ -49,7 +49,6 @@ function Gallery(props) {
   const arrowClick = (e) => {
     e.preventDefault();
     const action = e.target.getAttribute('data-action');
-    console.log(action);
     if (action === 'imageNext') {
       if (imageIndex + 1 < photos.length) {
         setImageIndex(imageIndex + 1);

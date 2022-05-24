@@ -11,6 +11,8 @@ $defaultBorder: 0.075vw solid black;
 }
 
 .item-overview-section {
+  min-height: 70vh;
+
   display: flex;
   justify-content: space-around;
 

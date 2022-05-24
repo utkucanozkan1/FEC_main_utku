@@ -14,6 +14,8 @@ import Checkout from './subcomponents/Checkout.jsx';
 // On top level id change -> rerender whole
 
 function ItemOverview() {
+  const [loading, toogleLoading] = useState(true);
+
   const [item, setItem] = useState(mockData);
   const [styles, setStyles] = useState(mockStyles);
   const [styleIndex, setStyleIndex] = useState(0);
@@ -46,17 +48,27 @@ function ItemOverview() {
                 }
                 setItem({ ...itemData.data, rating: sum / amount });
                 setStyles(stylesRes.data.results);
+                toogleLoading(false);
               });
           });
       });
   }, []);
 
-  return (
-    <section className="item-overview-section">
-      <Gallery data={{ item, styles, styleIndex }} />
-      <Checkout data={{ item, styles, styleIndex, setStyleIndex }} />
-    </section>
-  );
+  if (!loading) {
+    return (
+      <section className="item-overview-section">
+        <Gallery data={{ item, styles, styleIndex }} />
+        <Checkout data={{ item, styles, styleIndex, setStyleIndex }} />
+      </section>
+    );
+  // eslint-disable-next-line no-else-return
+  } else {
+    return (
+      <section className="item-overview-section">
+        <div>Loading...</div>
+      </section>
+    );
+  }
 }
 
 export default ItemOverview;
