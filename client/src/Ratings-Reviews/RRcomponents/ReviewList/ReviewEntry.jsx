@@ -13,11 +13,11 @@ export default function ReviewEntry({ review, retrieveReviews }) {
     let clickURL = '';
     let stateFunction;
     if (e.target.innerHTML === 'Yes') {
-      clickURL = `/reviews/${review.review_id}/helpful`;
+      clickURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${review.review_id}/helpful`;
       stateFunction = setIsHelpful;
     }
     if (e.target.innerHTML === 'Report') {
-      clickURL = `/reviews${review.review_id}/report`;
+      clickURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews${review.review_id}/report`;
       stateFunction = setReported;
     }
 
