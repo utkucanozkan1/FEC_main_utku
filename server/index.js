@@ -25,7 +25,7 @@ app.all('/*', (req, res) => {
       res.status(data.status).send(data.data);
     })
     .catch((err) => {
-      console.log('error fetching from api', err);
+      console.log('server error fetching from api', err);
       res.sendStatus(500);
     });
 });
