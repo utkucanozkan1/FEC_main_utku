@@ -36,9 +36,10 @@ function RelatedView() {
     })
       .then((data) => {
         setProducts(prevProducts => data.data);
+        // console.log(products);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   }, []);
 

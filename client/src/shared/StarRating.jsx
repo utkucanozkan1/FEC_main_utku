@@ -5,6 +5,7 @@ import React from 'react';
 
 function StarRating(props) {
   const rating = props?.rating || 0;
+  const className = props?.className || '';
 
   // Storage for generated stars
   const stars = [];
@@ -38,14 +39,14 @@ function StarRating(props) {
   }
 
   return (
-    <>
+    <div className={className}>
       {stars.map((star, index) => (
         // Add key to an already existing component
         <React.Fragment key={index}>
           {star}
         </React.Fragment>
       ))}
-    </>
+    </div>
   );
 }
 

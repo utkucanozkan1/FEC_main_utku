@@ -9,11 +9,12 @@ export default class ImageComponent extends React.Component {
 
   handleShowDialog = () => {
     this.setState({ isOpen: !this.state.isOpen });
+    // console.log("clicked");
 
   };
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <div className="image-component">
         <img

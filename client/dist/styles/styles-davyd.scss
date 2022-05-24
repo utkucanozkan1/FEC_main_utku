@@ -11,16 +11,23 @@ $defaultBorder: 0.075vw solid black;
 }
 
 .item-overview-section {
+  min-height: 70vh;
+
   display: flex;
   justify-content: space-around;
 
   .gallery-section {
     width: 65vw;
-    max-height: 75vh;
+    height: 75vh;
     margin: 0 5vw;
-    background-color: $gray;
+    background-color: $darkGray;
 
     .gallery-container {
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 100%;
+
       display: flex;
       flex-wrap: wrap;
       justify-content: space-around;
@@ -29,6 +36,7 @@ $defaultBorder: 0.075vw solid black;
         flex-basis: 100%;
         display: flex;
         justify-content: flex-end;
+        max-height: 0vh;
 
         #expand-view {
           margin: 1vw 2vw 0 0;
@@ -47,12 +55,19 @@ $defaultBorder: 0.075vw solid black;
         .thumbnails {
           list-style: none;
           text-align: center;
+          background-color: rgba(225, 225, 225, 0.785);
+          border-radius: 1vw;
+          width: 75%;
+          margin-left: 15%;
+          padding: 1vw 0;
 
           .thumbnail {
-            padding: 2vw;
+            padding: 2.3vw;
             margin: 0.5vw;
 
             background-color: white;
+            background-size: cover;
+            background-position: center;
             border: $defaultBorder;
           }
 
@@ -65,11 +80,11 @@ $defaultBorder: 0.075vw solid black;
             font-weight: bold;
             text-align: center;
             position: absolute;
-            top: 4.2vw;
+            top: 4.6vw;
             left: 0;
-            width: 4vw;
+            width: 4.6vw;
             height: 0.3vw;
-            background-color: $darkGray;
+            background-color: red;
           }
         }
       }
@@ -79,6 +94,12 @@ $defaultBorder: 0.075vw solid black;
         display: flex;
         justify-content: space-between;
         margin-right: 3vw;
+        max-height: 60vh;
+
+        .nav-button-wrapper {
+          height: 50vh;
+          display: flex;
+        }
       }
 
       // other
@@ -87,7 +108,20 @@ $defaultBorder: 0.075vw solid black;
         cursor: pointer;
         background-color: transparent;
         border: none;
+
+        &:hover {
+          >* {
+            color: red;
+          }
+        }
+
+        i {
+          background-color: rgba(227, 227, 227, 0.795);
+          padding: 1vw;
+          border-radius: 1vw;
+        }
       }
+
     }
 
     // expanded view
@@ -106,6 +140,8 @@ $defaultBorder: 0.075vw solid black;
       .reviews-wrapper {
         margin-top: 8%;
         margin-bottom: 4%;
+
+        display: flex;
 
         a{
           margin-left: 1vw;
@@ -142,16 +178,20 @@ $defaultBorder: 0.075vw solid black;
           margin: 1vw 0;
 
           .style-thumbnail {
-          padding: 2vw;
-          background-color: $gray;
+          padding: 2.3vw;
+          // background-color: $gray;
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
           border: $defaultBorder;
           border-radius: 50%;
+          cursor: pointer;
           }
 
-          .style-selected-anchor  {
+          .style-thumbnail-selected  {
             position: relative;
           }
-          .style-selected-anchor::after  {
+          .style-thumbnail-selected::after  {
             content: '✓';
             font-size: 0.8rem;
             font-weight: bold;
@@ -203,5 +243,39 @@ $defaultBorder: 0.075vw solid black;
       }
 
     }
+  }
+}
+
+.description-subsection {
+  margin: 3vw 15vw 3vw 20vw;
+
+  padding: 2vw;
+
+  display: flex;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+
+  .description {
+    flex-basis: 70%;
+    padding-right: 2.5vw;
+  }
+
+  .features {
+    flex-basis: 20%;
+    padding-left: 2.5vw;
+    border-left: 0.2vw solid black;
+
+    ul {
+      list-style: none;
+    }
+
+    ul li:before {
+      content: '✓';
+    }
+  }
+
+  h5, li {
+    margin-bottom: 1vw;
   }
 }
