@@ -2,7 +2,10 @@
   display: flex;
   justify-content: right;
   height: 65%;
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgb(59, 59, 59);
 }
 
 p {
@@ -11,10 +14,8 @@ p {
 
 h6 {
   font-size: 10px;
-  white-space: nowrap;
-  overflow: hidden;
 }
 
-.fa-star {
+.relatedStars .fa-star {
   font-size: 7px;
 }

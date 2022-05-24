@@ -5,12 +5,12 @@ import { retrieve2Reviews } from './serverAction';
 
 // require('dotenv').config();
 
-export default function ReviewList({ productId = 37313 }) {
+export default function ReviewList({ productId }) {
   const [reviews, setReviews] = useState([]);
   const [page, setPage] = useState(1);
 
   function retrieveReviews() {
-    console.log('testing retrieveReviews', productId, page);
+    // console.log('testing retrieveReviews', productId, page);
     return retrieve2Reviews(productId, page)
       .then((res) => {
         setReviews([...res.data.results]);
@@ -33,10 +33,10 @@ export default function ReviewList({ productId = 37313 }) {
       });
   }
 
-  useEffect(() => {
-    console.log('testing useEffect');
-    retrieveReviews();
-  }, []);
+  // useEffect(() => {
+  //   // console.log('testing useEffect');
+  //   retrieveReviews();
+  // }, []);
 
   return (
     <ReviewListContainer>

@@ -5,41 +5,38 @@ import RightArrow from './RightArrow';
 import RelatedCard from './RelatedCard';
 import CardContainer from './RIOC-styled-components/CardContainer';
 import config from '../../../config';
-import getAverageRating from '../../../server/helpers';
+import getAverageRating from '../../../server/utils/helpers';
 
 function RelatedView() {
   const [products, setProducts] = useState([]);
   const [productStyles, setStyles] = useState([]);
   const [productRatings, setRatings] = useState([]);
   function getStyles(id) {
-    return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}/styles`, {
-      headers: {
-        Authorization: config.TOKEN,
-        'Content-Type': 'application/json',
-      },
-    });
+    return axios.get(`/products/${id}/styles`);
   }
   function getRatings(id) {
-    return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews?product_id=${id}`, {
-      headers: {
-        Authorization: config.TOKEN,
-        'Content-Type': 'application/json',
-      },
-    });
+    return axios.get(`/reviews/${id}/reviewsMeta`);
   }
+
+  function getRelatedProducts(id) {
+    return axios.get(`/products/${id}`);
+  }
+
   useEffect(() => {
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products', {
-      headers: {
-        Authorization: config.TOKEN,
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((data) => {
-        setProducts(prevProducts => data.data);
-        // console.log(products);
+    axios.get(`/related/${37311}`)
+      .then((relatedIds) => {
+        const relatedPromises = relatedIds.data.map((id) => (
+          getRelatedProducts(id)
+        ));
+        Promise.all(relatedPromises)
+          .then((relatedProducts) => {
+            setProducts(relatedProducts.map((product) => (
+              product.data
+            )));
+          });
       })
       .catch((err) => {
-        // console.log(err);
+        console.log(err);
       });
   }, []);
 
@@ -63,12 +60,11 @@ function RelatedView() {
       getRatings(product.id)
     ));
     Promise.all(ratingsPromises)
-      .then((data) => {
-        setRatings(data.map((ratedProduct) => (
-          getAverageRating(ratedProduct.data.results.map((review) => (
-            review.rating
-          )))
-        )));
+      .then((allProducts) => {
+        setRatings(allProducts.map((ratedProduct) => {
+          const ratingCounts = Object.entries(ratedProduct.data.ratings);
+          return getAverageRating(ratingCounts);
+        }));
       })
       .catch((err) => {
         console.log(err);

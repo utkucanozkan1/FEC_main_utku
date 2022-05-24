@@ -8,8 +8,8 @@ export default function RatingReviews() {
     <>
       <h3>Ratings and Reviews</h3>
       <RatingReviewContainer>
-        <RatingSummary />
-        <ReviewList />
+        <RatingSummary productId="37311" />
+        <ReviewList productId="37311" />
       </RatingReviewContainer>
     </>
   );
