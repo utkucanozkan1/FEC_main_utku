@@ -1,14 +1,70 @@
 /* image Modal */
 .small {
-  width: 200px;
+  width: 90px;
 }
 .dialog {
   box-shadow: 0 8px 6px -6px black;
-  position: static;
+  position: absolute;
+  right: 50%;
   left: 20%;
-  top: 10%;
+  top: 95%;
+  width: max-content;
 }
 
 .image {
-  width: 600px;
+  width: 60em;
+  height: 30em;
+}
+
+.main-q-a {
+  margin-left: 20%;
+}
+
+/* Button styling */
+.top-btn{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 30em;
+}
+.astext-btn {
+  background:none;
+  border:none;
+  margin:0;
+  padding:0;
+  cursor: pointer;
+  font-size: small;
+}
+
+
+.astext-btn-answer {
+  background:none;
+  border:none;
+  margin:0;
+  padding:0;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: small;
+}
+
+/* Image Styling */
+
+.image-component {
+display: inline-block;
+margin-left: 2em;
+border-color: black;
+border-style: solid;
+}
+
+.answer-text {
+  font-size: medium;
+}
+
+.question-div{
+display: flex;
+align-content: space-around;
+}
+.qa-main.div {
+  display: flex;
+  align-content: center;
+  margin-left: 30em;
 }

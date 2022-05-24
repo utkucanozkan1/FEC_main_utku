@@ -10,46 +10,72 @@ const QuestionList = function(props) {
     }
   console.log(answerArray)
   console.log(props.question)
+  const ButtonTitle = (
+    <>
+      <text style={{fontSize: 'small' }}>Helpful?</text>
+      &nbsp;
+      <text style={{textDecoration: 'underline', fontSize: 'small' }}>Yes</text>
+    </>
+  );
 
- return (
-  <div>
-    <br>
-    </br>
-    <div>
-    <b>
+  return (
+    <div className="qa-main-div">
+    &nbsp;
+        &nbsp;
+      <div className="question-div">
+        <b>
       Q: {props.question.question_body}
       </b>
-      <div style={{display:'inline-flex', float:'right', marginRight:500 +'px'}}>
-        <button>Helpful? Yes ({props.question.question_helpfulness})</button>
-        <button >Add Answer</button>
+      <div className='top-btn'>
+      <button className="astext-btn">{ButtonTitle} ({props.question.question_helpfulness})</button>
+        &nbsp;
+        &nbsp;
+        |
+        &nbsp;
+        &nbsp;
+        <button className="astext-btn-answer">Add Answer</button>
       </div>
     </div>
-    <br>
-    </br>
+    &nbsp;
     <div>
     <b>
       A:
     </b>
+    <span className="answer-text">
     {answerArray[0].body}
+    </span>
     </div>
+        &nbsp;
     <div>
-      {answerArray[0].photos.map((photo,i) => {
-        return <ImageComponent key={i} photo={photo}></ImageComponent>
-      })}
+      {answerArray[0].photos.map((photo, i) => (
+        <ImageComponent key={i} photo={photo} />
+      ))}
     </div>
-    <b>
-      ----
-    </b>
-      <div >
-        by {answerArray[0].answerer_name}, {moment(answerArray[0].date.slice(0,10)).format("MMM Do YY")}
-        <div style={{display:'inline-flex', float:'right', marginRight:800 +'px'}}>
-        <button>Helpful? Yes ({answerArray[0].helpfulness})</button>
-        <button>Report</button>
-        </div>
+        &nbsp;
+        &nbsp;
+    <div>
+      <span style={{fontSize:'small'}}>
+        by
+        &nbsp;
+        {answerArray[0].answerer_name},
+        &nbsp;
+        {moment(answerArray[0].date.slice(0,10)).format("MMM Do YY")}
+      </span>
+      &nbsp;
+      &nbsp;
+      |
+      &nbsp;
+      &nbsp;
+      <button type="button" className="astext-btn">{ButtonTitle} ({answerArray[0].helpfulness})</button>
+      &nbsp;
+      &nbsp;
+      |
+      &nbsp;
+      &nbsp;
+      <button type="button" className="astext-btn-answer">Report</button>
       </div>
-
   </div>
- )
+  )
 };
 export default QuestionList;
 
