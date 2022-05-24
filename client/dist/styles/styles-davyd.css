@@ -115,15 +115,18 @@
   margin: 1vw 0;
 }
 .item-overview-section .checkout-section .style .style-list li .style-thumbnail {
-  padding: 2vw;
-  background-color: rgb(202, 202, 202);
+  padding: 2.3vw;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   border: 0.075vw solid black;
   border-radius: 50%;
+  cursor: pointer;
 }
-.item-overview-section .checkout-section .style .style-list li .style-selected-anchor {
+.item-overview-section .checkout-section .style .style-list li .style-thumbnail-selected {
   position: relative;
 }
-.item-overview-section .checkout-section .style .style-list li .style-selected-anchor::after {
+.item-overview-section .checkout-section .style .style-list li .style-thumbnail-selected::after {
   content: "✓";
   font-size: 0.8rem;
   font-weight: bold;

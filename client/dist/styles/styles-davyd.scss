@@ -10,10 +10,6 @@ $defaultBorder: 0.075vw solid black;
   color: $darkGray;
 }
 
-#root {
-
-}
-
 .item-overview-section {
   display: flex;
   justify-content: space-around;
@@ -146,16 +142,20 @@ $defaultBorder: 0.075vw solid black;
           margin: 1vw 0;
 
           .style-thumbnail {
-          padding: 2vw;
-          background-color: $gray;
+          padding: 2.3vw;
+          // background-color: $gray;
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
           border: $defaultBorder;
           border-radius: 50%;
+          cursor: pointer;
           }
 
-          .style-selected-anchor  {
+          .style-thumbnail-selected  {
             position: relative;
           }
-          .style-selected-anchor::after  {
+          .style-thumbnail-selected::after  {
             content: '✓';
             font-size: 0.8rem;
             font-weight: bold;

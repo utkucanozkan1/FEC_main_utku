@@ -10,7 +10,6 @@ import RatingReviews from './Ratings-Reviews/RRcomponents/RRapp';
 // Major component imports
 // create the root of the app by selection where the app should be mounted in the dom
 const root = createRoot(document.getElementById('root'));
-
 // creates component in js syntax (hence, no <> allowed, js doesn't know what it means)
 // const App = React.createElement("h1",null,"Hello World");
 // root.render(<App />); -> will NOT render!! root.render(App); -> will

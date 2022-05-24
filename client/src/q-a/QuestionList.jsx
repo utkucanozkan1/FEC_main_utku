@@ -8,8 +8,8 @@ const QuestionList = function(props) {
   for(let key in props.question.answers){
     answerArray.push(props.question.answers[key])
     }
-  console.log(answerArray)
-  console.log(props.question)
+  // console.log(answerArray)
+  // console.log(props.question)
 
  return (
   <div>
