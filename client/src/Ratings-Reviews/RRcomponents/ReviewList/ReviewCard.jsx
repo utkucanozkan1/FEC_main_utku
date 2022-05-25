@@ -44,7 +44,7 @@ export default function ReviewEntry({ review, retrieveReviews }) {
       </span>
       <h3>{review.summary}</h3>
       <p>{review.body}</p>
-      {review.recommend ? <p> I recommend this product </p> : <p> </p>}
+      {review.recommend ? <p> Recommend Product </p> : <p> </p>}
       {review.response ? <p>{review.response}</p> : <p> </p>}
       <span>
         Helpful?
