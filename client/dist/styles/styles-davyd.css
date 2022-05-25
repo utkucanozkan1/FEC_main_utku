@@ -191,7 +191,7 @@
   text-align: left;
   cursor: pointer;
 }
-.item-overview-section .checkout-section .checkout .to-outfitter-button {
+.item-overview-section .checkout-section .checkout .outfitter-add-button {
   flex-basis: 15%;
   cursor: pointer;
 }
