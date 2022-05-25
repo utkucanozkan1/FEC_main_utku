@@ -1,17 +1,33 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import moment from 'moment';
 import ImageComponent from './ImageComponent.jsx';
+import axios from 'axios';
 
+const answerArray = [];
 const QuestionList = function(props) {
-  const answerArray = [];
+  console.log('this is the props question:', props.question);
+  const [answerArr , setAnswerArr] = useState([]);
+  console.log('answerArr:', answerArr);
   // answerArray = Object.keys(props.question.answers)
-  for(let key in props.question.answers){
-    answerArray.push(props.question.answers[key])
-    }
+  // for(let key in props.question.answers){
+  //   answerArray.push(props.question.answers[key])
+  //   }
+  // // console.log(answerArray)
+  // // console.log(props.question)
   // console.log(answerArray)
   // console.log(props.question)
-  console.log(answerArray)
-  console.log(props.question)
+//result.data.results.length > 1 ? answerArray.push(result.data.results)
+  useEffect(() => {
+    axios.get(`/answers/${props.question.question_id}`)
+      .then((result) => {
+        if (result.data.results) {
+          setAnswerArr(result.data.results);
+        }
+      })
+      // .then(console.log(answerArr))
+      .catch((err) => console.log(err));
+  }, [props.question.question_id]);
+
   const ButtonTitle = (
     <>
       <text style={{fontSize: 'small' }}>Helpful?</text>
@@ -41,12 +57,12 @@ const QuestionList = function(props) {
     </div>
         </div>
     &nbsp;
-    <div>
+    {/* <div>
     <b>
       A:
     </b>
     <span className="answer-text">
-    {answerArray[0].body}
+    {answerArray[0]}
     </span>
     </div>
         &nbsp;
@@ -77,7 +93,7 @@ const QuestionList = function(props) {
       &nbsp;
       &nbsp;
       <button type="button" className="astext-btn-answer">Report</button>
-      </div>
+      </div> */}
   </div>
   )
 };
