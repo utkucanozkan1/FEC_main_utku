@@ -13,7 +13,8 @@ const Modal = styled.div`
 const Chart = styled.div`
   position: fixed;
   background: white;
-  width: 60%;
+  width: 65%;
+  max-width: 300px;
   height: 70%;
   top: 55%;
   left: 50%;

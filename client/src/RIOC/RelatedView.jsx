@@ -26,7 +26,7 @@ function RelatedView() {
     axios.get(`/related/${37311}`)
       .then((relatedIds) => {
         const relatedPromises = relatedIds.data.map((id) => (
-          getRelatedProducts(id)
+          axios.get(`/products/${id}`)
         ));
         Promise.all(relatedPromises)
           .then((relatedProducts) => {
@@ -42,7 +42,7 @@ function RelatedView() {
 
   useEffect(() => {
     const stylesPromises = products.map((product) => (
-      getStyles(product.id)
+      axios.get(`/products/${product.id}/styles`)
     ));
     Promise.all(stylesPromises)
       .then((data) => {
@@ -57,7 +57,7 @@ function RelatedView() {
 
   useEffect(() => {
     const ratingsPromises = products.map((product) => (
-      getRatings(product.id)
+      axios.get(`/reviews/${product.id}/reviewsMeta`)
     ));
     Promise.all(ratingsPromises)
       .then((allProducts) => {
