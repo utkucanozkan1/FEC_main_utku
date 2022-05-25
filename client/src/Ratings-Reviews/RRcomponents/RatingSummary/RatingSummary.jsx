@@ -11,7 +11,6 @@ export default function RatingSummary() {
   const [meta, setMeta] = useState({});
   const [productRatings, setRatings] = useState([]);
   const { itemId } = useContext(ProductIdContext);
-  const [productId, setProductId, setLoading ] = useState(itemId);
 
   useEffect(() => {
     axios.get(`/reviews/${itemId}/reviewsMeta`)

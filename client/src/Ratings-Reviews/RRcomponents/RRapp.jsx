@@ -11,8 +11,6 @@ export default function RatingReviews() {
   const { itemId } = useContext(ProductIdContext);
   const [productId, setProductId, setLoading ] = useState(itemId);
 
-
-
   return (
     <>
       <h3>Ratings and Reviews</h3>

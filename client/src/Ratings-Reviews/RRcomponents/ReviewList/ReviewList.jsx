@@ -11,7 +11,6 @@ import { retrieve2Reviews } from './serverAction';
 
 export default function ReviewList() {
   const { itemId } = useContext(ProductIdContext);
-  const [productId, setProductId, setLoading ] = useState(itemId);
   const [reviews, setReviews] = useState([]);
   const [showModalForm, setShowModalForm] = useState('false');
   const [sort, setSort] = useState('relevant');
@@ -31,7 +30,7 @@ export default function ReviewList() {
   function clickMoreReviews() {
     return retrieve2Reviews(itemId, page + 1, count, sort)
       .then((res) => {
-        setReviews([...res.data.results]);
+        setReviews(r => r.concat(res.data.results));
       })
       .then(() => {
         setPage(page + 1);
@@ -42,7 +41,7 @@ export default function ReviewList() {
   }
   useEffect(() => {
     retrieveReviews();
-  }, [count, page, sort, itemId]);
+  }, [itemId]);
 
   const showModal = () => {
     setShowModalForm('true');
@@ -63,7 +62,7 @@ export default function ReviewList() {
         <button type="button" onClick={showModal}>Add Review</button>
       </BottomButtons>
       <ModalPopup show={showModalForm} handleExit={hideModal}>
-        <FormStyle><Form productId={productId}/></FormStyle>
+        <FormStyle><Form productId={itemId}/></FormStyle>
       </ModalPopup>
     </ReviewListContainer>
   );
