@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useEffect } from 'react';
@@ -29,15 +30,19 @@ function Gallery(props) {
   // Expand gallery to 100% width
   const expandView = (e) => {
     e.preventDefault();
-    const gallerySection = document.querySelector('.gallery-section');
-    const checkoutSection = document.querySelector('.checkout-section');
+    e.stopPropagation();
+    // Click events work in mysterious ways
+    if (e.target.classList.contains('expand-view')) {
+      const gallerySection = document.querySelector('.gallery-section');
+      const checkoutSection = document.querySelector('.checkout-section');
 
-    if (gallerySection.classList.contains('gallery-section-expanded')) {
-      gallerySection.classList.remove('gallery-section-expanded');
-      checkoutSection.setAttribute('style', 'display:inline-block');
-    } else {
-      gallerySection.classList.add('gallery-section-expanded');
-      checkoutSection.setAttribute('style', 'display:none');
+      if (gallerySection.classList.contains('gallery-section-expanded')) {
+        gallerySection.classList.remove('gallery-section-expanded');
+        checkoutSection.setAttribute('style', 'display:inline-block');
+      } else {
+        gallerySection.classList.add('gallery-section-expanded');
+        checkoutSection.setAttribute('style', 'display:none');
+      }
     }
   };
 
@@ -126,13 +131,14 @@ function Gallery(props) {
   return (
     <section className="gallery-section">
       <section
-        className="gallery-container"
+        className="gallery-container expand-view"
         style={{ backgroundImage: `url(${photos[imageIndex]?.url})` }}
+        onClick={expandView}
       >
         {/* Expand view wrapper */}
         <div className="expand-view-wrapper">
-          <button type="button" id="expand-view" onClick={expandView}>
-            <i className="fa-solid fa-expand" />
+          <button type="button" id="expand-view" className="expand-view" onClick={expandView}>
+            <i className="fa-solid fa-expand expand-view" />
           </button>
         </div>
 
@@ -155,7 +161,7 @@ function Gallery(props) {
           </button>
         </div>
 
-        <div className="image-navigation">
+        <div className="image-navigation expand-view">
           <div className="nav-button-wrapper">
             <button type="button" className="gallery-left" data-action="imagePrev" onClick={arrowNavigationClick}>
               <i className="fa-solid fa-arrow-left" data-action="imagePrev" />

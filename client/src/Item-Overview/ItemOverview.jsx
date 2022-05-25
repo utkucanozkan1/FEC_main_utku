@@ -21,7 +21,7 @@ function ItemOverview() {
   const [styles, setStyles] = useState(mockStyles);
   const [styleIndex, setStyleIndex] = useState(0);
 
-  const { itemId, setItemId } = useContext(ProductIdContext);
+  const { itemId } = useContext(ProductIdContext);
 
   // Feed live data(TODO: read id from props)
   useEffect(() => {
