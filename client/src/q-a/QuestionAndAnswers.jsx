@@ -1,17 +1,23 @@
 import React ,{useState} from 'react';
 import questionArray from './dummydata';
 import QuestionList from './QuestionList.jsx';
-
-const QuestionsAndAnswers = () => {
+import Search from './Search.jsx';
+function QuestionsAndAnswers() {
   return (
     <>
+      <div>
+        Questions & Answers
+      </div>
+      <div>
+        <Search />
+      </div>
       <div className="main-div">
-       {questionArray.map((question,i) => {
+        {questionArray.map((question,i) => {
         return <QuestionList key={i} question={question} ></QuestionList>
-      })}
-    </div>
+        })}
+      </div>
     </>
 
   );
-};
+}
 export default QuestionsAndAnswers;

@@ -24,20 +24,22 @@ const QuestionList = function(props) {
     <div className="qa-main-div">
     &nbsp;
         &nbsp;
-      <div className="question-div">
+        <div className="question-div">
+        <div className='flex-child'>
         <b>
-      Q: {props.question.question_body}
+          Q: {props.question.question_body}
       </b>
-      <div className='top-btn'>
+        </div>
+        <div className='flex-child'>
       <button className="astext-btn">{ButtonTitle} ({props.question.question_helpfulness})</button>
-        &nbsp;
-        &nbsp;
-        |
-        &nbsp;
-        &nbsp;
-        <button className="astext-btn-answer">Add Answer</button>
-      </div>
+          &nbsp;
+          &nbsp;
+          |
+          &nbsp;
+          &nbsp;
+          <button className="astext-btn-answer">Add Answer</button>
     </div>
+        </div>
     &nbsp;
     <div>
     <b>
