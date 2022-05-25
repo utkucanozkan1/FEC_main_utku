@@ -1,16 +1,16 @@
 /* eslint-disable object-curly-newline */
 /* eslint-disable import/extensions */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import config from '../../../config.js';
 
-// Subcomponent imports
+// Subcomponent/Context imports
 import mockData from './mockData.json';
 import mockStyles from './mockStyles.json';
 import Gallery from './subcomponents/Gallery.jsx';
 import Checkout from './subcomponents/Checkout.jsx';
+import { ProductIdContext } from '../index.jsx';
 
-// TODO: Replace with live data
 
 // On top level id change -> rerender whole
 
@@ -21,11 +21,13 @@ function ItemOverview() {
   const [styles, setStyles] = useState(mockStyles);
   const [styleIndex, setStyleIndex] = useState(0);
 
+  const { itemId, setItemId } = useContext(ProductIdContext);
+
   // Feed live data(TODO: read id from props)
   useEffect(() => {
     // ReviewUrl -> TODO: temp
-    const reviewUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta?product_id=37311';
-    const itemUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/37311/';
+    const reviewUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta?product_id=${itemId}`;
+    const itemUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${itemId}/`;
     axios.get(itemUrl, { headers: {
       Authorization: config.TOKEN,
     } })
