@@ -16,7 +16,7 @@ export default function ReviewList({ productId }) {
   const [page, setPage] = useState(1);
 
   function retrieveReviews() {
-    return retrieve2Reviews(productId)
+    return retrieve2Reviews(productId, page, count, sort)
       .then((res) => {
         setReviews([...res.data.results]);
       })
@@ -26,7 +26,7 @@ export default function ReviewList({ productId }) {
   }
 
   function clickMoreReviews() {
-    return retrieve2Reviews(productId, page + 1)
+    return retrieve2Reviews(productId, page + 1, count, sort)
       .then((res) => {
         setReviews([...res.data.results]);
       })

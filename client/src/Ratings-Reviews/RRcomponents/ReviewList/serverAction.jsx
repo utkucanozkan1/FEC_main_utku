@@ -2,12 +2,12 @@ const axios = require('axios');
 
 const retrieve2Reviews = (productId, page, count, sort) => (
   axios.get(`/reviews/${productId}`, {
-    // params: {
-    //   product_id: productId,
-    //   page,
-    //   count,
-    //   sort,
-    // },
+    params: {
+      product_id: productId,
+      page,
+      count,
+      sort,
+    },
   })
 );
 
@@ -27,5 +27,5 @@ module.exports = {
   retrieve2Reviews,
   setIsHelpful,
   setReported,
-  retrieveMeta
+  retrieveMeta,
 };
