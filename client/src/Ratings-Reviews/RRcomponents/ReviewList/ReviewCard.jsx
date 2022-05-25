@@ -36,7 +36,7 @@ export default function ReviewEntry({ review, retrieveReviews }) {
   return (
     <ReviewEntryStyle>
       <hr />
-      <StarRating />
+      <StarRating props={review.rating}/>
       <span>
         {review.reviewer_name}
         ,

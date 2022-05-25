@@ -1,8 +1,8 @@
 import React from 'react';
 import { RatingsBreakdown } from '../../../RR-styled-components/RRsectionContainerStyle';
-import BarChart from './barChart';
 
 export default function RatingBreakdownMain({ meta }) {
+  console.log('ratingsBreakdownMain', meta)
   return (
     <RatingsBreakdown>
       <h4>ratingsbreakdown</h4>
@@ -22,16 +22,16 @@ export default function RatingBreakdownMain({ meta }) {
             <span>5-Star {meta.ratings['5']}</span>
           </div>
         {/* </> */}
-      <div>
-      <h4>characteristic breakdown</h4>
-        {
-        meta.characteristics ? Object.keys(meta.characteristics).map((char, i) =>(
-          <div key={i}>
-            <span>{char}</span>
-            <span>{meta.characteristics[char].value}</span>
+        <div>
+        <h4>characteristic breakdown</h4>
+          {
+         meta.characteristics ? Object.keys(meta.characteristics).map((char) => (
+            <div key={meta.characteristics[char]}>
+              <span>{char}</span>
+              <span>{meta.characteristics[char].value}</span>
             </div>
-        )) : (null)
-        }
+         )) : (null)
+          }
       </div>
       </div>
       ) : null

@@ -4,13 +4,20 @@ import { SummaryLeft } from '../../RR-styled-components/RRsectionContainerStyle'
 import RatingBreakdownMain from './RatingBreakdown/ratingBreakdownMain';
 import PercentageOfRecs from './PercentageOfRecs';
 import ProductBreakdown from '../ProductBreakdown/ProductBreakdown';
-import AverageStarRating from '../AverageRating/AverageRating';
+import AverageStarRating from '../../../../../server/utils/helpers';
+import StarRating from '../../../shared/StarRating';
 
 export default function RatingSummary({ meta }) {
+  console.log(meta);
+  let ratings = {};
+  if (Object.keys(meta).length !== 0) {
+    ratings = Object.entries(meta.ratings);
+  }
   return (
     <SummaryLeft>
       Ratings summary
-      <AverageStarRating />
+      <StarRating props={meta} />
+      <AverageStarRating ratings={ratings} />
       <PercentageOfRecs />
       <RatingBreakdownMain meta={meta} />
     </SummaryLeft>

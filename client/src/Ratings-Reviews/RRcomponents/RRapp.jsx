@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { RatingReviewContainer } from '../RR-styled-components/RRsectionContainerStyle';
+import { RatingReviewContainer, BottomButtons } from '../RR-styled-components/RRsectionContainerStyle';
 import RatingSummary from './RatingSummary/RatingSummary';
 import ReviewList from './ReviewList/ReviewList';
 import { retrieve2Reviews, retrieveMeta } from './ReviewList/serverAction';
@@ -9,7 +9,7 @@ import { retrieve2Reviews, retrieveMeta } from './ReviewList/serverAction';
 export default function RatingReviews() {
   const [reviews, setReviews] = useState([]);
   const [page, setPage] = useState(1);
-  const [ productId, setProductId, setLoading ] = useState(37313);
+  const [productId, setProductId, setLoading ] = useState(37313);
   const [meta, setMeta] = useState({});
   const [sort, setSort] = useState('relevant');
   const [count, setCount] = useState(2);
@@ -49,6 +49,7 @@ export default function RatingReviews() {
   useEffect(() => {
     axios.get(`/reviews/${productId}/reviewsMeta`)
       .then((res) => {
+        console.log('in app', res.data)
         setMeta(res.data);
       })
       .catch((err) => {
@@ -63,10 +64,10 @@ export default function RatingReviews() {
         <RatingSummary meta={meta} />
         Reviews, sort by
         <ReviewList productId={productId} reviews={reviews} />
-      </RatingReviewContainer>
-        <div>
+        <BottomButtons>
           <button onClick={clickMoreReviews}>MoreReviews</button><button type="button" onClick={showModal}>Add Review</button>
-        </div>
+        </BottomButtons>
+      </RatingReviewContainer>
     </>
   );
 }

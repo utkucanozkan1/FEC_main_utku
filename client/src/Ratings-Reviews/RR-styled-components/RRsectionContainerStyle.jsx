@@ -2,13 +2,14 @@ import styled from 'styled-components';
 
 const RatingReviewContainer = styled.section`
 display: flex;
-flex-flow: row nowrap;
+flex-flow: column nowrap;
 border-style: solid;
 border-color: brown;
 `;
 
 const ReviewListContainer = styled.div`
 align-self: flex-end;
+justify-self: end;
 width: 70%;
 flex-flow: column wrap;
 border-style: solid;
@@ -65,8 +66,13 @@ border-style: solid;
 border-color: green;
 `;
 
+const BottomButtons = styled.div`
+align-self: flex-end;
+
+`;
+
 export {
   RatingReviewContainer, ReviewListContainer, ReviewEntryStyle,
   SummaryLeft, RatingsBreakdown, ProductBreakdownContainer,
-  Percentage, BarChartStyle, AverageRating,
+  Percentage, BarChartStyle, AverageRating, BottomButtons,
 };
