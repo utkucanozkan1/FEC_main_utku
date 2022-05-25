@@ -1,5 +1,5 @@
 import React from 'react';
-import RatingsBreakdown from '../../../RR-styled-components/RatingsBreakdown';
+import { RatingsBreakdown } from '../../../RR-styled-components/RRsectionContainerStyle';
 import BarChart from './barChart';
 
 export default function RatingBreakdownMain() {

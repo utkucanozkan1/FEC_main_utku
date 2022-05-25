@@ -1,5 +1,5 @@
 import React from 'react';
-import RatingReviewContainer from '../RR-styled-components/RRsectionContainerStyle';
+import { RatingReviewContainer } from '../RR-styled-components/RRsectionContainerStyle';
 import RatingSummary from './RatingSummary/RatingSummary';
 import ReviewList from './ReviewList/ReviewList';
 

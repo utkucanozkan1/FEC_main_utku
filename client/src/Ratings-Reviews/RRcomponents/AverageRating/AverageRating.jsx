@@ -1,5 +1,5 @@
 import React from 'react';
-import AverageRating from '../../RR-styled-components/BarChartStyle';
+import { AverageRating } from '../../RR-styled-components/RRsectionContainerStyle';
 
 export default function AverageStarRating() {
   return (
