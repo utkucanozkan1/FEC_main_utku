@@ -19,3 +19,9 @@ h6 {
 .relatedStars .fa-star {
   font-size: 7px;
 }
+
+.modalItem {
+  width: 33%;
+  background-color: pink;
+  border-style: solid;
+}
