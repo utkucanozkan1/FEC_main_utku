@@ -1,17 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { SummaryLeft } from '../../RR-styled-components/RRsectionContainerStyle';
 import RatingBreakdownMain from './RatingBreakdown/ratingBreakdownMain';
 import PercentageOfRecs from './PercentageOfRecs';
+import { ProductIdContext } from '../../../index';
 import AverageStarRating from '../../../../../server/utils/helpers';
 import StarRating from '../../../shared/StarRating';
 
-export default function RatingSummary({ productId }) {
+export default function RatingSummary() {
   const [meta, setMeta] = useState({});
   const [productRatings, setRatings] = useState([]);
+  const { itemId } = useContext(ProductIdContext);
+  const [productId, setProductId, setLoading ] = useState(itemId);
 
   useEffect(() => {
-    axios.get(`/reviews/${productId}/reviewsMeta`)
+    axios.get(`/reviews/${itemId}/reviewsMeta`)
       .then((res) => {
         setMeta(res.data);
         const ratingCounts = Object.entries(res.data.ratings);
@@ -21,7 +24,7 @@ export default function RatingSummary({ productId }) {
       .catch((err) => {
         console.log('Error, could not retrieve meta', err);
       });
-  }, [productId]);
+  }, [itemId]);
 
   return (
     <SummaryLeft>

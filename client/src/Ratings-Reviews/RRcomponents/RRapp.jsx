@@ -10,7 +10,6 @@ import { retrieve2Reviews, retrieveMeta } from './ReviewList/serverAction';
 export default function RatingReviews() {
   const { itemId } = useContext(ProductIdContext);
   const [productId, setProductId, setLoading ] = useState(itemId);
-  const [meta, setMeta] = useState({});
 
 
 
@@ -18,9 +17,10 @@ export default function RatingReviews() {
     <>
       <h3>Ratings and Reviews</h3>
       <RatingReviewContainer>
-        <RatingSummary productId={productId} />
-        <ReviewList productId={productId} />
+        <RatingSummary />
+        <ReviewList />
       </RatingReviewContainer>
     </>
   );
 }
+// productId={productId}

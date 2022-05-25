@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { ReviewListContainer, BottomButtons, FormStyle } from '../../RR-styled-components/RRsectionContainerStyle';
 import ReviewCard from './ReviewCard';
 import ModalPopup from './Modal';
 import Form from './Form';
+import { ProductIdContext } from '../../../index';
 import { retrieve2Reviews } from './serverAction';
 
 // require('dotenv').config();
 
-export default function ReviewList({ productId }) {
+export default function ReviewList() {
+  const { itemId } = useContext(ProductIdContext);
+  const [productId, setProductId, setLoading ] = useState(itemId);
   const [reviews, setReviews] = useState([]);
   const [showModalForm, setShowModalForm] = useState('false');
   const [sort, setSort] = useState('relevant');
@@ -16,7 +19,7 @@ export default function ReviewList({ productId }) {
   const [page, setPage] = useState(1);
 
   function retrieveReviews() {
-    return retrieve2Reviews(productId, page, count, sort)
+    return retrieve2Reviews(itemId, page, count, sort)
       .then((res) => {
         setReviews([...res.data.results]);
       })
@@ -26,7 +29,7 @@ export default function ReviewList({ productId }) {
   }
 
   function clickMoreReviews() {
-    return retrieve2Reviews(productId, page + 1, count, sort)
+    return retrieve2Reviews(itemId, page + 1, count, sort)
       .then((res) => {
         setReviews([...res.data.results]);
       })
@@ -39,7 +42,7 @@ export default function ReviewList({ productId }) {
   }
   useEffect(() => {
     retrieveReviews();
-  }, [count, page, sort, productId]);
+  }, [count, page, sort, itemId]);
 
   const showModal = () => {
     setShowModalForm('true');
