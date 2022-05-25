@@ -1,4 +1,7 @@
 /* image Modal */
+/* *{
+  border: 1px solid red;
+} */
 .small {
   width: 90px;
 }
@@ -16,16 +19,12 @@
   height: 30em;
 }
 
-.main-q-a {
+/* .main-q-a {
   margin-left: 20%;
-}
+} */
 
 /* Button styling */
-.top-btn{
-  display: flex;
-  justify-content: flex-end;
-  margin-right: 30em;
-}
+
 .astext-btn {
   background:none;
   border:none;
@@ -49,8 +48,10 @@
 /* Image Styling */
 
 .image-component {
-display: inline-block;
-margin-left: 2em;
+display: inline-flex;
+margin-right: 5%;
+flex-direction: row;
+justify-content: space-evenly;
 border-color: black;
 border-style: solid;
 }
@@ -63,8 +64,25 @@ border-style: solid;
 display: flex;
 align-content: space-around;
 }
-.qa-main.div {
-  display: flex;
-  align-content: center;
-  margin-left: 30em;
+.main-div {
+min-height: 50vh;
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+}
+.flex-child{
+flex: 1;
+}
+
+#header-search{
+  height: 3em;
+  width: 40em;
+  border-color: black;
+  border-style: solid;
+}
+.question-section{
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid red;
+  width: 50vw;
 }
