@@ -59,8 +59,3 @@ export default function ReviewEntry({ review, retrieveReviews }) {
     </ReviewEntryStyle>
   );
 }
-
-ReviewEntry.propTypes = {
-  review: PropTypes.object.isRequired,
-  retrieveReviews: PropTypes.func.isRequired,
-};
