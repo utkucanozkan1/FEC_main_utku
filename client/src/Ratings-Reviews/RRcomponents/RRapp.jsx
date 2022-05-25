@@ -49,7 +49,7 @@ export default function RatingReviews() {
   useEffect(() => {
     axios.get(`/reviews/${productId}/reviewsMeta`)
       .then((res) => {
-        setMeta([...res.data]);
+        setMeta(res.data);
       })
       .catch((err) => {
         console.log('Error, could not retrieve meta', err);
@@ -61,12 +61,12 @@ export default function RatingReviews() {
       <h3>Ratings and Reviews</h3>
       <RatingReviewContainer>
         <RatingSummary meta={meta} />
+        Reviews, sort by
+        <ReviewList productId={productId} reviews={reviews} />
+      </RatingReviewContainer>
         <div>
-          Reviews, sort by
-          <ReviewList productId={productId} reviews={reviews} />
           <button onClick={clickMoreReviews}>MoreReviews</button><button type="button" onClick={showModal}>Add Review</button>
         </div>
-      </RatingReviewContainer>
     </>
   );
 }
