@@ -31,7 +31,6 @@ export default function Form({ product_id }) {
   };
 
   const handleSubmit = () => {
-    // console.log({product_id, summary, name, content, email});
     axios.post('/reviews', {
       product_id, summary, body, recommend, name, email, photos, characteristics,
     })
@@ -47,7 +46,7 @@ export default function Form({ product_id }) {
     <FormStyle>
       <section>
         <header>
-          <h2>Write Your Review</h2>
+          <h2>What do you think of this product?</h2>
         </header>
         <form>
           <Header>
@@ -60,7 +59,7 @@ export default function Form({ product_id }) {
           <hr />
           <Header>
             <label>
-              <span>Do you recommend this product?</span>
+              <span>Recommend this product</span>
               {' '}
               <small>Yes</small>
               {' '}
@@ -81,7 +80,7 @@ export default function Form({ product_id }) {
                 <select>
                   {chars[char].map((elem, i) => (
                     <option key={i} value={i + 1}>{elem}</option>
-                    // setChar
+                    // setChar to update state
                   ))}
                 </select>
               </div>
@@ -134,7 +133,7 @@ export default function Form({ product_id }) {
           <Header>
             <h3>
               <label>
-                <span>Upload your photos</span>
+                <span>Upload photos</span>
               </label>
             </h3>
           </Header>
@@ -151,7 +150,7 @@ export default function Form({ product_id }) {
           <Header>
             <h3>
               <label>
-                <span>What is your name?</span>
+                <span>Name?</span>
               </label>
             </h3>
             <span> Use nickname </span>
@@ -174,7 +173,7 @@ export default function Form({ product_id }) {
                 <span>Your email</span>
               </label>
             </h3>
-            <span> For authentication reasons, you will not be emailed </span>
+            <span> email will be not be used for any other purpose</span>
           </Header>
           <div>
             <label>
