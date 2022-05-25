@@ -1,4 +1,7 @@
 /* image Modal */
+/* *{
+  border: 1px solid red;
+} */
 .small {
   width: 90px;
 }
@@ -46,6 +49,7 @@
 
 .image-component {
 display: inline-flex;
+margin-right: 5%;
 flex-direction: row;
 justify-content: space-evenly;
 border-color: black;
@@ -68,4 +72,17 @@ justify-content: space-around;
 }
 .flex-child{
 flex: 1;
+}
+
+#header-search{
+  height: 3em;
+  width: 40em;
+  border-color: black;
+  border-style: solid;
+}
+.question-section{
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid red;
+  width: 50vw;
 }

@@ -19,7 +19,7 @@ export default class ImageComponent extends React.Component {
       <div className="image-component">
         <img
           className="small"
-          src={this.props.photo}
+          src={this.props.photo.url}
           onClick={this.handleShowDialog}
           alt="no image"
         />
@@ -31,7 +31,7 @@ export default class ImageComponent extends React.Component {
           >
             <img
               className="image"
-              src={this.props.photo}
+              src={this.props.photo.url}
               onClick={this.handleShowDialog}
               alt="no image"
             />

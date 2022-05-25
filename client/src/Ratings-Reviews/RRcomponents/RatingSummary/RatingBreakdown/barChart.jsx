@@ -1,5 +1,5 @@
 import React from 'react';
-import BarChartStyle from '../../../RR-styled-components/BarChartStyle';
+import { BarChartStyle } from '../../../RR-styled-components/RRsectionContainerStyle';
 
 export default function BarChart() {
   return (

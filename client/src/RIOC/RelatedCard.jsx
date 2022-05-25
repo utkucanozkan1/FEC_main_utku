@@ -7,7 +7,7 @@ import '../../dist/styles/styles-val.css';
 
 export const ModalContext = React.createContext();
 
-function RelatedCard({ cardProduct, cardStyle, cardRating }) {
+export function RelatedCard({ cardProduct, cardStyle, cardRating }) {
   const [modal, setModal] = useState(false);
   const productImage = cardStyle ? cardStyle.results[0].photos[0].thumbnail_url : '';
   return (
@@ -26,4 +26,4 @@ function RelatedCard({ cardProduct, cardStyle, cardRating }) {
   );
 }
 
-export default RelatedCard;
+//export default RelatedCard;

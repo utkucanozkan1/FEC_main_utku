@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductBreakdownContainer from '../../RR-styled-components/ProductBreakdownContainer';
+import { ProductBreakdownContainer } from '../../RR-styled-components/RRsectionContainerStyle';
 
 export default function ProductBreakdown() {
   return (
