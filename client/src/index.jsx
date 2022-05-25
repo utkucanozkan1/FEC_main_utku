@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+/* eslint-disable react/jsx-no-constructed-context-values */
+/* eslint-disable import/no-cycle */
+import React, { useState } from 'react';
+// import axios from 'axios';
 
 // Major component imports
 import { createRoot } from 'react-dom/client';
@@ -11,6 +13,7 @@ import RatingReviews from './Ratings-Reviews/RRcomponents/RRapp';
 // create the root of the app by selection where the app should be mounted in the dom
 const root = createRoot(document.getElementById('root'));
 
+// eslint-disable-next-line import/prefer-default-export
 export const ProductIdContext = React.createContext();
 
 function App() {
@@ -18,7 +21,7 @@ function App() {
 
   return (
     <div>
-      <ProductIdContext.Provider value={{ itemId, setItemId}}>
+      <ProductIdContext.Provider value={{ itemId, setItemId }}>
         <ItemOverview />
         <RelatedOutfitView />
         <QuestionsAndAnswers />
