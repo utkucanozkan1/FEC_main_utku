@@ -1,8 +1,10 @@
+/* eslint-disable camelcase */
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable import/extensions */
 import React, { useState } from 'react';
+import axios from 'axios';
 
 // Subcomponent/Context imports
 import StarRating from '../../shared/StarRating.jsx';
@@ -53,7 +55,31 @@ function Checkout(props) {
     for (let i = 1; i <= quantityAvailable; i += 1) {
       newQuantityOptions.push(<option>{i}</option>);
     }
+    document.querySelector('.quantity').value = 0;
     setQuantityOptions(newQuantityOptions);
+  };
+  const addToOutfitter = (e) => {
+    e.preventDefault();
+    // Props to add to new outfitter item
+    const {
+      category, name: title, default_price: original_price, rating,
+    } = item;
+    let imageUrl = styles[0]?.photos[0]?.thumbnail_url || '';
+    let sale_price = styles[0]?.sale_price;
+    for (let i = 0; i < styles.length; i += 1) {
+      if (styles[i]['default?'] && styles[i]?.photos[0]?.thumbnail_url) {
+        imageUrl = styles[i].photos[0].thumbnail_url;
+        sale_price = styles[i]?.sale_price;
+      }
+    }
+    const starred = {
+      productId: item.id, title, category, original_price, sale_price, rating, imageUrl,
+    };
+    axios.post('/outfitter', starred)
+      .then()
+      .catch((err) => {
+        console.error(`--> 🚫 ${err.response.data.message}`);
+      });
   };
 
   return (
@@ -108,7 +134,7 @@ function Checkout(props) {
           ))}
         </select>
         <button className="checkout-button" type="button">ADD TO BAG</button>
-        <button type="button" className="to-outfitter-button">⭐</button>
+        <button type="button" className="outfitter-add-button" onClick={addToOutfitter}>⭐</button>
       </div>
     </section>
   );

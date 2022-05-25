@@ -22,16 +22,21 @@ const Chart = styled.div`
   border-radius: 5%;
   border-style: solid;
   text-align: center;
+  border-style: solid;
 `;
 
 const CompareContainer = styled.div`
   display: flex;
   flex-direction: column;
+  text-align: center;
+  border-style: solid;
 `;
 
 const RowContainer = styled.div`
   display: flex;
   justify-content: space-around;
+  border-style: solid;
+  text-align: center;
   border-style: solid;
 `;
 

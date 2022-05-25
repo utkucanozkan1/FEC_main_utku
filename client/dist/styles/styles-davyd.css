@@ -191,7 +191,7 @@
   text-align: left;
   cursor: pointer;
 }
-.item-overview-section .checkout-section .checkout .to-outfitter-button {
+.item-overview-section .checkout-section .checkout .outfitter-add-button {
   flex-basis: 15%;
   cursor: pointer;
 }
@@ -221,6 +221,14 @@
 }
 .description-subsection h5, .description-subsection li {
   margin-bottom: 1vw;
+}
+
+#root.dark-mode * {
+  color: white;
+  background-color: rgb(37, 37, 37);
+}
+#root.dark-mode .image-navigation {
+  background-color: transparent;
 }
 
 /*# sourceMappingURL=styles-davyd.css.map */

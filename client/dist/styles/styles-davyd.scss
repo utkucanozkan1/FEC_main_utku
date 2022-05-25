@@ -237,7 +237,7 @@ $defaultBorder: 0.075vw solid black;
         text-align: left;
         cursor: pointer;
       }
-      .to-outfitter-button {
+      .outfitter-add-button {
         flex-basis: 15%;
         cursor: pointer;
       }
@@ -277,5 +277,18 @@ $defaultBorder: 0.075vw solid black;
 
   h5, li {
     margin-bottom: 1vw;
+  }
+}
+
+#root {
+  &.dark-mode {
+    * {
+      color: white;
+      background-color: rgb(37, 37, 37);
+    }
+
+    .image-navigation {
+      background-color: transparent;
+    }
   }
 }
