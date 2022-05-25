@@ -27,8 +27,7 @@ export default function RatingBreakdownMain({ meta }) {
           {
          meta.characteristics ? Object.keys(meta.characteristics).map((char) => (
             <div key={meta.characteristics[char]}>
-              <span>{char}</span>
-              <span>{meta.characteristics[char].value}</span>
+              <span>{char} {Math.round(meta.characteristics[char].value)}</span>
             </div>
          )) : (null)
           }

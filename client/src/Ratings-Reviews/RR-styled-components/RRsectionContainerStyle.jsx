@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const RatingReviewContainer = styled.section`
 display: flex;
-flex-flow: column nowrap;
+flex-flow: row nowrap;
 border-style: solid;
 border-color: brown;
 `;

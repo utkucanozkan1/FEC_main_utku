@@ -64,13 +64,8 @@ export default function RatingReviews() {
       <h3>Ratings and Reviews</h3>
       <RatingReviewContainer>
         <RatingSummary meta={meta} />
-        Reviews, sort by
         <ReviewList productId={productId} reviews={reviews} />
-        <BottomButtons>
-          <button onClick={clickMoreReviews}>MoreReviews</button><button type="button" onClick={showModal}>Add Review</button>
-        </BottomButtons>
       </RatingReviewContainer>
     </>
   );
 }
-
