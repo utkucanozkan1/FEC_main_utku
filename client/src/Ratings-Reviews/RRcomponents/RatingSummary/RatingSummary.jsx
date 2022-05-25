@@ -28,7 +28,8 @@ export default function RatingSummary({ productId }) {
       Ratings summary
       <br />
       <span>
-        {productRatings} <StarRating props={meta} />
+        {productRatings}
+        <StarRating rating={productRatings} />
       </span>
       <PercentageOfRecs meta={meta} />
       <RatingBreakdownMain meta={meta} />
