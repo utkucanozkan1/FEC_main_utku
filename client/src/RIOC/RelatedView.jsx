@@ -2,26 +2,15 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import LeftArrow from './LeftArrow';
 import RightArrow from './RightArrow';
-import RelatedCard from './RelatedCard';
+import { RelatedCard } from './RelatedCard';
 import CardContainer from './RIOC-styled-components/CardContainer';
-import config from '../../../config';
 import getAverageRating from '../../../server/utils/helpers';
 
 function RelatedView() {
   const [products, setProducts] = useState([]);
   const [productStyles, setStyles] = useState([]);
   const [productRatings, setRatings] = useState([]);
-  function getStyles(id) {
-    return axios.get(`/products/${id}/styles`);
-  }
-  function getRatings(id) {
-    return axios.get(`/reviews/${id}/reviewsMeta`);
-  }
-
-  function getRelatedProducts(id) {
-    return axios.get(`/products/${id}`);
-  }
-
+  // NEED TO SWITCH STARTER PRODUCT
   useEffect(() => {
     axios.get(`/related/${37311}`)
       .then((relatedIds) => {

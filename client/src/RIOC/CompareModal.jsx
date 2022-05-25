@@ -3,16 +3,15 @@ import axios from 'axios';
 import {
   Modal, Chart, CompareContainer, RowContainer,
 } from './RIOC-styled-components/ModalStyles';
-import ModalContext from './RelatedCard';
+import { ModalContext } from './RelatedCard';
 
 function CompareModal() {
-  // const { modal, setModal } = useContext(ModalContext);
+  const { modal, setModal } = useContext(ModalContext);
   const [features, setFeatures] = useState([]);
   // NEED TO SWITCH STARTER PRODUCT
   useEffect(() => {
     axios.get(`/products/${37311}`)
       .then((product) => {
-        console.log('FEATURES', product.data.features);
         setFeatures(product.data.features);
       })
       .catch((err) => {
@@ -21,10 +20,9 @@ function CompareModal() {
   }, []);
   return (
     <Modal>
-      {console.log('FEATURES STATE', features)}
       <Chart>
         <h5>Comparing</h5>
-        <button type="button" onClick={() => { /*setModal(!modal);*/ }}>X</button>
+        <button type="button" onClick={() => { setModal(!modal); }}>X</button>
         <CompareContainer>
           <RowContainer>
             <h6>Cur Product Name</h6>
