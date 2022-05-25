@@ -8,6 +8,7 @@ const QuestionList = function (props) {
   // console.log("this is the props question:", props.question);
   const [answerArr, setAnswerArr] = useState([]);
   const [loading, toogleLoading] = useState(true);
+  const [answerReported , setAnswerReported] = useState(false);
   // console.log("answerArr:", answerArr);
   // answerArray = Object.keys(props.question.answers)
   // for(let key in props.question.answers){
@@ -30,6 +31,15 @@ const QuestionList = function (props) {
       .then()
       .catch((err) => console.log(err));
   }, [props.question.question_id]);
+
+  function reportAnswer() {
+    let answerId = answerArr[0].answer_id;
+    console.log(answerId);
+    axios.put(`/answer/report/${answerId}`)
+      .then(setAnswerReported(true))
+      .then((res) => console.log('answer reported'))
+      .catch((err) => console.log(err));
+  }
 
   const ButtonTitle = (
     <>
@@ -78,9 +88,9 @@ const QuestionList = function (props) {
             {ButtonTitle} ({answerArr[0].helpfulness})
           </button>
           &nbsp; &nbsp; | &nbsp; &nbsp;
-          <button type="button" className="astext-btn-answer">
+          {answerReported ? <button className="astext-btn-answer">This Answer has been Reported</button> :  <button type="button" className="astext-btn-answer" onClick={reportAnswer}>
             Report
-          </button>
+          </button>}
         </div>
       </div>
     );

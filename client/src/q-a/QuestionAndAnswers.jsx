@@ -7,6 +7,8 @@ const questionsArray = [];
 function QuestionsAndAnswers() {
   // need live data
   const { itemId } = useContext(ProductIdContext);
+  const [searchQuestions, setSearchQuestions] = useState(false);
+  const [searchArray, setSearchArray] = useState([]);
   const [loading, toogleLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState({ search: '' });
   const [productId, setProductId] = useState(itemId);
@@ -17,20 +19,35 @@ function QuestionsAndAnswers() {
       .then((questions) => {
         questions.data.results.forEach((question) => {
           if (Object.keys(question.answers).length) {
-            questionsArray.push(question)
+            questionsArray.push(question);
           }
         });
         console.log(questionsArray);
         toogleLoading(false);
       });
-  }, []);
+    }, []);
 
-  const handleChange = function (e) {
+    // const searchArray = [];
+    const handleChange = function (e) {
     // if (e.target.value.length > 3) {
 
     // }
     setSearchTerm({ ...searchTerm, search: e.target.value });
-    console.log(searchTerm.search);
+    if (searchTerm.search.length > 3) {
+      questionsArray.forEach((el,i) => {
+        // console.log(el.question_body);
+        console.log(searchArray);
+        if (el.question_body.toLowerCase().includes(searchTerm.search)) {
+          if (searchArray.indexOf(el) === -1) {
+            //searchArray.push(el);
+            setSearchArray([el]);
+          }
+          setSearchQuestions(true);
+        }
+      });
+    } else {
+      setSearchQuestions(false);
+    }
   };
 
   if (!loading) {
@@ -51,11 +68,20 @@ function QuestionsAndAnswers() {
              />
           </form>
         </div>
-        <div className="main-div">
+        {searchQuestions ?  <div className="main-div">
+          {searchArray.slice(0, 2).map((question, i) => (
+            <QuestionList question={question} key={i} />
+          ))}
+        </div> :   <div className="main-div">
           {questionsArray.slice(0, 2).map((question, i) => (
             <QuestionList question={question} key={i} />
           ))}
-        </div>
+        </div> }
+        {/* <div className="main-div">
+          {questionsArray.slice(0, 2).map((question, i) => (
+            <QuestionList question={question} key={i} />
+          ))}
+        </div> */}
       </section>
     );
   } else {
