@@ -2,14 +2,14 @@ import styled from 'styled-components';
 
 const RatingReviewContainer = styled.section`
 display: flex;
-flex-flow: row wrap;
+flex-flow: row nowrap;
 border-style: solid;
 border-color: brown;
 `;
 
 const ReviewListContainer = styled.div`
-align-self: flex-start;
-width: 66%;
+align-self: flex-end;
+width: 70%;
 flex-flow: column wrap;
 border-style: solid;
 border-color: cyan;
