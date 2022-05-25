@@ -1,12 +1,12 @@
 const axios = require('axios');
 
 const retrieve2Reviews = (productId, page, count, sort) => (
-  axios.get(`/reviews/${productId}`, {
+  axios.get('/reviews', {
     params: {
-      product_id: productId,
       page,
       count,
       sort,
+      product_id: productId,
     },
   })
 );
