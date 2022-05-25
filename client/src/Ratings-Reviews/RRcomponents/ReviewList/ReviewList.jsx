@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ReviewListContainer from '../../RR-styled-components/ReviewListContainer';
+import { ReviewListContainer } from '../../RR-styled-components/RRsectionContainerStyle';
 import ReviewCard from './ReviewCard';
 import { retrieve2Reviews } from './serverAction';
 
@@ -33,10 +33,9 @@ export default function ReviewList({ productId }) {
       });
   }
 
-  // useEffect(() => {
-  //   // console.log('testing useEffect');
-  //   retrieveReviews();
-  // }, []);
+  useEffect(() => {
+    retrieveReviews();
+  }, []);
 
   return (
     <ReviewListContainer>

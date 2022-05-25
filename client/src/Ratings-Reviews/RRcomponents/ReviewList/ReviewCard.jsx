@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { format, parseISO } from 'date-fns';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import ReviewEntryStyle from '../../RR-styled-components/ReviewEntryStyle';
+import { ReviewEntryStyle } from '../../RR-styled-components/RRsectionContainerStyle';
 import StarRating from '../../../shared/StarRating';
 
 export default function ReviewEntry({ review, retrieveReviews }) {

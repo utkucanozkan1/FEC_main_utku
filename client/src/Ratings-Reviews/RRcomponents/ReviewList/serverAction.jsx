@@ -1,7 +1,13 @@
 const axios = require('axios');
 
 const retrieve2Reviews = (productId, page) => (
-  axios.get(`/reviews/${productId}`)
+  axios.get(`/reviews/${productId}`, {
+    params: {
+      product_id: productId,
+      page,
+      count: 2,
+    },
+  })
 );
 
 const setIsHelpful = (reviewId) => (

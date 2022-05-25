@@ -1,5 +1,5 @@
 import React from 'react';
-import SummaryLeft from '../../RR-styled-components/RatingSummary';
+import { SummaryLeft } from '../../RR-styled-components/RRsectionContainerStyle';
 import RatingBreakdownMain from './RatingBreakdown/ratingBreakdownMain';
 import PercentageOfRecs from './PercentageOfRecs';
 import ProductBreakdown from '../ProductBreakdown/ProductBreakdown';
