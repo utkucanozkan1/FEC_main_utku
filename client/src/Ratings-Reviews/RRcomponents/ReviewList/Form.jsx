@@ -62,7 +62,7 @@ export default function Form({ product_id }) {
             <label>
               <span>Do you recommend this product?</span>
               {' '}
-              <small>Yes</small>
+              <medium>Yes</medium>
               {' '}
               <input name="status" type="checkbox" onChange={handleCheck} />
             </label>
@@ -82,6 +82,7 @@ export default function Form({ product_id }) {
                 <select>
                   {chars[char].map((elem, i) => (
                     <option value={i + 1}>{elem}</option>
+                    // setChar
                   ))}
                 </select>
               </div>
@@ -143,6 +144,7 @@ export default function Form({ product_id }) {
               <input
                 type="file"
                 accept="image/*,video/*"
+                // setphoto
               />
             </button>
           </div>
@@ -153,7 +155,7 @@ export default function Form({ product_id }) {
                 <span>What is your name?</span>
               </label>
             </h3>
-            <span> For privacy reasons, do not use your full name or email address </span>
+            <span> Use nickname </span>
           </Header>
           <div>
             <label>
@@ -161,7 +163,7 @@ export default function Form({ product_id }) {
                 value={name}
                 maxLength="60"
                 width="100%"
-                placeholder="Example: jackson11!"
+                placeholder="username"
                 onChange={(e) => setName(e.target.value)}
               />
             </label>
@@ -180,7 +182,7 @@ export default function Form({ product_id }) {
               <input
                 value={email}
                 maxLength="60"
-                placeholder="Example: jackson11@email.com"
+                placeholder="email"
                 onChange={(e) => setEmail(e.target.value)} />
             </label>
           </div>
