@@ -296,14 +296,16 @@ app.post('/outfitter', (req, res) => {
     // TODO: leaving space for more meaningfull comparison
     if (JSON.stringify(items).includes(JSON.stringify(item))) {
       console.error('\n🚫Err: Outfit already exists in outfitter.json!\nI 💛 My Little Pony 🥺\n');
+      res.status(400).send({ message: 'duplicate entry!' });
+    } else {
+      items.push(item);
+      fs.writeFile(path.join(__dirname, 'data/outfitter.json'), JSON.stringify(items, null, '\t'), (writeErr) => {
+        if (writeErr) {
+          console.log(writeErr);
+        }
+        res.end();
+      });
     }
-    items.push(item);
-    fs.writeFile(path.join(__dirname, 'data/outfitter.json'), JSON.stringify(items, null, '\t'), (writeErr) => {
-      if (writeErr) {
-        console.log(writeErr);
-      }
-      res.end();
-    });
   });
 });
 
