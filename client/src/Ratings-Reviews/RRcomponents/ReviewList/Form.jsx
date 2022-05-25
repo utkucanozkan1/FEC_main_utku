@@ -62,7 +62,7 @@ export default function Form({ product_id }) {
             <label>
               <span>Do you recommend this product?</span>
               {' '}
-              <medium>Yes</medium>
+              <small>Yes</small>
               {' '}
               <input name="status" type="checkbox" onChange={handleCheck} />
             </label>
@@ -75,12 +75,12 @@ export default function Form({ product_id }) {
               </label>
             </h3>
             {Object.keys(chars).map((char) => (
-              <div>
+              <div key={char}>
                 <span>{char}</span>
                 {' '}
                 <select>
                   {chars[char].map((elem, i) => (
-                    <option value={i + 1}>{elem}</option>
+                    <option key={i} value={i + 1}>{elem}</option>
                     // setChar
                   ))}
                 </select>

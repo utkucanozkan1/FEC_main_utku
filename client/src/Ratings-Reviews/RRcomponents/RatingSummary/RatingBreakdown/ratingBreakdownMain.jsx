@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { RatingsBreakdown } from '../../../RR-styled-components/RRsectionContainerStyle';
 
 export default function RatingBreakdownMain({ meta }) {
+
+
+
+
   return (
     <RatingsBreakdown>
       <h4>ratingsbreakdown</h4>

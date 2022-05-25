@@ -4,7 +4,7 @@ const RatingReviewContainer = styled.section`
 display: flex;
 flex-flow: row nowrap;
 border-style: solid;
-border-color: brown;
+border-color: black;
 `;
 
 const ReviewListContainer = styled.div`
@@ -13,7 +13,6 @@ justify-self: end;
 width: 70%;
 flex-flow: column wrap;
 border-style: solid;
-border-color: cyan;
 `;
 
 const ReviewEntryStyle = styled.div`
@@ -26,29 +25,24 @@ const SummaryLeft = styled.div`
 align-self: flex-start;
 width: 30%;
 flex-flow: column wrap;
-border-style: solid;
-border-color: red;
 `;
 
 const RatingsBreakdown = styled.div`
 align-self: flex-start;
 flex-flow: row wrap;
 border-style: solid;
-border-color: red;
 `;
 
 const ProductBreakdownContainer = styled.div`
 align-self: flex-start;
 flex-flow: column wrap;
 border-style: solid;
-border-color: pink;
 `;
 
 const Percentage = styled.div`
 align-self: flex-start;
 flex-flow: column wrap;
 border-style: solid;
-border-color: gray;
 `;
 
 const BarChartStyle = styled.div`
@@ -56,14 +50,12 @@ align-self: center;
 width:30%;
 flex-flow: column wrap;
 border-style: solid;
-border-color: green;
 `;
 
 const AverageRating = styled.canvas`
 align-self: center;
 flex-flow: column wrap;
 border-style: solid;
-border-color: green;
 `;
 
 const BottomButtons = styled.div`

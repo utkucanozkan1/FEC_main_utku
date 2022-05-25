@@ -12,21 +12,13 @@ export default function RatingReviews() {
   const [productId, setProductId, setLoading ] = useState(itemId);
   const [meta, setMeta] = useState({});
 
-  useEffect(() => {
-    axios.get(`/reviews/${productId}/reviewsMeta`)
-      .then((res) => {
-        setMeta(res.data);
-      })
-      .catch((err) => {
-        console.log('Error, could not retrieve meta', err);
-      });
-  }, [productId]);
+
 
   return (
     <>
       <h3>Ratings and Reviews</h3>
       <RatingReviewContainer>
-        <RatingSummary meta={meta} />
+        <RatingSummary productId={productId} />
         <ReviewList productId={productId} />
       </RatingReviewContainer>
     </>
