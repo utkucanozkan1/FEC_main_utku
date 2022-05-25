@@ -72,6 +72,29 @@ app.get('/reviews/:id', (req, res) => {
     });
 });
 
+// GET item reviews with params
+app.get('/reviews/', (req, res) => {
+  axios({
+    url: `${apiUrl}reviews`,
+    method: 'GET',
+    params: {
+      page: req.query.page,
+      count: req.query.count,
+      sort: req.query.sort,
+      product_id: req.query.product_id,
+    },
+    headers: {
+      Authorization: config.TOKEN,
+    },
+  })
+    .then((reviews) => {
+      res.send(reviews.data);
+    })
+    .catch((err) => {
+      console.log('Error getting reviews:', err);
+    });
+});
+
 // GET questions by product ID
 app.get('/questions/:id', (req, res) => {
   axios.get(`${apiUrl}qa/questions?product_id=${req.params.id}&count=100`, {
@@ -254,7 +277,7 @@ app.post('/reviews', (req, res) => {
 // Make post request to toggle review to helpful
 app.put('/reviews/:review_id/helpful', (req, res) => {
   axios({
-    url: `${apiUrl}/reviews/${req.params.review_id}/helpful`,
+    url: `${apiUrl}reviews/${req.params.review_id}/helpful`,
     method: 'put',
     headers: {
       Authorization: config.TOKEN,
@@ -272,7 +295,7 @@ app.put('/reviews/:review_id/helpful', (req, res) => {
 //  Make post request to report review
 app.put('/reviews/:review_id/report', (req, res) => {
   axios({
-    url: `${apiUrl}/reviews/${req.params.review_id}/report`,
+    url: `${apiUrl}reviews/${req.params.review_id}/report`,
     method: 'put',
     headers: {
       Authorization: config.TOKEN,
