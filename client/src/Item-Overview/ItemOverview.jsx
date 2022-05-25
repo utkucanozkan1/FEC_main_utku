@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 /* eslint-disable object-curly-newline */
 /* eslint-disable import/extensions */
 import React, { useState, useEffect, useContext } from 'react';
@@ -10,7 +11,6 @@ import mockStyles from './mockStyles.json';
 import Gallery from './subcomponents/Gallery.jsx';
 import Checkout from './subcomponents/Checkout.jsx';
 import { ProductIdContext } from '../index.jsx';
-
 
 // On top level id change -> rerender whole
 
@@ -25,19 +25,16 @@ function ItemOverview() {
 
   // Feed live data(TODO: read id from props)
   useEffect(() => {
-    // ReviewUrl -> TODO: temp
-    const reviewUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta?product_id=${itemId}`;
-    const itemUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${itemId}/`;
-    axios.get(itemUrl, { headers: {
+    axios.get(`/products/${itemId}`, { headers: {
       Authorization: config.TOKEN,
     } })
       .then((itemData) => {
-        axios.get(`${itemUrl}styles`, { headers: {
+        axios.get(`/products/${itemId}/styles`, { headers: {
           Authorization: config.TOKEN,
         } })
           .then((stylesRes) => {
             // Get rating info
-            axios.get(reviewUrl, { headers: {
+            axios.get(`/reviews/${itemId}/reviewsMeta`, { headers: {
               Authorization: config.TOKEN,
             } })
               .then((ratingsRes) => {

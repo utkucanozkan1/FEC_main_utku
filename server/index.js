@@ -1,3 +1,5 @@
+// eslint-disable-next-line no-unused-vars
+const fs = require('fs');
 const axios = require('axios');
 const express = require('express');
 const path = require('path');
@@ -283,6 +285,28 @@ app.put('/reviews/:review_id/report', (req, res) => {
       console.log('review toggle report failed', err);
       res.sendStatus(404);
     });
+});
+
+// Outfitter requests
+// POST new item to outfitter.json
+app.post('/outfitter', (req, res) => {
+  const item = req.body;
+  fs.readFile(path.join(__dirname, 'data/outfitter.json'), (readErr, data) => {
+    const items = JSON.parse(data);
+    // TODO: leaving space for more meaningfull comparison
+    if (JSON.stringify(items).includes(JSON.stringify(item))) {
+      console.error('\n🚫Err: Outfit already exists in outfitter.json!\nI 💛 My Little Pony 🥺\n');
+      res.status(400).send({ message: 'duplicate entry!' });
+    } else {
+      items.push(item);
+      fs.writeFile(path.join(__dirname, 'data/outfitter.json'), JSON.stringify(items, null, '\t'), (writeErr) => {
+        if (writeErr) {
+          console.log(writeErr);
+        }
+        res.end();
+      });
+    }
+  });
 });
 
 app.listen(port, () => {
