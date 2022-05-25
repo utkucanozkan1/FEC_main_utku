@@ -68,7 +68,6 @@ export default function Form({ product_id }) {
             </label>
           </Header>
           <hr />
-
           <Header>
             <h3>
               <label>
@@ -183,7 +182,8 @@ export default function Form({ product_id }) {
                 value={email}
                 maxLength="60"
                 placeholder="email"
-                onChange={(e) => setEmail(e.target.value)} />
+                onChange={(e) => setEmail(e.target.value)}
+                />
             </label>
           </div>
           <hr />

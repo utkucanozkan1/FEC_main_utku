@@ -92,6 +92,7 @@ width: 25%;
 
 const Header = styled.div`
 width: 25%;
+color: white;
 `;
 
 const Modal = styled.div`

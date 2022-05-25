@@ -2,7 +2,6 @@ import React from 'react';
 import { RatingsBreakdown } from '../../../RR-styled-components/RRsectionContainerStyle';
 
 export default function RatingBreakdownMain({ meta }) {
-  console.log('ratingsBreakdownMain', meta)
   return (
     <RatingsBreakdown>
       <h4>ratingsbreakdown</h4>

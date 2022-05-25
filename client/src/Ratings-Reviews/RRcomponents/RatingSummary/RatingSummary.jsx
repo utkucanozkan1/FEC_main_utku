@@ -7,7 +7,6 @@ import AverageStarRating from '../../../../../server/utils/helpers';
 import StarRating from '../../../shared/StarRating';
 
 export default function RatingSummary({ meta }) {
-  console.log(meta);
   let ratings = {};
   if (Object.keys(meta).length !== 0) {
     ratings = Object.entries(meta.ratings);

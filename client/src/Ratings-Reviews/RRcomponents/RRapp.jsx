@@ -15,7 +15,6 @@ export default function RatingReviews() {
   useEffect(() => {
     axios.get(`/reviews/${productId}/reviewsMeta`)
       .then((res) => {
-        console.log('in app', res.data)
         setMeta(res.data);
       })
       .catch((err) => {
