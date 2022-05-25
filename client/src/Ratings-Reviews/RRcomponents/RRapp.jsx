@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { ProductIdContext } from '../../index';
 import { RatingReviewContainer, BottomButtons } from '../RR-styled-components/RRsectionContainerStyle';
 import RatingSummary from './RatingSummary/RatingSummary';
 import ReviewList from './ReviewList/ReviewList';
 import { retrieve2Reviews, retrieveMeta } from './ReviewList/serverAction';
 
 export default function RatingReviews() {
+  const { itemId } = useContext(ProductIdContext);
   const [reviews, setReviews] = useState([]);
   const [page, setPage] = useState(1);
-  const [productId, setProductId, setLoading ] = useState(37313);
+  const [productId, setProductId, setLoading ] = useState(itemId);
   const [meta, setMeta] = useState({});
   const [sort, setSort] = useState('relevant');
   const [count, setCount] = useState(2);
