@@ -28,6 +28,10 @@ $defaultBorder: 0.075vw solid black;
       background-position: center;
       height: 100%;
 
+      &:hover {
+        cursor: zoom-in;
+      }
+
       display: flex;
       flex-wrap: wrap;
       justify-content: space-around;
@@ -127,8 +131,11 @@ $defaultBorder: 0.075vw solid black;
     // expanded view
     &.gallery-section-expanded {
       width: 100vw;
-      max-height: 100vh;
-      height: 90vh;
+      height: 100vh;
+
+      &:hover {
+        cursor: zoom-out;
+      }
     }
   }
 
@@ -244,6 +251,21 @@ $defaultBorder: 0.075vw solid black;
 
     }
   }
+
+  // .request-err {
+  //   width: 15vw;
+  //   height: 10vh;
+  //   background-color: rgb(186, 245, 225);
+  //   border: 1px solid rgb(255, 152, 152);
+  //   font-weight: bold;
+  //   position: fixed;
+  //   left: 0;
+  //   right: 0;
+  //   margin: auto;
+  //   p {
+  //     font-size: 1.5rem;
+  //   }
+  // }
 }
 
 .description-subsection {

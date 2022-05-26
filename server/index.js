@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // eslint-disable-next-line no-unused-vars
 const fs = require('fs');
 const axios = require('axios');
@@ -6,69 +7,91 @@ const path = require('path');
 const config = require('../config');
 
 const app = express();
+// Middleware
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../client/dist')));
-const port = process.env.PORT || 3000;
 
+// Request variables
+const port = process.env.PORT || 3000;
 const apiUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/';
+const headers = {
+  headers: {
+    Authorization: config.TOKEN,
+  },
+};
+
+// request counter middleware
+let counter = 0;
+app.use((req, res, next) => {
+  counter += 1;
+  let counterMsg = `Request count: >=${counter} `;
+  if (counter === 20) {
+    counterMsg += '😀';
+    console.log(counterMsg);
+  } else if (counter === 60) {
+    counterMsg += '🙂';
+    console.log(counterMsg);
+  } else if (counter === 95) {
+    counterMsg += '😐';
+    console.log(counterMsg);
+  } else if (counter === 120) {
+    counterMsg += '😠';
+    console.log(counterMsg);
+  } else if (counter === 150) {
+    counterMsg += '😠🤬';
+    console.log(counterMsg);
+  } else if (counter === 200) {
+    counterMsg += '🪦';
+    console.log(counterMsg);
+  }
+  next();
+});
 
 // GET item overview
 app.get('/products/:id', (req, res) => {
-  axios.get(`${apiUrl}products/${req.params.id}`, {
-    headers: {
-      Authorization: config.TOKEN,
-    },
-  })
+  axios.get(`${apiUrl}products/${req.params.id}`, headers)
     .then((products) => {
       res.send(products.data);
     })
     .catch((err) => {
-      console.log('Error getting products:', err);
+      console.log('Error getting products:', err.response.status);
+      res.sendStatus(err.response.status);
     });
 });
 
 // GET item styles
 app.get('/products/:id/styles', (req, res) => {
-  axios.get(`${apiUrl}products/${req.params.id}/styles`, {
-    headers: {
-      Authorization: config.TOKEN,
-    },
-  })
+  axios.get(`${apiUrl}products/${req.params.id}/styles`, headers)
     .then((styles) => {
       res.send(styles.data);
     })
     .catch((err) => {
-      console.log('Error getting products:', err);
+      console.log('Error getting products:', err.response.status);
+      res.sendStatus(err.response.status);
     });
 });
 
 // GET item reviews meta data
 app.get('/reviews/:id/reviewsMeta', (req, res) => {
-  axios.get(`${apiUrl}reviews/meta?product_id=${req.params.id}`, {
-    headers: {
-      Authorization: config.TOKEN,
-    },
-  })
+  axios.get(`${apiUrl}reviews/meta?product_id=${req.params.id}`, headers)
     .then((meta) => {
       res.send(meta.data);
     })
     .catch((err) => {
-      console.log('Error getting products:', err);
+      console.log('Error getting products:', err.response.status);
+      res.sendStatus(err.response.status);
     });
 });
 
 // GET item reviews
 app.get('/reviews/:id', (req, res) => {
-  axios.get(`${apiUrl}reviews/?product_id=${req.params.id}`, {
-    headers: {
-      Authorization: config.TOKEN,
-    },
-  })
+  axios.get(`${apiUrl}reviews/?product_id=${req.params.id}`, headers)
     .then((reviews) => {
       res.send(reviews.data);
     })
     .catch((err) => {
-      console.log('Error getting reviews:', err);
+      console.log('Error getting reviews:', err.response.status);
+      res.sendStatus(err.response.status);
     });
 });
 
@@ -91,38 +114,33 @@ app.get('/reviews/', (req, res) => {
       res.send(reviews.data);
     })
     .catch((err) => {
-      console.log('Error getting reviews:', err);
+      console.log('Error getting reviews:', err.response.status);
+      res.sendStatus(err.response.status);
     });
 });
 
 // GET questions by product ID
 app.get('/questions/:id', (req, res) => {
-  axios.get(`${apiUrl}qa/questions?product_id=${req.params.id}&count=100`, {
-    headers: {
-      Authorization: config.TOKEN,
-    },
-  })
+  axios.get(`${apiUrl}qa/questions?product_id=${req.params.id}&count=100`, headers)
     .then((questions) => {
       res.send(questions.data);
     })
     .catch((err) => {
-      console.log('Error getting questions:', err);
+      console.log('Error getting questions:', err.response.status);
+      res.sendStatus(err.response.status);
     });
 });
 
 // GET answers by question ID
 app.get('/answers/:Qid', (req, res) => {
   // console.log(req.params.Qid);
-  axios.get(`${apiUrl}qa/questions/${req.params.Qid}/answers`, {
-    headers: {
-      Authorization: config.TOKEN,
-    },
-  })
+  axios.get(`${apiUrl}qa/questions/${req.params.Qid}/answers`, headers)
     .then((answers) => {
       res.send(answers.data);
     })
     .catch((err) => {
-      console.log('Error getting answers:', err);
+      console.log('Error getting answers:', err.response.status);
+      res.sendStatus(err.response.status);
     });
 });
 
@@ -146,8 +164,8 @@ app.post('/questions', (req, res) => {
       res.sendStatus(201);
     })
     .catch((err) => {
-      console.log('post question error:', err);
-      res.sendStatus(404);
+      console.log('post question error:', err.response.status);
+      res.sendStatus(err.response.status);
     });
 });
 
@@ -172,8 +190,8 @@ app.post('/answers/:Qid', (req, res) => {
       res.sendStatus(201);
     })
     .catch((err) => {
-      console.log('post answer error:', err);
-      res.sendStatus(404);
+      console.log('post answer error:', err.response.status);
+      res.sendStatus(err.response.status);
     });
 });
 // PUT questions Helpful
@@ -189,8 +207,8 @@ app.put('/question/helpful/:Qid', (req, res) => {
       res.sendStatus(204);
     })
     .catch((err) => {
-      console.log(err);
-      res.sendStatus(404);
+      console.log(err.response.status);
+      res.sendStatus(err.response.status);
     });
 });
 // PUT answers Helpful
@@ -206,8 +224,8 @@ app.put('/answer/helpful/:Aid', (req, res) => {
       res.sendStatus(204);
     })
     .catch((err) => {
-      console.log(err);
-      res.sendStatus(404);
+      console.log(err.response.status);
+      res.sendStatus(err.response.status);
     });
 });
 // PUT answer Report
@@ -223,23 +241,20 @@ app.put('/answer/report/:Aid', (req, res) => {
       res.sendStatus(204);
     })
     .catch((err) => {
-      console.log(err);
-      res.sendStatus(404);
+      console.log(err.response.status);
+      res.sendStatus(err.response.status);
     });
 });
 
 // GET related item IDs
 app.get('/related/:id', (req, res) => {
-  axios.get(`${apiUrl}products/${req.params.id}/related`, {
-    headers: {
-      Authorization: config.TOKEN,
-    },
-  })
+  axios.get(`${apiUrl}products/${req.params.id}/related`, headers)
     .then((relatedIds) => {
       res.send(relatedIds.data);
     })
     .catch((err) => {
-      console.log('Error getting reviews:', err);
+      console.log('Error getting reviews:', err.response.status);
+      res.sendStatus(err.response.status);
     });
 });
 
@@ -269,8 +284,8 @@ app.post('/reviews', (req, res) => {
       res.sendStatus(201);
     })
     .catch((err) => {
-      console.log('post review error:', err);
-      res.sendStatus(404);
+      console.log('post review error:', err.response.status);
+      res.sendStatus(err.response.status);
     });
 });
 
@@ -287,8 +302,8 @@ app.put('/reviews/:review_id/helpful', (req, res) => {
       res.sendStatus(204);
     })
     .catch((err) => {
-      console.log('review toggle helpful failed', err);
-      res.sendStatus(404);
+      console.log('review toggle helpful failed', err.response.status);
+      res.sendStatus(err.response.status);
     });
 });
 
@@ -305,8 +320,8 @@ app.put('/reviews/:review_id/report', (req, res) => {
       res.sendStatus(204);
     })
     .catch((err) => {
-      console.log('review toggle report failed', err);
-      res.sendStatus(404);
+      console.log('review toggle report failed', err.response.status);
+      res.sendStatus(err.response.status);
     });
 });
 
