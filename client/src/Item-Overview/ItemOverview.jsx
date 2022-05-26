@@ -1,9 +1,11 @@
+/* eslint-disable no-loop-func */
 /* eslint-disable import/no-cycle */
 /* eslint-disable object-curly-newline */
 /* eslint-disable import/extensions */
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import config from '../../../config.js';
+import getAverageRating from '../../../server/utils/helpers.js';
 
 // Subcomponent/Context imports
 import mockData from './mockData.json';
@@ -12,52 +14,96 @@ import Gallery from './subcomponents/Gallery.jsx';
 import Checkout from './subcomponents/Checkout.jsx';
 import { ProductIdContext } from '../index.jsx';
 
-// On top level id change -> rerender whole
-
 function ItemOverview() {
+  // Toogle - A lil boy who thinks he knows everything about anything. But know not a lot.
   const [loading, toogleLoading] = useState(true);
 
   const [item, setItem] = useState(mockData);
   const [styles, setStyles] = useState(mockStyles);
   const [styleIndex, setStyleIndex] = useState(0);
 
-  const { itemId, setItemId } = useContext(ProductIdContext);
+  // Feed live data
+  const { itemId } = useContext(ProductIdContext);
+  const headers = { headers: {
+    Authorization: config.TOKEN,
+  } };
 
-  // Feed live data(TODO: read id from props)
+  // "427 - too many requests" handler
+  // let secondsLeft = 30;
+  const reqErr427 = () => {
+    // const errorEl = document.querySelector('.request-err');
+    // errorEl.display = 'block';
+    // const errorMsgEl = document.querySelector('.request-err-msg');
+    // errorMsgEl.innerText = `Server request limit breached, please wait: ${secondsLeft}`;
+    // console.log(secondsLeft);
+    // secondsLeft -= 1;
+    // errorEl.display = 'none';
+    // secondsLeft = 30;
+    alert('Too many requests: wait 30-60 seconds!');
+  };
+
   useEffect(() => {
-    axios.get(`/products/${itemId}`, { headers: {
-      Authorization: config.TOKEN,
-    } })
+    axios.get(`/products/${itemId}`, headers)
       .then((itemData) => {
-        axios.get(`/products/${itemId}/styles`, { headers: {
-          Authorization: config.TOKEN,
-        } })
+        axios.get(`/products/${itemId}/styles`, headers)
           .then((stylesRes) => {
             // Get rating info
-            axios.get(`/reviews/${itemId}/reviewsMeta`, { headers: {
-              Authorization: config.TOKEN,
-            } })
+            axios.get(`/reviews/${itemId}/reviewsMeta`, headers)
               .then((ratingsRes) => {
-                const { ratings } = ratingsRes.data;
-                let sum = 0;
-                let amount = 0;
-                const stars = Object.keys(ratings);
-                for (let i = 0; i < stars.length; i += 1) {
-                  sum += ratings[stars[i]] * stars[i];
-                  amount += parseInt(ratings[stars[i]], 10);
-                }
-                setItem({ ...itemData.data, rating: sum / amount });
+                const ratings = Object.entries(ratingsRes.data.ratings);
+                const rating = getAverageRating(ratings);
+                setItem({ ...itemData.data, rating });
                 setStyles(stylesRes.data.results);
                 toogleLoading(false);
+              })
+              .catch(() => {
+                reqErr427();
               });
+          })
+          .catch(() => {
+            reqErr427();
           });
+      })
+      .catch(() => {
+        reqErr427();
       });
-  }, []);
+  }, [itemId]);
+
+  // let reqCount = 0;
+  // const mockGetClicker = (e) => {
+  //   e.preventDefault();
+  //   axios.get(`/products/${itemId}`, headers)
+  //     .then(() => {
+  //       axios.get(`/products/${itemId}/styles`, headers)
+  //         .then(() => {
+  //           // Get rating info
+  //           axios.get(`/reviews/${itemId}/reviewsMeta`, headers)
+  //             .then(() => {
+  //               console.log(reqCount += 3);
+  //             })
+  //             .catch(() => {
+  //               reqErr427();
+  //             });
+  //         })
+  //         .catch(() => {
+  //           reqErr427();
+  //         });
+  //     })
+  //     .catch(() => {
+  //       reqErr427();
+  //     });
+  // };
 
   if (!loading) {
     return (
       <>
         <section className="item-overview-section">
+          {/* <button onClick={mockGetClicker} type="button">
+            Make a Get request
+          </button> */}
+          <div className="request-err" style={{ display: 'none' }}>
+            <p className="request-err-msg">Server request limit breached, please wait: </p>
+          </div>
           <Gallery data={{ item, styles, styleIndex }} />
           <Checkout data={{ item, styles, styleIndex, setStyleIndex }} />
         </section>
