@@ -26,6 +26,9 @@
   flex-wrap: wrap;
   justify-content: space-around;
 }
+.item-overview-section .gallery-section .gallery-container:hover {
+  cursor: zoom-in;
+}
 .item-overview-section .gallery-section .gallery-container .expand-view-wrapper {
   flex-basis: 100%;
   display: flex;
@@ -102,8 +105,10 @@
 }
 .item-overview-section .gallery-section.gallery-section-expanded {
   width: 100vw;
-  max-height: 100vh;
-  height: 90vh;
+  height: 100vh;
+}
+.item-overview-section .gallery-section.gallery-section-expanded:hover {
+  cursor: zoom-out;
 }
 .item-overview-section .checkout-section {
   max-height: 75vh;
