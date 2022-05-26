@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { RatingsBreakdown, OuterBarGraph, InnerBarGraph } from '../../../RR-styled-components/RRsectionContainerStyle';
 import BarChart from './barChart';
-import styled from 'styled-components';
+import Arrow from './arrow';
 
 
 export default function RatingBreakdownMain({ meta, setRatingFilter }) {
@@ -50,11 +50,14 @@ export default function RatingBreakdownMain({ meta, setRatingFilter }) {
               {
           meta.characteristics ? Object.keys(meta.characteristics).map((char, i) => (
             <div key={i}>
-              <span>
-                {char}
-                {Math.round(meta.characteristics[char].value)}
-              </span>
-            </div>
+              <span>{char}</span>
+              <Arrow
+                average={((meta.characteristics[char].value / 5) * 100).toFixed(0)}
+              />
+              <div>
+                {characteristics[char].map((element, index) => (<span key={index}>{element}</span>))}
+              </div>
+              </div>
           )) : (null)
           }
             </div>
