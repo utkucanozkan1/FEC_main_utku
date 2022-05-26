@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 /* eslint-disable import/no-cycle */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 // import axios from 'axios';
 
 // Major component imports
@@ -18,12 +18,7 @@ export const ProductIdContext = React.createContext();
 
 function App() {
   // Read id from url
-  // const productId = window.location.pathname.split('/')[1];
-  // const [itemId, setItemId] = useState(productId);
   const [itemId, setItemId] = useState(37316);
-  useEffect(() => {
-    console.log('Index.jsx rendered');
-  }, []);
 
   return (
     <div>

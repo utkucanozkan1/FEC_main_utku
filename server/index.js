@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // eslint-disable-next-line no-unused-vars
 const fs = require('fs');
 const axios = require('axios');
@@ -6,10 +7,12 @@ const path = require('path');
 const config = require('../config');
 
 const app = express();
+// Middleware
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../client/dist')));
-const port = process.env.PORT || 3000;
 
+// Request variables
+const port = process.env.PORT || 3000;
 const apiUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/';
 const headers = {
   headers: {
@@ -17,10 +20,32 @@ const headers = {
   },
 };
 
-// Get page with a specified id
-// app.get('/:id', (req, res) => {
-//   res.sendFile(path.join(__dirname, '../client/dist/product.html'));
-// });
+// request counter middleware
+let counter = 0;
+app.use((req, res, next) => {
+  counter += 1;
+  let counterMsg = `Request count: >=${counter} `;
+  if (counter === 20) {
+    counterMsg += '😀';
+    console.log(counterMsg);
+  } else if (counter === 60) {
+    counterMsg += '🙂';
+    console.log(counterMsg);
+  } else if (counter === 95) {
+    counterMsg += '😐';
+    console.log(counterMsg);
+  } else if (counter === 120) {
+    counterMsg += '😠';
+    console.log(counterMsg);
+  } else if (counter === 150) {
+    counterMsg += '😠🤬';
+    console.log(counterMsg);
+  } else if (counter === 200) {
+    counterMsg += '🪦';
+    console.log(counterMsg);
+  }
+  next();
+});
 
 // GET item overview
 app.get('/products/:id', (req, res) => {
@@ -29,7 +54,8 @@ app.get('/products/:id', (req, res) => {
       res.send(products.data);
     })
     .catch((err) => {
-      console.log('Error getting products:', err);
+      console.log('Error getting products:', err.response.status);
+      res.sendStatus(err.response.status);
     });
 });
 
@@ -40,7 +66,8 @@ app.get('/products/:id/styles', (req, res) => {
       res.send(styles.data);
     })
     .catch((err) => {
-      console.log('Error getting products:', err);
+      console.log('Error getting products:', err.response.status);
+      res.sendStatus(err.response.status);
     });
 });
 
@@ -51,7 +78,8 @@ app.get('/reviews/:id/reviewsMeta', (req, res) => {
       res.send(meta.data);
     })
     .catch((err) => {
-      console.log('Error getting products:', err);
+      console.log('Error getting products:', err.response.status);
+      res.sendStatus(err.response.status);
     });
 });
 
@@ -62,7 +90,8 @@ app.get('/reviews/:id', (req, res) => {
       res.send(reviews.data);
     })
     .catch((err) => {
-      console.log('Error getting reviews:', err);
+      console.log('Error getting reviews:', err.response.status);
+      res.sendStatus(err.response.status);
     });
 });
 
@@ -85,7 +114,8 @@ app.get('/reviews/', (req, res) => {
       res.send(reviews.data);
     })
     .catch((err) => {
-      console.log('Error getting reviews:', err);
+      console.log('Error getting reviews:', err.response.status);
+      res.sendStatus(err.response.status);
     });
 });
 
@@ -96,7 +126,8 @@ app.get('/questions/:id', (req, res) => {
       res.send(questions.data);
     })
     .catch((err) => {
-      console.log('Error getting questions:', err);
+      console.log('Error getting questions:', err.response.status);
+      res.sendStatus(err.response.status);
     });
 });
 
@@ -108,7 +139,8 @@ app.get('/answers/:Qid', (req, res) => {
       res.send(answers.data);
     })
     .catch((err) => {
-      console.log('Error getting answers:', err);
+      console.log('Error getting answers:', err.response.status);
+      res.sendStatus(err.response.status);
     });
 });
 
@@ -132,8 +164,8 @@ app.post('/questions', (req, res) => {
       res.sendStatus(201);
     })
     .catch((err) => {
-      console.log('post question error:', err);
-      res.sendStatus(404);
+      console.log('post question error:', err.response.status);
+      res.sendStatus(err.response.status);
     });
 });
 
@@ -158,8 +190,8 @@ app.post('/answers/:Qid', (req, res) => {
       res.sendStatus(201);
     })
     .catch((err) => {
-      console.log('post answer error:', err);
-      res.sendStatus(404);
+      console.log('post answer error:', err.response.status);
+      res.sendStatus(err.response.status);
     });
 });
 // PUT questions Helpful
@@ -175,8 +207,8 @@ app.put('/question/helpful/:Qid', (req, res) => {
       res.sendStatus(204);
     })
     .catch((err) => {
-      console.log(err);
-      res.sendStatus(404);
+      console.log(err.response.status);
+      res.sendStatus(err.response.status);
     });
 });
 // PUT answers Helpful
@@ -192,8 +224,8 @@ app.put('/answer/helpful/:Aid', (req, res) => {
       res.sendStatus(204);
     })
     .catch((err) => {
-      console.log(err);
-      res.sendStatus(404);
+      console.log(err.response.status);
+      res.sendStatus(err.response.status);
     });
 });
 // PUT answer Report
@@ -209,8 +241,8 @@ app.put('/answer/report/:Aid', (req, res) => {
       res.sendStatus(204);
     })
     .catch((err) => {
-      console.log(err);
-      res.sendStatus(404);
+      console.log(err.response.status);
+      res.sendStatus(err.response.status);
     });
 });
 
@@ -221,7 +253,8 @@ app.get('/related/:id', (req, res) => {
       res.send(relatedIds.data);
     })
     .catch((err) => {
-      console.log('Error getting reviews:', err);
+      console.log('Error getting reviews:', err.response.status);
+      res.sendStatus(err.response.status);
     });
 });
 
@@ -251,8 +284,8 @@ app.post('/reviews', (req, res) => {
       res.sendStatus(201);
     })
     .catch((err) => {
-      console.log('post review error:', err);
-      res.sendStatus(404);
+      console.log('post review error:', err.response.status);
+      res.sendStatus(err.response.status);
     });
 });
 
@@ -269,8 +302,8 @@ app.put('/reviews/:review_id/helpful', (req, res) => {
       res.sendStatus(204);
     })
     .catch((err) => {
-      console.log('review toggle helpful failed', err);
-      res.sendStatus(404);
+      console.log('review toggle helpful failed', err.response.status);
+      res.sendStatus(err.response.status);
     });
 });
 
@@ -287,8 +320,8 @@ app.put('/reviews/:review_id/report', (req, res) => {
       res.sendStatus(204);
     })
     .catch((err) => {
-      console.log('review toggle report failed', err);
-      res.sendStatus(404);
+      console.log('review toggle report failed', err.response.status);
+      res.sendStatus(err.response.status);
     });
 });
 

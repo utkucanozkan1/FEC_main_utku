@@ -15,8 +15,6 @@ function RelatedCard({ cardStyle, cardRating }) {
   const productImage = cardStyle ? cardStyle.results[0].photos[0].thumbnail_url : '';
 
   function clickHanlder() {
-    // Move to a new page with a specified id instead
-    // window.location.replace(`/${product.id}`);
     setItemId(product.id);
   }
   function modalHandler(event) {

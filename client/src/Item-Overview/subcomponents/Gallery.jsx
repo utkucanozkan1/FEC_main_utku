@@ -73,22 +73,22 @@ function Gallery(props) {
   const arrowThumbnailClick = (e) => {
     e.preventDefault();
     const action = e.target.getAttribute('data-action');
-    const page = Math.floor(imageIndex / 4) * 4;
+    const nextPageStartIndex = (Math.floor(imageIndex / 4) + 1) * 4;
+    const prevPageStartIndex = (Math.floor(imageIndex / 4) - 1) * 4;
     if (action === 'carouselNext') {
-      if (page + 1 < photos.length && page !== 0) {
-        setImageIndex(page + 1);
-      } else if (page === 0 && page + 4 < photos.length) {
-        setImageIndex(page + 4);
+      //
+      if (nextPageStartIndex < photos.length) {
+        setImageIndex(nextPageStartIndex);
       }
     } else if (action === 'carouselPrev') {
-      if (page > 0) {
-        setImageIndex(page - 4);
+      if (prevPageStartIndex >= 0) {
+        setImageIndex(prevPageStartIndex);
       }
     }
   };
 
   useEffect(() => {
-    // Make sure the correct image index is displaying
+    // Make sure the current image has selected status
     document.querySelectorAll('[data-index]').forEach((thumbnail) => {
       thumbnail.classList.remove('thumbnail-selected');
       if (parseInt(thumbnail.getAttribute('data-index'), 10) === imageIndex) {
@@ -102,29 +102,31 @@ function Gallery(props) {
     const navLeft = document.querySelector('.gallery-left');
     const navRight = document.querySelector('.gallery-right');
 
-    if (imageIndex < 4) {
-      carouselDown.style.display = 'block';
-      carouselUp.style.display = 'none';
-      if (imageIndex === 0) {
-        navLeft.style.display = 'none';
-      } else {
-        navLeft.style.display = 'block';
-      }
-    } else if (imageIndex > photos.length - 4) {
-      carouselUp.style.display = 'block';
-      carouselDown.style.display = 'none';
-      if (imageIndex === photos.length - 1) {
-        navRight.style.display = 'none';
-      } else {
-        navRight.style.display = 'block';
-      }
-    }
-
-    if (imageIndex + 1 < photos.length) {
+    // Right button
+    if (imageIndex + 1 > photos.length - 1) {
+      navRight.style.display = 'none';
+    } else {
       navRight.style.display = 'block';
     }
-    if (imageIndex > 0) {
+    // Left Button
+    if (imageIndex - 1 < 0) {
+      navLeft.style.display = 'none';
+    } else {
       navLeft.style.display = 'block';
+    }
+
+    // Carousel Up
+    if (imageIndex < 4) {
+      carouselUp.style.display = 'none';
+    } else {
+      carouselUp.style.display = 'block';
+    }
+    // Carousel Down
+    const nextPageStartIndex = (Math.floor(imageIndex / 4) + 1) * 4;
+    if (nextPageStartIndex < photos.length) {
+      carouselDown.style.display = 'block';
+    } else {
+      carouselDown.style.display = 'none';
     }
   });
 
