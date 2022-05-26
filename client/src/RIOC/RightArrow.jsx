@@ -1,18 +1,41 @@
 import React, { useContext } from 'react';
+import axios from 'axios';
 import CarouselButton from './RIOC-styled-components/CarouselButtons';
 import { ViewableContext } from './RelatedView'
-import { CardProductContext } from './RelatedView';
+import { ProductIdContext } from '../index';
+
 function RightArrow() {
-  const { products, viewable, setViewable } = useContext(ViewableContext);
-  console.log('Products:', products, 'Viewable:', viewable, 'setView:', setViewable);
+  const { viewable, setViewable } = useContext(ViewableContext);
+  const { itemId } = useContext(ProductIdContext);
   function scrollRight() {
-    const start = products.indexOf(viewable[0]);
-    console.log('Scroll right');
-    if (products.length > start + 4) {
-      setViewable(products.slice(start + 1, start + 5));
-    } else {
-      //hide right arrow
-    }
+    axios.get(`/related/${itemId}`)
+      .then((relatedIds) => {
+        // if the list of ALL related products is greater than
+        // what is currently viewed (including previous cards)
+        if (relatedIds.data.length > viewable.length) {
+
+        }
+
+        const nextId = relatedIds.data[viewable.length];
+        axios.get(`/products/${nextId}`)
+          .then((nextProduct) => {
+            axios.get(`/products/${nextProduct.data.id}/styles`)
+              .then((nextStyle) => {
+                setViewable((prevViewable) => (
+                  [...prevViewable, Object.assign(nextProduct.data, nextStyle.data)]
+                ));
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   return (
     <CarouselButton onClick={scrollRight}>

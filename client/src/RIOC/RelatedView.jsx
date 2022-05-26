@@ -13,22 +13,30 @@ export const CardProductContext = React.createContext();
 function RelatedView() {
   const { itemId, setItemId } = useContext(ProductIdContext);
   const [loading, toogleLoading] = useState(true);
-  const [products, setProducts] = useState([]);
-  const [productStyles, setStyles] = useState([]);
   const [productRatings, setRatings] = useState([]);
   const [viewable, setViewable] = useState([]);
 
   useEffect(() => {
     axios.get(`/related/${itemId}`)
       .then((relatedIds) => {
-        const relatedPromises = relatedIds.data.map((id) => (
+        const viewableRelatedIds = relatedIds.data.slice(0, 4);
+        const relatedPromises = viewableRelatedIds.map((id) => (
           axios.get(`/products/${id}`)
         ));
         Promise.all(relatedPromises)
           .then((relatedProducts) => {
-            setProducts(relatedProducts.map((product) => (
-              product.data
-            )));
+            const stylesPromises = relatedProducts.map((product) => (
+              axios.get(`/products/${product.data.id}/styles`)
+            ));
+            Promise.all(stylesPromises)
+              .then((productStyles) => {
+                setViewable(productStyles.map((style, i) => (
+                  Object.assign(relatedProducts[i].data, style.data)
+                )));
+              })
+              .catch((err) => {
+                console.log(err);
+              });
           });
       })
       .catch((err) => {
@@ -37,24 +45,7 @@ function RelatedView() {
   }, [itemId]);
 
   useEffect(() => {
-    setViewable(products.slice(0, 4));
-    const stylesPromises = products.map((product) => (
-      axios.get(`/products/${product.id}/styles`)
-    ));
-    Promise.all(stylesPromises)
-      .then((data) => {
-        setStyles(data.map((style) => (
-          style.data
-        )));
-        toogleLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [products]);
-
-  useEffect(() => {
-    const ratingsPromises = products.map((product) => (
+    const ratingsPromises = viewable.map((product) => (
       axios.get(`/reviews/${product.id}/reviewsMeta`)
     ));
     Promise.all(ratingsPromises)
@@ -67,18 +58,19 @@ function RelatedView() {
       .catch((err) => {
         console.log(err);
       });
-  }, [products]);
+    toogleLoading(false);
+  }, [viewable]);
 
   if (!loading) {
     return (
       <section>
         <h6>RELATED PRODUCTS</h6>
         <CardContainer>
-          <ViewableContext.Provider value={{ products, viewable, setViewable }}>
+          <ViewableContext.Provider value={{ viewable, setViewable }}>
             <LeftArrow />
             {viewable.map((product, i) => (
-              <CardProductContext.Provider value={{ viewable, itemId, setItemId, product }}>
-                <RelatedCard key={product.id} cardStyle={productStyles[i]} cardRating={productRatings[i]} />
+              <CardProductContext.Provider value={{ setItemId, product }}>
+                <RelatedCard key={product.id} cardRating={productRatings[i]} />
               </CardProductContext.Provider>
             ))}
             <RightArrow />
