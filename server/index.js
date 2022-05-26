@@ -12,6 +12,10 @@ const port = process.env.PORT || 3000;
 
 const apiUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/';
 
+app.get('/:id', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+});
+
 // GET item overview
 app.get('/products/:id', (req, res) => {
   axios.get(`${apiUrl}products/${req.params.id}`, {

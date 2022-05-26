@@ -17,7 +17,8 @@ const root = createRoot(document.getElementById('root'));
 export const ProductIdContext = React.createContext();
 
 function App() {
-  const [itemId, setItemId] = useState(37316);
+  // const [itemId, setItemId] = useState(37316);
+  const [itemId, setItemId] = useState();
 
   return (
     <div>

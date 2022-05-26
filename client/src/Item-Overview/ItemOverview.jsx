@@ -22,7 +22,6 @@ function ItemOverview() {
   const [styleIndex, setStyleIndex] = useState(0);
 
   const { itemId } = useContext(ProductIdContext);
-
   // Feed live data(TODO: read id from props)
   useEffect(() => {
     axios.get(`/products/${itemId}`, { headers: {
@@ -52,7 +51,7 @@ function ItemOverview() {
               });
           });
       });
-  }, []);
+  });
 
   if (!loading) {
     return (
