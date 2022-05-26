@@ -14,13 +14,13 @@ export default function RatingBreakdownMain({ meta, setRatingFilter }) {
     Fit: ['Runs tight', 'Perfect', 'Runs long'],
   };
   const starRatings = [5, 4, 3, 2, 1];
-  let totalReview = 0;
+  let totalReviews = 0;
   let sumRating = 0;
   let recommend = 100;
 
   if (Object.keys(meta).length !== 0) {
     for (const star in meta.ratings) {
-      totalReview += 1
+      totalReviews += Number(meta.ratings)
       sumRating += Number(meta.ratings[star]);
       recommend = Number(meta.recommended.true) / (Number(meta.recommended.true) + Number(meta.recommended.false)) * 100;
     }
@@ -35,6 +35,8 @@ export default function RatingBreakdownMain({ meta, setRatingFilter }) {
         ? (
           <div>
             <span>{recommend}% of reviews recommend this product</span>
+            <br />
+            <span> {sumRating} reviews</span>
             {starRatings.map((rating, i) => (
               <OuterBarGraph key={i} onClick={() => setRatingFilter(rating)}>
                 <InnerBarGraph>{rating}</InnerBarGraph>
