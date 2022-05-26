@@ -8,6 +8,11 @@ import StarRating from '../../../shared/StarRating';
 export default function ReviewEntry({ review, retrieveReviews }) {
   const [isHelpful, setIsHelpful] = useState(false);
   const [reported, setReported] = useState(false);
+  const [showAll, setShowAll] = useState(review.body.length < 250);
+
+  const showMore = () => setShowAll(true);
+  const showLess = () => setShowAll(false);
+  const shortBody = review.body.substring(0, 250) + '...';
 
   function clickFunction(e) {
     let clickURL = '';
@@ -43,7 +48,9 @@ export default function ReviewEntry({ review, retrieveReviews }) {
         {format(parseISO(review.date), 'MMMM do, yyyy')}
       </span>
       <h3>{review.summary}</h3>
-      <p>{review.body}</p>
+      {{ showAll } ? <p>{review.body}</p> : <p>{shortBody} </p>}
+      {{ showAll } && review.body.length > 250 ? <a href="#" type="button" onClick={showLess}>Show Less</a>
+        : (review.body.length > 250) ? <a href="#" type="button" onClick={showMore}>Show More</a> : <a></a> }
       {review.recommend ? <p> Recommend Product </p> : <p> </p>}
       {review.response ? <p>{review.response}</p> : <p> </p>}
       <span>
