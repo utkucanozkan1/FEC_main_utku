@@ -1,16 +1,20 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
+/* eslint-disable no-tabs */
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/jsx-one-expression-per-line */
-import React, { useState, useEffect } from "react";
-import moment from "moment";
-import ImageComponent from "./ImageComponent.jsx";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import moment from 'moment';
+import axios from 'axios';
+import ImageComponent from './ImageComponent.jsx';
 
 const answerArray = [];
 const QuestionList = function (props) {
   // console.log("this is the props question:", props.question);
   const [answerArr, setAnswerArr] = useState([]);
   const [loading, toogleLoading] = useState(true);
-  const [answerReported , setAnswerReported] = useState(false);
-  const [answerHelpful , setAnswerHelpful] = useState(false);
+  const [answerReported, setAnswerReported] = useState(false);
+  const [answerHelpful, setAnswerHelpful] = useState(false);
+  const [questionHelpful, setQuestionHelpful] = useState(false);
   // console.log("answerArr:", answerArr);
   // answerArray = Object.keys(props.question.answers)
   // for(let key in props.question.answers){
@@ -20,7 +24,7 @@ const QuestionList = function (props) {
   // // console.log(props.question)
   // console.log(answerArray)
   // console.log(props.question)
-  //result.data.results.length > 1 ? answerArray.push(result.data.results)
+  // result.data.results.length > 1 ? answerArray.push(result.data.results)
   useEffect(() => {
     axios
       .get(`/answers/${props.question.question_id}`)
@@ -29,6 +33,7 @@ const QuestionList = function (props) {
           setAnswerArr(result.data.results);
           toogleLoading(false);
           setAnswerHelpful(false);
+          setQuestionHelpful(false);
         }
       })
       .then()
@@ -36,91 +41,130 @@ const QuestionList = function (props) {
   }, [props.question.question_id]);
 
   function reportAnswer() {
-    let answerId = answerArr[0].answer_id;
+    const answerId = answerArr[0].answer_id;
     console.log(answerId);
-    axios.put(`/answer/report/${answerId}`)
+    axios
+      .put(`/answer/report/${answerId}`)
       .then(setAnswerReported(true))
       .then((res) => console.log('answer reported'))
       .catch((err) => console.log(err));
   }
-  function helpfulAnswer(event) {
-    let answerId = answerArr[0].answer_id;
-    axios.put(`/answer/helpful/${answerId}`)
+  function helpfulAnswer() {
+    const answerId = answerArr[0].answer_id;
+    axios
+      .put(`/answer/helpful/${answerId}`)
       .then(setAnswerHelpful(true))
       .then((res) => console.log('answer helpful'))
       .catch((err) => console.log(err));
   }
+  function helpfulQuestion() {
+    const questionId = props.question.question_id;
+    axios
+      .put(`/question/helpful/${questionId}`)
+      .then(setQuestionHelpful(true))
+      .then((res) => console.log('question helpful'))
+      .catch((err) => console.log(err));
+  }
 
-  const ButtonTitle = (
-    <>
-      <text style={{ fontSize: "small" }}>Helpful?</text>
-      &nbsp;
-      <text style={{ textDecoration: "underline", fontSize: "small" }}>
-        Yes
-      </text>
-    </>
-  );
   if (!loading) {
     return (
       <div className="qa-main-div">
-        &nbsp; &nbsp;
+				&nbsp; &nbsp;
         <div className="question-div">
           <div className="flex-child">
             <b>Q: {props.question.question_body}</b>
           </div>
           <div className="flex-child">
-            <button type="button" className="astext-btn">
+            {/* <button type="button" className="astext-btn">
               {ButtonTitle} ({props.question.question_helpfulness})
+            </button> */}
+            {questionHelpful ? (
+              <button type="button" className="astext-btn">
+                This Question has been marked Helpful
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="astext-btn"
+                onClick={() => {
+								  helpfulQuestion();
+                }}
+              >
+                <text style={{ fontSize: 'small' }}>Helpful?</text>
+								&nbsp;
+                <mark
+                  style={{ textDecoration: 'underline', fontSize: 'small' }}
+                >
+                  Yes
+                </mark>
+                ({props.question.question_helpfulness})
+              </button>
+            )}
+						&nbsp; &nbsp; | &nbsp; &nbsp;
+            <button type="button" className="astext-btn-answer">
+              Add Answer
             </button>
-            &nbsp; &nbsp; | &nbsp; &nbsp;
-            <button type="button" className="astext-btn-answer">Add Answer</button>
           </div>
         </div>
         <div>
           <b>A:</b>
           <span className="answer-text">{answerArr[0].body}</span>
         </div>
-        &nbsp;
+				&nbsp;
         <div>
           {answerArr[0].photos.map((photo, i) => (
             <ImageComponent key={i} photo={photo} />
           ))}
         </div>
-        &nbsp; &nbsp;
+				&nbsp; &nbsp;
         <div>
-          <span style={{ fontSize: "small" }}>
+          <span style={{ fontSize: 'small' }}>
             by &nbsp;
-            {answerArr[0].answerer_name}
-            ,
-                  &nbsp;
-            {moment(answerArr[0].date.slice(0, 10)).format("MMM Do YY")}
+            {answerArr[0].answerer_name}, &nbsp;
+            {moment(answerArr[0].date.slice(0, 10)).format('MMM Do YY')}
           </span>
-          &nbsp; &nbsp; | &nbsp; &nbsp;
-          {answerHelpful ? <button type="button" className="astext-btn">This Answer has been marked Helpful</button> : (
-            <button type="button" className="astext-btn" onClick={(event) => { helpfulAnswer(event); }}>
+					&nbsp; &nbsp; | &nbsp; &nbsp;
+          {answerHelpful ? (
+            <button type="button" className="astext-btn">
+              This Answer has been marked Helpful
+            </button>
+          ) : (
+            <button
+              type="button"
+              className="astext-btn"
+              onClick={() => {
+					        helpfulAnswer();
+              }}
+            >
               <text style={{ fontSize: 'small' }}>Helpful?</text>
-                    &nbsp;
+							&nbsp;
               <mark style={{ textDecoration: 'underline', fontSize: 'small' }}>
                 Yes
               </mark>
-              (
-              {answerArr[0].helpfulness}
-              )
+              ({answerArr[0].helpfulness})
             </button>
           )}
           {/* <button type="button" className="astext-btn">
             {ButtonTitle} ({answerArr[0].helpfulness})
           </button> */}
-          &nbsp; &nbsp; | &nbsp; &nbsp;
-          {answerReported ? <button type="button" className="astext-btn-answer" >This Answer has been Reported</button> : (
-            <button type="button" className="astext-btn-answer" onClick= {reportAnswer}>
+					&nbsp; &nbsp; | &nbsp; &nbsp;
+          {answerReported ? (
+            <button type="button" className="astext-btn-answer">
+              This Answer has been Reported
+            </button>
+          ) : (
+            <button
+              type="button"
+              className="astext-btn-answer"
+              onClick={reportAnswer}
+            >
               Report
             </button>
           )}
         </div>
       </div>
     );
-  // eslint-disable-next-line no-else-return
+    // eslint-disable-next-line no-else-return
   } else {
     <section>
       <div> Questions Loading...</div>
