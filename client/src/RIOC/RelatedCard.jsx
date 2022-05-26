@@ -17,7 +17,10 @@ function RelatedCard({ cardStyle, cardRating }) {
     setItemId(product.id);
   }
   function modalHandler(event) {
-    event.stopPropagation();
+    event.cancelBubble = true;
+    if (event.stopPropagation) {
+      event.stopPropagation();
+    }
     setModal(!modal);
   }
   return (
