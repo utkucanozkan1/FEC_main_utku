@@ -11,18 +11,20 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 const port = process.env.PORT || 3000;
 
 const apiUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/';
+const headers = {
+  headers: {
+    Authorization: config.TOKEN,
+  },
+};
 
-app.get('/:id', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
-});
+// Get page with a specified id
+// app.get('/:id', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../client/dist/product.html'));
+// });
 
 // GET item overview
 app.get('/products/:id', (req, res) => {
-  axios.get(`${apiUrl}products/${req.params.id}`, {
-    headers: {
-      Authorization: config.TOKEN,
-    },
-  })
+  axios.get(`${apiUrl}products/${req.params.id}`, headers)
     .then((products) => {
       res.send(products.data);
     })
@@ -33,11 +35,7 @@ app.get('/products/:id', (req, res) => {
 
 // GET item styles
 app.get('/products/:id/styles', (req, res) => {
-  axios.get(`${apiUrl}products/${req.params.id}/styles`, {
-    headers: {
-      Authorization: config.TOKEN,
-    },
-  })
+  axios.get(`${apiUrl}products/${req.params.id}/styles`, headers)
     .then((styles) => {
       res.send(styles.data);
     })
@@ -48,11 +46,7 @@ app.get('/products/:id/styles', (req, res) => {
 
 // GET item reviews meta data
 app.get('/reviews/:id/reviewsMeta', (req, res) => {
-  axios.get(`${apiUrl}reviews/meta?product_id=${req.params.id}`, {
-    headers: {
-      Authorization: config.TOKEN,
-    },
-  })
+  axios.get(`${apiUrl}reviews/meta?product_id=${req.params.id}`, headers)
     .then((meta) => {
       res.send(meta.data);
     })
@@ -63,11 +57,7 @@ app.get('/reviews/:id/reviewsMeta', (req, res) => {
 
 // GET item reviews
 app.get('/reviews/:id', (req, res) => {
-  axios.get(`${apiUrl}reviews/?product_id=${req.params.id}`, {
-    headers: {
-      Authorization: config.TOKEN,
-    },
-  })
+  axios.get(`${apiUrl}reviews/?product_id=${req.params.id}`, headers)
     .then((reviews) => {
       res.send(reviews.data);
     })
@@ -78,11 +68,7 @@ app.get('/reviews/:id', (req, res) => {
 
 // GET questions by product ID
 app.get('/questions/:id', (req, res) => {
-  axios.get(`${apiUrl}qa/questions?product_id=${req.params.id}&count=100`, {
-    headers: {
-      Authorization: config.TOKEN,
-    },
-  })
+  axios.get(`${apiUrl}qa/questions?product_id=${req.params.id}&count=100`, headers)
     .then((questions) => {
       res.send(questions.data);
     })
@@ -94,11 +80,7 @@ app.get('/questions/:id', (req, res) => {
 // GET answers by question ID
 app.get('/answers/:Qid', (req, res) => {
   // console.log(req.params.Qid);
-  axios.get(`${apiUrl}qa/questions/${req.params.Qid}/answers`, {
-    headers: {
-      Authorization: config.TOKEN,
-    },
-  })
+  axios.get(`${apiUrl}qa/questions/${req.params.Qid}/answers`, headers)
     .then((answers) => {
       res.send(answers.data);
     })
@@ -211,11 +193,7 @@ app.put('/answer/report/:Aid', (req, res) => {
 
 // GET related item IDs
 app.get('/related/:id', (req, res) => {
-  axios.get(`${apiUrl}products/${req.params.id}/related`, {
-    headers: {
-      Authorization: config.TOKEN,
-    },
-  })
+  axios.get(`${apiUrl}products/${req.params.id}/related`, headers)
     .then((relatedIds) => {
       res.send(relatedIds.data);
     })

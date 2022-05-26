@@ -5,6 +5,7 @@ import ModalButton from './RIOC-styled-components/ModalButton';
 import CompareModal from './CompareModal';
 import '../../dist/styles/styles-val.css';
 import { CardProductContext } from './RelatedView';
+import axios from 'axios';
 
 export const ModalContext = React.createContext();
 
@@ -14,6 +15,8 @@ function RelatedCard({ cardStyle, cardRating }) {
   const productImage = cardStyle ? cardStyle.results[0].photos[0].thumbnail_url : '';
 
   function clickHanlder() {
+    // Move to a new page with a specified id instead
+    // window.location.replace(`/${product.id}`);
     setItemId(product.id);
   }
   function modalHandler(event) {

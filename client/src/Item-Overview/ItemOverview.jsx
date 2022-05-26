@@ -51,7 +51,7 @@ function ItemOverview() {
               });
           });
       });
-  });
+  }, [itemId]);
 
   if (!loading) {
     return (
