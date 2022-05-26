@@ -22,9 +22,9 @@ const TriangleMarker = styled.div`
 
 const TriangleContainer = styled.div`
   display: flex;
-  flex-direction: row;
   justify-content: space-evenly;
   align-items: space-between;
+  flex-direction: row;
 `;
 
 const Top = styled.div`
@@ -32,8 +32,8 @@ const Top = styled.div`
 `;
 
 const InnerContainer = styled.div`
-  height: 15 px;
-  width: 20%;
+  height: 10 px;
+  width: 18%;
   background-color: lightGray;
 `;
 

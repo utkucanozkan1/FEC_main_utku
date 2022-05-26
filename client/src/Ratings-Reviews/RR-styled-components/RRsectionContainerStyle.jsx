@@ -9,6 +9,7 @@ border-color: black;
 `;
 // container for review list
 const ReviewListContainer = styled.div`
+display: flex;
 align-self: flex-end;
 width: 70%;
 flex-flow: column wrap;
@@ -17,7 +18,7 @@ border-style: solid;
 `;
 // used for add review and more reviews buttons on review list
 const Button = styled.div`
-align-self: flex-end;
+align-self: center;
 align-content: center;
 width: 50%;
 flex-flow: row nowrap;
@@ -25,6 +26,7 @@ align-content: space-evenly;
 `;
 // main container for each review
 const ReviewEntryStyle = styled.div`
+width: 100%;
 align-self: flex-start;
 flex-flow: column wrap;
 border-style: solid;
@@ -32,7 +34,7 @@ border-style: solid;
 // main container for the ratings summary
 const SummaryLeft = styled.div`
 align-self: flex-start;
-width: 30%;
+width: 28%;
 flex-flow: column wrap;
 `;
 // container
