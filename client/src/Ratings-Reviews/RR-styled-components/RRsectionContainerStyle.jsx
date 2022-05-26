@@ -10,19 +10,16 @@ border-color: black;
 // container for review list
 const ReviewListContainer = styled.div`
 display: flex;
-align-self: flex-end;
 width: 70%;
 flex-flow: column wrap;
 align-items: center;
 border-style: solid;
 `;
-// used for add review and more reviews buttons on review list
+// used for add filter drop-down on review list
 const Button = styled.div`
-align-self: center;
-align-content: center;
 width: 50%;
 flex-flow: row nowrap;
-align-content: space-evenly;
+align-self: center;
 `;
 // main container for each review
 const ReviewEntryStyle = styled.div`
@@ -69,8 +66,8 @@ border-style: solid;
 `;
 
 const BottomButtons = styled.div`
-align-self: flex-end;
-
+align-self: center;
+justify-content: space-around;
 `;
 
 const FormContainer = styled.div`
