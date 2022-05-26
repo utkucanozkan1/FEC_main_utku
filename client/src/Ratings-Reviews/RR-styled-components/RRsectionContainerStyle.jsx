@@ -111,11 +111,23 @@ const CloseButton = styled.div`
   position: absolute;
 `;
 
+const OuterBarGraph = styled.div`
+display: flex;
+flex-direction: row;
+align-items: center;
+`;
 
+const InnerBarGraph = styled.label`
+margin: 5px;
+&:hover {
+  color: red;
+}
+`;
 
 export {
   RatingReviewContainer, ReviewListContainer, ReviewEntryStyle,
   SummaryLeft, RatingsBreakdown, ProductBreakdownContainer,
   Percentage, BarChartStyle, AverageRating, BottomButtons, FormStyle,
   FormElement, Header, FormContainer, CloseButton, Modal, Button,
+  OuterBarGraph, InnerBarGraph,
 };

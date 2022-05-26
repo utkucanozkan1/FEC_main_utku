@@ -4,11 +4,11 @@ import styled from 'styled-components';
 const OuterBar = styled.div`
   height: 10px;
   width: 90%;
-  background-color: gray;
+  background-color: lightgray;
   margin: 10px;
   &:hover {
     border: 2px solid red;
-    background-color: white;
+    background-color: gold;
   }
 `;
 

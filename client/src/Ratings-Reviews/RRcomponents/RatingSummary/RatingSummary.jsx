@@ -7,9 +7,9 @@ import AverageStarRating from '../../../../../server/utils/helpers';
 import StarRating from '../../../shared/StarRating';
 
 export default function RatingSummary() {
+  const { itemId } = useContext(ProductIdContext);
   const [meta, setMeta] = useState({});
   const [productRatings, setRatings] = useState([]);
-  const { itemId } = useContext(ProductIdContext);
 
   useEffect(() => {
     axios.get(`/reviews/${itemId}/reviewsMeta`)
