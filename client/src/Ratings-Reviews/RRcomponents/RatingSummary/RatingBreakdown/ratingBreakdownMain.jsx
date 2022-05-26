@@ -32,16 +32,17 @@ export default function RatingBreakdownMain({ meta, setRatingFilter }) {
     <RatingsBreakdown>
       {
       Object.keys(meta).length !== 0
-      ? (
-        <div>
+        ? (
+          <div>
             <span>{recommend}% of reviews recommend this product</span>
             {starRatings.map((rating, i) => (
               <OuterBarGraph key={i} onClick={() => setRatingFilter(rating)}>
                 <InnerBarGraph>{rating}</InnerBarGraph>
                 <InnerBarGraph>star</InnerBarGraph>
                 <BarChart length={meta.ratings[rating] / sumRating * 100} />
+                <InnerBarGraph>{meta.ratings[rating]}</InnerBarGraph>
               </OuterBarGraph>
-               ))}
+            ))}
             <div>
               <h4>characteristic breakdown</h4>
               {
@@ -52,25 +53,12 @@ export default function RatingBreakdownMain({ meta, setRatingFilter }) {
                 {Math.round(meta.characteristics[char].value)}
               </span>
             </div>
-         )) : (null)
+          )) : (null)
           }
+            </div>
           </div>
-        </div>
-      ) : null
+        ) : null
       }
-      </RatingsBreakdown>
+    </RatingsBreakdown>
   );
 }
-
-{/* <div>
-            <span>1-Star {meta.ratings['1']}</span>
-            <br />
-            <span>2-Star {meta.ratings['2']}</span>
-            <br />
-            <span>3-Star {meta.ratings['3']}</span>
-            <br />
-            <span>4-Star {meta.ratings['4']}</span>
-            <br />
-            <span>5-Star {meta.ratings['5']}</span>
-          </div> */}
-       

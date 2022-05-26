@@ -3,19 +3,19 @@ import styled from 'styled-components';
 
 const OuterBar = styled.div`
   height: 10px;
-  width: 90%;
+  width: 60%;
   background-color: lightgray;
   margin: 10px;
   &:hover {
-    border: 2px solid red;
-    background-color: gold;
+    border: 2px solid gray;
+    background-color: darkgray;
   }
 `;
 
 const Bars = styled.div`
   height: 100%;
   width: ${({ length }) => (length)}%;
-  background-color: gray;
+  background-color: green;
   text-align: right;
 `;
 
