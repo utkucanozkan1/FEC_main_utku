@@ -15,16 +15,7 @@ const QuestionList = function (props) {
   const [answerReported, setAnswerReported] = useState(false);
   const [answerHelpful, setAnswerHelpful] = useState(false);
   const [questionHelpful, setQuestionHelpful] = useState(false);
-  // console.log("answerArr:", answerArr);
-  // answerArray = Object.keys(props.question.answers)
-  // for(let key in props.question.answers){
-  //   answerArray.push(props.question.answers[key])
-  //   }
-  // // console.log(answerArray)
-  // // console.log(props.question)
-  // console.log(answerArray)
-  // console.log(props.question)
-  // result.data.results.length > 1 ? answerArray.push(result.data.results)
+
   useEffect(() => {
     axios
       .get(`/answers/${props.question.question_id}`)
@@ -34,6 +25,7 @@ const QuestionList = function (props) {
           toogleLoading(false);
           setAnswerHelpful(false);
           setQuestionHelpful(false);
+          setAnswerReported(false);
         }
       })
       .then()
