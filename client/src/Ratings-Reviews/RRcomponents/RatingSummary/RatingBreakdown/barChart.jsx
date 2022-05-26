@@ -1,8 +1,28 @@
 import React from 'react';
-import { BarChartStyle } from '../../../RR-styled-components/RRsectionContainerStyle';
+import styled from 'styled-components';
 
-export default function BarChart() {
+const OuterBar = styled.div`
+  height: 10px;
+  width: 90%;
+  background-color: gray;
+  margin: 10px;
+  &:hover {
+    border: 2px solid red;
+    background-color: white;
+  }
+`;
+
+const Bars = styled.div`
+  height: 100%;
+  width: ${({ length }) => (length)}%;
+  background-color: gray;
+  text-align: right;
+`;
+
+export default function BarChart({ length }) {
   return (
-    <BarChartStyle>barChart</BarChartStyle>
+    <OuterBar>
+      <Bars length={length} />
+    </OuterBar>
   );
 }

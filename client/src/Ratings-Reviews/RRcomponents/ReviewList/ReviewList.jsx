@@ -60,6 +60,8 @@ export default function ReviewList() {
 
   return (
     <ReviewListContainer>
+      {/* Attempting to render message when no reviews */}
+      {/* {{reviews}.length ? */}
       <Button>
         <select onChange={changeSort}>
           <option value="relevant">Sort on Relevant</option>
@@ -70,6 +72,7 @@ export default function ReviewList() {
       {reviews.map((review) => (
         <ReviewCard key={review.review_id} review={review} />
       ))}
+      {/* : <div>No reviews. Be the first to submit! Click "Add Review"</div>> } */}
       <BottomButtons>
         <button onClick={clickMoreReviews}>More Reviews</button>
         <button type="button" onClick={showModal}>Add Review</button>

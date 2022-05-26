@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 
+// Main view container
 const RatingReviewContainer = styled.section`
 display: flex;
 flex-flow: row nowrap;
 border-style: solid;
 border-color: black;
 `;
-
+// container for review list
 const ReviewListContainer = styled.div`
 align-self: flex-end;
 width: 70%;
@@ -14,7 +15,7 @@ flex-flow: column wrap;
 align-items: center;
 border-style: solid;
 `;
-
+// used for add review and more reviews buttons on review list
 const Button = styled.div`
 align-self: flex-end;
 align-content: center;
@@ -22,23 +23,22 @@ width: 50%;
 flex-flow: row nowrap;
 align-content: space-evenly;
 `;
-
+// main container for each review
 const ReviewEntryStyle = styled.div`
 align-self: flex-start;
 flex-flow: column wrap;
 border-style: solid;
 `;
-
+// main container for the ratings summary
 const SummaryLeft = styled.div`
 align-self: flex-start;
 width: 30%;
 flex-flow: column wrap;
 `;
-
+// container
 const RatingsBreakdown = styled.div`
 align-self: flex-start;
 flex-flow: row wrap;
-border-style: solid;
 `;
 
 const ProductBreakdownContainer = styled.div`
@@ -110,6 +110,8 @@ const CloseButton = styled.div`
   left:90%;
   position: absolute;
 `;
+
+
 
 export {
   RatingReviewContainer, ReviewListContainer, ReviewEntryStyle,

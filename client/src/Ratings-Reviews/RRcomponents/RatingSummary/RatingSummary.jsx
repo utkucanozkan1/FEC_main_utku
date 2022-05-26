@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { SummaryLeft } from '../../RR-styled-components/RRsectionContainerStyle';
 import RatingBreakdownMain from './RatingBreakdown/ratingBreakdownMain';
-import PercentageOfRecs from './PercentageOfRecs';
 import { ProductIdContext } from '../../../index';
 import AverageStarRating from '../../../../../server/utils/helpers';
 import StarRating from '../../../shared/StarRating';
@@ -33,25 +32,7 @@ export default function RatingSummary() {
         {productRatings}
         <StarRating rating={productRatings} />
       </span>
-      <PercentageOfRecs meta={meta} />
       <RatingBreakdownMain meta={meta} />
     </SummaryLeft>
   );
 }
-
-
-// useEffect(() => {
-//   const ratingsPromises = products.map((product) => (
-//     axios.get(`/reviews/${product.id}/reviewsMeta`)
-//   ));
-//   Promise.all(ratingsPromises)
-//     .then((allProducts) => {
-//       setRatings(allProducts.map((ratedProduct) => {
-//         const ratingCounts = Object.entries(ratedProduct.data.ratings);
-//         return getAverageRating(ratingCounts);
-//       }));
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// }, [products]);
