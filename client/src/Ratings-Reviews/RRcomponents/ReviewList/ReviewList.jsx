@@ -41,9 +41,10 @@ export default function ReviewList() {
         console.log('Error, could not retrieve reviews, clickMore', err);
       });
   }
-  useEffect(() => {
-    retrieveReviews();
-  }, [itemId]);
+
+  function changeSort(e) {
+    setSort(e.target.value);
+  }
 
   const showModal = () => {
     setShowModalForm('true');
@@ -53,10 +54,14 @@ export default function ReviewList() {
     setShowModalForm('false');
   };
 
+  useEffect(() => {
+    retrieveReviews();
+  }, [itemId, sort]);
+
   return (
     <ReviewListContainer>
       <Button>
-        <select>
+        <select onChange={changeSort}>
           <option value="relevant">Sort on Relevant</option>
           <option value="newest">Sort on Newest</option>
           <option value="helpful">Sort on Helpful</option>
