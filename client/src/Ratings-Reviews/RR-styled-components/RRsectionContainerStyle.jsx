@@ -9,10 +9,18 @@ border-color: black;
 
 const ReviewListContainer = styled.div`
 align-self: flex-end;
-justify-self: end;
 width: 70%;
 flex-flow: column wrap;
+align-items: center;
 border-style: solid;
+`;
+
+const Button = styled.div`
+align-self: flex-end;
+align-content: center;
+width: 50%;
+flex-flow: row nowrap;
+align-content: space-evenly;
 `;
 
 const ReviewEntryStyle = styled.div`
@@ -107,5 +115,5 @@ export {
   RatingReviewContainer, ReviewListContainer, ReviewEntryStyle,
   SummaryLeft, RatingsBreakdown, ProductBreakdownContainer,
   Percentage, BarChartStyle, AverageRating, BottomButtons, FormStyle,
-  FormElement, Header, FormContainer, CloseButton, Modal,
+  FormElement, Header, FormContainer, CloseButton, Modal, Button,
 };

@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { ReviewListContainer, BottomButtons, FormStyle } from '../../RR-styled-components/RRsectionContainerStyle';
+import {
+  ReviewListContainer, BottomButtons, FormStyle, Button,
+} from '../../RR-styled-components/RRsectionContainerStyle';
 import ReviewCard from './ReviewCard';
 import ModalPopup from './Modal';
 import Form from './Form';
@@ -53,7 +55,13 @@ export default function ReviewList() {
 
   return (
     <ReviewListContainer>
-      <select>Reviews, sort by</select>
+      <Button>
+        <select>
+          <option value="relevant">Sort on Relevant</option>
+          <option value="newest">Sort on Newest</option>
+          <option value="helpful">Sort on Helpful</option>
+        </select>
+      </Button>
       {reviews.map((review) => (
         <ReviewCard key={review.review_id} review={review} />
       ))}
