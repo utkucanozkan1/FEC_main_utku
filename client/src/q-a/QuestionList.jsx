@@ -6,6 +6,10 @@ import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import axios from 'axios';
 import ImageComponent from './ImageComponent.jsx';
+import ModalPopup from './Modal.jsx';
+import Form from './Form.jsx';
+import { FormStyle } from './q&a-styled-components/q&aSectionContainerStyle';
+
 
 const answerArray = [];
 const QuestionList = function (props) {
@@ -13,6 +17,7 @@ const QuestionList = function (props) {
   const [answerArr, setAnswerArr] = useState([]);
   const [loading, toogleLoading] = useState(true);
   const [answerReported, setAnswerReported] = useState(false);
+  const [showModalForm, setShowModalForm] = useState('false');
   const [answerHelpful, setAnswerHelpful] = useState(false);
   const [questionHelpful, setQuestionHelpful] = useState(false);
 
@@ -57,6 +62,13 @@ const QuestionList = function (props) {
       .then((res) => console.log('question helpful'))
       .catch((err) => console.log(err));
   }
+  const showModal = () => {
+    setShowModalForm('true');
+  };
+
+  const hideModal = () => {
+    setShowModalForm('false');
+  };
 
   if (!loading) {
     return (
@@ -93,9 +105,14 @@ const QuestionList = function (props) {
               </button>
             )}
 						&nbsp; &nbsp; | &nbsp; &nbsp;
-            <button type="button" className="astext-btn-answer">
+            <button type="button" className="astext-btn-answer" onClick={showModal}>
               Add Answer
             </button>
+            <div className="modal-popup">
+            <ModalPopup show={showModalForm} handleExit={hideModal} questionId={props.question}>
+              <FormStyle><Form questionId={props.question} /></FormStyle>
+            </ModalPopup>
+            </div>
           </div>
         </div>
         <div>

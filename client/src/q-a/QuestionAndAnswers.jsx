@@ -82,6 +82,8 @@ function QuestionsAndAnswers() {
             <QuestionList question={question} key={i} />
           ))}
         </div> }
+        <div>
+        </div>
       </section>
     );
   } else {
