@@ -93,3 +93,12 @@ flex: 1;
   border: 1px solid red;
   width: 50vw;
 }
+.body-text {
+  margin-top: 10vh;
+}
+.answer-header {
+text-align: center;
+}
+.whole-answer-text {
+  text-align: center;
+}
