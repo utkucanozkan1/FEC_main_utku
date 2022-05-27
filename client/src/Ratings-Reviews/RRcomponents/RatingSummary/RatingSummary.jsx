@@ -1,16 +1,15 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import { SummaryLeft } from '../../RR-styled-components/RRsectionContainerStyle';
+import { SummaryLeft, RatingsSummaryTop } from '../../RR-styled-components/RRsectionContainerStyle';
 import RatingBreakdownMain from './RatingBreakdown/ratingBreakdownMain';
-import PercentageOfRecs from './PercentageOfRecs';
 import { ProductIdContext } from '../../../index';
 import AverageStarRating from '../../../../../server/utils/helpers';
 import StarRating from '../../../shared/StarRating';
 
-export default function RatingSummary() {
+export default function RatingSummary({ setRatingFilter }) {
+  const { itemId } = useContext(ProductIdContext);
   const [meta, setMeta] = useState({});
   const [productRatings, setRatings] = useState([]);
-  const { itemId } = useContext(ProductIdContext);
 
   useEffect(() => {
     axios.get(`/reviews/${itemId}/reviewsMeta`)
@@ -27,31 +26,12 @@ export default function RatingSummary() {
 
   return (
     <SummaryLeft>
-      Ratings summary
       <br />
-      <span>
+      <RatingsSummaryTop >
         {productRatings}
         <StarRating rating={productRatings} />
-      </span>
-      <PercentageOfRecs meta={meta} />
-      <RatingBreakdownMain meta={meta} />
+      </RatingsSummaryTop>
+      <RatingBreakdownMain meta={meta} setRatingFilter={setRatingFilter} />
     </SummaryLeft>
   );
 }
-
-
-// useEffect(() => {
-//   const ratingsPromises = products.map((product) => (
-//     axios.get(`/reviews/${product.id}/reviewsMeta`)
-//   ));
-//   Promise.all(ratingsPromises)
-//     .then((allProducts) => {
-//       setRatings(allProducts.map((ratedProduct) => {
-//         const ratingCounts = Object.entries(ratedProduct.data.ratings);
-//         return getAverageRating(ratingCounts);
-//       }));
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// }, [products]);

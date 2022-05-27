@@ -5,7 +5,7 @@ import {
 } from '../../RR-styled-components/RRsectionContainerStyle';
 // import withRangeOption from "./withRangeOption.jsx"
 
-export default function Form({ product_id }) {
+export default function Form({ productId }) {
   const [rating, setRating] = useState(5);
   const [summary, setSummary] = useState('');
   const [body, setBody] = useState('');
@@ -32,7 +32,7 @@ export default function Form({ product_id }) {
 
   const handleSubmit = () => {
     axios.post('/reviews', {
-      product_id, summary, body, recommend, name, email, photos, characteristics,
+      productId, summary, body, recommend, name, email, photos, characteristics,
     })
       .then(() => {
         console.log('Added a review! ');

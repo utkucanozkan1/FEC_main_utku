@@ -1,68 +1,83 @@
 import styled from 'styled-components';
 
+// Main view container
 const RatingReviewContainer = styled.section`
 display: flex;
 flex-flow: row nowrap;
 border-style: solid;
-border-color: black;
 `;
-
+// container for review list
 const ReviewListContainer = styled.div`
-align-self: flex-end;
-justify-self: end;
+display: flex;
 width: 70%;
 flex-flow: column wrap;
-border-style: solid;
+align-items: center;
+`;
+// used for add filter drop-down on review list
+const Button = styled.div`
+width: 50%;
+flex-flow: row nowrap;
+align-self: center;
 `;
 
-const ReviewEntryStyle = styled.div`
-align-self: flex-start;
-flex-flow: column wrap;
-border-style: solid;
-`;
-
+// main container for the ratings summary
 const SummaryLeft = styled.div`
 align-self: flex-start;
-width: 30%;
+width: 28%;
 flex-flow: column wrap;
 `;
-
+// container for star and characteristic breakdown
 const RatingsBreakdown = styled.div`
+display: flex;
 align-self: flex-start;
 flex-flow: row wrap;
-border-style: solid;
 `;
+ /*-----------------*/
+//  product characterstic breakdown format
 
+// Container for characteristic breakdown
 const ProductBreakdownContainer = styled.div`
-align-self: flex-start;
-flex-flow: column wrap;
-border-style: solid;
+  display: grid;
+  width: 100%;
+  padding-top: 30px;
+  gap: 20px;
 `;
 
-const Percentage = styled.div`
-align-self: flex-start;
-flex-flow: column wrap;
-border-style: solid;
+// Top portion of ratings and summary with the average rating
+const RatingsSummaryTop = styled.div`
+display: flex;
+flex-flow: row nowrap;
+justify-content: center;
+font-size: 40px;
 `;
 
-const BarChartStyle = styled.div`
-align-self: center;
-width:30%;
-flex-flow: column wrap;
-border-style: solid;
+// formatting for characteristic breakdown graph
+const CharacterGraph = styled.div`
+  display: grid;
+  grid-template-rows: 30px 20px 20px;
 `;
 
-const AverageRating = styled.canvas`
-align-self: center;
-flex-flow: column wrap;
-border-style: solid;
+// formatting for each characteristic breakdown
+const Character = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 15px;
+`;
+
+// used for % of recommend and total reviews in ratings summary
+const Recommend = styled.div`
+display: flex;
+flex-flow: column nowrap;
+justify-content: center;
 `;
 
 const BottomButtons = styled.div`
-align-self: flex-end;
-
+align-self: center;
+justify-content: space-around;
 `;
-
+/*--------------------*/
+// Form and modal settings
 const FormContainer = styled.div`
 width: 90%;
   margin: 10px auto;
@@ -102,10 +117,58 @@ const CloseButton = styled.div`
   left:90%;
   position: absolute;
 `;
+/*-------------------*/
+// Star rating breakdown settings.
+
+const OuterBarGraph = styled.div`
+display: flex;
+flex-direction: row;
+align-items: center;
+`;
+
+const InnerBarGraph = styled.label`
+margin: 5px;
+&:hover {
+  color: red;
+}
+`;
+
+/*-------------------*/
+// Review entry settings.
+// main container for each review
+const ReviewEntryStyle = styled.div`
+display: flex;
+width: 100%;
+align-self: flex-start;
+flex-flow: column wrap;
+border-top: 2px solid;
+`;
+
+const TopOfReview = styled.div`
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+`;
+
+const SmallSum = styled.span`
+  align-self: flex-start;
+  font-size: 20px;
+  border-bottom: 3px solid;
+`;
+
+const Date = styled.span`
+align-self: flex-end;
+`;
+
+const Paragraph = styled.p`
+  font-size: 17px;
+`;
 
 export {
   RatingReviewContainer, ReviewListContainer, ReviewEntryStyle,
   SummaryLeft, RatingsBreakdown, ProductBreakdownContainer,
-  Percentage, BarChartStyle, AverageRating, BottomButtons, FormStyle,
-  FormElement, Header, FormContainer, CloseButton, Modal,
+  Recommend, BottomButtons, FormStyle,
+  FormElement, Header, FormContainer, CloseButton, Modal, Button,
+  OuterBarGraph, InnerBarGraph, RatingsSummaryTop, SmallSum, Date,
+  Paragraph, TopOfReview, Character, CharacterGraph,
 };
