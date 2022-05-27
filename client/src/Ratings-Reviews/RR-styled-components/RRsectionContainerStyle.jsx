@@ -1,10 +1,21 @@
 import styled from 'styled-components';
 
 // Main view container
-const RatingReviewContainer = styled.section`
+const RatingsReviewsOuterContainer = styled.section`
+  display: grid;
+  flex-flow: column wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin: 80px;
+`;
+
+const RatingReviewContainer = styled.div`
 display: flex;
 flex-flow: row nowrap;
+align-self: center;
+margin: 80px;
 `;
+
 // container for review list
 const ReviewListContainer = styled.div`
 display: flex;
@@ -31,7 +42,7 @@ display: flex;
 align-self: flex-start;
 flex-flow: row wrap;
 `;
- /*-----------------*/
+/*-----------------*/
 //  product characterstic breakdown format
 
 // Container for characteristic breakdown
@@ -169,5 +180,5 @@ export {
   Recommend, BottomButtons, FormStyle,
   FormElement, Header, FormContainer, CloseButton, Modal, Button,
   OuterBarGraph, InnerBarGraph, RatingsSummaryTop, SmallSum, Date,
-  Paragraph, TopOfReview, Character, CharacterGraph,
+  Paragraph, TopOfReview, Character, CharacterGraph, RatingsReviewsOuterContainer,
 };
