@@ -16,12 +16,12 @@ function RightArrow() {
     console.log(viewable);
     console.log(end);
 
+    setPosition((prevPosition) => (prevPosition + 1));
+    if (position + 5 === related.length) {
+      setEnd(true);
+    }
     if (related.length > viewable.length) {
       const nextId = related[position + 4];
-      setPosition((prevPosition) => (prevPosition + 1));
-      if (position + 4 === viewable.length) {
-        setEnd(true);
-      }
       axios.get(`/products/${nextId}`)
         .then((nextProduct) => {
           axios.get(`/products/${nextProduct.data.id}/styles`)
@@ -43,6 +43,10 @@ function RightArrow() {
   }
   return (
     <CarouselButton onClick={scrollRight}>
+      {console.log(related)}
+      {console.log(position)}
+      {console.log(viewable)}
+      {console.log(end)}
       { end ? '' : '>' }
     </CarouselButton>
   );
