@@ -7,6 +7,8 @@ flex-flow: row nowrap;
 align-self: center;
 justify-items: space-between;
 margin: 120px;
+padding-right: 300px;
+padding-left: 300px;
 `;
 
 // container for review list
@@ -15,7 +17,7 @@ display: flex;
 width: 65%;
 flex-flow: column wrap;
 align-items: center;
-margin-left: 50 px;
+margin-left: 20 px;
 `;
 // used for add filter drop-down on review list
 const Button = styled.div`
@@ -51,7 +53,7 @@ const ProductBreakdownContainer = styled.div`
 const RatingsSummaryTop = styled.div`
 display: flex;
 flex-flow: row nowrap;
-justify-content: center;
+justify-content: flex-start;
 font-size: 40px;
 `;
 
@@ -146,7 +148,7 @@ width: 100%;
 align-self: flex-start;
 flex-flow: column wrap;
 border-top: 2px solid;
-margin-left: 30px;
+/* padding-left: 20px; */
 `;
 
 const TopOfReview = styled.div`
