@@ -45,7 +45,7 @@ export default function RatingBreakdownMain({ meta, setRatingFilter }) {
             <br />
             <span> {sumRating} reviews</span>
             {starRatings.map((rating, i) => (
-              <OuterBarGraph key={i} onClick={() => setRatingFilter(rating)}>
+              <OuterBarGraph key={i} onClick={setRatingFilter}>
                 <InnerBarGraph>{rating}</InnerBarGraph>
                 <InnerBarGraph>star</InnerBarGraph>
                 <BarChart length={meta.ratings[rating] / sumRating * 100} />

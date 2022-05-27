@@ -9,13 +9,18 @@ import { retrieve2Reviews, retrieveMeta } from './ReviewList/serverAction';
 
 export default function RatingReviews() {
   const { itemId } = useContext(ProductIdContext);
-  const [ ratingFilter, setRatingFilter ] = useState('');
+  const [ratingFilter, setRatingFilter] = useState('');
+
+  function filterByRating(event) {
+    event.preventDefault();
+    console.log('still working on this filter');
+  }
 
   return (
     <>
       <h3>Ratings and Reviews</h3>
       <RatingReviewContainer>
-        <RatingSummary setRatingFilter={setRatingFilter} />
+        <RatingSummary setRatingFilter={filterByRating} />
         <ReviewList ratingFilter={ratingFilter} />
       </RatingReviewContainer>
     </>

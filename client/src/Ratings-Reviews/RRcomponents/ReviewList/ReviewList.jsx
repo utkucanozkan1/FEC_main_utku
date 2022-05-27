@@ -63,10 +63,11 @@ export default function ReviewList() {
       {/* Attempting to render message when no reviews */}
       {/* {{reviews}.length ? */}
       <Button>
+        {reviews.length} reviews
         <select onChange={changeSort}>
-          <option value="relevant">Sort on Relevant</option>
-          <option value="newest">Sort on Newest</option>
-          <option value="helpful">Sort on Helpful</option>
+          <option value="relevant">Sort by Relevant</option>
+          <option value="newest">Sort by Newest</option>
+          <option value="helpful">Sort by Helpful</option>
         </select>
       </Button>
       {reviews.map((review) => (

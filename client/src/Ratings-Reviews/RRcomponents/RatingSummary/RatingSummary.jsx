@@ -6,7 +6,7 @@ import { ProductIdContext } from '../../../index';
 import AverageStarRating from '../../../../../server/utils/helpers';
 import StarRating from '../../../shared/StarRating';
 
-export default function RatingSummary() {
+export default function RatingSummary({ setRatingFilter }) {
   const { itemId } = useContext(ProductIdContext);
   const [meta, setMeta] = useState({});
   const [productRatings, setRatings] = useState([]);
@@ -32,7 +32,7 @@ export default function RatingSummary() {
         {productRatings}
         <StarRating rating={productRatings} />
       </span>
-      <RatingBreakdownMain meta={meta} />
+      <RatingBreakdownMain meta={meta} setRatingFilter={setRatingFilter} />
     </SummaryLeft>
   );
 }

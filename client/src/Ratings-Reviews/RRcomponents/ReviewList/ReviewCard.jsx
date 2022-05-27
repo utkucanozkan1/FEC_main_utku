@@ -49,8 +49,8 @@ export default function ReviewEntry({ review, retrieveReviews }) {
       </span>
       <h3>{review.summary}</h3>
       {{ showAll } ? <p>{review.body}</p> : <p>{shortBody} </p>}
-      {/* {({ showAll } && review.body.length > 250 )? <a href="#" type="button" onClick={showLess}>Show Less</a>
-        : (review.body.length > 250) ? <a href="#" type="button" onClick={showMore}>Show More</a> : <a></a> } */}
+      {({ showAll } && review.body.length > 250 )? <a href="#" type="button" onClick={showLess}>Show Less</a>
+        : (review.body.length > 250) ? <a href="#" type="button" onClick={showMore}>Show More</a> : <a></a> }
       {review.recommend ? <p> Recommend Product </p> : <p> </p>}
       {review.response ? <p>{review.response}</p> : <p> </p>}
       <div>
