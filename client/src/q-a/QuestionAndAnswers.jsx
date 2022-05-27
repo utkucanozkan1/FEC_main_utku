@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable no-else-return */
-import React ,{useState ,useEffect , useContext} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import QuestionList from './QuestionList.jsx';
 import { ProductIdContext } from '../index.jsx';
@@ -15,7 +15,7 @@ function QuestionsAndAnswers() {
   const { itemId } = useContext(ProductIdContext);
   const [searchQuestions, setSearchQuestions] = useState(false);
   const [searchArray, setSearchArray] = useState([]);
-  const [questionArray, setQuestionArray] = useState([])
+  const [questionArray, setQuestionArray] = useState([]);
   const [loading, toogleLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState({ search: '' });
   const [productId, setProductId] = useState(itemId);
@@ -23,40 +23,40 @@ function QuestionsAndAnswers() {
 
   useEffect(() => {
     // let's just use 37311 for now
-    axios.get(`/questions/${itemId}`)
-      .then((questions) => {
-        questionsArray = [];
-        questions.data.results.forEach((question) => {
-          if (Object.keys(question.answers).length) {
-            //check here for seller answer and put it in front of the list
-            questionsArray.push(question);
-          }
-        });
-        setQuestionArray([...questionsArray]);
-        //console.log(questionsArray);
-        toogleLoading(false);
+    axios.get(`/questions/${itemId}`).then((questions) => {
+      questionsArray = [];
+      questions.data.results.forEach((question) => {
+        if (Object.keys(question.answers).length) {
+          // check here for seller answer and put it in front of the list
+          questionsArray.push(question);
+        }
       });
-  }, [itemId, searchQuestions]);
+      setQuestionArray([...questionsArray]);
+      // console.log(questionsArray);
+      toogleLoading(false);
+      console.log('getting questions');
+    });
+  }, [itemId]);
+
+  useEffect(() => {
+    // searchingArray = [];
+    if (searchTerm.search.length > 2) {
+      console.log(searchArray);
+      console.log(searchTerm);
+      console.log(searchingArray);
+      // console.log(questionsArray);
+      // searchingArray = [];
+      searchingArray = questionArray.filter((el, i) => el.question_body.toLowerCase().includes(searchTerm.search));
+      setSearchArray([...searchingArray]);
+      setSearchQuestions(true);
+    } else {
+      setSearchArray([]);
+      setSearchQuestions(false);
+    }
+  }, [searchTerm.search]);
 
   const handleChange = function (e) {
     setSearchTerm({ ...searchTerm, search: e.target.value });
-    if (searchTerm.search.length > 3) {
-      searchingArray = [];
-      questionArray.forEach((el,i) => {
-        // console.log(el.question_body);
-        //console.log(searchArray);
-        if (el.question_body.toLowerCase().includes(searchTerm.search)) {
-          if (searchArray.indexOf(el) === -1) {
-            //searchingArray.push(el);
-            searchingArray.push(el);
-          }
-          setSearchArray([...searchingArray]);
-          setSearchQuestions(true);
-        }
-      });
-    } else {
-      setSearchQuestions(false);
-    }
   };
   const showModal = () => {
     setShowModalForm('true');
@@ -69,11 +69,9 @@ function QuestionsAndAnswers() {
   if (!loading) {
     return (
       <section className="question-section">
+        <div>Questions & Answers</div>
         <div>
-          Questions & Answers
-        </div>
-        <div>
-          <form>
+          <form onSubmit={(e) => e.preventDefault()}>
             <input
               type="text"
               id="header-search"
@@ -81,25 +79,38 @@ function QuestionsAndAnswers() {
               name="search"
               value={searchTerm.search}
               onChange={(e) => handleChange(e)}
-             />
+            />
           </form>
         </div>
-        {searchQuestions ? <div className="main-div">
-          {searchArray.slice(0, 2).map((question, i) => (
-            <QuestionList question={question} key={i} />
-          ))}
-        </div> : <div className="main-div">
-          {questionArray.slice(0,4).map((question, i) => (
-            <QuestionList question={question} key={i} />
-          ))}
-        </div> }
+        {searchQuestions ? (
+          <div className="main-div">
+            {searchArray.slice(0, 2).map((question, i) => (
+              <QuestionList question={question} key={i} />
+            ))}
+          </div>
+        ) : (
+          <div className="main-div">
+            {questionArray.slice(0, 4).map((question, i) => (
+              <QuestionList question={question} key={i} />
+            ))}
+          </div>
+        )}
         <div>
-          <button type="button" onClick={showModal}>Add A Question + </button>
+          <button type="button" onClick={showModal}>
+            Add A Question +
+            {' '}
+          </button>
           <div className="modal-popup">
-            <QuestionModal show={showModalForm} handleExit={hideModal} itemId={itemId}>
-              <FormStyle><NewQuestion itemId={itemId}> </NewQuestion></FormStyle>
+            <QuestionModal
+              show={showModalForm}
+              handleExit={hideModal}
+              itemId={itemId}
+            >
+              <FormStyle>
+                <NewQuestion itemId={itemId}> </NewQuestion>
+              </FormStyle>
             </QuestionModal>
-            </div>
+          </div>
         </div>
       </section>
     );
