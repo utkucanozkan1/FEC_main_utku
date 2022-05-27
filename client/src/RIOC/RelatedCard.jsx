@@ -9,16 +9,19 @@ import axios from 'axios';
 
 export const ModalContext = React.createContext();
 
-function RelatedCard({ cardStyle, cardRating }) {
-  const { itemId, setItemId, product } = useContext(CardProductContext);
+function RelatedCard({ cardRating }) {
+  const { setItemId, product } = useContext(CardProductContext);
   const [modal, setModal] = useState(false);
-  const productImage = cardStyle ? cardStyle.results[0].photos[0].thumbnail_url : '';
+  const productImage = product ? product.results[0].photos[0].thumbnail_url : '';
 
   function clickHanlder() {
     setItemId(product.id);
   }
   function modalHandler(event) {
-    event.stopPropagation();
+    event.cancelBubble = true;
+    if (event.stopPropagation) {
+      event.stopPropagation();
+    }
     setModal(!modal);
   }
   return (
