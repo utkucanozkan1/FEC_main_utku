@@ -24,7 +24,7 @@ const TriangleContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: space-between;
-  flex-direction: row;
+  flex-direction: row nowrap;
 `;
 
 const Top = styled.div`

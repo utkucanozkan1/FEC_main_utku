@@ -5,7 +5,6 @@ const RatingReviewContainer = styled.section`
 display: flex;
 flex-flow: row nowrap;
 border-style: solid;
-border-color: black;
 `;
 // container for review list
 const ReviewListContainer = styled.div`
@@ -13,7 +12,6 @@ display: flex;
 width: 70%;
 flex-flow: column wrap;
 align-items: center;
-border-style: solid;
 `;
 // used for add filter drop-down on review list
 const Button = styled.div`
@@ -26,7 +24,8 @@ const ReviewEntryStyle = styled.div`
 width: 100%;
 align-self: flex-start;
 flex-flow: column wrap;
-border-style: solid;
+border-top: 2px solid;
+
 `;
 // main container for the ratings summary
 const SummaryLeft = styled.div`
@@ -34,22 +33,34 @@ align-self: flex-start;
 width: 28%;
 flex-flow: column wrap;
 `;
-// container
+// container for star and characteristic breakdown
 const RatingsBreakdown = styled.div`
+display: flex;
 align-self: flex-start;
 flex-flow: row wrap;
 `;
 
+// Container for characteristic breakdown
 const ProductBreakdownContainer = styled.div`
-align-self: flex-start;
-flex-flow: column wrap;
-border-style: solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 20px;
 `;
 
-const Percentage = styled.div`
-align-self: flex-start;
-flex-flow: column wrap;
-border-style: solid;
+// Top portion of ratings and summary with the average rating
+const RatingsSummaryTop = styled.div`
+display: flex;
+flex-flow: row nowrap;
+justify-content: center;
+font-size: 40px;
+`;
+
+// used for % of recommend and total reviews in ratings summary
+const Recommend = styled.div`
+display: flex;
+flex-flow: column nowrap;
+justify-content: center;
 `;
 
 const BarChartStyle = styled.div`
@@ -126,7 +137,7 @@ margin: 5px;
 export {
   RatingReviewContainer, ReviewListContainer, ReviewEntryStyle,
   SummaryLeft, RatingsBreakdown, ProductBreakdownContainer,
-  Percentage, BarChartStyle, AverageRating, BottomButtons, FormStyle,
+  Recommend, BarChartStyle, AverageRating, BottomButtons, FormStyle,
   FormElement, Header, FormContainer, CloseButton, Modal, Button,
-  OuterBarGraph, InnerBarGraph,
+  OuterBarGraph, InnerBarGraph, RatingsSummaryTop,
 };

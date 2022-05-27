@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { RatingsBreakdown, OuterBarGraph, InnerBarGraph } from '../../../RR-styled-components/RRsectionContainerStyle';
+import {
+  RatingsBreakdown, OuterBarGraph, InnerBarGraph, ProductBreakdownContainer, Recommend,
+} from '../../../RR-styled-components/RRsectionContainerStyle';
 import BarChart from './barChart';
 import Arrow from './arrow';
-
-const Char = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  margin: 20px;
-`;
 
 export default function RatingBreakdownMain({ meta, setRatingFilter }) {
   const characteristics = {
@@ -41,9 +36,11 @@ export default function RatingBreakdownMain({ meta, setRatingFilter }) {
       Object.keys(meta).length !== 0
         ? (
           <div>
-            <span>{recommend}% of reviews recommend this product</span>
-            <br />
-            <span> {sumRating} reviews</span>
+            <Recommend>
+              {recommend}% of reviews recommend this product
+              <br />
+             {sumRating} reviews
+            </Recommend>
             {starRatings.map((rating, i) => (
               <OuterBarGraph key={i} onClick={setRatingFilter}>
                 <InnerBarGraph>{rating}</InnerBarGraph>
@@ -52,7 +49,7 @@ export default function RatingBreakdownMain({ meta, setRatingFilter }) {
                 <InnerBarGraph>{meta.ratings[rating]}</InnerBarGraph>
               </OuterBarGraph>
             ))}
-            <Char>
+            <ProductBreakdownContainer>
               <h4>characteristic breakdown</h4>
               {
           meta.characteristics ? Object.keys(meta.characteristics).map((char, i) => (
@@ -61,13 +58,13 @@ export default function RatingBreakdownMain({ meta, setRatingFilter }) {
               <Arrow
                 average={((meta.characteristics[char].value / 5) * 100).toFixed(0)}
               />
-              <Char>
+              <ProductBreakdownContainer>
                 {characteristics[char].map((element, index) => (<span key={index}>{element}</span>))}
-              </Char>
+              </ProductBreakdownContainer>
             </div>
           )) : (null)
           }
-            </Char>
+            </ProductBreakdownContainer>
           </div>
         ) : null
       }

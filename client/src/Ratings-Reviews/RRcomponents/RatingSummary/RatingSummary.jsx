@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import { SummaryLeft } from '../../RR-styled-components/RRsectionContainerStyle';
+import { SummaryLeft, RatingsSummaryTop } from '../../RR-styled-components/RRsectionContainerStyle';
 import RatingBreakdownMain from './RatingBreakdown/ratingBreakdownMain';
 import { ProductIdContext } from '../../../index';
 import AverageStarRating from '../../../../../server/utils/helpers';
@@ -28,10 +28,10 @@ export default function RatingSummary({ setRatingFilter }) {
     <SummaryLeft>
       Ratings summary
       <br />
-      <span>
+      <RatingsSummaryTop >
         {productRatings}
         <StarRating rating={productRatings} />
-      </span>
+      </RatingsSummaryTop>
       <RatingBreakdownMain meta={meta} setRatingFilter={setRatingFilter} />
     </SummaryLeft>
   );
