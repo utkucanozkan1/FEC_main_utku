@@ -15,10 +15,12 @@ function RelatedView() {
   const [loading, toogleLoading] = useState(true);
   const [productRatings, setRatings] = useState([]);
   const [viewable, setViewable] = useState([]);
-
+  const [position, setPosition] = useState(0);
+  const [related, setRelated] = useState([]);
   useEffect(() => {
     axios.get(`/related/${itemId}`)
       .then((relatedIds) => {
+        setRelated(relatedIds.data);
         const viewableRelatedIds = relatedIds.data.slice(0, 4);
         const relatedPromises = viewableRelatedIds.map((id) => (
           axios.get(`/products/${id}`)
@@ -66,9 +68,9 @@ function RelatedView() {
       <section>
         <h6>RELATED PRODUCTS</h6>
         <CardContainer>
-          <ViewableContext.Provider value={{ viewable, setViewable }}>
+          <ViewableContext.Provider value={{ viewable, setViewable, position, setPosition, related }}>
             <LeftArrow />
-            {viewable.map((product, i) => (
+            {viewable.slice(position, position + 4).map((product, i) => (
               <CardProductContext.Provider value={{ setItemId, product }}>
                 <RelatedCard key={product.id} cardRating={productRatings[i]} />
               </CardProductContext.Provider>
