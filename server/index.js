@@ -176,7 +176,7 @@ app.post('/answers/:Qid', (req, res) => {
     url: `${apiUrl}qa/questions/${req.params.Qid}/answers`,
     method: 'post',
     data: {
-      photos: [],
+      photos: req.body.photos,
       name: req.body.name,
       email: req.body.email,
       body: req.body.body,

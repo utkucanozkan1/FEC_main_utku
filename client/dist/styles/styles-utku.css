@@ -44,6 +44,13 @@
   text-decoration: underline;
   font-size: small;
 }
+.close-btn {
+  background-color: red;
+  color: white;
+  border: 2px solid black;
+  width: 2em;
+  height: 2em;
+}
 
 /* Image Styling */
 
@@ -86,3 +93,13 @@ flex: 1;
   border: 1px solid red;
   width: 50vw;
 }
+.body-text {
+  margin-top: 10vh;
+}
+.answer-header {
+text-align: center;
+}
+.whole-answer-text {
+  text-align: center;
+}
+
