@@ -26,7 +26,6 @@ export default function RatingSummary({ setRatingFilter }) {
 
   return (
     <SummaryLeft>
-      Ratings summary
       <br />
       <RatingsSummaryTop >
         {productRatings}

@@ -51,7 +51,6 @@ export default function RatingBreakdownMain({ meta, setRatingFilter }) {
               </OuterBarGraph>
             ))}
             <ProductBreakdownContainer>
-              <h4>characteristic breakdown</h4>
               {
           meta.characteristics ? Object.keys(meta.characteristics).map((char, i) => (
             <CharacterGraph key={i}>
