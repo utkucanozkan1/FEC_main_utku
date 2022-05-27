@@ -19,14 +19,7 @@ width: 50%;
 flex-flow: row nowrap;
 align-self: center;
 `;
-// main container for each review
-const ReviewEntryStyle = styled.div`
-width: 100%;
-align-self: flex-start;
-flex-flow: column wrap;
-border-top: 2px solid;
 
-`;
 // main container for the ratings summary
 const SummaryLeft = styled.div`
 align-self: flex-start;
@@ -63,24 +56,12 @@ flex-flow: column nowrap;
 justify-content: center;
 `;
 
-const BarChartStyle = styled.div`
-align-self: center;
-width:30%;
-flex-flow: column wrap;
-border-style: solid;
-`;
-
-const AverageRating = styled.canvas`
-align-self: center;
-flex-flow: column wrap;
-border-style: solid;
-`;
-
 const BottomButtons = styled.div`
 align-self: center;
 justify-content: space-around;
 `;
-
+/*--------------------*/
+// Form and modal settings
 const FormContainer = styled.div`
 width: 90%;
   margin: 10px auto;
@@ -120,6 +101,8 @@ const CloseButton = styled.div`
   left:90%;
   position: absolute;
 `;
+/*-------------------*/
+// Star rating breakdown settings.
 
 const OuterBarGraph = styled.div`
 display: flex;
@@ -134,10 +117,42 @@ margin: 5px;
 }
 `;
 
+/*-------------------*/
+// Review entry settings.
+// main container for each review
+const ReviewEntryStyle = styled.div`
+display: flex;
+width: 100%;
+align-self: flex-start;
+flex-flow: column wrap;
+border-top: 2px solid;
+`;
+
+const TopOfReview = styled.div`
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+`;
+
+const SmallSum = styled.span`
+  align-self: flex-start;
+  font-size: 20px;
+  border-bottom: 3px solid;
+`;
+
+const Date = styled.span`
+align-self: flex-end;
+`;
+
+const Paragraph = styled.p`
+  font-size: 17px;
+`;
+
 export {
   RatingReviewContainer, ReviewListContainer, ReviewEntryStyle,
   SummaryLeft, RatingsBreakdown, ProductBreakdownContainer,
-  Recommend, BarChartStyle, AverageRating, BottomButtons, FormStyle,
+  Recommend, BottomButtons, FormStyle,
   FormElement, Header, FormContainer, CloseButton, Modal, Button,
-  OuterBarGraph, InnerBarGraph, RatingsSummaryTop,
+  OuterBarGraph, InnerBarGraph, RatingsSummaryTop, SmallSum, Date,
+  Paragraph, TopOfReview,
 };

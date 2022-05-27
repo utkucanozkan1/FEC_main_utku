@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { format, parseISO } from 'date-fns';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { ReviewEntryStyle } from '../../RR-styled-components/RRsectionContainerStyle';
+import {
+  ReviewEntryStyle, SmallSum, Date, Paragraph, TopOfReview
+} from '../../RR-styled-components/RRsectionContainerStyle';
 import StarRating from '../../../shared/StarRating';
 
 export default function ReviewEntry({ review, retrieveReviews }) {
@@ -42,17 +44,20 @@ export default function ReviewEntry({ review, retrieveReviews }) {
     <ReviewEntryStyle>
       <hr />
       <StarRating rating={review.rating}/>
-      <span>
-        {review.reviewer_name}
-        ,
-        {format(parseISO(review.date), 'MMMM do, yyyy')}
-      </span>
-      <h3>{review.summary}</h3>
-      {{ showAll } ? <p>{review.body}</p> : <p>{shortBody} </p>}
+      <TopOfReview>
+        <h2>
+          {review.reviewer_name}
+        </h2>
+        <Date>
+          {format(parseISO(review.date), 'MMMM do, yyyy')}
+        </Date>
+      </TopOfReview>
+      <SmallSum>{review.summary}</SmallSum>
+      {{ showAll } ? <Paragraph>{review.body}</Paragraph> : <Paragraph>{shortBody} </Paragraph>}
       {({ showAll } && review.body.length > 250 )? <a href="#" type="button" onClick={showLess}>Show Less</a>
         : (review.body.length > 250) ? <a href="#" type="button" onClick={showMore}>Show More</a> : <a></a> }
       {review.recommend ? <p> Recommend Product </p> : <p> </p>}
-      {review.response ? <p>{review.response}</p> : <p> </p>}
+      {review.response ? <SmallSum>{review.response}</SmallSum> : <p> </p>}
       <div>
         {
           review.photos.length !== 0

@@ -58,9 +58,9 @@ export default function RatingBreakdownMain({ meta, setRatingFilter }) {
               <Arrow
                 average={((meta.characteristics[char].value / 5) * 100).toFixed(0)}
               />
-              <ProductBreakdownContainer>
+              {/* <ProductBreakdownContainer> */}
                 {characteristics[char].map((element, index) => (<span key={index}>{element}</span>))}
-              </ProductBreakdownContainer>
+              {/* </ProductBreakdownContainer> */}
             </div>
           )) : (null)
           }
