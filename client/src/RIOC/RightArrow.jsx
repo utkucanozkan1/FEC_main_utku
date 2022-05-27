@@ -32,7 +32,7 @@ function RightArrow() {
     if (position + 5 === related.length) {
       setEnd(true);
     }
-    if (related.length > viewable.length && position === viewable.length) {
+    if (related.length > viewable.length && position + 4 === viewable.length) {
       getNextItem();
     }
   }
