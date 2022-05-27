@@ -15,7 +15,6 @@ function RightArrow() {
         if (relatedIds.data.length > viewable.length) {
 
         }
-
         const nextId = relatedIds.data[viewable.length];
         axios.get(`/products/${nextId}`)
           .then((nextProduct) => {
