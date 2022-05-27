@@ -10,7 +10,6 @@ import ModalPopup from './Modal.jsx';
 import Form from './Form.jsx';
 import { FormStyle } from './q&a-styled-components/q&aSectionContainerStyle';
 
-
 const answerArray = [];
 const QuestionList = function (props) {
   // console.log("this is the props question:", props.question);
@@ -109,68 +108,69 @@ const QuestionList = function (props) {
               Add Answer
             </button>
             <div className="modal-popup">
-            <ModalPopup show={showModalForm} handleExit={hideModal} questionId={props.question}>
-              <FormStyle><Form questionId={props.question} /></FormStyle>
-            </ModalPopup>
+              <ModalPopup show={showModalForm} handleExit={hideModal} questionId={props.question}>
+                <FormStyle><Form questionId={props.question} /></FormStyle>
+              </ModalPopup>
             </div>
           </div>
         </div>
-        <div>
-          <b>A:</b>
-          <span className="answer-text">{answerArr[0].body}</span>
-        </div>
-				&nbsp;
-        <div>
-          {answerArr[0].photos.map((photo, i) => (
-            <ImageComponent key={i} photo={photo} />
-          ))}
-        </div>
-				&nbsp; &nbsp;
-        <div>
-          <span style={{ fontSize: 'small' }}>
-            by &nbsp;
-            {answerArr[0].answerer_name}, &nbsp;
-            {moment(answerArr[0].date.slice(0, 10)).format('MMM Do YY')}
-          </span>
-					&nbsp; &nbsp; | &nbsp; &nbsp;
-          {answerHelpful ? (
-            <button type="button" className="astext-btn">
-              This Answer has been marked Helpful
-            </button>
-          ) : (
-            <button
-              type="button"
-              className="astext-btn"
-              onClick={() => {
+        {Object.keys(props.question.answers).length
+          ? (
+            <>
+              <div>
+                <b>A:</b>
+                <span className="answer-text">{answerArr[0].body}</span>
+              </div>
+              <div>
+                {answerArr[0].photos.map((photo, i) => (
+                  <ImageComponent key={i} photo={photo} />
+                ))}
+              </div>
+
+              <div>
+                <span style={{ fontSize: 'small' }}>
+                  by &nbsp;
+                  {answerArr[0].answerer_name}, &nbsp;
+                  {moment(answerArr[0].date.slice(0, 10)).format('MMM Do YY')}
+                </span>
+                {answerHelpful ? (
+                  <button type="button" className="astext-btn">
+                    This Answer has been marked Helpful
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    className="astext-btn"
+                    onClick={() => {
 					        helpfulAnswer();
-              }}
-            >
-              <text style={{ fontSize: 'small' }}>Helpful?</text>
+                    }}
+                  >
+              &nbsp;&nbsp; | &nbsp;&nbsp;
+                    <text style={{ fontSize: 'small' }}>Helpful?</text>
 							&nbsp;
-              <mark style={{ textDecoration: 'underline', fontSize: 'small' }}>
-                Yes
-              </mark>
-              ({answerArr[0].helpfulness})
-            </button>
-          )}
-          {/* <button type="button" className="astext-btn">
-            {ButtonTitle} ({answerArr[0].helpfulness})
-          </button> */}
-					&nbsp; &nbsp; | &nbsp; &nbsp;
-          {answerReported ? (
-            <button type="button" className="astext-btn-answer">
-              This Answer has been Reported
-            </button>
-          ) : (
-            <button
-              type="button"
-              className="astext-btn-answer"
-              onClick={reportAnswer}
-            >
-              Report
-            </button>
-          )}
-        </div>
+                    <mark style={{ textDecoration: 'underline', fontSize: 'small' }}>
+                      Yes
+                    </mark>
+                    ({answerArr[0].helpfulness})
+                  </button>
+                )}
+          &nbsp;&nbsp; | &nbsp;&nbsp;
+                {answerReported ? (
+                  <button type="button" className="astext-btn-answer">
+                    This Answer has been Reported
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    className="astext-btn-answer"
+                    onClick={reportAnswer}
+                  >
+                    Report
+                  </button>
+                )}
+              </div>
+            </>
+          ) : null}
       </div>
     );
     // eslint-disable-next-line no-else-return

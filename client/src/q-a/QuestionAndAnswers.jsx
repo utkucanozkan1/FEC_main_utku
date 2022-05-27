@@ -29,8 +29,8 @@ function QuestionsAndAnswers() {
         questions.data.results.forEach((question) => {
           if (Object.keys(question.answers).length) {
             //check here for seller answer and put it in front of the list
-            questionsArray.push(question);
           }
+          questionsArray.push(question);
         });
         setQuestionArray([...questionsArray]);
         //console.log(questionsArray);
