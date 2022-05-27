@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { ProductIdContext } from '../../index';
-import { RatingReviewContainer, RatingsReviewsOuterContainer } from '../RR-styled-components/RRsectionContainerStyle';
+import { RatingReviewContainer } from '../RR-styled-components/RRsectionContainerStyle';
 import RatingSummary from './RatingSummary/RatingSummary';
 import ReviewList from './ReviewList/ReviewList';
 import { retrieve2Reviews, retrieveMeta } from './ReviewList/serverAction';

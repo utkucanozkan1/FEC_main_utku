@@ -1,27 +1,21 @@
 import styled from 'styled-components';
 
 // Main view container
-const RatingsReviewsOuterContainer = styled.section`
-  display: grid;
-  flex-flow: column wrap;
-  align-items: flex-start;
-  justify-content: space-between;
-  margin: 80px;
-`;
-
 const RatingReviewContainer = styled.div`
 display: flex;
 flex-flow: row nowrap;
 align-self: center;
-margin: 80px;
+justify-items: space-between;
+margin: 120px;
 `;
 
 // container for review list
 const ReviewListContainer = styled.div`
 display: flex;
-width: 70%;
+width: 65%;
 flex-flow: column wrap;
 align-items: center;
+margin-left: 50 px;
 `;
 // used for add filter drop-down on review list
 const Button = styled.div`
@@ -152,6 +146,7 @@ width: 100%;
 align-self: flex-start;
 flex-flow: column wrap;
 border-top: 2px solid;
+margin-left: 30px;
 `;
 
 const TopOfReview = styled.div`
@@ -180,5 +175,5 @@ export {
   Recommend, BottomButtons, FormStyle,
   FormElement, Header, FormContainer, CloseButton, Modal, Button,
   OuterBarGraph, InnerBarGraph, RatingsSummaryTop, SmallSum, Date,
-  Paragraph, TopOfReview, Character, CharacterGraph, RatingsReviewsOuterContainer,
+  Paragraph, TopOfReview, Character, CharacterGraph,
 };
