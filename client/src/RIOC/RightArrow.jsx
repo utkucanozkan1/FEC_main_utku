@@ -5,13 +5,17 @@ import { ViewableContext } from './RelatedView'
 import { ProductIdContext } from '../index';
 
 function RightArrow() {
-  const { viewable, setViewable, position, setPosition, related } = useContext(ViewableContext);
+  const { viewable, setViewable, position, setPosition, related, end, setEnd } = useContext(ViewableContext);
   const { itemId } = useContext(ProductIdContext);
-  const [end, setEnd] = useState(false);
+
   function scrollRight() {
     // if the list of ALL related products is greater than
     // what is currently viewed (including previous cards)
     console.log(related);
+    console.log(position);
+    console.log(viewable);
+    console.log(end);
+
     if (related.length > viewable.length) {
       const nextId = related[position + 4];
       setPosition((prevPosition) => (prevPosition + 1));
