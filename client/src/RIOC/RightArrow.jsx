@@ -1,13 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import axios from 'axios';
 import CarouselButton from './RIOC-styled-components/CarouselButtons';
 import { ViewableContext } from './RelatedView';
 
 function RightArrow() {
-  const { viewable, setViewable, position, setPosition, related, end, setEnd } = useContext(ViewableContext);
+  const {
+    viewable, setViewable, position, setPosition,
+    related, end, setEnd,
+  } = useContext(ViewableContext);
 
   function getNextItem() {
-    const nextId = related[position + 4];
+    console.log('getting next Item at position:', position);
+    console.log(related);
+    const nextId = related[position + 3];
     axios.get(`/products/${nextId}`)
       .then((nextProduct) => {
         axios.get(`/products/${nextProduct.data.id}/styles`)
@@ -29,13 +34,19 @@ function RightArrow() {
     // if the list of ALL related products is greater than
     // what is currently viewed (including previous cards)
     setPosition((prevPosition) => (prevPosition + 1));
-    if (position + 5 === related.length) {
-      setEnd(true);
-    }
-    if (related.length > viewable.length && position + 4 === viewable.length) {
-      getNextItem();
-    }
   }
+
+  useEffect(() => {
+    if (related) {
+      if (position + 4 >= related.length && related.length > 0) {
+        setEnd(true);
+      }
+      if (related.length > viewable.length && position + 3 === viewable.length) {
+        getNextItem();
+      }
+    }
+  }, [position]);
+
   return (
     <CarouselButton onClick={scrollRight}>
       { end ? '' : '>' }

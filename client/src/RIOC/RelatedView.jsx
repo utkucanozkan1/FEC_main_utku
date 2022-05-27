@@ -14,22 +14,22 @@ function RelatedView() {
   const { itemId, setItemId } = useContext(ProductIdContext);
   const [loading, toogleLoading] = useState(true);
   const [productRatings, setRatings] = useState([]);
+  const [related, setRelated] = useState([]);
   const [viewable, setViewable] = useState([]);
   const [position, setPosition] = useState(0);
   const [end, setEnd] = useState(false);
-  const [related, setRelated] = useState([]);
   useEffect(() => {
     axios.get(`/related/${itemId}`)
       .then((relatedIds) => {
         setRelated(relatedIds.data);
         setPosition(0);
-        setEnd(false);
         const viewableRelatedIds = relatedIds.data.slice(0, 4);
         const relatedPromises = viewableRelatedIds.map((id) => (
           axios.get(`/products/${id}`)
         ));
         Promise.all(relatedPromises)
           .then((relatedProducts) => {
+            console.log(related.length);
             const stylesPromises = relatedProducts.map((product) => (
               axios.get(`/products/${product.data.id}/styles`)
             ));
@@ -43,6 +43,7 @@ function RelatedView() {
                 console.log(err);
               });
           });
+        setEnd(false);
       })
       .catch((err) => {
         console.log(err);
@@ -63,6 +64,9 @@ function RelatedView() {
       .catch((err) => {
         console.log(err);
       });
+    if (related.length <= 4 && related.length > 0) {
+      setEnd(true);
+    }
     toogleLoading(false);
   }, [viewable]);
 
