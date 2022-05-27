@@ -36,7 +36,7 @@ function QuestionsAndAnswers() {
         //console.log(questionsArray);
         toogleLoading(false);
       });
-  }, [itemId]);
+  }, [itemId, searchQuestions]);
 
   const handleChange = function (e) {
     setSearchTerm({ ...searchTerm, search: e.target.value });
@@ -48,8 +48,9 @@ function QuestionsAndAnswers() {
         if (el.question_body.toLowerCase().includes(searchTerm.search)) {
           if (searchArray.indexOf(el) === -1) {
             //searchingArray.push(el);
-            setSearchArray(() => [el]);
+            searchingArray.push(el);
           }
+          setSearchArray([...searchingArray]);
           setSearchQuestions(true);
         }
       });
