@@ -18,8 +18,8 @@ function QuestionsAndAnswers() {
   const [questionArray, setQuestionArray] = useState([]);
   const [loading, toogleLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState({ search: '' });
-  const [productId, setProductId] = useState(itemId);
   const [showModalForm, setShowModalForm] = useState('false');
+  const [noQuestions, setNoQuestions] = useState(false);
 
   useEffect(() => {
     // let's just use 37311 for now
@@ -28,22 +28,21 @@ function QuestionsAndAnswers() {
       questions.data.results.forEach((question) => {
         if (Object.keys(question.answers).length) {
           // check here for seller answer and put it in front of the list
-          console.log(Object.values(question.answers).forEach((el) => {
-            console.log(el.answerer_name.toLowerCase());
-          }));
           questionsArray.push(question);
         }
       });
       setQuestionArray([...questionsArray]);
       // console.log(questionsArray);
       toogleLoading(false);
-      console.log('getting questions');
-    });
+      !questionsArray.length ? setNoQuestions(true) : setNoQuestions(false)
+    })
+      .then()
+      .catch((err) => console.log(err));
   }, [itemId]);
 
   useEffect(() => {
     // searchingArray = [];
-    if (searchTerm.search.length > 2) {
+    if (searchTerm.search.length > 3) {
       console.log(searchArray);
       console.log(searchTerm);
       console.log(searchingArray);
@@ -85,6 +84,9 @@ function QuestionsAndAnswers() {
             />
           </form>
         </div>
+        <div>
+          {noQuestions ? <h2>Looks like no answered questions are available for this product, please add a new question</h2> : null}
+        </div>
         {searchQuestions ? (
           <div className="main-div">
             {searchArray.slice(0, 2).map((question, i) => (
@@ -98,9 +100,13 @@ function QuestionsAndAnswers() {
             ))}
           </div>
         )}
+        <div className="bottom-buttons-div">
+        <div>
+          <button>MORE ANSWERED QUESTIONS</button>
+        </div>
         <div>
           <button type="button" onClick={showModal}>
-            Add A Question +
+            ADD A QUESTION +
             {' '}
           </button>
           <div className="modal-popup">
@@ -114,6 +120,7 @@ function QuestionsAndAnswers() {
               </FormStyle>
             </QuestionModal>
           </div>
+        </div>
         </div>
       </section>
     );

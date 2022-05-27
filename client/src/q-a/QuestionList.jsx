@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable no-tabs */
 /* eslint-disable react/destructuring-assignment */
@@ -27,13 +28,19 @@ function QuestionList(props) {
       .get(`/answers/${props.question.question_id}`)
       .then((result) => {
         if (result.data.results) {
-          setAnswerArr(result.data.results);
+          const newAnswerArray = result.data.results.reduce((acc,answer) => {
+            answer.answerer_name.toLowerCase() === 'seller' ? acc.unshift(answer) : acc.push(answer);
+            return acc;
+          }, []);
+          setAnswerArr(newAnswerArray);
           toogleLoading(false);
           setAnswer1Helpful(false);
           setAnswer2Helpful(false);
           setQuestionHelpful(false);
           setAnswerReported(false);
           setAnswerReported2(false);
+          setAddAnswer(false);
+          setMoreAnswers(Object.keys(props.question.answers).length > 1);
         }
       })
       .then()
@@ -42,7 +49,6 @@ function QuestionList(props) {
 
   function reportAnswer() {
     const answerId = answerArr[0].answer_id;
-    console.log(answerId);
     axios
       .put(`/answer/report/${answerId}`)
       .then(setAnswerReported(true))
@@ -51,7 +57,6 @@ function QuestionList(props) {
   }
   function reportAnswerDos() {
     const answerId = answerArr[1].answer_id;
-    console.log(answerId);
     axios
       .put(`/answer/report/${answerId}`)
       .then(setAnswerReported2(true))
@@ -121,7 +126,7 @@ function QuestionList(props) {
 								  helpfulQuestion();
                 }}
               >
-                <text style={{ fontSize: 'small' }}>Helpful?</text>
+                <i style={{ fontSize: 'small' }}>Helpful?</i>
 								&nbsp;
                 <mark
                   style={{ textDecoration: 'underline', fontSize: 'small' }}
@@ -155,7 +160,7 @@ function QuestionList(props) {
         <div>
           <span style={{ fontSize: 'small' }}>
             by &nbsp;
-            {answerArr[0].answerer_name}, &nbsp;
+            <span>{answerArr[0].answerer_name.toLowerCase() === 'seller' ? <b>Seller</b> : <>{answerArr[0].answerer_name}</>}</span>, &nbsp;
             {moment(answerArr[0].date.slice(0, 10)).format('MMM Do YY')}
           </span>
           {answer1Helpful ? (
@@ -171,7 +176,7 @@ function QuestionList(props) {
               }}
             >
               &nbsp;&nbsp; | &nbsp;&nbsp;
-              <text style={{ fontSize: 'small' }}>Helpful?</text>
+              <i style={{ fontSize: 'small' }}>Helpful?</i>
 							&nbsp;
               <mark style={{ textDecoration: 'underline', fontSize: 'small' }}>
                 Yes
@@ -214,7 +219,7 @@ function QuestionList(props) {
                 <div>
                   <span style={{ fontSize: 'small' }}>
                     by &nbsp;
-                    {answerArr[1].answerer_name}, &nbsp;
+                    <span>{answerArr[1].answerer_name.toLowerCase() === 'seller' ? <b>Seller</b> : <>{answerArr[1].answerer_name}</>}</span>, &nbsp;
                     {moment(answerArr[1].date.slice(0, 10)).format('MMM Do YY')}
                   </span>
                   {answer2Helpful ? (
@@ -230,7 +235,7 @@ function QuestionList(props) {
                       }}
                     >
     &nbsp;&nbsp; | &nbsp;&nbsp;
-                      <text style={{ fontSize: 'small' }}>Helpful?</text>
+                      <i style={{ fontSize: 'small' }}>Helpful?</i>
     &nbsp;
                       <mark style={{ textDecoration: 'underline', fontSize: 'small' }}>
                         Yes
@@ -266,5 +271,5 @@ function QuestionList(props) {
       <div> Questions Loading...</div>
     </section>;
   }
-};
+}
 export default QuestionList;
