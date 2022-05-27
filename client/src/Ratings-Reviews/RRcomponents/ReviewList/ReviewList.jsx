@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import {
   ReviewListContainer, BottomButtons, FormStyle, Button,
 } from '../../RR-styled-components/RRsectionContainerStyle';
@@ -7,7 +8,7 @@ import ReviewCard from './ReviewCard';
 import ModalPopup from './Modal';
 import Form from './Form';
 import { ProductIdContext } from '../../../index';
-import { retrieve2Reviews } from './serverAction';
+import { retrieve2Reviews, retrieveAllReviews } from './serverAction';
 
 // require('dotenv').config();
 
@@ -18,21 +19,40 @@ export default function ReviewList() {
   const [sort, setSort] = useState('relevant');
   const [count, setCount] = useState(2);
   const [page, setPage] = useState(1);
+  const [meta, setMeta] = useState({});
+  const [totalReviews, setTotalReviews] = useState(0);
 
   function retrieveReviews() {
     return retrieve2Reviews(itemId, page, count, sort)
       .then((res) => {
         setReviews([...res.data.results]);
+        setTotalReviews(res.data.count);
       })
       .catch((err) => {
         console.log('Error, could not retrieve reviews, retrieve', err);
       });
   }
 
+  function add(accumulator, a) {
+    return accumulator + Number(a);
+  }
+
+  useEffect(() => {
+    axios.get(`/reviews/${itemId}/reviewsMeta`)
+      .then((res) => {
+        setMeta(res.data);
+        const allReviews = Object.values(res.data.ratings).reduce(add, 0);
+        setTotalReviews(allReviews);
+      })
+      .catch((err) => {
+        console.log('Error, could not retrieve meta', err);
+      });
+  }, [itemId]);
+
   function clickMoreReviews() {
     return retrieve2Reviews(itemId, page + 1, count, sort)
       .then((res) => {
-        setReviews(r => r.concat(res.data.results));
+        setReviews((r) => r.concat(res.data.results));
       })
       .then(() => {
         setPage(page + 1);
@@ -58,12 +78,16 @@ export default function ReviewList() {
     retrieveReviews();
   }, [itemId, sort]);
 
+  // useEffect(() => {
+  //   retrieveTotalReviews();
+  // }, [itemId]);
+
   return (
     <ReviewListContainer>
       {/* Attempting to render message when no reviews */}
       {/* {{reviews}.length ? */}
       <Button>
-        {reviews.length} reviews
+        {totalReviews} reviews
         <select onChange={changeSort}>
           <option value="relevant">Sort by Relevant</option>
           <option value="newest">Sort by Newest</option>
@@ -79,7 +103,7 @@ export default function ReviewList() {
         <button type="button" onClick={showModal}>Add Review</button>
       </BottomButtons>
       <ModalPopup show={showModalForm} handleExit={hideModal}>
-        <FormStyle><Form productId={itemId}/></FormStyle>
+        <FormStyle><Form productId={itemId} /></FormStyle>
       </ModalPopup>
     </ReviewListContainer>
   );
