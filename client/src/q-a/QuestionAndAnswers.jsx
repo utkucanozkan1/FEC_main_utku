@@ -28,6 +28,9 @@ function QuestionsAndAnswers() {
       questions.data.results.forEach((question) => {
         if (Object.keys(question.answers).length) {
           // check here for seller answer and put it in front of the list
+          console.log(Object.values(question.answers).forEach((el) => {
+            console.log(el.answerer_name.toLowerCase());
+          }));
           questionsArray.push(question);
         }
       });
@@ -90,7 +93,7 @@ function QuestionsAndAnswers() {
           </div>
         ) : (
           <div className="main-div">
-            {questionArray.slice(0, 4).map((question, i) => (
+            {questionArray.slice(0, 2).map((question, i) => (
               <QuestionList question={question} key={i} />
             ))}
           </div>
