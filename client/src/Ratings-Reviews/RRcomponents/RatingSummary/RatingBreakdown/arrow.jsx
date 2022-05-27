@@ -14,7 +14,7 @@ const TriangleMarker = styled.div`
   border-right-width: 10px;
   border-top-width: 20px;
   border-bottom-width: 0px;
-  border-top-color: darkGray;
+  border-top-color: slategray;
   border-left-color: transparent;
   border-right-color: transparent;
   border-bottom-color: transparent;
@@ -29,27 +29,30 @@ const TriangleContainer = styled.div`
 
 const Top = styled.div`
   position: relative;
+  background-color: lightgray;
 `;
 
 const InnerContainer = styled.div`
   height: 10 px;
   width: 18%;
-  background-color: lightGray;
+`;
+
+const OtherInnerContainer = styled.div`
+  height: 10 px;
+  width: 18%;
 `;
 
 export default function Arrow({ average }) {
   return (
-    <div>
       <Top>
         <TriangleContainer>
           <InnerContainer />
+          <OtherInnerContainer />
           <InnerContainer />
-          <InnerContainer />
-          <InnerContainer />
+          <OtherInnerContainer />
           <InnerContainer />
           <TriangleMarker average={average} />
         </TriangleContainer>
       </Top>
-    </div>
   );
 }

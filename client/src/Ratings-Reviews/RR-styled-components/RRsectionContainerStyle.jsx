@@ -32,13 +32,15 @@ display: flex;
 align-self: flex-start;
 flex-flow: row wrap;
 `;
+ /*-----------------*/
+//  product characterstic breakdown format
 
 // Container for characteristic breakdown
 const ProductBreakdownContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  margin: 20px;
+  display: grid;
+  width: 100%;
+  padding-top: 30px;
+  gap: 20px;
 `;
 
 // Top portion of ratings and summary with the average rating
@@ -47,6 +49,20 @@ display: flex;
 flex-flow: row nowrap;
 justify-content: center;
 font-size: 40px;
+`;
+
+// formatting for characteristic breakdown graph
+const CharacterGraph = styled.div`
+  display: grid;
+  grid-template-rows: 30px 20px 20px;
+`;
+
+// formatting for each characteristic breakdown
+const Character = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 15px;
 `;
 
 // used for % of recommend and total reviews in ratings summary
@@ -154,5 +170,5 @@ export {
   Recommend, BottomButtons, FormStyle,
   FormElement, Header, FormContainer, CloseButton, Modal, Button,
   OuterBarGraph, InnerBarGraph, RatingsSummaryTop, SmallSum, Date,
-  Paragraph, TopOfReview,
+  Paragraph, TopOfReview, Character, CharacterGraph,
 };
