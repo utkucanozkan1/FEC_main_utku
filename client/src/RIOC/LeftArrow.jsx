@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import CarouselButton from './RIOC-styled-components/CarouselButtons';
+import { ViewableContext } from './RelatedView';
 
 function LeftArrow() {
+  const { viewable, setViewable, position, setPosition, related, end, setEnd } = useContext(ViewableContext);
+
+  function scrollLeft() {
+    setPosition((prevPosition) => prevPosition - 1);
+    setEnd(false);
+  }
+
   return (
-    <CarouselButton onClick={() => { console.log('scroll left'); }}>
-      &#60;
+    <CarouselButton onClick={scrollLeft}>
+      { position === 0 ? '' : '<' }
     </CarouselButton>
   );
 }
