@@ -4,7 +4,6 @@ import styled from 'styled-components';
 const RatingReviewContainer = styled.section`
 display: flex;
 flex-flow: row nowrap;
-border-style: solid;
 `;
 // container for review list
 const ReviewListContainer = styled.div`
