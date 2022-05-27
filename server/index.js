@@ -24,6 +24,7 @@ const headers = {
 let counter = 0;
 app.use((req, res, next) => {
   counter += 1;
+  console.log(counter);
   let counterMsg = `Request count: >=${counter} `;
   if (counter === 20) {
     counterMsg += '😀';
@@ -326,6 +327,14 @@ app.put('/reviews/:review_id/report', (req, res) => {
 });
 
 // Outfitter requests
+// GET all items in outfitter.json
+app.get('/outfitter', (req, res) => {
+  fs.readFile(path.join(__dirname, 'data/outfitter.json'), (readErr, data) => {
+    const items = JSON.parse(data);
+    // TODO: leaving space for more meaningfull comparison
+    res.send(items);
+  });
+});
 // POST new item to outfitter.json
 app.post('/outfitter', (req, res) => {
   const item = req.body;

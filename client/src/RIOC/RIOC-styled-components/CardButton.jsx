@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ModalButton = styled.button`
+const CardButton = styled.button`
 background-color: rgba(0, 0, 0, 0.0);
 font-size: 5px;
 border-radius: 50%;
@@ -10,6 +10,7 @@ width: 15px;
   background-color: rgba(0, 0, 0, 0.3);
   cursor: pointer;
 }
+color: white;
 `;
 
-export default ModalButton;
+export default CardButton;

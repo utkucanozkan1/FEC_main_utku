@@ -8,6 +8,16 @@
   background-color: rgb(59, 59, 59);
 }
 
+.addCard {
+  display: flex;
+  justify-content: center;
+  height: 65%;
+  background-color: rgb(59, 59, 59);
+  font-size: 50px;
+  color: white;
+  text-align: center;
+}
+
 p {
   font-size: 10px;
 }
