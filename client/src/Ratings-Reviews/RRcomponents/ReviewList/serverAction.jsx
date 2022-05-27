@@ -9,37 +9,32 @@ const retrieve2Reviews = (productId, page, count, sort) => (
       product_id: productId,
     },
   })
+  .catch((err) => {
+    console.log('failed to retrieve 2 reviews', err)
+  })
 );
 
 const retrieveMeta = (productId) => {
   axios.get(`/reviews/${productId}/reviewsMeta`);
 };
 
-const setIsHelpful = (reviewId) => (
-  axios.put(`/reviews/${reviewId}/helpful`)
+const putIsHelpful = (reviewId) => (
+  axios.put(`/reviews/helpful/${reviewId}`)
     .catch((err) => {
       console.log('Error setting helpful:', err);
     })
 );
 
-const setReported = (reviewId) => (
-  axios.put(`/reviews/${reviewId}/report`)
+const putReported = (reviewId) => (
+  axios.put(`/reviews/report/${reviewId}`)
     .catch((err) => {
       console.log('Error setting report:', err);
     })
 );
 
-// const retrieveAllReviews = (productId) => (
-//   axios.get(`/reviews/${productId}`)
-//     .catch((err) => {
-//       console.log('Error retrieving all reviews', err);
-//     })
-// );
-
 module.exports = {
   retrieve2Reviews,
-  setIsHelpful,
-  setReported,
+  putIsHelpful,
+  putReported,
   retrieveMeta,
-  // retrieveAllReviews,
 };
