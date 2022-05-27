@@ -17,6 +17,7 @@ const root = createRoot(document.getElementById('root'));
 export const ProductIdContext = React.createContext();
 
 function App() {
+  // Read id from url
   const [itemId, setItemId] = useState(37316);
 
   return (
