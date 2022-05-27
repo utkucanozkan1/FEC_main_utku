@@ -27,7 +27,7 @@ align-self: center;
 // main container for the ratings summary
 const SummaryLeft = styled.div`
 align-self: flex-start;
-width: 28%;
+width: 35%;
 flex-flow: column wrap;
 `;
 // container for star and characteristic breakdown
@@ -72,8 +72,9 @@ const Character = styled.div`
 // used for % of recommend and total reviews in ratings summary
 const Recommend = styled.div`
 display: flex;
-flex-flow: column nowrap;
+flex-flow: column wrap;
 justify-content: center;
+font-size: 15px;
 `;
 
 const BottomButtons = styled.div`
