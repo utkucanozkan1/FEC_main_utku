@@ -29,7 +29,6 @@ function RelatedView() {
         ));
         Promise.all(relatedPromises)
           .then((relatedProducts) => {
-            console.log(related.length);
             const stylesPromises = relatedProducts.map((product) => (
               axios.get(`/products/${product.data.id}/styles`)
             ));

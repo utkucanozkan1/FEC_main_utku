@@ -10,8 +10,6 @@ function RightArrow() {
   } = useContext(ViewableContext);
 
   function getNextItem() {
-    console.log('getting next Item at position:', position);
-    console.log(related);
     const nextId = related[position + 3];
     axios.get(`/products/${nextId}`)
       .then((nextProduct) => {
