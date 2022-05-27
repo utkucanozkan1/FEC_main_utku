@@ -73,7 +73,6 @@ const Character = styled.div`
 const Recommend = styled.div`
 display: flex;
 flex-flow: column wrap;
-justify-content: center;
 font-size: 15px;
 `;
 
