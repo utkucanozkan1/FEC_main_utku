@@ -2,9 +2,12 @@
 /* eslint-disable no-else-return */
 import React ,{useState ,useEffect , useContext} from 'react';
 import axios from 'axios';
-import questionArray from './dummydata';
 import QuestionList from './QuestionList.jsx';
 import { ProductIdContext } from '../index.jsx';
+import QuestionModal from './QuestionModal.jsx';
+import NewQuestion from './NewQuestion.jsx';
+import { FormStyle } from './q&a-styled-components/q&aSectionContainerStyle';
+
 let questionsArray;
 let searchingArray;
 function QuestionsAndAnswers() {
@@ -16,6 +19,7 @@ function QuestionsAndAnswers() {
   const [loading, toogleLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState({ search: '' });
   const [productId, setProductId] = useState(itemId);
+  const [showModalForm, setShowModalForm] = useState('false');
 
   useEffect(() => {
     // let's just use 37311 for now
@@ -24,8 +28,7 @@ function QuestionsAndAnswers() {
         questionsArray = [];
         questions.data.results.forEach((question) => {
           if (Object.keys(question.answers).length) {
-            //setQuestionArray([...questionArray, question]);
-            //setQuestionArray((q) => q.concat([question]));
+            //check here for seller answer and put it in front of the list
             questionsArray.push(question);
           }
         });
@@ -54,6 +57,13 @@ function QuestionsAndAnswers() {
       setSearchQuestions(false);
     }
   };
+  const showModal = () => {
+    setShowModalForm('true');
+  };
+
+  const hideModal = () => {
+    setShowModalForm('false');
+  };
 
   if (!loading) {
     return (
@@ -78,11 +88,17 @@ function QuestionsAndAnswers() {
             <QuestionList question={question} key={i} />
           ))}
         </div> : <div className="main-div">
-          {questionArray.slice(0,2).map((question, i) => (
+          {questionArray.slice(0,4).map((question, i) => (
             <QuestionList question={question} key={i} />
           ))}
         </div> }
         <div>
+          <button type="button" onClick={showModal}>Add A Question + </button>
+          <div className="modal-popup">
+            <QuestionModal show={showModalForm} handleExit={hideModal} itemId={itemId}>
+              <FormStyle><NewQuestion itemId={itemId}> </NewQuestion></FormStyle>
+            </QuestionModal>
+            </div>
         </div>
       </section>
     );

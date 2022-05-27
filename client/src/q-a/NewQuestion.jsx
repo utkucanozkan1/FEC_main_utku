@@ -2,36 +2,35 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { FormStyle } from './q&a-styled-components/q&aSectionContainerStyle';
 
-export default function Form({ questionId }) {
+export default function NewQuestion( {itemId}) {
   const [body, setBody] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [photoList, setPhotos] = useState('');
   const [isClicked, setIsClicked] = useState(false);
 
   const onSubmit = (event) => {
-    const photos = photoList.toString().split(',');
-
+    // eslint-disable-next-line camelcase
+    const product_id = itemId;
     axios
-      .post(`/answers/${questionId.question_id}`, {
-        body, name, email, photos,
+      .post(`/questions`, {
+        body, name, email, product_id,
       })
-      .then((res) => console.log('post success'))
+      .then((res) => console.log('post question success'))
       .catch((err) => console.log(err));
     setIsClicked(true);
     event.preventDefault();
   };
 
   return (
-    <FormStyle>
+<FormStyle>
       <div className="answer-header">
         &nbsp; &nbsp;
-        <h1> Submit Your Answer</h1>
+        <h1> Ask Your Question</h1>
         &nbsp; &nbsp;
-        <h3>Question : {questionId.question_body}</h3>
+        <h3>About The **Product Name**</h3>
       </div>
       <div className="whole-answer-text">
-        {isClicked ? <h2>Your Answer Has Been Submitted</h2> : (
+        {isClicked ? <h2>Your Question Has Been Submitted</h2> : (
           <form onSubmit={(e) => onSubmit(e)}>
             <div className="body-text">
               <textarea
@@ -39,7 +38,7 @@ export default function Form({ questionId }) {
                 rows="5"
                 cols="50"
                 value={body}
-                placeholder="Place your Answer Here"
+                placeholder="Place your Question Here"
                 required
                 autoComplete="off"
                 onChange={(e) => setBody(e.target.value)}
@@ -73,19 +72,6 @@ export default function Form({ questionId }) {
               <div>
                 <mark><em>“For authentication reasons, you will not be emailed”  </em></mark>
               </div>
-            </div>
-            &nbsp; &nbsp;
-            <div>
-              <h3>Add Photo Urls: </h3>
-              <textarea
-                rows="5"
-                cols="50"
-                className="form-control"
-                id="photo"
-                value={photoList}
-                placeholder="Add up to 3 photo Urls , separeted by comma"
-                onChange={(e) => setPhotos(e.target.value)}
-              />
             </div>
             &nbsp; &nbsp;
             <div className="form-group">
