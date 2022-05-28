@@ -77,8 +77,8 @@ function RelatedView() {
           <ViewableContext.Provider value={{ viewable, setViewable, position, setPosition, related, end, setEnd }}>
             <LeftArrow />
             {viewable.slice(position, position + 4).map((product, i) => (
-              <CardProductContext.Provider value={{ setItemId, product }}>
-                <RelatedCard key={product.id} cardRating={productRatings[i]} />
+              <CardProductContext.Provider key={i} value={{ setItemId, product }}>
+                <RelatedCard key={i} cardRating={productRatings[i]} />
               </CardProductContext.Provider>
             ))}
             <RightArrow />

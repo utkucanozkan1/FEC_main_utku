@@ -4,15 +4,32 @@ import styled from 'styled-components';
 const RatingReviewContainer = styled.section`
 display: flex;
 flex-flow: row nowrap;
-border-style: solid;
+align-self: center;
+justify-items: space-evenly;
+margin-top: 100px;
+margin-right: 200px;
+margin-left: 450px;
 `;
+
 // container for review list
 const ReviewListContainer = styled.div`
 display: flex;
-width: 70%;
+width: 60%;
 flex-flow: column wrap;
 align-items: center;
 `;
+
+/*-------------------*/
+// Review entry settings.
+// main container for each review
+const ReviewEntryStyle = styled.div`
+display: flex;
+width: 90%;
+align-self: flex-start;
+flex-flow: column wrap;
+border-top: 2px solid;
+`;
+
 // used for add filter drop-down on review list
 const Button = styled.div`
 width: 50%;
@@ -23,16 +40,17 @@ align-self: center;
 // main container for the ratings summary
 const SummaryLeft = styled.div`
 align-self: flex-start;
-width: 28%;
+width: 22%;
 flex-flow: column wrap;
 `;
+
 // container for star and characteristic breakdown
 const RatingsBreakdown = styled.div`
 display: flex;
 align-self: flex-start;
 flex-flow: row wrap;
 `;
- /*-----------------*/
+/*-----------------*/
 //  product characterstic breakdown format
 
 // Container for characteristic breakdown
@@ -47,7 +65,7 @@ const ProductBreakdownContainer = styled.div`
 const RatingsSummaryTop = styled.div`
 display: flex;
 flex-flow: row nowrap;
-justify-content: center;
+justify-content: flex-start;
 font-size: 40px;
 `;
 
@@ -68,8 +86,8 @@ const Character = styled.div`
 // used for % of recommend and total reviews in ratings summary
 const Recommend = styled.div`
 display: flex;
-flex-flow: column nowrap;
-justify-content: center;
+flex-flow: column wrap;
+font-size: 15px;
 `;
 
 const BottomButtons = styled.div`
@@ -131,17 +149,6 @@ margin: 5px;
 &:hover {
   color: red;
 }
-`;
-
-/*-------------------*/
-// Review entry settings.
-// main container for each review
-const ReviewEntryStyle = styled.div`
-display: flex;
-width: 100%;
-align-self: flex-start;
-flex-flow: column wrap;
-border-top: 2px solid;
 `;
 
 const TopOfReview = styled.div`

@@ -39,8 +39,8 @@ export default function RatingBreakdownMain({ meta, setRatingFilter }) {
           <div>
             <Recommend>
               {recommend}% of reviews recommend this product
-              <br />
-             {sumRating} reviews
+              {/* <br />
+             {sumRating} reviews */}
             </Recommend>
             {starRatings.map((rating, i) => (
               <OuterBarGraph key={i} onClick={setRatingFilter}>
