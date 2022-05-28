@@ -24,6 +24,7 @@ const headers = {
 let counter = 0;
 app.use((req, res, next) => {
   counter += 1;
+  console.log(counter);
   let counterMsg = `Request count: >=${counter} `;
   if (counter === 20) {
     counterMsg += '😀';
@@ -326,6 +327,31 @@ app.put('/reviews/:review_id/report', (req, res) => {
 });
 
 // Outfitter requests
+// GET all items in outfitter.json
+app.get('/outfitter', (req, res) => {
+  fs.readFile(path.join(__dirname, 'data/outfitter.json'), (readErr, data) => {
+    const items = JSON.parse(data);
+    // TODO: leaving space for more meaningfull comparison
+    res.send(items);
+  });
+});
+// DELETE an item from outfitter.json
+app.delete('/outfitter', (req, res) => {
+  // req.body.productId is productId for card
+  // req.body.cards is all card data for all cards
+  const { cards, productId } = req.body;
+  for (let i = 0; i < cards.length; i += 1) {
+    if (cards[i].productId === productId) {
+      cards.splice(i, 1);
+    }
+  }
+  fs.writeFile(path.join(__dirname, 'data/outfitter.json'), JSON.stringify(cards, null, '\t'), (writeErr) => {
+    if (writeErr) {
+      console.log(writeErr);
+    }
+    res.end();
+  });
+});
 // POST new item to outfitter.json
 app.post('/outfitter', (req, res) => {
   const item = req.body;

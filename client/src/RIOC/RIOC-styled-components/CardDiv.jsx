@@ -10,6 +10,7 @@ const CardDiv = styled.div`
   margin: 5px;
   white-space: nowrap;
   overflow: hidden;
+  cursor: pointer;
 `;
 
 export default CardDiv;
