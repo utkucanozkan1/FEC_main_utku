@@ -84,7 +84,7 @@ function Checkout(props) {
       })
       .catch((err) => {
         // TODO: 427 if
-        // console.log('--> 🚫Err: Outfit already exists in outfitter.json!\nP.S. I 💛 My Little Pony 🥺\n');
+        console.log('--> 🚫Err: Outfit already exists in outfitter.json!\nP.S. I 💛 My Little Pony 🥺\n');
         console.log(err);
       });
   };

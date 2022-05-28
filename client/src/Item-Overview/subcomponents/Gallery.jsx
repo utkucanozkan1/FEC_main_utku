@@ -20,7 +20,7 @@ function Gallery(props) {
   const thumbnails = [];
   for (let i = startIndex; i <= endIndex; i += 1) {
     // Url schema error quick hardcoded fix
-    let thumbnailUrl = photos[i]?.thumbnail_url;
+    let thumbnailUrl = photos[i]?.thumbnail_url ? photos[i]?.thumbnail_url : '';
     if (thumbnailUrl.length > 0 && thumbnailUrl[0] !== 'h') {
       thumbnailUrl = thumbnailUrl.substring(1, thumbnailUrl.length);
     }

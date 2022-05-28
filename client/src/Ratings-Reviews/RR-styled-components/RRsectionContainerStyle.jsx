@@ -2,21 +2,18 @@ import styled from 'styled-components';
 
 // Main view container
 const RatingReviewContainer = styled.section`
-display: flex;
-flex-flow: row nowrap;
-align-self: center;
-justify-items: space-evenly;
-margin-top: 100px;
-margin-right: 200px;
-margin-left: 450px;
+display: grid;
+grid-template-columns: 5fr 4fr 8fr 2fr;
+justify-items: stretch;
 `;
-
+/*-------------------*/
 // container for review list
 const ReviewListContainer = styled.div`
+grid-column-start: 3;
 display: flex;
-width: 60%;
 flex-flow: column wrap;
 align-items: center;
+justify-content: flex-start;
 `;
 
 /*-------------------*/
@@ -24,7 +21,6 @@ align-items: center;
 // main container for each review
 const ReviewEntryStyle = styled.div`
 display: flex;
-width: 90%;
 align-self: flex-start;
 flex-flow: column wrap;
 border-top: 2px solid;
@@ -37,11 +33,18 @@ flex-flow: row nowrap;
 align-self: center;
 `;
 
+const BottomButtons = styled.div`
+align-self: center;
+`;
+
+/*-------------------*/
 // main container for the ratings summary
 const SummaryLeft = styled.div`
-align-self: flex-start;
-width: 22%;
+grid-column-start: 2;
+display: flex;
 flex-flow: column wrap;
+justify-content: flex-start;
+width: 100%;
 `;
 
 // container for star and characteristic breakdown
@@ -56,15 +59,16 @@ flex-flow: row wrap;
 // Container for characteristic breakdown
 const ProductBreakdownContainer = styled.div`
   display: grid;
-  width: 100%;
+  /* width: 100%;
   padding-top: 30px;
-  gap: 20px;
+  gap: 20px; */
 `;
 
 // Top portion of ratings and summary with the average rating
 const RatingsSummaryTop = styled.div`
 display: flex;
 flex-flow: row nowrap;
+width: 100%
 justify-content: flex-start;
 font-size: 40px;
 `;
@@ -79,7 +83,7 @@ const CharacterGraph = styled.div`
 const Character = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   font-size: 15px;
 `;
 
@@ -90,14 +94,11 @@ flex-flow: column wrap;
 font-size: 15px;
 `;
 
-const BottomButtons = styled.div`
-align-self: center;
-justify-content: space-around;
-`;
+
 /*--------------------*/
 // Form and modal settings
 const FormContainer = styled.div`
-width: 90%;
+width: 75%;
   margin: 10px auto;
   top: 10;
   left: 10;
