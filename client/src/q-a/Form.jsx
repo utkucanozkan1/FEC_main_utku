@@ -4,13 +4,13 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { FormStyle } from './q&a-styled-components/q&aSectionContainerStyle';
 
-export default function Form({ questionId }) {
+export default function Form({ questionId ,productName }) {
   const [body, setBody] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [photoList, setPhotos] = useState('');
   const [isClicked, setIsClicked] = useState(false);
-
+  console.log(productName);
   const onSubmit = (event) => {
     const photos = photoList.toString().split(',');
 
@@ -31,9 +31,9 @@ export default function Form({ questionId }) {
         <h1> Submit Your Answer</h1>
         &nbsp; &nbsp;
         <h3>
-          Question :
+          [ {productName.toUpperCase()} ] :
           {' '}
-          {questionId.question_body}
+        [ {questionId.question_body} ]
         </h3>
       </div>
       <div className="whole-answer-text">

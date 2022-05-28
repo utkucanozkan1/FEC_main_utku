@@ -146,7 +146,7 @@ function QuestionList(props) {
               Add Answer
             </button>
             <div className="modal-popup">
-              <ModalPopup show={showModalForm} handleExit={hideModal} questionId={props.question}>
+              <ModalPopup show={showModalForm} handleExit={hideModal} questionId={props.question} productName={props.name}>
                 <FormStyle><Form questionId={props.question} /></FormStyle>
               </ModalPopup>
             </div>

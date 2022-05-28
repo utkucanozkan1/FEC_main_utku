@@ -5,14 +5,14 @@ import React, { useState } from 'react';
 import { Modal, CloseButton } from './q&a-styled-components/q&aSectionContainerStyle';
 import NewQuestion from './NewQuestion.jsx';
 
-export default function QuestionModal({ show, handleExit, itemId }) {
+export default function QuestionModal({ show, handleExit, name }) {
   return (
     <Modal show={show}>
       <div>
         <CloseButton>
           <button className="close-btn" type="button" onClick={handleExit}>X</button>
         </CloseButton>
-        <NewQuestion itemId={itemId} />
+        <NewQuestion productName={name} />
       </div>
     </Modal>
   );

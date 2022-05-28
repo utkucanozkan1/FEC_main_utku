@@ -114,7 +114,7 @@ function QuestionsAndAnswers() {
         ) : (
           <div className="main-div">
             {questionArray.slice(0, sliceCount).map((question, i) => (
-              <QuestionList question={question} key={i} />
+              <QuestionList question={question} key={i} name={name} />
             ))}
           </div>
         )}
