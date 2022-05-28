@@ -23,84 +23,19 @@ function ItemOverview() {
   const [styleIndex, setStyleIndex] = useState(0);
 
   // Feed live data
-  const { itemId } = useContext(ProductIdContext);
-  const headers = { headers: {
-    Authorization: config.TOKEN,
-  } };
-
-  // "427 - too many requests" handler
-  // let secondsLeft = 30;
-  const reqErr427 = () => {
-    // const errorEl = document.querySelector('.request-err');
-    // errorEl.display = 'block';
-    // const errorMsgEl = document.querySelector('.request-err-msg');
-    // errorMsgEl.innerText = `Server request limit breached, please wait: ${secondsLeft}`;
-    // console.log(secondsLeft);
-    // secondsLeft -= 1;
-    // errorEl.display = 'none';
-    // secondsLeft = 30;
-    alert('Too many requests: wait 30-60 seconds!');
-  };
+  const dataContext = useContext(ProductIdContext);
 
   useEffect(() => {
-    axios.get(`/products/${itemId}`, headers)
-      .then((itemData) => {
-        axios.get(`/products/${itemId}/styles`, headers)
-          .then((stylesRes) => {
-            // Get rating info
-            axios.get(`/reviews/${itemId}/reviewsMeta`, headers)
-              .then((ratingsRes) => {
-                const ratings = Object.entries(ratingsRes.data.ratings);
-                const rating = getAverageRating(ratings);
-                setItem({ ...itemData.data, rating });
-                setStyles(stylesRes.data.results);
-                toogleLoading(false);
-              })
-              .catch(() => {
-                reqErr427();
-              });
-          })
-          .catch(() => {
-            reqErr427();
-          });
-      })
-      .catch(() => {
-        reqErr427();
-      });
-  }, [itemId]);
-
-  // let reqCount = 0;
-  // const mockGetClicker = (e) => {
-  //   e.preventDefault();
-  //   axios.get(`/products/${itemId}`, headers)
-  //     .then(() => {
-  //       axios.get(`/products/${itemId}/styles`, headers)
-  //         .then(() => {
-  //           // Get rating info
-  //           axios.get(`/reviews/${itemId}/reviewsMeta`, headers)
-  //             .then(() => {
-  //               console.log(reqCount += 3);
-  //             })
-  //             .catch(() => {
-  //               reqErr427();
-  //             });
-  //         })
-  //         .catch(() => {
-  //           reqErr427();
-  //         });
-  //     })
-  //     .catch(() => {
-  //       reqErr427();
-  //     });
-  // };
+    const rating = getAverageRating(Object.entries(dataContext.ratings));
+    setItem({ ...dataContext, rating });
+    setStyles(dataContext.results);
+    toogleLoading(false);
+  }, [dataContext.itemId]);
 
   if (!loading) {
     return (
       <>
         <section className="item-overview-section">
-          {/* <button onClick={mockGetClicker} type="button">
-            Make a Get request
-          </button> */}
           <div className="request-err" style={{ display: 'none' }}>
             <p className="request-err-msg">Server request limit breached, please wait: </p>
           </div>

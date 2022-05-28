@@ -18,7 +18,9 @@ let questionsArray;
 let searchingArray;
 function QuestionsAndAnswers() {
   // need live data
-  const { itemId } = useContext(ProductIdContext);
+
+  // console.log(useContext(ProductIdContext));
+  const { itemId, name } = useContext(ProductIdContext);
   const [searchQuestions, setSearchQuestions] = useState(false);
   const [searchArray, setSearchArray] = useState([]);
   const [questionArray, setQuestionArray] = useState([]);
@@ -130,9 +132,10 @@ function QuestionsAndAnswers() {
                 show={showModalForm}
                 handleExit={hideModal}
                 itemId={itemId}
+                name={name}
               >
                 <FormStyle>
-                  <NewQuestion itemId={itemId}> </NewQuestion>
+                  <NewQuestion> </NewQuestion>
                 </FormStyle>
               </QuestionModal>
             </div>
