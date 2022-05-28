@@ -2,12 +2,14 @@ import React, { useContext, useEffect } from 'react';
 import axios from 'axios';
 import CarouselButton from './RIOC-styled-components/CarouselButtons';
 import { ViewableContext } from './RelatedView';
+import { OutfitContext } from './OutfitView';
 
-function RightArrow() {
+function RightArrow({ outfitAttr }) {
   const {
     viewable, setViewable, position, setPosition,
     related, end, setEnd,
   } = useContext(ViewableContext);
+  const { outfit, oPosition, setOPosition, oEnd, setOEnd } = useContext(OutfitContext);
 
   function getNextItem() {
     const nextId = related[position + 3];
@@ -29,9 +31,16 @@ function RightArrow() {
   }
 
   function scrollRight() {
-    // if the list of ALL related products is greater than
-    // what is currently viewed (including previous cards)
-    setPosition((prevPosition) => (prevPosition + 1));
+    // I guess React turns classNames into abstract letters. That className refers to
+    // an outfit arrow being clicked rather than a related items arrow
+    if (outfitAttr === 'outfit') {
+      setOPosition((prevPosition) => (prevPosition + 1));
+      if (oPosition + 4 === outfit.length - 1) {
+        setOEnd(true);
+      }
+    } else {
+      setPosition((prevPosition) => (prevPosition + 1));
+    }
   }
 
   useEffect(() => {

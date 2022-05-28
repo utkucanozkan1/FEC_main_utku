@@ -13,24 +13,18 @@ function OutfitCard({card}) {
     if (event.stopPropagation) {
       event.stopPropagation();
     }
-    console.log('Deleting card');
     axios.delete('/outfitter', {
       data: {
         productId: card.productId,
         cards: outfit,
       },
-    });
-    // setOutfit((prevOutfit) => {
-    //   for (let i = 0; i < prevOutfit.length; i += 1) {
-    //     console.log('Prev outfit:', prevOutfit);
-    //     console.log('Card clicked:', card.productId);
-    //     if (prevOutfit[i].productId === card.productId) {
-    //       prevOutfit.splice(i, 1);
-    //       console.log('Card deleted');
-    //     }
-    //   }
-    //   return prevOutfit;
-    // });
+    })
+      .then(() => {
+        axios.get('/outfitter')
+          .then((outfitItems) => {
+            setOutfit(outfitItems.data);
+          });
+      });
   }
 
   return (
