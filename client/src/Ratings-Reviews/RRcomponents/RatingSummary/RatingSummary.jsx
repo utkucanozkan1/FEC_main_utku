@@ -8,7 +8,6 @@ import StarRating from '../../../shared/StarRating';
 
 export default function RatingSummary({ setRatingFilter }) {
   const data = useContext(ProductIdContext);
-  const [meta, setMeta] = useState({});
   const [productRatings, setRatings] = useState([]);
 
   useEffect(() => {
