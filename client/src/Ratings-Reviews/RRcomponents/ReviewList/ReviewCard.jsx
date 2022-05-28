@@ -13,14 +13,7 @@ export default function ReviewEntry({ review, retrieveReviews }) {
   const [reported, setReported] = useState(false);
   const [showAll, setShowAll] = useState(review.body.length < 250);
 
-  // const showMore = () => setShowAll(!showAll);
-
-
-
   const shortBody = review.body.substring(0, 250);
-  console.log(shortBody)
-  console.log(review.body.length)
-
 
   function showMore(e) {
     e.preventDefault();
