@@ -16,18 +16,6 @@ export default function RatingSummary({ setRatingFilter }) {
     const averageRating = Math.round(AverageStarRating(ratingCounts) * 10) / 10;
     setRatings(averageRating);
   });
-  // useEffect(() => {
-  //   axios.get(`/reviews/${itemId}/reviewsMeta`)
-  //     .then((res) => {
-  //       setMeta(res.data);
-  //       const ratingCounts = Object.entries(res.data.ratings);
-  //       const averageRating = Math.round(AverageStarRating(ratingCounts) * 10) / 10;
-  //       setRatings(averageRating);
-  //     })
-  //     .catch((err) => {
-  //       console.log('Error, could not retrieve meta', err);
-  //     });
-  // }, [itemId]);
 
   return (
     <SummaryLeft>
