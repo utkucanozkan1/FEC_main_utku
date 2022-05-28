@@ -83,6 +83,10 @@ $defaultBorder: 0.075vw solid black;
             background-size: cover;
             background-position: center;
             border: $defaultBorder;
+
+            &:hover {
+              opacity: 50%;
+            }
           }
 
           .thumbnail-selected {

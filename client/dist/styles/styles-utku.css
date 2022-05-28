@@ -102,4 +102,8 @@ text-align: center;
 .whole-answer-text {
   text-align: center;
 }
-
+.bottom-buttons-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
