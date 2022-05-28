@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import {
   RatingsBreakdown, OuterBarGraph, InnerBarGraph, ProductBreakdownContainer, Recommend,
   Character, CharacterGraph,
@@ -7,7 +6,7 @@ import {
 import BarChart from './barChart';
 import Arrow from './arrow';
 
-export default function RatingBreakdownMain({ meta, setRatingFilter }) {
+export default function RatingBreakdownMain({ data, setRatingFilter }) {
   const characteristics = {
     Size: ['Runs small', 'Perfect', 'Runs wide'],
     Width: ['Runs narrow', 'Perfect', 'Runs wide'],
@@ -21,11 +20,11 @@ export default function RatingBreakdownMain({ meta, setRatingFilter }) {
   let sumRating = 0;
   let recommend = 100;
 
-  if (Object.keys(meta).length !== 0) {
-    for (const star in meta.ratings) {
-      totalReviews += Number(meta.ratings)
-      sumRating += Number(meta.ratings[star]);
-      recommend = Number(meta.recommended.true) / (Number(meta.recommended.true) + Number(meta.recommended.false)) * 100;
+  if (Object.keys(data).length !== 0) {
+    for (const star in data.ratings) {
+      totalReviews += Number(data.ratings)
+      sumRating += Number(data.ratings[star]);
+      recommend = Number(data.recommended.true) / (Number(data.recommended.true) + Number(data.recommended.false)) * 100;
     }
   }
 
@@ -34,7 +33,7 @@ export default function RatingBreakdownMain({ meta, setRatingFilter }) {
   return (
     <RatingsBreakdown>
       {
-      Object.keys(meta).length !== 0
+      Object.keys(data).length !== 0
         ? (
           <div>
             <Recommend>
@@ -46,17 +45,17 @@ export default function RatingBreakdownMain({ meta, setRatingFilter }) {
               <OuterBarGraph key={i} onClick={setRatingFilter}>
                 <InnerBarGraph>{rating}</InnerBarGraph>
                 <InnerBarGraph>star</InnerBarGraph>
-                <BarChart length={meta.ratings[rating] / sumRating * 100} />
-                <InnerBarGraph>{meta.ratings[rating]}</InnerBarGraph>
+                <BarChart length={data.ratings[rating] / sumRating * 100} />
+                <InnerBarGraph>{data.ratings[rating]}</InnerBarGraph>
               </OuterBarGraph>
             ))}
             <ProductBreakdownContainer>
               {
-          meta.characteristics ? Object.keys(meta.characteristics).map((char, i) => (
+          data.characteristics ? Object.keys(data.characteristics).map((char, i) => (
             <CharacterGraph key={i}>
               <span>{char}</span>
               <Arrow
-                average={((meta.characteristics[char].value / 5) * 100).toFixed(0)}
+                average={((data.characteristics[char].value / 5) * 100).toFixed(0)}
               />
               <Character>
                 {characteristics[char].map((element, index) => (<span key={index}>{element}</span>))}

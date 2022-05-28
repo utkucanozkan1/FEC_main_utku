@@ -13,13 +13,12 @@ import { retrieve2Reviews } from './serverAction';
 // require('dotenv').config();
 
 export default function ReviewList() {
-  const { itemId } = useContext(ProductIdContext);
+  const { itemId, ratings } = useContext(ProductIdContext);
   const [reviews, setReviews] = useState([]);
   const [showModalForm, setShowModalForm] = useState('false');
   const [sort, setSort] = useState('relevant');
   const [count, setCount] = useState(2);
   const [page, setPage] = useState(1);
-  const [meta, setMeta] = useState({});
   const [totalReviews, setTotalReviews] = useState(0);
 
   function retrieveReviews() {
@@ -37,16 +36,9 @@ export default function ReviewList() {
   }
 
   useEffect(() => {
-    axios.get(`/reviews/${itemId}/reviewsMeta`)
-      .then((res) => {
-        setMeta(res.data);
-        const allReviews = Object.values(res.data.ratings).reduce(add, 0);
-        setTotalReviews(allReviews);
-      })
-      .catch((err) => {
-        console.log('Error, could not retrieve meta', err);
-      });
-  }, []);
+    const allReviews = Object.values(ratings).reduce(add, 0);
+    setTotalReviews(allReviews);
+  }, [itemId]);
 
   function clickMoreReviews() {
     return retrieve2Reviews(itemId, page + 1, count, sort)

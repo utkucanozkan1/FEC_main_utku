@@ -77,8 +77,8 @@ function Checkout(props) {
     };
     axios.post('/outfitter', starred)
       .then()
-      .catch((err) => {
-        console.error(`--> 🚫 ${err.response.data.message}`);
+      .catch(() => {
+        console.log('--> 🚫Err: Outfit already exists in outfitter.json!\nP.S. I 💛 My Little Pony 🥺\n');
       });
   };
 
@@ -115,8 +115,8 @@ function Checkout(props) {
 
       {/* Checkout Options */}
       <div className="checkout">
-        <select className="size" onChange={sizeChange}>
-          <option disabled selected>SELECT SIZE</option>
+        <select className="size" onChange={sizeChange} defaultValue="SELECT SIZE">
+          <option disabled>SELECT SIZE</option>
           {sizeOptions.map((size, index) => (
             // eslint-disable-next-line react/no-array-index-key
             <React.Fragment key={index}>

@@ -8,21 +8,15 @@ import { ProductIdContext } from '../index';
 import { CardProductContext } from './RelatedView';
 
 function CompareModal() {
+  const data = useContext(ProductIdContext);
   const { modal, setModal } = useContext(ModalContext);
-  const { itemId, setItemId} = useContext(ProductIdContext);
   const { product } = useContext(CardProductContext);
   const [features, setFeatures] = useState([]);
   // INFO FOR 2 PRODUCTS
   useEffect(() => {
-    axios.get(`/products/${itemId}`)
-      .then((featProduct) => {
-        axios.get(`/products/${product.id}`)
-          .then((compProduct) => {
-            setFeatures([...featProduct.data.features, ...compProduct.data.features]);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+    axios.get(`/products/${product.id}`)
+      .then((compProduct) => {
+        setFeatures([...data.features, ...compProduct.data.features]);
       })
       .catch((err) => {
         console.log(err);

@@ -8,24 +8,12 @@ import ReviewList from './ReviewList/ReviewList';
 import { retrieve2Reviews, retrieveMeta } from './ReviewList/serverAction';
 
 export default function RatingReviews() {
-  const { itemId } = useContext(ProductIdContext);
-  const [meta, setMeta] = useState({});
   const [ratingFilter, setRatingFilter] = useState('');
 
   function filterByRating(event) {
     event.preventDefault();
     console.log('still working on this filter');
   }
-
-  // useEffect(() => {
-  //   axios.get(`/reviews/${itemId}/reviewsMeta`)
-  //     .then((res) => {
-  //       setMeta(res.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log('Error, could not retrieve meta', err);
-  //     });
-  // }, [itemId]);
 
   return (
     // <RatingsReviewsOuterContainer>

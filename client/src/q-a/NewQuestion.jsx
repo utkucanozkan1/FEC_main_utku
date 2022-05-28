@@ -5,12 +5,12 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { FormStyle } from './q&a-styled-components/q&aSectionContainerStyle';
 
-export default function NewQuestion({ itemId }) {
+export default function NewQuestion(props) {
   const [body, setBody] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [isClicked, setIsClicked] = useState(false);
-
+     // console.log(props);
   const onSubmit = (event) => {
     const product_id = itemId;
     axios
@@ -29,7 +29,7 @@ export default function NewQuestion({ itemId }) {
         &nbsp; &nbsp;
         <h1> Ask Your Question</h1>
         &nbsp; &nbsp;
-        <h3>About The **Product Name**</h3>
+        <h3>About The </h3>
       </div>
       <div className="whole-answer-text">
         {isClicked ? <h2>Your Question Has Been Submitted</h2> : (
