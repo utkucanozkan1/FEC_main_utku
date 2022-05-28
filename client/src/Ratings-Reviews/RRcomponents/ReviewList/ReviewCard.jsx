@@ -16,6 +16,8 @@ export default function ReviewEntry({ review, retrieveReviews }) {
   const showMore = () => setShowAll(true);
   const showLess = () => setShowAll(false);
   const shortBody = review.body.substring(0, 250);
+  // console.log(shortBody)
+  // console.log(review.body.length)
 
   function clickHelpFunction(e) {
     e.preventDefault();
@@ -30,7 +32,6 @@ export default function ReviewEntry({ review, retrieveReviews }) {
   function clickReportFunction(e) {
     e.preventDefault();
     if (!reported) {
-      console.log(review)
       putReported(review.review_id)
         .then(() => {
           setReported(true);
