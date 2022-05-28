@@ -1,32 +1,5 @@
 [
 	{
-		"productId": 37313,
-		"title": "Morning Joggers",
-		"category": "Pants",
-		"original_price": "40.00",
-		"sale_price": null,
-		"rating": 4.121212121212121,
-		"imageUrl": "https://images.unsplash.com/photo-1552902865-b72c031ac5ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
-	},
-	{
-		"productId": 37317,
-		"title": "Blues Suede Shoes",
-		"category": "Dress Shoes",
-		"original_price": "120.00",
-		"sale_price": null,
-		"rating": 3.857142857142857,
-		"imageUrl": "https://images.unsplash.com/photo-1561861422-a549073e547a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
-	},
-	{
-		"productId": 37314,
-		"title": "Slacker's Slacks",
-		"category": "Pants",
-		"original_price": "65.00",
-		"sale_price": null,
-		"rating": 3.5289256198347108,
-		"imageUrl": "https://images.unsplash.com/photo-1554260570-9140fd3b7614?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
-	},
-	{
 		"productId": 37316,
 		"title": "Pumped Up Kicks",
 		"category": "Kicks",
@@ -36,6 +9,15 @@
 		"imageUrl": "https://images.unsplash.com/photo-1477420143023-6a0e0b04b69a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
 	},
 	{
+		"productId": 37313,
+		"title": "Morning Joggers",
+		"category": "Pants",
+		"original_price": "40.00",
+		"sale_price": null,
+		"rating": 4.121212121212121,
+		"imageUrl": "https://images.unsplash.com/photo-1552902865-b72c031ac5ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
+	},
+	{
 		"productId": 37315,
 		"title": "Heir Force Ones",
 		"category": "Kicks",
@@ -43,5 +25,14 @@
 		"sale_price": null,
 		"rating": 2.596774193548387,
 		"imageUrl": "https://images.unsplash.com/photo-1544441892-794166f1e3be?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
+	},
+	{
+		"productId": 37319,
+		"title": "Summer Shoes",
+		"category": "Kicks",
+		"original_price": "59.00",
+		"sale_price": null,
+		"rating": 3.7560975609756095,
+		"imageUrl": "https://images.unsplash.com/photo-1550338300-f9a475b50ba2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
 	}
 ]

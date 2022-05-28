@@ -35,8 +35,6 @@ function RightArrow({ outfitAttr }) {
     // an outfit arrow being clicked rather than a related items arrow
     if (outfitAttr === 'outfit') {
       setOPosition((prevPosition) => (prevPosition + 1));
-      console.log(oPosition, 'of', outfit.length, 'items in outfit');
-      console.log('oPos + 4:', oPosition + 4, '. Outfit Length:', outfit.length);
       if (oPosition + 4 >= outfit.length) {
         setOEnd(true);
       }
