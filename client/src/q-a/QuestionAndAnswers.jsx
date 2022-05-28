@@ -20,6 +20,9 @@ function QuestionsAndAnswers() {
   const [searchTerm, setSearchTerm] = useState({ search: '' });
   const [showModalForm, setShowModalForm] = useState('false');
   const [noQuestions, setNoQuestions] = useState(false);
+  const [questionCount, setQuestionCount] = useState(0);
+  const [loadQuestions , setLoadQuestions] = useState(true);
+  const [sliceCount, setSliceCount] = useState(2);
 
   useEffect(() => {
     // let's just use 37311 for now
@@ -34,7 +37,11 @@ function QuestionsAndAnswers() {
       setQuestionArray([...questionsArray]);
       // console.log(questionsArray);
       toogleLoading(false);
-      !questionsArray.length ? setNoQuestions(true) : setNoQuestions(false)
+      !questionsArray.length ? setNoQuestions(true) : setNoQuestions(false);
+      setQuestionCount(questionsArray.length - 2)
+      //questionCount >= 2 ? setLoadQuestions(true) : setLoadQuestions(false);
+      //setLoadQuestions(false);
+      setSliceCount(2);
     })
       .then()
       .catch((err) => console.log(err));
@@ -43,11 +50,6 @@ function QuestionsAndAnswers() {
   useEffect(() => {
     // searchingArray = [];
     if (searchTerm.search.length > 3) {
-      console.log(searchArray);
-      console.log(searchTerm);
-      console.log(searchingArray);
-      // console.log(questionsArray);
-      // searchingArray = [];
       searchingArray = questionArray.filter((el, i) => el.question_body.toLowerCase().includes(searchTerm.search));
       setSearchArray([...searchingArray]);
       setSearchQuestions(true);
@@ -56,6 +58,10 @@ function QuestionsAndAnswers() {
       setSearchQuestions(false);
     }
   }, [searchTerm.search]);
+
+  useEffect(() => {
+    questionCount >= 2 ? setLoadQuestions(true) : setLoadQuestions(false);
+  },[questionCount]);
 
   const handleChange = function (e) {
     setSearchTerm({ ...searchTerm, search: e.target.value });
@@ -67,6 +73,12 @@ function QuestionsAndAnswers() {
   const hideModal = () => {
     setShowModalForm('false');
   };
+  const adjustQuestionCount = () => {
+    setQuestionCount((prev) => prev - 2);
+    setSliceCount((prev) => prev + 2);
+  };
+
+
 
   if (!loading) {
     return (
@@ -95,14 +107,14 @@ function QuestionsAndAnswers() {
           </div>
         ) : (
           <div className="main-div">
-            {questionArray.slice(0, 2).map((question, i) => (
+            {questionArray.slice(0, sliceCount).map((question, i) => (
               <QuestionList question={question} key={i} />
             ))}
           </div>
         )}
         <div className="bottom-buttons-div">
         <div>
-          <button>MORE ANSWERED QUESTIONS</button>
+         {loadQuestions && <button onClick={adjustQuestionCount}>MORE ANSWERED QUESTIONS</button>}
         </div>
         <div>
           <button type="button" onClick={showModal}>
