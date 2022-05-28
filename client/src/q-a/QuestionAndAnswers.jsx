@@ -83,7 +83,11 @@ function QuestionsAndAnswers() {
   };
   const adjustQuestionCount = () => {
     setQuestionCount((prev) => prev - 2);
-    setSliceCount((prev) => prev + 2);
+    setSliceCount((prev) => {
+      if(prev !== 8){
+        prev + 2;
+      }
+    });
   };
 
   if (!loading) {
@@ -120,10 +124,10 @@ function QuestionsAndAnswers() {
         )}
         <div className="bottom-buttons-div">
           <div>
-            {loadQuestions && <button onClick={adjustQuestionCount}>MORE ANSWERED QUESTIONS</button>}
+            {loadQuestions && <button className="text-border-btn"onClick={adjustQuestionCount}>MORE ANSWERED QUESTIONS</button>}
           </div>
           <div>
-            <button type="button" onClick={showModal}>
+            <button type="button" className="text-border-btn" onClick={showModal}>
               ADD A QUESTION +
               {' '}
             </button>

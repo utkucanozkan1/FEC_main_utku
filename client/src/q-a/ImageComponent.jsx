@@ -5,7 +5,7 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
-
+import { Modal , FormContainer} from './q&a-styled-components/q&aSectionContainerStyle';
 export default class ImageComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -33,12 +33,16 @@ export default class ImageComponent extends React.Component {
             open
             onClick={this.handleShowDialog}
           >
-            <img
+            <div className="modal-div">
+              <div className="container-div">
+              <img
               className="image"
               src={this.props.photo.url}
               onClick={this.handleShowDialog}
               alt="no image"
             />
+              </div>
+            </div>
           </dialog>
         )}
       </div>
