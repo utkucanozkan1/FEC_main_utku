@@ -6,6 +6,7 @@ import {
   ReviewEntryStyle, SmallSum, Date, Paragraph, TopOfReview
 } from '../../RR-styled-components/RRsectionContainerStyle';
 import StarRating from '../../../shared/StarRating';
+import { putIsHelpful, putReported } from './serverAction';
 
 export default function ReviewEntry({ review, retrieveReviews }) {
   const [isHelpful, setIsHelpful] = useState(false);
@@ -16,28 +17,25 @@ export default function ReviewEntry({ review, retrieveReviews }) {
   const showLess = () => setShowAll(false);
   const shortBody = review.body.substring(0, 250);
 
-  function clickFunction(e) {
-    let clickURL = '';
-    let stateFunction;
-    if (e.target.innerHTML === 'Yes') {
-      clickURL = `/reviews/${review.review_id}/helpful`;
-      stateFunction = setIsHelpful;
+  function clickHelpFunction(e) {
+    e.preventDefault();
+    if (!isHelpful) {
+      putIsHelpful(review.review_id)
+        .then(() => {
+          setIsHelpful(true);
+        });
     }
-    if (e.target.innerHTML === 'Report') {
-      clickURL = `/reviews${review.review_id}/report`;
-      stateFunction = setReported;
-    }
+  }
 
-    axios.put(clickURL)
-      .then(() => {
-        retrieveReviews()
-          .then(() => {
-            stateFunction(true);
-          });
-      })
-      .catch((err) => {
-        console.log(`error setting ${e.target.innerHTML}`, err);
-      });
+  function clickReportFunction(e) {
+    e.preventDefault();
+    if (!reported) {
+      console.log(review)
+      putReported(review.review_id)
+        .then(() => {
+          setReported(true);
+        });
+    }
   }
 
   return (
@@ -73,12 +71,12 @@ export default function ReviewEntry({ review, retrieveReviews }) {
       </div>
       <span>
         Helpful?
-        {isHelpful ? 'Yes ' : <a href="#" role="button" onClick={clickFunction}>Yes</a>}
+        {isHelpful ? 'Yes ' : <a href="#" role="button" onClick={clickHelpFunction}>Yes</a>}
         (
         {review.helpfulness}
         )
         |
-        {reported ? ' Report' : <a href="#" role="button" onClick={clickFunction}>Report</a>}
+        {reported ? ' Report' : <a href="#" role="button" onClick={clickReportFunction}>Report</a>}
       </span>
       <hr />
     </ReviewEntryStyle>
