@@ -1,24 +1,35 @@
 import styled from 'styled-components';
 
 // Main view container
-const RatingReviewContainer = styled.div`
+const RatingReviewContainer = styled.section`
 display: flex;
 flex-flow: row nowrap;
 align-self: center;
-justify-items: space-between;
-margin: 120px;
-padding-right: 300px;
-padding-left: 300px;
+justify-items: space-evenly;
+margin-top: 100px;
+margin-right: 200px;
+margin-left: 450px;
 `;
 
 // container for review list
 const ReviewListContainer = styled.div`
 display: flex;
-width: 65%;
+width: 60%;
 flex-flow: column wrap;
 align-items: center;
-margin-left: 20 px;
 `;
+
+/*-------------------*/
+// Review entry settings.
+// main container for each review
+const ReviewEntryStyle = styled.div`
+display: flex;
+width: 90%;
+align-self: flex-start;
+flex-flow: column wrap;
+border-top: 2px solid;
+`;
+
 // used for add filter drop-down on review list
 const Button = styled.div`
 width: 50%;
@@ -29,9 +40,10 @@ align-self: center;
 // main container for the ratings summary
 const SummaryLeft = styled.div`
 align-self: flex-start;
-width: 35%;
+width: 22%;
 flex-flow: column wrap;
 `;
+
 // container for star and characteristic breakdown
 const RatingsBreakdown = styled.div`
 display: flex;
@@ -137,18 +149,6 @@ margin: 5px;
 &:hover {
   color: red;
 }
-`;
-
-/*-------------------*/
-// Review entry settings.
-// main container for each review
-const ReviewEntryStyle = styled.div`
-display: flex;
-width: 100%;
-align-self: flex-start;
-flex-flow: column wrap;
-border-top: 2px solid;
-/* padding-left: 20px; */
 `;
 
 const TopOfReview = styled.div`
