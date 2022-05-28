@@ -10,6 +10,7 @@ function LeftArrow({outfitAttr}) {
   function scrollLeft() {
     if (outfitAttr === 'outfit') {
       setOPosition((prevPosition) => prevPosition - 1);
+      setOEnd(false);
     } else {
       setPosition((prevPosition) => prevPosition - 1);
       setEnd(false);
