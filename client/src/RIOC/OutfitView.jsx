@@ -10,7 +10,7 @@ export const OutfitContext = React.createContext();
 
 function OutfitView() {
   const [outfit, setOutfit] = useState([]);
-
+  const [oPosition, setOPosition] = useState(0);
   useEffect(() => {
     axios.get('/outfitter')
       .then((outfitItems) => {
@@ -22,13 +22,13 @@ function OutfitView() {
     <div>
       <h6>YOUR OUTFITS</h6>
       <CardContainer>
-        <OutfitContext.Provider value={{ outfit, setOutfit }}>
-          <LeftArrow />
+        <OutfitContext.Provider value={{ outfit, setOutfit, oPosition, setOPosition }}>
+          <LeftArrow className="outfit" />
           <AddToOutfitCard />
-          {outfit.map((card, i) => (
+          {outfit.slice(oPosition, oPosition + 4).map((card, i) => (
             <OutfitCard key={i} card={card} />
           ))}
-          <RightArrow />
+          <RightArrow className="outfit" />
         </OutfitContext.Provider>
       </CardContainer>
     </div>
