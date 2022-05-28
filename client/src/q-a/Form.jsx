@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import axios from 'axios';
 import { FormStyle } from './q&a-styled-components/q&aSectionContainerStyle';
@@ -16,7 +18,7 @@ export default function Form({ questionId }) {
       .post(`/answers/${questionId.question_id}`, {
         body, name, email, photos,
       })
-      .then((res) => console.log('post success'))
+      .then(() => console.log('post success'))
       .catch((err) => console.log(err));
     setIsClicked(true);
     event.preventDefault();
@@ -28,7 +30,11 @@ export default function Form({ questionId }) {
         &nbsp; &nbsp;
         <h1> Submit Your Answer</h1>
         &nbsp; &nbsp;
-        <h3>Question : {questionId.question_body}</h3>
+        <h3>
+          Question :
+          {' '}
+          {questionId.question_body}
+        </h3>
       </div>
       <div className="whole-answer-text">
         {isClicked ? <h2>Your Answer Has Been Submitted</h2> : (
@@ -83,7 +89,7 @@ export default function Form({ questionId }) {
                 className="form-control"
                 id="photo"
                 value={photoList}
-                placeholder="Add up to 3 photo Urls , separeted by comma"
+                placeholder="Add up to 3 photo Urls , separated by comma"
                 onChange={(e) => setPhotos(e.target.value)}
               />
             </div>

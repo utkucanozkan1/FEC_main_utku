@@ -1,3 +1,9 @@
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable import/no-cycle */
+/* eslint-disable import/extensions */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable react/button-has-type */
+/* eslint-disable max-len */
 /* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable no-else-return */
 import React, { useState, useEffect, useContext } from 'react';
@@ -21,7 +27,7 @@ function QuestionsAndAnswers() {
   const [showModalForm, setShowModalForm] = useState('false');
   const [noQuestions, setNoQuestions] = useState(false);
   const [questionCount, setQuestionCount] = useState(0);
-  const [loadQuestions , setLoadQuestions] = useState(true);
+  const [loadQuestions, setLoadQuestions] = useState(true);
   const [sliceCount, setSliceCount] = useState(2);
 
   useEffect(() => {
@@ -38,9 +44,9 @@ function QuestionsAndAnswers() {
       // console.log(questionsArray);
       toogleLoading(false);
       !questionsArray.length ? setNoQuestions(true) : setNoQuestions(false);
-      setQuestionCount(questionsArray.length - 2)
-      //questionCount >= 2 ? setLoadQuestions(true) : setLoadQuestions(false);
-      //setLoadQuestions(false);
+      setQuestionCount(questionsArray.length - 2);
+      // questionCount >= 2 ? setLoadQuestions(true) : setLoadQuestions(false);
+      // setLoadQuestions(false);
       setSliceCount(2);
     })
       .then()
@@ -50,7 +56,7 @@ function QuestionsAndAnswers() {
   useEffect(() => {
     // searchingArray = [];
     if (searchTerm.search.length > 3) {
-      searchingArray = questionArray.filter((el, i) => el.question_body.toLowerCase().includes(searchTerm.search));
+      searchingArray = questionArray.filter((el) => el.question_body.toLowerCase().includes(searchTerm.search));
       setSearchArray([...searchingArray]);
       setSearchQuestions(true);
     } else {
@@ -61,7 +67,7 @@ function QuestionsAndAnswers() {
 
   useEffect(() => {
     questionCount >= 2 ? setLoadQuestions(true) : setLoadQuestions(false);
-  },[questionCount]);
+  }, [questionCount]);
 
   const handleChange = function (e) {
     setSearchTerm({ ...searchTerm, search: e.target.value });
@@ -77,8 +83,6 @@ function QuestionsAndAnswers() {
     setQuestionCount((prev) => prev - 2);
     setSliceCount((prev) => prev + 2);
   };
-
-
 
   if (!loading) {
     return (
@@ -113,26 +117,26 @@ function QuestionsAndAnswers() {
           </div>
         )}
         <div className="bottom-buttons-div">
-        <div>
-         {loadQuestions && <button onClick={adjustQuestionCount}>MORE ANSWERED QUESTIONS</button>}
-        </div>
-        <div>
-          <button type="button" onClick={showModal}>
-            ADD A QUESTION +
-            {' '}
-          </button>
-          <div className="modal-popup">
-            <QuestionModal
-              show={showModalForm}
-              handleExit={hideModal}
-              itemId={itemId}
-            >
-              <FormStyle>
-                <NewQuestion itemId={itemId}> </NewQuestion>
-              </FormStyle>
-            </QuestionModal>
+          <div>
+            {loadQuestions && <button onClick={adjustQuestionCount}>MORE ANSWERED QUESTIONS</button>}
           </div>
-        </div>
+          <div>
+            <button type="button" onClick={showModal}>
+              ADD A QUESTION +
+              {' '}
+            </button>
+            <div className="modal-popup">
+              <QuestionModal
+                show={showModalForm}
+                handleExit={hideModal}
+                itemId={itemId}
+              >
+                <FormStyle>
+                  <NewQuestion itemId={itemId}> </NewQuestion>
+                </FormStyle>
+              </QuestionModal>
+            </div>
+          </div>
         </div>
       </section>
     );

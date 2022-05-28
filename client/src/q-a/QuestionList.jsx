@@ -1,3 +1,8 @@
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable react/button-has-type */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable react/prop-types */
+/* eslint-disable import/extensions */
 /* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable no-tabs */
@@ -28,7 +33,7 @@ function QuestionList(props) {
       .get(`/answers/${props.question.question_id}`)
       .then((result) => {
         if (result.data.results) {
-          const newAnswerArray = result.data.results.reduce((acc,answer) => {
+          const newAnswerArray = result.data.results.reduce((acc, answer) => {
             answer.answerer_name.toLowerCase() === 'seller' ? acc.unshift(answer) : acc.push(answer);
             return acc;
           }, []);
@@ -52,7 +57,7 @@ function QuestionList(props) {
     axios
       .put(`/answer/report/${answerId}`)
       .then(setAnswerReported(true))
-      .then((res) => console.log('answer reported'))
+      .then(() => console.log('answer reported'))
       .catch((err) => console.log(err));
   }
   function reportAnswerDos() {
@@ -60,7 +65,7 @@ function QuestionList(props) {
     axios
       .put(`/answer/report/${answerId}`)
       .then(setAnswerReported2(true))
-      .then((res) => console.log('answer reported'))
+      .then(() => console.log('answer reported'))
       .catch((err) => console.log(err));
   }
   function helpfulAnswer(obj) {
@@ -69,7 +74,7 @@ function QuestionList(props) {
     axios
       .put(`/answer/helpful/${answerId}`)
       .then(setAnswer1Helpful(true))
-      .then((res) => console.log('answer helpful'))
+      .then(() => console.log('answer helpful'))
       .catch((err) => console.log(err));
   }
   function helpfulAnswerDos(obj) {
@@ -78,7 +83,7 @@ function QuestionList(props) {
     axios
       .put(`/answer/helpful/${answerId}`)
       .then(setAnswer2Helpful(true))
-      .then((res) => console.log('answer helpful'))
+      .then(() => console.log('answer helpful'))
       .catch((err) => console.log(err));
   }
   function helpfulQuestion() {
@@ -86,7 +91,7 @@ function QuestionList(props) {
     axios
       .put(`/question/helpful/${questionId}`)
       .then(setQuestionHelpful(true))
-      .then((res) => console.log('question helpful'))
+      .then(() => console.log('question helpful'))
       .catch((err) => console.log(err));
   }
   const showModal = () => {
