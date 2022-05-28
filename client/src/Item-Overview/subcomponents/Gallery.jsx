@@ -41,10 +41,12 @@ function Gallery(props) {
     if (classList.contains('expand-view')) {
       const gallerySection = document.querySelector('.gallery-section');
       const checkoutSection = document.querySelector('.checkout-section');
+      const thumbnailsClassList = document.querySelector('.thumbnails').classList;
 
       if (gallerySection.classList.contains('gallery-section-expanded')) {
         if (classList.contains('expand-view-button')) {
           // Remove expanded view
+          thumbnailsClassList.remove('thumbnails-expanded-view');
           gallerySection.classList.remove('gallery-section-expanded');
           checkoutSection.setAttribute('style', 'display:inline-block');
         } else if (classList.contains('gallery-container') || classList.contains('image-navigation')) {
@@ -72,6 +74,7 @@ function Gallery(props) {
         }
       } else {
         // Add expanded view
+        thumbnailsClassList.add('thumbnails-expanded-view');
         gallerySection.classList.add('gallery-section-expanded');
         checkoutSection.setAttribute('style', 'display:none');
       }
