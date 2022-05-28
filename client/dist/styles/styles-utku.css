@@ -53,6 +53,25 @@
   margin-left: 20%;
 } */
 
+/* searchBar styling */
+.search-bar {
+  display: flex;
+}
+
+.fa-solid {
+  align-self: center;
+  z-index: 1000;
+}
+
+#header-search{
+  height: 3em;
+  width: 40em;
+  padding-left: 2vw;
+  position: relative;
+  right: 2vw;
+  border-color: black;
+  border-style: solid;
+}
 /* Button styling */
 
 .astext-btn {
@@ -130,12 +149,7 @@ justify-content: space-around;
 flex: 1;
 }
 
-#header-search{
-  height: 3em;
-  width: 40em;
-  border-color: black;
-  border-style: solid;
-}
+
 .question-section{
   margin-left: auto;
   margin-right: auto;

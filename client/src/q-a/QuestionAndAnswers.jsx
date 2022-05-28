@@ -8,6 +8,7 @@
 /* eslint-disable no-else-return */
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import QuestionList from './QuestionList.jsx';
 import { ProductIdContext } from '../index.jsx';
 import QuestionModal from './QuestionModal.jsx';
@@ -84,7 +85,7 @@ function QuestionsAndAnswers() {
   const adjustQuestionCount = () => {
     setQuestionCount((prev) => prev - 2);
     setSliceCount((prev) => {
-      if(prev !== 8){
+      if (prev !== 8) {
         prev + 2;
       }
     });
@@ -94,17 +95,20 @@ function QuestionsAndAnswers() {
     return (
       <section className="question-section">
         <div>Questions & Answers</div>
-        <div>
-          <form onSubmit={(e) => e.preventDefault()}>
-            <input
-              type="text"
-              id="header-search"
-              placeholder="Have a question? Search for answers..."
-              name="search"
-              value={searchTerm.search}
-              onChange={(e) => handleChange(e)}
-            />
-          </form>
+        <div className="search-bar">
+            <i className="fa-solid fa-magnifying-glass" />
+          <div>
+            <form onSubmit={(e) => e.preventDefault()}>
+              <input
+                type="text"
+                id="header-search"
+                placeholder="Have a question? Search for answers..."
+                name="search"
+                value={searchTerm.search}
+                onChange={(e) => handleChange(e)}
+              />
+            </form>
+          </div>
         </div>
         <div>
           {noQuestions ? <h2>Looks like no answered questions are available for this product, please add a new question</h2> : null}
@@ -124,7 +128,7 @@ function QuestionsAndAnswers() {
         )}
         <div className="bottom-buttons-div">
           <div>
-            {loadQuestions && <button className="text-border-btn"onClick={adjustQuestionCount}>MORE ANSWERED QUESTIONS</button>}
+            {loadQuestions && <button className="text-border-btn" onClick={adjustQuestionCount}>MORE ANSWERED QUESTIONS</button>}
           </div>
           <div>
             <button type="button" className="text-border-btn" onClick={showModal}>
