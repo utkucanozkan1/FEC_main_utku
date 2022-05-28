@@ -37,16 +37,15 @@ export default function RatingBreakdownMain({ data, setRatingFilter }) {
         ? (
           <div>
             <Recommend>
-              {recommend}% of reviews recommend this product
-              {/* <br />
-             {sumRating} reviews */}
+              {recommend}
+              % of reviews recommend this product
             </Recommend>
             {starRatings.map((rating, i) => (
               <OuterBarGraph key={i} onClick={setRatingFilter}>
                 <InnerBarGraph>{rating}</InnerBarGraph>
                 <InnerBarGraph>star</InnerBarGraph>
-                <BarChart length={data.ratings[rating] / sumRating * 100} />
-                <InnerBarGraph>{data.ratings[rating]}</InnerBarGraph>
+                <BarChart length={data.ratings[rating] > 0 ? data.ratings[rating] / sumRating * 100 : 0} />
+                <InnerBarGraph>{data.ratings[rating] > 0 ? data.ratings[rating] : 0}</InnerBarGraph>
               </OuterBarGraph>
             ))}
             <ProductBreakdownContainer>
@@ -58,7 +57,8 @@ export default function RatingBreakdownMain({ data, setRatingFilter }) {
                 average={((data.characteristics[char].value / 5) * 100).toFixed(0)}
               />
               <Character>
-                {characteristics[char].map((element, index) => (<span key={index}>{element}</span>))}
+                {characteristics[char].map((element, index) =>
+                  (<span key={index}>{element}</span>))}
               </Character>
             </CharacterGraph>
           )) : (null)
