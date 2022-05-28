@@ -16,7 +16,7 @@ function Checkout(props) {
     item, styles, styleIndex, setStyleIndex,
   } = { ...props }.data;
 
-  const { outfitterListener, triggerOutfitterListener } = useContext(ProductIdContext);
+  const { outfitterListener, addToOutfitter } = useContext(ProductIdContext);
   // Fill style thumbnails
   const styleThumbs = styles.map((dataStyle, index) => {
     const classList = index !== styleIndex
@@ -61,33 +61,34 @@ function Checkout(props) {
     document.querySelector('.quantity').value = 0;
     setQuantityOptions(newQuantityOptions);
   };
-  const addToOutfitter = (e) => {
-    e.preventDefault();
-    // Props to add to new outfitter item
-    const {
-      category, name: title, default_price: original_price, rating,
-    } = item;
-    let imageUrl = styles[0]?.photos[0]?.thumbnail_url || '';
-    let sale_price = styles[0]?.sale_price;
-    for (let i = 0; i < styles.length; i += 1) {
-      if (styles[i]['default?'] && styles[i]?.photos[0]?.thumbnail_url) {
-        imageUrl = styles[i].photos[0].thumbnail_url;
-        sale_price = styles[i]?.sale_price;
-      }
-    }
-    const starred = {
-      productId: item.id, title, category, original_price, sale_price, rating, imageUrl,
-    };
-    axios.post('/outfitter', starred)
-      .then(() => {
-        triggerOutfitterListener(new Date());
-      })
-      .catch((err) => {
-        // TODO: 427 if
-        console.log('--> 🚫Err: Outfit already exists in outfitter.json!\nP.S. I 💛 My Little Pony 🥺\n');
-        console.log(err);
-      });
-  };
+  // const addToOutfitter = (e) => {
+  //   e.preventDefault();
+  //   console.log(item);
+  //   // Props to add to new outfitter item
+  //   const {
+  //     category, name: title, default_price: original_price, rating,
+  //   } = item;
+  //   let imageUrl = styles[0]?.photos[0]?.thumbnail_url || '';
+  //   let sale_price = styles[0]?.sale_price;
+  //   for (let i = 0; i < styles.length; i += 1) {
+  //     if (styles[i]['default?'] && styles[i]?.photos[0]?.thumbnail_url) {
+  //       imageUrl = styles[i].photos[0].thumbnail_url;
+  //       sale_price = styles[i]?.sale_price;
+  //     }
+  //   }
+  //   const starred = {
+  //     productId: item.id, title, category, original_price, sale_price, rating, imageUrl,
+  //   };
+  //   axios.post('/outfitter', starred)
+  //     .then(() => {
+  //       triggerOutfitterListener(new Date());
+  //     })
+  //     .catch((err) => {
+  //       // TODO: 427 if
+  //       console.log('--> 🚫Err: Outfit already exists in outfitter.json!\nP.S. I 💛 My Little Pony 🥺\n');
+  //       console.log(err);
+  //     });
+  // };
 
   return (
     <section className="checkout-section">
