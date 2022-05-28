@@ -12,7 +12,6 @@ export const CardProductContext = React.createContext();
 
 function RelatedView() {
   const { itemId, setItemId } = useContext(ProductIdContext);
-  const [loading, toogleLoading] = useState(true);
   const [productRatings, setRatings] = useState([]);
   const [related, setRelated] = useState([]);
   const [viewable, setViewable] = useState([]);
@@ -66,33 +65,24 @@ function RelatedView() {
     if (related.length <= 4 && related.length > 0) {
       setEnd(true);
     }
-    toogleLoading(false);
   }, [viewable]);
 
-  if (!loading) {
-    return (
-      <section>
-        <h6>RELATED PRODUCTS</h6>
-        <CardContainer>
-          <ViewableContext.Provider value={{ viewable, setViewable, position, setPosition, related, end, setEnd }}>
-            <LeftArrow />
-            {viewable.slice(position, position + 4).map((product, i) => (
-              <CardProductContext.Provider key={i} value={{ setItemId, product }}>
-                <RelatedCard key={i} cardRating={productRatings[i]} />
-              </CardProductContext.Provider>
-            ))}
-            <RightArrow />
-          </ViewableContext.Provider>
-        </CardContainer>
-      </section>
-    );
-  } else {
-    return (
-      <section>
-        <div>Loading...</div>
-      </section>
-    );
-  }
+  return (
+    <section>
+      <h6>RELATED PRODUCTS</h6>
+      <CardContainer>
+        <ViewableContext.Provider value={{ viewable, setViewable, position, setPosition, related, end, setEnd }}>
+          <LeftArrow />
+          {viewable.slice(position, position + 4).map((product, i) => (
+            <CardProductContext.Provider key={i} value={{ setItemId, product }}>
+              <RelatedCard key={i} cardRating={productRatings[i]} />
+            </CardProductContext.Provider>
+          ))}
+          <RightArrow />
+        </ViewableContext.Provider>
+      </CardContainer>
+    </section>
+  );
 }
 
 export default RelatedView;
