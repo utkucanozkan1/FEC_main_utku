@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import CardDiv from './RIOC-styled-components/CardDiv';
 import StarRating from '../shared/StarRating';
-import ModalButton from './RIOC-styled-components/ModalButton';
+import CardButton from './RIOC-styled-components/CardButton';
 import CompareModal from './CompareModal';
 import '../../dist/styles/styles-val.css';
 import { CardProductContext } from './RelatedView';
@@ -28,7 +28,7 @@ function RelatedCard({ cardRating }) {
     <ModalContext.Provider value={{ modal, setModal }}>
       <CardDiv onClick={clickHanlder}>
         <div className="prodImg" style={{ backgroundImage: `url(${productImage})` }}>
-          <ModalButton type="button" onClick={modalHandler}>⭐️</ModalButton>
+          <CardButton type="button" onClick={modalHandler}>⭐️</CardButton>
         </div>
         {modal ? <CompareModal /> : <> </>}
         <p>{product.category}</p>
