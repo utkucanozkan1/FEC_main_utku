@@ -108,7 +108,7 @@ function Checkout(props) {
             // eslint-disable-next-line react/no-array-index-key
             <React.Fragment key={index}>
               {style}
-            </React .Fragment>
+            </React.Fragment>
           ))}
         </ul>
       </div>
@@ -116,7 +116,7 @@ function Checkout(props) {
       {/* Checkout Options */}
       <div className="checkout">
         <select className="size" onChange={sizeChange}>
-          <option disabled>SELECT SIZE</option>
+          <option disabled selected>SELECT SIZE</option>
           {sizeOptions.map((size, index) => (
             // eslint-disable-next-line react/no-array-index-key
             <React.Fragment key={index}>
