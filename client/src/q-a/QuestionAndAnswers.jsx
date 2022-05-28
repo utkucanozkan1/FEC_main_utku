@@ -1,3 +1,9 @@
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable import/no-cycle */
+/* eslint-disable import/extensions */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable react/button-has-type */
+/* eslint-disable max-len */
 /* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable no-else-return */
 import React, { useState, useEffect, useContext } from 'react';
@@ -18,8 +24,11 @@ function QuestionsAndAnswers() {
   const [questionArray, setQuestionArray] = useState([]);
   const [loading, toogleLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState({ search: '' });
-  const [productId, setProductId] = useState(itemId);
   const [showModalForm, setShowModalForm] = useState('false');
+  const [noQuestions, setNoQuestions] = useState(false);
+  const [questionCount, setQuestionCount] = useState(0);
+  const [loadQuestions, setLoadQuestions] = useState(true);
+  const [sliceCount, setSliceCount] = useState(2);
 
   useEffect(() => {
     // let's just use 37311 for now
@@ -34,19 +43,20 @@ function QuestionsAndAnswers() {
       setQuestionArray([...questionsArray]);
       // console.log(questionsArray);
       toogleLoading(false);
-      console.log('getting questions');
-    });
+      !questionsArray.length ? setNoQuestions(true) : setNoQuestions(false);
+      setQuestionCount(questionsArray.length - 2);
+      // questionCount >= 2 ? setLoadQuestions(true) : setLoadQuestions(false);
+      // setLoadQuestions(false);
+      setSliceCount(2);
+    })
+      .then()
+      .catch((err) => console.log(err));
   }, [itemId]);
 
   useEffect(() => {
     // searchingArray = [];
-    if (searchTerm.search.length > 2) {
-      console.log(searchArray);
-      console.log(searchTerm);
-      console.log(searchingArray);
-      // console.log(questionsArray);
-      // searchingArray = [];
-      searchingArray = questionArray.filter((el, i) => el.question_body.toLowerCase().includes(searchTerm.search));
+    if (searchTerm.search.length > 3) {
+      searchingArray = questionArray.filter((el) => el.question_body.toLowerCase().includes(searchTerm.search));
       setSearchArray([...searchingArray]);
       setSearchQuestions(true);
     } else {
@@ -54,6 +64,10 @@ function QuestionsAndAnswers() {
       setSearchQuestions(false);
     }
   }, [searchTerm.search]);
+
+  useEffect(() => {
+    questionCount >= 2 ? setLoadQuestions(true) : setLoadQuestions(false);
+  }, [questionCount]);
 
   const handleChange = function (e) {
     setSearchTerm({ ...searchTerm, search: e.target.value });
@@ -64,6 +78,10 @@ function QuestionsAndAnswers() {
 
   const hideModal = () => {
     setShowModalForm('false');
+  };
+  const adjustQuestionCount = () => {
+    setQuestionCount((prev) => prev - 2);
+    setSliceCount((prev) => prev + 2);
   };
 
   if (!loading) {
@@ -82,6 +100,9 @@ function QuestionsAndAnswers() {
             />
           </form>
         </div>
+        <div>
+          {noQuestions ? <h2>Looks like no answered questions are available for this product, please add a new question</h2> : null}
+        </div>
         {searchQuestions ? (
           <div className="main-div">
             {searchArray.slice(0, 2).map((question, i) => (
@@ -90,26 +111,31 @@ function QuestionsAndAnswers() {
           </div>
         ) : (
           <div className="main-div">
-            {questionArray.slice(0, 4).map((question, i) => (
+            {questionArray.slice(0, sliceCount).map((question, i) => (
               <QuestionList question={question} key={i} />
             ))}
           </div>
         )}
-        <div>
-          <button type="button" onClick={showModal}>
-            Add A Question +
-            {' '}
-          </button>
-          <div className="modal-popup">
-            <QuestionModal
-              show={showModalForm}
-              handleExit={hideModal}
-              itemId={itemId}
-            >
-              <FormStyle>
-                <NewQuestion itemId={itemId}> </NewQuestion>
-              </FormStyle>
-            </QuestionModal>
+        <div className="bottom-buttons-div">
+          <div>
+            {loadQuestions && <button onClick={adjustQuestionCount}>MORE ANSWERED QUESTIONS</button>}
+          </div>
+          <div>
+            <button type="button" onClick={showModal}>
+              ADD A QUESTION +
+              {' '}
+            </button>
+            <div className="modal-popup">
+              <QuestionModal
+                show={showModalForm}
+                handleExit={hideModal}
+                itemId={itemId}
+              >
+                <FormStyle>
+                  <NewQuestion itemId={itemId}> </NewQuestion>
+                </FormStyle>
+              </QuestionModal>
+            </div>
           </div>
         </div>
       </section>

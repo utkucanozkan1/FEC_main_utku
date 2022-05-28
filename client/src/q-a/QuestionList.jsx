@@ -1,3 +1,9 @@
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable react/button-has-type */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable react/prop-types */
+/* eslint-disable import/extensions */
+/* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable no-tabs */
 /* eslint-disable react/destructuring-assignment */
@@ -10,26 +16,36 @@ import ModalPopup from './Modal.jsx';
 import Form from './Form.jsx';
 import { FormStyle } from './q&a-styled-components/q&aSectionContainerStyle';
 
-const answerArray = [];
-const QuestionList = function (props) {
-  // console.log("this is the props question:", props.question);
+function QuestionList(props) {
   const [answerArr, setAnswerArr] = useState([]);
   const [loading, toogleLoading] = useState(true);
   const [answerReported, setAnswerReported] = useState(false);
+  const [answerReported2, setAnswerReported2] = useState(false);
   const [showModalForm, setShowModalForm] = useState('false');
-  const [answerHelpful, setAnswerHelpful] = useState(false);
+  const [answer1Helpful, setAnswer1Helpful] = useState(false);
+  const [answer2Helpful, setAnswer2Helpful] = useState(false);
   const [questionHelpful, setQuestionHelpful] = useState(false);
+  const [moreAnswers, setMoreAnswers] = useState(Object.keys(props.question.answers).length > 1);
+  const [addAnswer, setAddAnswer] = useState(false);
 
   useEffect(() => {
     axios
       .get(`/answers/${props.question.question_id}`)
       .then((result) => {
         if (result.data.results) {
-          setAnswerArr(result.data.results);
+          const newAnswerArray = result.data.results.reduce((acc, answer) => {
+            answer.answerer_name.toLowerCase() === 'seller' ? acc.unshift(answer) : acc.push(answer);
+            return acc;
+          }, []);
+          setAnswerArr(newAnswerArray);
           toogleLoading(false);
-          setAnswerHelpful(false);
+          setAnswer1Helpful(false);
+          setAnswer2Helpful(false);
           setQuestionHelpful(false);
           setAnswerReported(false);
+          setAnswerReported2(false);
+          setAddAnswer(false);
+          setMoreAnswers(Object.keys(props.question.answers).length > 1);
         }
       })
       .then()
@@ -38,19 +54,36 @@ const QuestionList = function (props) {
 
   function reportAnswer() {
     const answerId = answerArr[0].answer_id;
-    console.log(answerId);
     axios
       .put(`/answer/report/${answerId}`)
       .then(setAnswerReported(true))
-      .then((res) => console.log('answer reported'))
+      .then(() => console.log('answer reported'))
       .catch((err) => console.log(err));
   }
-  function helpfulAnswer() {
-    const answerId = answerArr[0].answer_id;
+  function reportAnswerDos() {
+    const answerId = answerArr[1].answer_id;
+    axios
+      .put(`/answer/report/${answerId}`)
+      .then(setAnswerReported2(true))
+      .then(() => console.log('answer reported'))
+      .catch((err) => console.log(err));
+  }
+  function helpfulAnswer(obj) {
+    console.log(obj);
+    const answerId = obj.answer_id;
     axios
       .put(`/answer/helpful/${answerId}`)
-      .then(setAnswerHelpful(true))
-      .then((res) => console.log('answer helpful'))
+      .then(setAnswer1Helpful(true))
+      .then(() => console.log('answer helpful'))
+      .catch((err) => console.log(err));
+  }
+  function helpfulAnswerDos(obj) {
+    console.log(obj);
+    const answerId = obj.answer_id;
+    axios
+      .put(`/answer/helpful/${answerId}`)
+      .then(setAnswer2Helpful(true))
+      .then(() => console.log('answer helpful'))
       .catch((err) => console.log(err));
   }
   function helpfulQuestion() {
@@ -58,7 +91,7 @@ const QuestionList = function (props) {
     axios
       .put(`/question/helpful/${questionId}`)
       .then(setQuestionHelpful(true))
-      .then((res) => console.log('question helpful'))
+      .then(() => console.log('question helpful'))
       .catch((err) => console.log(err));
   }
   const showModal = () => {
@@ -67,6 +100,11 @@ const QuestionList = function (props) {
 
   const hideModal = () => {
     setShowModalForm('false');
+  };
+
+  const handleAnswers = () => {
+    setMoreAnswers(false);
+    setAddAnswer(true);
   };
 
   if (!loading) {
@@ -93,7 +131,7 @@ const QuestionList = function (props) {
 								  helpfulQuestion();
                 }}
               >
-                <text style={{ fontSize: 'small' }}>Helpful?</text>
+                <i style={{ fontSize: 'small' }}>Helpful?</i>
 								&nbsp;
                 <mark
                   style={{ textDecoration: 'underline', fontSize: 'small' }}
@@ -114,63 +152,122 @@ const QuestionList = function (props) {
             </div>
           </div>
         </div>
-        {Object.keys(props.question.answers).length
-          ? (
-            <>
-              <div>
-                <b>A:</b>
-                <span className="answer-text">{answerArr[0].body}</span>
-              </div>
-              <div>
-                {answerArr[0].photos.map((photo, i) => (
-                  <ImageComponent key={i} photo={photo} />
-                ))}
-              </div>
+        <div>
+          <b>A:</b>
+          <span className="answer-text">{answerArr[0].body}</span>
+        </div>
+        <div>
+          {answerArr[0].photos.map((photo, i) => (
+            <ImageComponent key={i} photo={photo} />
+          ))}
+        </div>
 
-              <div>
-                <span style={{ fontSize: 'small' }}>
-                  by &nbsp;
-                  {answerArr[0].answerer_name}, &nbsp;
-                  {moment(answerArr[0].date.slice(0, 10)).format('MMM Do YY')}
-                </span>
-                {answerHelpful ? (
-                  <button type="button" className="astext-btn">
-                    This Answer has been marked Helpful
-                  </button>
-                ) : (
-                  <button
-                    type="button"
-                    className="astext-btn"
-                    onClick={() => {
-					        helpfulAnswer();
-                    }}
-                  >
+        <div>
+          <span style={{ fontSize: 'small' }}>
+            by &nbsp;
+            <span>{answerArr[0].answerer_name.toLowerCase() === 'seller' ? <b>Seller</b> : <>{answerArr[0].answerer_name}</>}</span>, &nbsp;
+            {moment(answerArr[0].date.slice(0, 10)).format('MMM Do YY')}
+          </span>
+          {answer1Helpful ? (
+            <button type="button" className="astext-btn">
+              This Answer has been marked Helpful
+            </button>
+          ) : (
+            <button
+              type="button"
+              className="astext-btn"
+              onClick={() => {
+					        helpfulAnswer(answerArr[0]);
+              }}
+            >
               &nbsp;&nbsp; | &nbsp;&nbsp;
-                    <text style={{ fontSize: 'small' }}>Helpful?</text>
+              <i style={{ fontSize: 'small' }}>Helpful?</i>
 							&nbsp;
-                    <mark style={{ textDecoration: 'underline', fontSize: 'small' }}>
-                      Yes
-                    </mark>
-                    ({answerArr[0].helpfulness})
-                  </button>
-                )}
+              <mark style={{ textDecoration: 'underline', fontSize: 'small' }}>
+                Yes
+              </mark>
+              ({answerArr[0].helpfulness})
+            </button>
+          )}
           &nbsp;&nbsp; | &nbsp;&nbsp;
-                {answerReported ? (
-                  <button type="button" className="astext-btn-answer">
-                    This Answer has been Reported
-                  </button>
-                ) : (
-                  <button
-                    type="button"
-                    className="astext-btn-answer"
-                    onClick={reportAnswer}
-                  >
-                    Report
-                  </button>
-                )}
-              </div>
-            </>
-          ) : null}
+          {answerReported ? (
+            <button type="button" className="astext-btn-answer">
+              This Answer has been Reported
+            </button>
+          ) : (
+            <button
+              type="button"
+              className="astext-btn-answer"
+              onClick={reportAnswer}
+            >
+              Report
+            </button>
+          )}
+        </div>
+        <div>
+          {moreAnswers ? <button onClick={() => handleAnswers()}>LOAD MORE ANSWERS</button> : null}
+        </div>
+        <div>
+          {addAnswer
+            ? (
+              <>
+                <div>
+                  <b>A:</b>
+                  <span className="answer-text">{answerArr[1].body}</span>
+                </div>
+                <div>
+                  {answerArr[1].photos.map((photo, i) => (
+                    <ImageComponent key={i} photo={photo} />
+                  ))}
+                </div>
+
+                <div>
+                  <span style={{ fontSize: 'small' }}>
+                    by &nbsp;
+                    <span>{answerArr[1].answerer_name.toLowerCase() === 'seller' ? <b>Seller</b> : <>{answerArr[1].answerer_name}</>}</span>, &nbsp;
+                    {moment(answerArr[1].date.slice(0, 10)).format('MMM Do YY')}
+                  </span>
+                  {answer2Helpful ? (
+                    <button type="button" className="astext-btn">
+                      This Answer has been marked Helpful
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      className="astext-btn"
+                      onClick={() => {
+                        helpfulAnswerDos(answerArr[1]);
+                      }}
+                    >
+    &nbsp;&nbsp; | &nbsp;&nbsp;
+                      <i style={{ fontSize: 'small' }}>Helpful?</i>
+    &nbsp;
+                      <mark style={{ textDecoration: 'underline', fontSize: 'small' }}>
+                        Yes
+                      </mark>
+                      ({answerArr[1].helpfulness})
+                    </button>
+                  )}
+&nbsp;&nbsp; | &nbsp;&nbsp;
+                  {answerReported2 ? (
+                    <button type="button" className="astext-btn-answer">
+                      This Answer has been Reported
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      className="astext-btn-answer"
+                      onClick={reportAnswerDos}
+                    >
+                      Report
+                    </button>
+                  )}
+                </div>
+              </>
+            )
+
+            : null }
+        </div>
       </div>
     );
     // eslint-disable-next-line no-else-return
@@ -179,5 +276,5 @@ const QuestionList = function (props) {
       <div> Questions Loading...</div>
     </section>;
   }
-};
+}
 export default QuestionList;

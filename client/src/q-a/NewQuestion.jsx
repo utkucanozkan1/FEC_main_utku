@@ -1,28 +1,30 @@
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable react/prop-types */
+/* eslint-disable camelcase */
 import React, { useState } from 'react';
 import axios from 'axios';
 import { FormStyle } from './q&a-styled-components/q&aSectionContainerStyle';
 
-export default function NewQuestion( {itemId}) {
+export default function NewQuestion({ itemId }) {
   const [body, setBody] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [isClicked, setIsClicked] = useState(false);
 
   const onSubmit = (event) => {
-    // eslint-disable-next-line camelcase
     const product_id = itemId;
     axios
-      .post(`/questions`, {
+      .post('/questions', {
         body, name, email, product_id,
       })
-      .then((res) => console.log('post question success'))
+      .then(() => console.log('post question success'))
       .catch((err) => console.log(err));
     setIsClicked(true);
     event.preventDefault();
   };
 
   return (
-<FormStyle>
+    <FormStyle>
       <div className="answer-header">
         &nbsp; &nbsp;
         <h1> Ask Your Question</h1>
