@@ -3,8 +3,6 @@
 /* eslint-disable object-curly-newline */
 /* eslint-disable import/extensions */
 import React, { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
-import config from '../../../config.js';
 import getAverageRating from '../../../server/utils/helpers.js';
 
 // Subcomponent/Context imports

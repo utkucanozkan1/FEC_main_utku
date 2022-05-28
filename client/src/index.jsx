@@ -37,6 +37,8 @@ function App() {
   const [itemId, setItemId] = useState(37316);
   // Data object to pass to provider
   const [data, setData] = useState({});
+  const [outfitterListener, triggerOutfitterListener] = useState('🍕');
+
   const reqErr427 = () => {
     alert('Too many requests: wait 30-60 seconds!');
   };
@@ -73,7 +75,7 @@ function App() {
   if (!loading) {
     return (
       <div>
-        <ProductIdContext.Provider value={data}>
+        <ProductIdContext.Provider value={{ ...data, outfitterListener, triggerOutfitterListener }}>
           <ItemOverview />
           <RelatedOutfitView />
           <QuestionsAndAnswers />

@@ -68,6 +68,9 @@
   background-position: center;
   border: 0.075vw solid black;
 }
+.item-overview-section .gallery-section .gallery-container .image-list-wrapper .thumbnails .thumbnail:hover {
+  opacity: 50%;
+}
 .item-overview-section .gallery-section .gallery-container .image-list-wrapper .thumbnails .thumbnail-selected {
   position: relative;
 }

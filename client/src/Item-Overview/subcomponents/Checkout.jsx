@@ -1,19 +1,22 @@
+/* eslint-disable import/no-cycle */
 /* eslint-disable camelcase */
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable import/extensions */
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 
 // Subcomponent/Context imports
 import StarRating from '../../shared/StarRating.jsx';
+import { ProductIdContext } from '../../index.jsx';
 
 function Checkout(props) {
   const {
     item, styles, styleIndex, setStyleIndex,
   } = { ...props }.data;
 
+  const { outfitterListener, triggerOutfitterListener } = useContext(ProductIdContext);
   // Fill style thumbnails
   const styleThumbs = styles.map((dataStyle, index) => {
     const classList = index !== styleIndex
@@ -76,15 +79,20 @@ function Checkout(props) {
       productId: item.id, title, category, original_price, sale_price, rating, imageUrl,
     };
     axios.post('/outfitter', starred)
-      .then()
-      .catch(() => {
-        console.log('--> 🚫Err: Outfit already exists in outfitter.json!\nP.S. I 💛 My Little Pony 🥺\n');
+      .then(() => {
+        triggerOutfitterListener(new Date());
+      })
+      .catch((err) => {
+        // TODO: 427 if
+        // console.log('--> 🚫Err: Outfit already exists in outfitter.json!\nP.S. I 💛 My Little Pony 🥺\n');
+        console.log(err);
       });
   };
 
   return (
     <section className="checkout-section">
       {/* Rating and Title */}
+      { console.log(outfitterListener) }
       <div className="rating-title">
         <div className="reviews-wrapper">
           <StarRating rating={item.rating} className="checkout-star-rating" />
