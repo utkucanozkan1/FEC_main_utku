@@ -5,14 +5,5 @@
 		"category": "Kicks",
 		"original_price": "89.00",
 		"sale_price": null,
-		"imageUrl": "https://images.unsplash.com/photo-1477420143023-6a0e0b04b69a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
-	},
-	{
-		"productId": 37313,
-		"title": "Morning Joggers",
-		"category": "Pants",
-		"original_price": "40.00",
-		"sale_price": null,
-		"imageUrl": "https://images.unsplash.com/photo-1552902865-b72c031ac5ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
 	}
 ]
