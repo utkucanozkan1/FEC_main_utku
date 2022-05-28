@@ -4,9 +4,15 @@ import StarRating from '../shared/StarRating';
 import CardDiv from './RIOC-styled-components/CardDiv';
 import CardButton from './RIOC-styled-components/CardButton';
 import { OutfitContext } from './OutfitView';
+import { ProductIdContext } from '../index';
 
 function OutfitCard({card}) {
   const { outfit, setOutfit } = useContext(OutfitContext);
+  const { setItemId } = useContext(ProductIdContext);
+
+  function clickHanlder() {
+    setItemId(card.productId);
+  }
 
   function deleteCard(event) {
     event.cancelBubble = true;
@@ -28,7 +34,7 @@ function OutfitCard({card}) {
   }
 
   return (
-    <CardDiv onClick={() => { console.log('Should go to product page'); }}>
+    <CardDiv onClick={clickHanlder}>
       <div className="prodImg" style={{ backgroundImage: `url(${card.imageUrl})` }}>
         <CardButton type="button" onClick={deleteCard}>X</CardButton>
       </div>

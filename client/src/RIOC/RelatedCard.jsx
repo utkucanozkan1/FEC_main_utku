@@ -5,7 +5,6 @@ import CardButton from './RIOC-styled-components/CardButton';
 import CompareModal from './CompareModal';
 import '../../dist/styles/styles-val.css';
 import { CardProductContext } from './RelatedView';
-import axios from 'axios';
 
 export const ModalContext = React.createContext();
 
