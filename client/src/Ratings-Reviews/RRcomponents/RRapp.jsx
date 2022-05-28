@@ -16,11 +16,9 @@ export default function RatingReviews() {
   }
 
   return (
-    // <RatingsReviewsOuterContainer>
     <RatingReviewContainer>
       <RatingSummary setRatingFilter={filterByRating} />
       <ReviewList ratingFilter={ratingFilter} />
     </RatingReviewContainer>
-    // {/* </RatingsReviewsOuterContainer> */}
   );
 }
