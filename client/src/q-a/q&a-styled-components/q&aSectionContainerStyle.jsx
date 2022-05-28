@@ -9,6 +9,7 @@ const Modal = styled.div`
 	background: rgba(0, 0, 0, 0.6);
 	display: ${({ show }) => (show === "true" ? "block" : "none")};
 	border: 2px solid red;
+	z-index: 1001;
 `;
 
 const FormContainer = styled.div`
@@ -30,7 +31,7 @@ const FormStyle = styled.div`
 	top: 10;
 	left: 10;
 	display: flex;
-  flex-direction: column;
+	flex-direction: column;
 	justify-content: center;
 `;
 
