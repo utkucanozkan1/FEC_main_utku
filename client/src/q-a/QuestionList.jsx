@@ -156,13 +156,13 @@ function QuestionList(props) {
           <b>A:</b>
           <span className="answer-text">{answerArr[0].body}</span>
         </div>
-        <div>
+        <div className="answerer-smallBreak">
           {answerArr[0].photos.map((photo, i) => (
             <ImageComponent key={i} photo={photo} />
           ))}
         </div>
 
-        <div>
+        <div className="answer-detail-div">
           <span style={{ fontSize: 'small' }}>
             by &nbsp;
             <span>{answerArr[0].answerer_name.toLowerCase() === 'seller' ? <b>Seller</b> : <>{answerArr[0].answerer_name}</>}</span>, &nbsp;
@@ -205,9 +205,9 @@ function QuestionList(props) {
           )}
         </div>
         <div>
-          {moreAnswers ? <button onClick={() => handleAnswers()}>LOAD MORE ANSWERS</button> : null}
+          {moreAnswers ? <button className="moreAnswers-btn" onClick={() => handleAnswers()}>LOAD MORE ANSWERS</button> : null}
         </div>
-        <div>
+        <div className="answerer-detail-div">
           {addAnswer
             ? (
               <>
@@ -215,13 +215,13 @@ function QuestionList(props) {
                   <b>A:</b>
                   <span className="answer-text">{answerArr[1].body}</span>
                 </div>
-                <div>
+                <div className="answerer-smallBreak">
                   {answerArr[1].photos.map((photo, i) => (
                     <ImageComponent key={i} photo={photo} />
                   ))}
                 </div>
 
-                <div>
+                <div className="answer-detail-div">
                   <span style={{ fontSize: 'small' }}>
                     by &nbsp;
                     <span>{answerArr[1].answerer_name.toLowerCase() === 'seller' ? <b>Seller</b> : <>{answerArr[1].answerer_name}</>}</span>, &nbsp;

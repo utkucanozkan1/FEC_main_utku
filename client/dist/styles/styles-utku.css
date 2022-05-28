@@ -3,7 +3,7 @@
   border: 1px solid red;
 } */
 .small {
-  width: 140px;
+  width: 7vw;
 }
 .dialog {
   box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.956);
@@ -14,7 +14,7 @@
 
 .image-component {
   display: inline-flex;
-  margin-right: 5%;
+  margin-right: 2.5%;
   flex-direction: row;
   justify-content: space-evenly;
   border-color: black;
@@ -87,14 +87,31 @@
   margin:0;
   padding:1vw;
   cursor: pointer;
-font-weight: bolder;
+  font-weight: bolder;
   font-size: small;
+  margin-right: 10%;
+}
+.moreAnswers-btn {
+  background:none;
+  border:none;
+  margin:0;
+  padding:0;
+  cursor: pointer;
+  font-size: small;
+  font-weight: bolder;
+  margin-top: 2.5em;
 }
 
 /* Image Styling */
-
-
-
+.answer-detail-div {
+  margin-top: 0.5em;
+}
+.answerer-detail-div {
+  margin-top: 1.5em;
+}
+.answerer-smallBreak {
+  margin-top: 1em;
+}
 .answer-text {
   font-size: medium;
 }
@@ -135,6 +152,7 @@ text-align: center;
   text-align: center;
 }
 .bottom-buttons-div {
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
+  justify-content: space-evenly;
 }
