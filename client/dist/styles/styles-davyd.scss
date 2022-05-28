@@ -12,6 +12,7 @@ $defaultBorder: 0.075vw solid black;
 
 .item-overview-section {
   min-height: 70vh;
+  width: 100vw;
 
   display: flex;
   justify-content: space-around;
@@ -21,6 +22,12 @@ $defaultBorder: 0.075vw solid black;
     height: 75vh;
     margin: 0 5vw;
     background-color: $darkGray;
+
+
+    &.gallery-section-expanded {
+      margin: 0;
+      overflow: hidden;
+    }
 
     .gallery-container {
       background-size: contain;
@@ -133,8 +140,13 @@ $defaultBorder: 0.075vw solid black;
       width: 100vw;
       height: 100vh;
 
-      &:hover {
-        cursor: zoom-out;
+      .gallery-container {
+        &:hover {
+          cursor: crosshair;
+        }
+        &.gallery-container-zoomed {
+          cursor: zoom-out;
+        }
       }
     }
   }

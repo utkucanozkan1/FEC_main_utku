@@ -8,6 +8,7 @@
 
 .item-overview-section {
   min-height: 70vh;
+  width: 100vw;
   display: flex;
   justify-content: space-around;
 }
@@ -16,6 +17,10 @@
   height: 75vh;
   margin: 0 5vw;
   background-color: rgb(59, 59, 59);
+}
+.item-overview-section .gallery-section.gallery-section-expanded {
+  margin: 0;
+  overflow: hidden;
 }
 .item-overview-section .gallery-section .gallery-container {
   background-size: contain;
@@ -107,7 +112,10 @@
   width: 100vw;
   height: 100vh;
 }
-.item-overview-section .gallery-section.gallery-section-expanded:hover {
+.item-overview-section .gallery-section.gallery-section-expanded .gallery-container:hover {
+  cursor: crosshair;
+}
+.item-overview-section .gallery-section.gallery-section-expanded .gallery-container.gallery-container-zoomed {
   cursor: zoom-out;
 }
 .item-overview-section .checkout-section {

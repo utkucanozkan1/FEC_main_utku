@@ -17,7 +17,12 @@ function Gallery(props) {
 
   const thumbnails = [];
   for (let i = startIndex; i <= endIndex; i += 1) {
-    const css = { backgroundImage: `url(${photos[i]?.thumbnail_url})` };
+    // Url schema error quick hardcoded fix
+    let thumbnailUrl = photos[i]?.thumbnail_url;
+    if (thumbnailUrl.length > 0 && thumbnailUrl[0] !== 'h') {
+      thumbnailUrl = thumbnailUrl.substring(1, thumbnailUrl.length);
+    }
+    const css = { backgroundImage: `url(${thumbnailUrl})` };
     const classList = i !== imageIndex ? 'thumbnail' : 'thumbnail thumbnail-selected';
     thumbnails.push((
       <li>
@@ -31,18 +36,63 @@ function Gallery(props) {
   const expandView = (e) => {
     e.preventDefault();
     e.stopPropagation();
+    const { classList } = e.target;
     // Click events work in mysterious ways
-    if (e.target.classList.contains('expand-view')) {
+    if (classList.contains('expand-view')) {
       const gallerySection = document.querySelector('.gallery-section');
       const checkoutSection = document.querySelector('.checkout-section');
 
       if (gallerySection.classList.contains('gallery-section-expanded')) {
-        gallerySection.classList.remove('gallery-section-expanded');
-        checkoutSection.setAttribute('style', 'display:inline-block');
+        if (classList.contains('expand-view-button')) {
+          // Remove expanded view
+          gallerySection.classList.remove('gallery-section-expanded');
+          checkoutSection.setAttribute('style', 'display:inline-block');
+        } else if (classList.contains('gallery-container') || classList.contains('image-navigation')) {
+          // Nav elements to be displayed/hidden
+          // const navEls = ['.image-navigation', '.image-list-wrapper', '.expand-view-wrapper']
+          //   .map((class) => document.querySelector(class));
+          const galleryNav = document.querySelector('.image-navigation');
+          const carouselNav = document.querySelector('.image-list-wrapper');
+          const expandViewBtn = document.querySelector('.expand-view-wrapper');
+
+          const galleryContainerClassList = document.querySelector('.gallery-container').classList;
+          if (galleryContainerClassList.contains('gallery-container-zoomed')) {
+            // Zoom in on pictures, add back navigation elements
+            galleryContainerClassList.remove('gallery-container-zoomed');
+            galleryNav.style.display = 'flex';
+            carouselNav.style.display = 'flex';
+            expandViewBtn.style.display = 'flex';
+          } else {
+            // Zoom in on pictures, remove navigation elements
+            galleryContainerClassList.add('gallery-container-zoomed');
+            galleryNav.style.display = 'none';
+            carouselNav.style.display = 'none';
+            expandViewBtn.style.display = 'none';
+          }
+        }
       } else {
+        // Add expanded view
         gallerySection.classList.add('gallery-section-expanded');
         checkoutSection.setAttribute('style', 'display:none');
       }
+    }
+  };
+
+  const expandImage = (e) => {
+    e.preventDefault();
+    const galleryContainer = document.querySelector('.gallery-container');
+    if (galleryContainer.classList.contains('gallery-container-zoomed')) {
+      // Get % of cursor position, related to galleryContainer measurements
+      const x = Math.round((e.clientX / galleryContainer.offsetWidth) * 100);
+      const y = Math.round((e.clientY / galleryContainer.offsetHeight) * 100);
+
+      // Move to the % part of the expanded image on mousemove
+      galleryContainer.style.backgroundSize = '250%';
+      galleryContainer.style.backgroundPosition = `${x}% ${y}%`;
+    } else {
+      // Reset
+      galleryContainer.style.backgroundSize = 'contain';
+      galleryContainer.style.backgroundPosition = 'center';
     }
   };
 
@@ -131,7 +181,7 @@ function Gallery(props) {
   });
 
   return (
-    <section className="gallery-section">
+    <section className="gallery-section" onMouseMove={expandImage}>
       <section
         className="gallery-container expand-view"
         style={{ backgroundImage: `url(${photos[imageIndex]?.url})` }}
@@ -139,8 +189,8 @@ function Gallery(props) {
       >
         {/* Expand view wrapper */}
         <div className="expand-view-wrapper">
-          <button type="button" id="expand-view" className="expand-view" onClick={expandView}>
-            <i className="fa-solid fa-expand expand-view" />
+          <button type="button" id="expand-view" className="expand-view-button expand-view" onClick={expandView}>
+            <i className="fa-solid fa-expand expand-view expand-view-button" />
           </button>
         </div>
 
