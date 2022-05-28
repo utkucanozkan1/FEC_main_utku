@@ -335,6 +335,23 @@ app.get('/outfitter', (req, res) => {
     res.send(items);
   });
 });
+// DELETE an item from outfitter.json
+app.delete('/outfitter', (req, res) => {
+  // req.body.productId is productId for card
+  // req.body.cards is all card data for all cards
+  const { cards, productId } = req.body;
+  for (let i = 0; i < cards.length; i += 1) {
+    if (cards[i].productId === productId) {
+      cards.splice(i, 1);
+    }
+  }
+  fs.writeFile(path.join(__dirname, 'data/outfitter.json'), JSON.stringify(cards, null, '\t'), (writeErr) => {
+    if (writeErr) {
+      console.log(writeErr);
+    }
+    res.end();
+  });
+});
 // POST new item to outfitter.json
 app.post('/outfitter', (req, res) => {
   const item = req.body;

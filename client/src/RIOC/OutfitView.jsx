@@ -9,7 +9,7 @@ import CardContainer from './RIOC-styled-components/CardContainer';
 export const OutfitContext = React.createContext();
 
 function OutfitView() {
-  const [outfit, setOutfit] = useState(['', '']);
+  const [outfit, setOutfit] = useState([]);
 
   useEffect(() => {
     axios.get('/outfitter')
