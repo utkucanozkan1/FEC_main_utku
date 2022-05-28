@@ -8,7 +8,7 @@ import ReviewCard from './ReviewCard';
 import ModalPopup from './Modal';
 import Form from './Form';
 import { ProductIdContext } from '../../../index';
-import { retrieve2Reviews, retrieveAllReviews } from './serverAction';
+import { retrieve2Reviews } from './serverAction';
 
 // require('dotenv').config();
 
@@ -26,7 +26,6 @@ export default function ReviewList() {
     return retrieve2Reviews(itemId, page, count, sort)
       .then((res) => {
         setReviews([...res.data.results]);
-        setTotalReviews(res.data.count);
       })
       .catch((err) => {
         console.log('Error, could not retrieve reviews, retrieve', err);
@@ -47,7 +46,7 @@ export default function ReviewList() {
       .catch((err) => {
         console.log('Error, could not retrieve meta', err);
       });
-  }, [itemId]);
+  }, []);
 
   function clickMoreReviews() {
     return retrieve2Reviews(itemId, page + 1, count, sort)
@@ -78,9 +77,7 @@ export default function ReviewList() {
     retrieveReviews();
   }, [itemId, sort]);
 
-  // useEffect(() => {
-  //   retrieveTotalReviews();
-  // }, [itemId]);
+
 
   return (
     <ReviewListContainer>
