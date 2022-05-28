@@ -13,9 +13,19 @@ export default function ReviewEntry({ review, retrieveReviews }) {
   const [reported, setReported] = useState(false);
   const [showAll, setShowAll] = useState(review.body.length < 250);
 
-  const showMore = () => setShowAll(true);
-  const showLess = () => setShowAll(false);
+  // const showMore = () => setShowAll(!showAll);
+
+
+
   const shortBody = review.body.substring(0, 250);
+  console.log(shortBody)
+  console.log(review.body.length)
+
+
+  function showMore(e) {
+    e.preventDefault();
+    setShowAll(!showAll)
+  }
 
   function clickHelpFunction(e) {
     e.preventDefault();
@@ -30,7 +40,6 @@ export default function ReviewEntry({ review, retrieveReviews }) {
   function clickReportFunction(e) {
     e.preventDefault();
     if (!reported) {
-      console.log(review)
       putReported(review.review_id)
         .then(() => {
           setReported(true);
@@ -51,8 +60,8 @@ export default function ReviewEntry({ review, retrieveReviews }) {
         </Date>
       </TopOfReview>
       <SmallSum>{review.summary}</SmallSum>
-      {{ showAll } ? <Paragraph>{review.body}</Paragraph> : <Paragraph>{shortBody} </Paragraph>}
-      {({ showAll } && review.body.length > 250 )? <a href="#" type="button" onClick={showLess}>Show Less</a>
+      {showAll ? <Paragraph>{review.body}</Paragraph> : <Paragraph>{shortBody}...</Paragraph>}
+      {(showAll && review.body.length > 250 )? <a href="#" type="button" onClick={showMore}>Show Less</a>
         : (review.body.length > 250) ? <a href="#" type="button" onClick={showMore}>Show More</a> : <a></a> }
       {review.recommend ? <p> Recommend Product </p> : <p> </p>}
       {review.response ? <SmallSum>{review.response}</SmallSum> : <p> </p>}

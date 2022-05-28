@@ -69,8 +69,6 @@ export default function ReviewList() {
     retrieveReviews();
   }, [itemId, sort]);
 
-
-
   return (
     <ReviewListContainer>
       <br />
