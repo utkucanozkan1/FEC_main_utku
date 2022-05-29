@@ -117,9 +117,26 @@ width: 25%;
 `;
 
 const Header = styled.div`
-width: 25%;
+width: 100%;
 color: white;
 `;
+
+const GridContainer = styled.div`
+  display: grid;
+  width: 100%;
+  gap: 5%;
+  grid-template-columns: 15% 15% 15% 15% 15%;
+  text-align: center;
+`;
+
+const FormButtonRow = styled.div`
+  float: left;
+  padding: 0 1%;
+  text-align: center;
+  &:hover {
+    background-color: #6291dd;
+  }
+  `;
 
 const Modal = styled.div`
   position: fixed;
@@ -178,5 +195,6 @@ export {
   Recommend, BottomButtons, FormStyle,
   FormElement, Header, FormContainer, CloseButton, Modal, Button,
   OuterBarGraph, InnerBarGraph, RatingsSummaryTop, SmallSum, Date,
-  Paragraph, TopOfReview, Character, CharacterGraph,
+  Paragraph, TopOfReview, Character, CharacterGraph, GridContainer,
+  FormButtonRow,
 };

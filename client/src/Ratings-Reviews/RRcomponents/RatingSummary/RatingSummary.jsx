@@ -20,7 +20,7 @@ export default function RatingSummary({ setRatingFilter }) {
     <SummaryLeft>
       <h3>Ratings and Reviews</h3>
       <br />
-      <RatingsSummaryTop >
+      <RatingsSummaryTop>
         {productRatings}
         <StarRating rating={productRatings} />
       </RatingsSummaryTop>

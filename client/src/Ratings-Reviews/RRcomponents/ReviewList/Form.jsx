@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import {
-  FormStyle, Header,
+  FormStyle, Header, GridContainer, FormButtonRow,
 } from '../../RR-styled-components/RRsectionContainerStyle';
 // import withRangeOption from "./withRangeOption.jsx"
 
@@ -44,155 +45,154 @@ export default function Form({ productId }) {
 
   return (
     <FormStyle>
-      <section>
-        <header>
-          <h2>What do you think of this product?</h2>
-        </header>
-        <form>
-          <Header>
-            <h3>
-              <label>
-                <span>Overall rating</span>
-              </label>
-            </h3>
-          </Header>
-          <hr />
-          <Header>
+      <header>
+        <h2>What do you think of this product?</h2>
+      </header>
+      <form>
+        <Header>
+          <h3>
             <label>
-              <span>Recommend this product</span>
+              <span>Overall rating</span>
+            </label>
+          </h3>
+        </Header>
+        <hr />
+        <Header>
+          <label>
+            <span>Recommend this product</span>
+            {' '}
+            <small>Yes</small>
+            {' '}
+            <input name="status" type="checkbox" onChange={handleCheck} />
+          </label>
+        </Header>
+        <hr />
+        <Header>
+          <h3>
+            <label>
+              <span>Characteristics</span>
+            </label>
+          </h3>
+          {Object.keys(chars).map((char) => (
+            <GridContainer key={char}>
+              <span>{char}</span>
               {' '}
-              <small>Yes</small>
-              {' '}
-              <input name="status" type="checkbox" onChange={handleCheck} />
-            </label>
-          </Header>
-          <hr />
-          <Header>
-            <h3>
-              <label>
-                <span>Characteristics</span>
-              </label>
-            </h3>
-            {Object.keys(chars).map((char) => (
-              <div key={char}>
-                <span>{char}</span>
-                {' '}
-                <select>
-                  {chars[char].map((elem, i) => (
-                    <option key={i} value={i + 1}>{elem}</option>
-                    // setChar to update state
-                  ))}
-                </select>
-              </div>
-            ))}
-          </Header>
-          <hr />
-          <Header>
-            <h3>
-              <label>
-                <span>Review summary</span>
-              </label>
-            </h3>
-          </Header>
-          <div>
+              {chars[char].map((elem, i) => (
+                <FormButtonRow key={i}>
+                  <input type="radio" key={i} value={i + 1} name={char} />
+                  <label key={i + 10} htmlFor={elem}>{elem}</label>
+                </FormButtonRow>
+              ))}
+            </GridContainer>
+            // setChar to update state
+          ))}
+        </Header>
+        <hr />
+        <Header>
+          <h3>
             <label>
-              <textarea
-                value={summary}
-                maxLength="60"
-                rows="3"
-                cols="50"
-                placeholder="Summary"
-                onChange={(e) => setSummary(e.target.value)}
-              />
+              <span>Review summary</span>
             </label>
-          </div>
-          <hr />
-          <Header>
-            <h3>
-              <label>
-                <span>Review body</span>
-              </label>
-            </h3>
-          </Header>
-          <div>
+          </h3>
+        </Header>
+        <div>
+          <label>
+            <textarea
+              value={summary}
+              maxLength="60"
+              rows="3"
+              cols="50"
+              placeholder="Summary"
+              onChange={(e) => setSummary(e.target.value)}
+            />
+          </label>
+        </div>
+        <hr />
+        <Header>
+          <h3>
             <label>
-              <textarea
-                maxLength="1000"
-                minLength="250"
-                rows="5"
-                cols="50"
-                value={body}
-                placeholder="Body"
-                required
-                autoComplete="off"
-                onChange={(e) => setBody(e.target.value)}
-              />
+              <span>Review body</span>
             </label>
-          </div>
-          <hr />
-          <Header>
-            <h3>
-              <label>
-                <span>Upload photos</span>
-              </label>
-            </h3>
-          </Header>
-          <div>
-            <button type="button">
-              <input
-                type="file"
-                accept="image/*,video/*"
-                // setphoto
-              />
-            </button>
-          </div>
-          <hr />
-          <Header>
-            <h3>
-              <label>
-                <span>Name?</span>
-              </label>
-            </h3>
-            <span> Use nickname </span>
-          </Header>
-          <div>
+          </h3>
+        </Header>
+        <div>
+          <label>
+            <textarea
+              maxLength="1000"
+              minLength="250"
+              rows="5"
+              cols="50"
+              value={body}
+              placeholder="Body"
+              required
+              autoComplete="off"
+              onChange={(e) => setBody(e.target.value)}
+            />
+          </label>
+        </div>
+        <hr />
+        <Header>
+          <h3>
             <label>
-              <input
-                value={name}
-                maxLength="60"
-                width="100%"
-                placeholder="username"
-                onChange={(e) => setName(e.target.value)}
-              />
+              <span>Upload photos</span>
             </label>
-          </div>
-          <hr />
-          <Header>
-            <h3>
-              <label>
-                <span>Your email</span>
-              </label>
-            </h3>
-            <span> email will be not be used for any other purpose</span>
-          </Header>
-          <div>
+          </h3>
+        </Header>
+        <div>
+          <button type="button">
+            <input
+              type="file"
+              accept="image/*,video/*"
+              // setphoto
+            />
+          </button>
+        </div>
+        <hr />
+        <Header>
+          <h3>
             <label>
-              <input
-                value={email}
-                maxLength="60"
-                placeholder="email"
-                onChange={(e) => setEmail(e.target.value)}
-                />
+              <span>Name?</span>
             </label>
-          </div>
-          <hr />
-          <div>
-            <button type="button" onClick={handleSubmit}>
-              <span>Submit review</span>
-            </button>
-          </div>
-        </form>
-      </section>
+          </h3>
+          <span> Use nickname </span>
+        </Header>
+        <div>
+          <label>
+            <input
+              value={name}
+              maxLength="60"
+              width="100%"
+              placeholder="username"
+              onChange={(e) => setName(e.target.value)}
+            />
+          </label>
+        </div>
+        <hr />
+        <Header>
+          <h3>
+            <label>
+              <span>Your email</span>
+            </label>
+          </h3>
+          <span> email will be not be used for any other purpose</span>
+        </Header>
+        <div>
+          <label>
+            <input
+              value={email}
+              maxLength="60"
+              placeholder="email"
+              onChange={(e) => setEmail(e.target.value)}
+              />
+          </label>
+        </div>
+        <hr />
+        <div>
+          <button type="button" onClick={handleSubmit}>
+            <span>Submit review</span>
+          </button>
+        </div>
+      </form>
     </FormStyle>
   );
 }
