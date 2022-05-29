@@ -106,7 +106,7 @@ width: 75%;
 
 const FormStyle = styled.div`
   width: 90%;
-  background: red;
+  background: slategray;
   margin: 10px auto;
   top: 10;
   left: 10;
