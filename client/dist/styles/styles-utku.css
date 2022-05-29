@@ -17,6 +17,10 @@
 .question-section .question-div {
   display: flex;
   align-content: space-around;
+} 
+
+.small {
+  width: 90px;
 }
 .question-section .main-div {
   min-height: 50vh;

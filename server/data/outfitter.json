@@ -8,11 +8,20 @@
 		"imageUrl": "https://images.unsplash.com/photo-1477420143023-6a0e0b04b69a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
 	},
 	{
-		"productId": 37315,
-		"title": "Heir Force Ones",
-		"category": "Kicks",
-		"original_price": "99.00",
+		"productId": 37313,
+		"title": "Morning Joggers",
+		"category": "Pants",
+		"original_price": "40.00",
 		"sale_price": null,
-		"imageUrl": "https://images.unsplash.com/photo-1544441892-794166f1e3be?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
+		"imageUrl": "https://images.unsplash.com/photo-1552902865-b72c031ac5ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
+	},
+	{
+		"productId": 37316,
+		"title": "Pumped Up Kicks",
+		"category": "Kicks",
+		"original_price": "89.00",
+		"sale_price": null,
+		"rating": 3.7916666666666665,
+		"imageUrl": "https://images.unsplash.com/photo-1477420143023-6a0e0b04b69a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
 	}
 ]
