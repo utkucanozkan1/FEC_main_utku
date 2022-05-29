@@ -53,7 +53,13 @@ export default function Form({ productId }) {
           <h3>
             <label>
               <span>Overall rating</span>
-              <input required type="radio" name="overall" />
+              <select required name="overall" onChange={(e) => setSummary(e.target.value)}>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
             </label>
           </h3>
         </Header>
