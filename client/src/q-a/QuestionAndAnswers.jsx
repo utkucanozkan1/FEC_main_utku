@@ -116,7 +116,7 @@ function QuestionsAndAnswers() {
         {searchQuestions ? (
           <div className="main-div">
             {searchArray.slice(0, 2).map((question, i) => (
-              <QuestionList question={question} key={i} />
+              <QuestionList question={question} key={i} name={name} />
             ))}
           </div>
         ) : (
