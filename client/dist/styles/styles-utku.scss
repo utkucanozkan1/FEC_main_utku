@@ -1,0 +1,203 @@
+
+.question-section {
+  /* main stylings */
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid red;
+  width: 50vw;
+
+
+  .question-div{
+    display: flex;
+    align-content: space-around;
+    }
+    .main-div {
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    }
+    .flex-child{
+    flex: 1;
+    }
+
+    .body-text {
+      margin-top: 10vh;
+    }
+    .qa-main-div {
+      background-color: rgb(223, 223, 223);
+      border-bottom: solid 0.7em;
+      border-color: white;
+    }
+   /* main stylings */
+
+  /* Image Styling */
+  .small {
+    width: 7vw;
+  }
+  .dialog {
+    box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.956);
+    width: max-content;
+  }
+
+
+  .image-component {
+    display: inline-flex;
+    margin-right: 2.5%;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border-color: black;
+    border-style: solid;
+    }
+
+    .image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      overflow: hidden;
+    }
+
+  .modal-div {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+  }
+  .container-div {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    width: 80%;
+    height: 80%;
+  }
+  /* Image Styling */
+
+  /* searchBar styling */
+  .search-bar {
+    display: flex;
+  }
+  input {
+    color:white;
+  }
+  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: 1; /* Firefox */
+  }
+
+  .fa-magnifying-glass {
+    align-self: center;
+    position: relative;
+    left: 9vw;
+    z-index: 1000;
+    color: crimson;
+  }
+  .fa-circle-question {
+    font-size: larger;
+  }
+
+  .header-search {
+    height: 3em;
+    width:30vw;
+    margin-left: 8vw;
+    padding-left: 3vw;
+    position: relative;
+    right: 1vw;
+    border-color: black;
+    background-color: black;
+    border-style: solid;
+    border-radius: 20px;
+  }
+  /* searchBar styling */
+
+  /* Button styling */
+  .astext-btn {
+    background:none;
+    border:none;
+    margin:0;
+    padding:0;
+    cursor: pointer;
+    font-size: small;
+  }
+
+
+  .astext-btn-answer {
+    background:none;
+    border:none;
+    margin:0;
+    padding:0;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: small;
+  }
+  .close-btn {
+    background-color: red;
+    color: white;
+    border: 2px solid black;
+    width: 2em;
+    height: 2em;
+  }
+  .text-border-btn {
+    background:none;
+    border:1 px solid black;
+    margin:0;
+    padding:1vw;
+    cursor: pointer;
+    font-weight: bolder;
+    font-size: small;
+    margin-right: 10%;
+  }
+  .moreAnswers-btn {
+    background:none;
+    border:none;
+    margin:0;
+    padding:0;
+    cursor: pointer;
+    font-size: small;
+    font-weight: bolder;
+    margin-top: 2.5em;
+    color:crimson;
+    &:hover {
+      color: white;
+    }
+  }
+  .bottom-buttons-div {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  /* Button styling */
+
+  /* answer div styling */
+  .answer-detail-div {
+    margin-top: 0.5em;
+  }
+  .answerer-detail-div {
+    margin-top: 1.5em;
+  }
+  .answerer-smallBreak {
+    margin-top: 1em;
+  }
+  .answer-text {
+    font-size: medium;
+  }
+  .answer-header {
+    text-align: center;
+    }
+    .whole-answer-text {
+      text-align: center;
+    }
+  /* answer div styling */
+
+
+
+
+
+}

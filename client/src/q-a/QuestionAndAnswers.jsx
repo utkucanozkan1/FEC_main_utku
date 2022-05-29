@@ -8,7 +8,6 @@
 /* eslint-disable no-else-return */
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import QuestionList from './QuestionList.jsx';
 import { ProductIdContext } from '../index.jsx';
 import QuestionModal from './QuestionModal.jsx';
@@ -101,7 +100,7 @@ function QuestionsAndAnswers() {
             <form onSubmit={(e) => e.preventDefault()}>
               <input
                 type="text"
-                id="header-search"
+                className="header-search"
                 placeholder="Have a question? Search for answers..."
                 name="search"
                 value={searchTerm.search}

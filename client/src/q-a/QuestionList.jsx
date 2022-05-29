@@ -113,7 +113,7 @@ function QuestionList(props) {
 				&nbsp; &nbsp;
         <div className="question-div">
           <div className="flex-child">
-            <b>Q: {props.question.question_body}</b>
+            <b>{<i className="fa-solid fa-circle-question"></i>}: {props.question.question_body}</b>
           </div>
           <div className="flex-child">
             {/* <button type="button" className="astext-btn">

@@ -10,7 +10,7 @@ export default function Form({ questionId ,productName }) {
   const [email, setEmail] = useState('');
   const [photoList, setPhotos] = useState('');
   const [isClicked, setIsClicked] = useState(false);
-  console.log(productName);
+
   const onSubmit = (event) => {
     const photos = photoList.toString().split(',');
 
