@@ -125,7 +125,7 @@ const GridContainer = styled.div`
   display: grid;
   width: 100%;
   gap: 5%;
-  grid-template-columns: 15% 15% 15% 15% 15%;
+  grid-template-columns: 12% 12% 12% 12% 12% 12%;
   text-align: center;
 `;
 
@@ -136,6 +136,10 @@ const FormButtonRow = styled.div`
   &:hover {
     background-color: #6291dd;
   }
+  `;
+
+const RadioButtonLabel = styled.label`
+  font-size: 15px;
   `;
 
 const Modal = styled.div`
@@ -196,5 +200,5 @@ export {
   FormElement, Header, FormContainer, CloseButton, Modal, Button,
   OuterBarGraph, InnerBarGraph, RatingsSummaryTop, SmallSum, Date,
   Paragraph, TopOfReview, Character, CharacterGraph, GridContainer,
-  FormButtonRow,
+  FormButtonRow, RadioButtonLabel,
 };

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import {
-  FormStyle, Header, GridContainer, FormButtonRow,
+  FormStyle, Header, GridContainer, FormButtonRow, RadioButtonLabel,
 } from '../../RR-styled-components/RRsectionContainerStyle';
 // import withRangeOption from "./withRangeOption.jsx"
 
@@ -79,8 +79,8 @@ export default function Form({ productId }) {
               {' '}
               {chars[char].map((elem, i) => (
                 <FormButtonRow key={i}>
+                  <RadioButtonLabel key={i + 10} htmlFor={elem}>{elem}</RadioButtonLabel>
                   <input type="radio" key={i} value={i + 1} name={char} />
-                  <label key={i + 10} htmlFor={elem}>{elem}</label>
                 </FormButtonRow>
               ))}
             </GridContainer>
