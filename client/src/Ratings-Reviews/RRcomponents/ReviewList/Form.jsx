@@ -53,7 +53,7 @@ export default function Form({ productId }) {
           <h3>
             <label>
               <span>Overall rating</span>
-              <select required name="overall" onChange={(e) => setSummary(e.target.value)}>
+              <select required name="overall" defaultValue="5" onChange={(e) => setRating(e.target.value)}>
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
