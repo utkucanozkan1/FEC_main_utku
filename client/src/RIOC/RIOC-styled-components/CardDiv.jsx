@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 const CardDiv = styled.div`
   border-style: solid;
-  border-color: black;
+  background-color: white;
+  border-color: darkgray;
   flex: 1 1 0px;
   height: 250px;
   margin: 5px;

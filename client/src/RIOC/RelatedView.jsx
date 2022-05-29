@@ -68,9 +68,9 @@ function RelatedView() {
   }, [viewable]);
 
   return (
-    <section>
-      <h6>RELATED PRODUCTS</h6>
-      <CardContainer>
+    <section className="relatedSection">
+      <h6 className="sectionTitle">RELATED PRODUCTS</h6>
+      <div className="cardContainer">
         <ViewableContext.Provider value={{ viewable, setViewable, position, setPosition, related, end, setEnd }}>
           <LeftArrow />
           {viewable.slice(position, position + 4).map((product, i) => (
@@ -80,7 +80,7 @@ function RelatedView() {
           ))}
           <RightArrow />
         </ViewableContext.Provider>
-      </CardContainer>
+      </div>
     </section>
   );
 }

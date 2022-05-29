@@ -2,7 +2,7 @@
   font-family: FontAwesome;
   font-style: normal;
   position: relative;
-  color: #ddd;
+  color: rgb(174, 174, 174);
 }
 
 .fa-star-fill-0::after {
@@ -12,14 +12,14 @@
   top: 0;
   width: 0%;
   overflow: hidden;
-  color: #f80;
+  color: #D8315B;
 }
 
 .fa-star-fill-25 {
   font-family: FontAwesome;
   font-style: normal;
   position: relative;
-  color: #ddd;
+  color: rgb(174, 174, 174);
 }
 
 .fa-star-fill-25::after {
@@ -29,14 +29,14 @@
   top: 0;
   width: 25%;
   overflow: hidden;
-  color: #f80;
+  color: #D8315B;
 }
 
 .fa-star-fill-50 {
   font-family: FontAwesome;
   font-style: normal;
   position: relative;
-  color: #ddd;
+  color: rgb(174, 174, 174);
 }
 
 .fa-star-fill-50::after {
@@ -46,14 +46,14 @@
   top: 0;
   width: 50%;
   overflow: hidden;
-  color: #f80;
+  color: #D8315B;
 }
 
 .fa-star-fill-75 {
   font-family: FontAwesome;
   font-style: normal;
   position: relative;
-  color: #ddd;
+  color: rgb(174, 174, 174);
 }
 
 .fa-star-fill-75::after {
@@ -63,14 +63,14 @@
   top: 0;
   width: 75%;
   overflow: hidden;
-  color: #f80;
+  color: #D8315B;
 }
 
 .fa-star-fill-100 {
   font-family: FontAwesome;
   font-style: normal;
   position: relative;
-  color: #ddd;
+  color: rgb(174, 174, 174);
 }
 
 .fa-star-fill-100::after {
@@ -80,7 +80,7 @@
   top: 0;
   width: 100%;
   overflow: hidden;
-  color: #f80;
+  color: #D8315B;
 }
 
 /*# sourceMappingURL=star-rating.css.map */

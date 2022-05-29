@@ -1,13 +1,15 @@
-.prodImg {
-  display: flex;
-  justify-content: right;
-  height: 65%;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: rgb(59, 59, 59);
+@font-face {
+  font-family: "Kollektif";
+  src: url("../assets/fonts/Kollektif/Kollektif.ttf");
 }
-
+@font-face {
+  font-family: "Montserrat";
+  src: url("../assets/fonts/Montserrat/static/Montserrat-Light.ttf");
+}
+@font-face {
+  font-family: "Montserrat-Bold";
+  src: url("../assets/fonts/Montserrat/static/Montserrat-SemiBold.ttf");
+}
 .addCard {
   display: flex;
   justify-content: center;
@@ -20,6 +22,8 @@
 
 .relatedStars .fa-star {
   font-size: 7px;
+  position: relative;
+  bottom: 1vh;
 }
 
 .modalItem {
@@ -33,8 +37,6 @@
 
 .sc-eCYdqJ .right {
   justify-self: right;
-  border-style: solid;
-  border-color: red;
   color: blue;
 }
 .sc-eCYdqJ h6 {
@@ -42,6 +44,68 @@
 }
 .sc-eCYdqJ .left {
   justify-content: left;
+}
+
+.riocSection {
+  display: flex;
+  flex-direction: column;
+  border-style: solid;
+}
+.riocSection .relatedSection {
+  height: 50vh;
+  border-color: red;
+  border-style: solid;
+  margin-bottom: 150px;
+}
+.riocSection .relatedSection .sectionTitle {
+  border-style: solid;
+  background-color: black;
+  color: white;
+  text-align: right;
+  position: relative;
+  top: 2vh;
+  right: 3vh;
+  z-index: 100;
+  padding: 1%;
+  width: 40%;
+  font-family: "Montserrat-Bold";
+}
+.riocSection .relatedSection .cardContainer {
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.8);
+  height: 100%;
+  justify-content: space-around;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  border-right: 0.3em;
+  border-bottom: 0.3em;
+}
+.riocSection .relatedSection .cardContainer .card {
+  background-color: white;
+  border-color: darkgray;
+  flex: 1 1 0px;
+  margin: 5px;
+  height: 90%;
+  cursor: pointer;
+}
+.riocSection .relatedSection .cardContainer .card p {
+  font-family: "Montserrat";
+  font-size: 1.5vw;
+}
+.riocSection .relatedSection .cardContainer .card h6 {
+  font-family: "Montserrat-SemiBold";
+  font-size: 2vw;
+}
+
+.prodImg {
+  display: flex;
+  justify-content: right;
+  height: 65%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgb(59, 59, 59);
+  box-shadow: 0 0 8px 8px darkgray inset;
 }
 
 /*# sourceMappingURL=styles-val.css.map */
