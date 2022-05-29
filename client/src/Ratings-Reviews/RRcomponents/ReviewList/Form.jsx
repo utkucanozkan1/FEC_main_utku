@@ -33,7 +33,7 @@ export default function Form({ productId }) {
 
   const handleSubmit = () => {
     axios.post('/reviews', {
-      productId, summary, body, recommend, name, email, photos, characteristics,
+      productId, rating, summary, body, recommend, name, email, photos, characteristics,
     })
       .then(() => {
         console.log('Added a review! ');
@@ -53,6 +53,7 @@ export default function Form({ productId }) {
           <h3>
             <label>
               <span>Overall rating</span>
+              <input required type="radio" name="overall" />
             </label>
           </h3>
         </Header>
@@ -63,7 +64,7 @@ export default function Form({ productId }) {
             {' '}
             <small>Yes</small>
             {' '}
-            <input name="status" type="checkbox" onChange={handleCheck} />
+            <input required name="status" type="checkbox" onChange={handleCheck} />
           </label>
         </Header>
         <hr />
@@ -181,6 +182,7 @@ export default function Form({ productId }) {
         <div>
           <label>
             <input
+              type="email"
               value={email}
               maxLength="60"
               placeholder="email"
