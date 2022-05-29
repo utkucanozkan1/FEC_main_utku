@@ -5,7 +5,7 @@
 /* eslint-disable import/no-cycle */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-// import getAverageRating from '../../server/utils/helpers';
+import getAverageRating from '../../server/utils/helpers';
 
 // Major component imports
 import { createRoot } from 'react-dom/client';
@@ -46,11 +46,11 @@ function App() {
     // Props to add to new outfitter item
     const {
       category, name: title, default_price: original_price,
-      rating, id: productId,
+      id: productId, results: styles,
     } = data;
-    const { results: styles } = data;
+    const rating = getAverageRating(Object.entries(data.ratings));
     // TODO -> replace '' with placeholder image
-    let imageUrl = styles[0]?.photos[0]?.thumbnail_url || '';
+    let imageUrl = styles[0]?.photos[0]?.thumbnail_url || '../dist/assets/images/placeholder.png';
     let sale_price = styles[0]?.sale_price;
     for (let i = 0; i < styles.length; i += 1) {
       if (styles[i]['default?'] && styles[i]?.photos[0]?.thumbnail_url) {
