@@ -1,9 +1,20 @@
 @charset "UTF-8";
+@font-face {
+  font-family: "Kollektif";
+  src: url("../assets/fonts/Kollektif/Kollektif.ttf");
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../assets/fonts/Montserrat/static/Montserrat-Light.ttf");
+}
+@font-face {
+  font-family: "Montserrat-Bold";
+  src: url("../assets/fonts/Montserrat/static/Montserrat-SemiBold.ttf");
+}
 * {
   margin: 0;
   padding: 0;
-  font-size: 18px;
-  color: white;
+  font-size: 24px;
 }
 
 html, body {
@@ -29,20 +40,20 @@ body {
   }
 }
 .item-overview-section {
-  min-height: 70vh;
+  min-height: 80vh;
   width: 100vw;
+  font-family: "Montserrat";
   display: flex;
   justify-content: space-around;
 }
 .item-overview-section .gallery-section {
-  width: 65vw;
-  height: 75vh;
-  margin: 0 5vw;
-  background-color: rgb(59, 59, 59);
+  flex-basis: 65%;
+  height: 80vh;
+  background-color: rgb(43, 42, 42);
 }
 .item-overview-section .gallery-section.gallery-section-expanded {
   margin: 0;
-  overflow: hidden;
+  flex-basis: 100%;
 }
 .item-overview-section .gallery-section .gallery-container {
   background-size: contain;
@@ -144,8 +155,13 @@ body {
   cursor: zoom-out;
 }
 .item-overview-section .checkout-section {
-  max-height: 75vh;
-  width: 30vw;
+  height: 80vh;
+  background-color: white;
+  flex-basis: 35%;
+  padding-left: 0.5vw;
+}
+.item-overview-section .checkout-section .rating-title .category {
+  font-size: 1rem;
 }
 .item-overview-section .checkout-section .rating-title .reviews-wrapper {
   margin-top: 8%;
@@ -155,32 +171,48 @@ body {
 .item-overview-section .checkout-section .rating-title .reviews-wrapper a {
   margin-left: 1vw;
 }
+.item-overview-section .checkout-section .rating-title .reviews-wrapper a:visited {
+  color: black;
+}
 .item-overview-section .checkout-section .rating-title h2 {
-  font-size: 2rem;
-  max-width: 75%;
+  font-size: 3rem;
+  max-width: 80%;
+  font-family: "Kollektif";
 }
 .item-overview-section .checkout-section .rating-title .price {
   font-size: 1.3rem;
   margin: 1vw 0;
 }
+.item-overview-section .checkout-section .style {
+  font-family: "Montserrat-Bold";
+}
 .item-overview-section .checkout-section .style .style-selected-span {
+  font-family: "Montserrat";
   font-weight: normal;
 }
 .item-overview-section .checkout-section .style .style-list {
-  max-width: 75%;
+  max-width: 90%;
+  min-height: 20vh;
+  overflow: hidden;
+  background-color: black;
+  border: 0.75vw rgb(86, 86, 86) solid;
+  border-left: none;
+  margin: 2vh 0;
+  padding-left: 2vw;
   list-style: none;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
+  align-items: flex-start;
 }
 .item-overview-section .checkout-section .style .style-list li {
   flex-basis: 25%;
   display: flex;
   align-items: center;
-  margin: 1vw 0;
+  margin: 0.5vw 0;
 }
 .item-overview-section .checkout-section .style .style-list li .style-thumbnail {
-  padding: 2.3vw;
+  padding: 2.4vw;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

@@ -1,13 +1,32 @@
+@font-face {
+  font-family: 'Kollektif';
+  src: url('../assets/fonts/Kollektif/Kollektif.ttf');
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('../assets/fonts/Montserrat/static/Montserrat-Light.ttf');
+}
+
+@font-face {
+  font-family: 'Montserrat-Bold';
+  src: url('../assets/fonts/Montserrat/static/Montserrat-SemiBold.ttf');
+}
+
+$main: black;
+$darkGray: rgb(43, 42, 42);
+$second: white;
+$crimson: #D8315B;
+
 $gray: rgb(202, 202, 202);
-$darkGray: rgb(59, 59, 59);
 
 $defaultBorder: 0.075vw solid black;
 
 * {
   margin: 0;
   padding: 0;
-  font-size: 18px; // update on smaller/bigger screens
-  color: white;
+  font-size: 24px; // update on smaller/bigger screens
+  // color: white;
 }
 
 html, body {
@@ -34,22 +53,22 @@ body {
 }
 
 .item-overview-section {
-  min-height: 70vh;
+  min-height: 80vh;
   width: 100vw;
+  font-family: 'Montserrat';
 
   display: flex;
   justify-content: space-around;
 
   .gallery-section {
-    width: 65vw;
-    height: 75vh;
-    margin: 0 5vw;
+    flex-basis: 65%;
+    height: 80vh;
     background-color: $darkGray;
 
 
     &.gallery-section-expanded {
       margin: 0;
-      overflow: hidden;
+      flex-basis: 100%;
     }
 
     .gallery-container {
@@ -202,24 +221,34 @@ body {
   }
 
   .checkout-section {
-    max-height: 75vh;
-    width: 30vw;
+    height: 80vh;
+    background-color: white;
+    flex-basis: 35%;
+    padding-left: 0.5vw;
 
     .rating-title {
+      .category {
+        font-size: 1rem;
+      }
       .reviews-wrapper {
         margin-top: 8%;
         margin-bottom: 4%;
 
         display: flex;
 
-        a{
+        a {
           margin-left: 1vw;
+
+          &:visited {
+            color: $main;
+          }
         }
       }
 
       h2 {
-        font-size: 2rem;
-        max-width: 75%;
+        font-size: 3rem;
+        max-width: 80%;
+        font-family: 'Kollektif';
       }
 
       .price {
@@ -229,25 +258,37 @@ body {
     }
 
     .style {
+      font-family: 'Montserrat-Bold';
+
       .style-selected-span {
+        font-family: 'Montserrat';
         font-weight: normal;
       }
 
       .style-list {
-        max-width: 75%;
+        max-width: 90%;
+        min-height: 20vh;
+        overflow: hidden;
+        background-color: black;
+        border: 0.75vw rgb(86, 86, 86) solid;
+        border-left: none;
+        margin: 2vh 0;
+        padding-left: 2vw;
         list-style: none;
+
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-start;
+        align-items: flex-start;
 
         li {
           flex-basis: 25%;
           display: flex;
           align-items: center;
-          margin: 1vw 0;
+          margin: 0.5vw 0;
 
           .style-thumbnail {
-          padding: 2.3vw;
+          padding: 2.4vw;
           // background-color: $gray;
           background-size: cover;
           background-position: center;
