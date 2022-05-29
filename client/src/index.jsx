@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-else-return */
 /* eslint-disable max-len */
 /* eslint-disable react/jsx-no-constructed-context-values */
@@ -39,6 +40,41 @@ function App() {
   const [data, setData] = useState({});
   const [outfitterListener, triggerOutfitterListener] = useState('🍕');
 
+  // Add item to outfitter
+  const addToOutfitter = (e) => {
+    e.preventDefault();
+    // Props to add to new outfitter item
+    const {
+      category, name: title, default_price: original_price,
+      rating, id: productId,
+    } = data;
+    const { results: styles } = data;
+    // TODO -> replace '' with placeholder image
+    let imageUrl = styles[0]?.photos[0]?.thumbnail_url || '';
+    let sale_price = styles[0]?.sale_price;
+    for (let i = 0; i < styles.length; i += 1) {
+      if (styles[i]['default?'] && styles[i]?.photos[0]?.thumbnail_url) {
+        imageUrl = styles[i].photos[0].thumbnail_url;
+        sale_price = styles[i]?.sale_price;
+      }
+    }
+    const starredItem = {
+      productId, title, category, original_price, sale_price, rating, imageUrl,
+    };
+    axios.post('/outfitter', starredItem)
+      .then(() => {
+        triggerOutfitterListener(new Date());
+      })
+      .catch((err) => {
+        // TODO: if
+        if (err.toJSON()?.status === 400) {
+          console.log('--> 🚫Err: Outfit already exists in outfitter.json!\nP.S. I 💛 My Little Pony 🥺\n');
+        } else {
+          console.error(err);
+        }
+      });
+  };
+
   const reqErr427 = () => {
     alert('Too many requests: wait 30-60 seconds!');
   };
@@ -75,7 +111,12 @@ function App() {
   if (!loading) {
     return (
       <div>
-        <ProductIdContext.Provider value={{ ...data, outfitterListener, triggerOutfitterListener }}>
+        <ProductIdContext.Provider value={
+          {
+            ...data, outfitterListener, triggerOutfitterListener, addToOutfitter,
+          }
+          }
+        >
           <ItemOverview />
           <RelatedOutfitView />
           <QuestionsAndAnswers />

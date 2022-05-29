@@ -31,17 +31,18 @@
   overflow: hidden;
 }
 
-.sc-eCYdqJ .right {
-  justify-self: right;
-  border-style: solid;
-  border-color: red;
-  color: blue;
-}
-.sc-eCYdqJ h6 {
-  font-size: 20px;
-}
-.sc-eCYdqJ .left {
-  justify-content: left;
-}
+.sc-eCYdqJ {
 
-/*# sourceMappingURL=styles-val.css.map */
+  .right {
+    justify-self: right;
+    border-style: solid;
+    border-color: red;
+    color: blue;
+  }
+  h6 {
+    font-size: 20px;
+  }
+  .left {
+    justify-content: left;
+  }
+}

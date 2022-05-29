@@ -35,6 +35,7 @@ function OutfitCard({card}) {
 
   return (
     <CardDiv onClick={clickHanlder}>
+      {console.log(card)}
       <div className="prodImg" style={{ backgroundImage: `url(${card.imageUrl})` }}>
         <CardButton type="button" onClick={deleteCard}>X</CardButton>
       </div>
