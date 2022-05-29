@@ -124,12 +124,13 @@ color: white;
 const GridContainer = styled.div`
   display: grid;
   width: 100%;
-  gap: 5%;
-  grid-template-columns: 12% 12% 12% 12% 12% 12%;
+  gap: 2%;
+  grid-template-columns: 18% 18% 18% 18% 18% 18%;
   text-align: center;
 `;
 
 const FormButtonRow = styled.div`
+
   float: left;
   padding: 0 1%;
   text-align: center;
@@ -139,6 +140,8 @@ const FormButtonRow = styled.div`
   `;
 
 const RadioButtonLabel = styled.label`
+  display: grid;
+  justify-items: center;
   font-size: 15px;
   `;
 
@@ -153,8 +156,8 @@ const Modal = styled.div`
 `;
 
 const CloseButton = styled.div`
-  top:3%;
-  left:90%;
+  top:1%;
+  left:88.7%;
   position: absolute;
 `;
 /*-------------------*/

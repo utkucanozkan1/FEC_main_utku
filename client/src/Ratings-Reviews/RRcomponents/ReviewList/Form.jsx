@@ -79,8 +79,10 @@ export default function Form({ productId }) {
               {' '}
               {chars[char].map((elem, i) => (
                 <FormButtonRow key={i}>
-                  <RadioButtonLabel key={i + 10} htmlFor={elem}>{elem}</RadioButtonLabel>
-                  <input type="radio" key={i} value={i + 1} name={char} />
+                  <RadioButtonLabel key={i + 10} htmlFor={elem}>
+                    <input type="radio" key={i} value={i + 1} name={char} />
+                    {elem}
+                  </RadioButtonLabel>
                 </FormButtonRow>
               ))}
             </GridContainer>
