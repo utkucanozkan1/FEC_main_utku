@@ -3,14 +3,14 @@ import { Modal, CloseButton } from '../../RR-styled-components/RRsectionContaine
 import Form from './Form';
 
 export default function ModalPopup({ show, handleExit, data }) {
- return (
-   <Modal show={show}>
-     <div>
-       <CloseButton>
-         <button type="button" onClick={handleExit}>close</button>
-       </CloseButton>
-       <Form data={data} />
-     </div>
-   </Modal>
- )
+  return (
+    <Modal show={show}>
+      <div>
+        <CloseButton>
+          <button type="button" onClick={handleExit}>close</button>
+        </CloseButton>
+        <Form data={data} />
+      </div>
+    </Modal>
+  );
 }
