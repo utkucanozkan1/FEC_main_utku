@@ -45,7 +45,7 @@ export default function ReviewEntry({ review, retrieveReviews }) {
       <hr />
       <StarRating rating={review.rating}/>
       <TopOfReview>
-        <h2>
+        <h2 className="reviewer">
           {review.reviewer_name}
         </h2>
         <Date>
