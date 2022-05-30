@@ -4,10 +4,10 @@ import OutfitView from './OutfitView';
 
 function RelatedOutfitView() {
   return (
-    <div>
+    <section className="riocSection">
       <RelatedView />
       <OutfitView />
-    </div>
+    </section>
   );
 }
 

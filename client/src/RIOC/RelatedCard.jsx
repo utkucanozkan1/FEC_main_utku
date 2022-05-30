@@ -5,7 +5,6 @@ import CardButton from './RIOC-styled-components/CardButton';
 import CompareModal from './CompareModal';
 import '../../dist/styles/styles-val.css';
 import { CardProductContext } from './RelatedView';
-import axios from 'axios';
 
 export const ModalContext = React.createContext();
 
@@ -26,7 +25,7 @@ function RelatedCard({ cardRating }) {
   }
   return (
     <ModalContext.Provider value={{ modal, setModal }}>
-      <CardDiv onClick={clickHanlder}>
+      <div className="card" onClick={clickHanlder}>
         <div className="prodImg" style={{ backgroundImage: `url(${productImage})` }}>
           <CardButton type="button" onClick={modalHandler}>⭐️</CardButton>
         </div>
@@ -35,7 +34,7 @@ function RelatedCard({ cardRating }) {
         <h6>{product.name}</h6>
         <p>{product.default_price}</p>
         <StarRating rating={cardRating} className="relatedStars" />
-      </CardDiv>
+      </div>
     </ModalContext.Provider>
   );
 }

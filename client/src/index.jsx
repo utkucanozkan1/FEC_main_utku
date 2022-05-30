@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
+/* eslint-disable import/prefer-default-export */
 /* eslint-disable camelcase */
 /* eslint-disable no-else-return */
 /* eslint-disable max-len */
@@ -5,7 +7,6 @@
 /* eslint-disable import/no-cycle */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import getAverageRating from '../../server/utils/helpers';
 
 // Major component imports
 import { createRoot } from 'react-dom/client';
@@ -13,11 +14,10 @@ import ItemOverview from './Item-Overview/ItemOverview';
 import RelatedOutfitView from './RIOC/RelatedOutfitView';
 import QuestionsAndAnswers from './q-a/QuestionAndAnswers';
 import RatingReviews from './Ratings-Reviews/RRcomponents/RRapp';
+import getAverageRating from '../../server/utils/helpers';
 
-// create the root of the app by selection where the app should be mounted in the dom
 const root = createRoot(document.getElementById('root'));
 
-// eslint-disable-next-line import/prefer-default-export
 export const ProductIdContext = React.createContext('default');
 // Scum😎 -> /products/${itemId}: all, /products/${itemId}/styles: all, /reviews/${itemId}/reviewsMeta: ratings array
 // Utz🦃 -> /qa/questions?product_id=${itemId}&count=100 , qa/questions/${questionId}/answers
@@ -30,7 +30,7 @@ export const ProductIdContext = React.createContext('default');
 // /products/${itemId}/styles: 2
 // /reviews/${itemId}/reviewsMeta: 2
 
-// Initial req count: 27
+// Initial req count: 27 -> 22, 19% cutdown
 
 function App() {
   // Read id from url
@@ -39,6 +39,54 @@ function App() {
   // Data object to pass to provider
   const [data, setData] = useState({});
   const [outfitterListener, triggerOutfitterListener] = useState('🍕');
+
+  // Reusable functions
+  const reqErr427 = () => {
+    alert('Request overload😱: wait 30-60 seconds!\nP.S. I blame the API...');
+  };
+  // featchData was being reused by me until refactor,
+  // I've left it in here for better UseEffect readability
+  // and potenial reuse in the future.
+  const fetchData = (id) => {
+    // Get item info
+    axios.get(`/products/${id}`)
+      .then((itemRes) => {
+        // Get styles info
+        axios.get(`/products/${id}/styles`)
+          .then((stylesRes) => {
+            // Get rating info
+            axios.get(`/reviews/${id}/reviewsMeta`)
+              .then((ratingsRes) => {
+                // Data object to pass to provider
+                setData({
+                  ...itemRes.data, ...stylesRes.data, ...ratingsRes.data, itemId: id, setItemId,
+                });
+                toogleLoading(false);
+              })
+              .catch((err) => {
+                if (err.toJSON()?.status === 427) {
+                  reqErr427();
+                } else {
+                  console.error(err);
+                }
+              });
+          })
+          .catch((err) => {
+            if (err.toJSON()?.status === 427) {
+              reqErr427();
+            } else {
+              console.error(err);
+            }
+          });
+      })
+      .catch((err) => {
+        if (err.toJSON()?.status === 427) {
+          reqErr427();
+        } else {
+          console.error(err);
+        }
+      });
+  };
 
   // Add item to outfitter
   const addToOutfitter = (e) => {
@@ -75,37 +123,48 @@ function App() {
       });
   };
 
-  const reqErr427 = () => {
-    alert('Too many requests: wait 30-60 seconds!');
+  const switchProductPage = (e) => {
+    e.preventDefault();
+    const inputEl = document.querySelector('.search-itemId-input');
+    const inputId = parseInt(inputEl.value.trim(), 10);
+    if (!!inputId && inputId !== itemId) {
+      axios.get(`/products/${inputId}`)
+        .then(() => {
+          // If Id is valid, spread the data to components
+          setItemId(inputId);
+        })
+        .catch((err) => {
+          if (err.toJSON()?.status === 404) {
+            // TODO: replace with popup
+            alert(`Item with the id ${inputId} was not found`);
+          }
+          console.log(err);
+        });
+    } else {
+      inputEl.classList.add('search-itemId-input-err');
+      inputEl.value = '';
+      if (inputId === itemId) {
+        inputEl.placeholder = 'Already Viewing Id';
+      } else {
+        inputEl.placeholder = 'Invalid Id';
+      }
+    }
   };
 
+  let lastY = 0;
   useEffect(() => {
-    // Get item info
-    axios.get(`/products/${itemId}`)
-      .then((itemRes) => {
-        // Get styles info
-        axios.get(`/products/${itemId}/styles`)
-          .then((stylesRes) => {
-            // Get rating info
-            axios.get(`/reviews/${itemId}/reviewsMeta`)
-              .then((ratingsRes) => {
-                // Data object to pass to provider
-                setData({
-                  ...itemRes.data, ...stylesRes.data, ...ratingsRes.data, itemId, setItemId,
-                });
-                toogleLoading(false);
-              })
-              .catch(() => {
-                reqErr427();
-              });
-          })
-          .catch(() => {
-            reqErr427();
-          });
-      })
-      .catch(() => {
-        reqErr427();
-      });
+    fetchData(itemId);
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      const initialHeight = window.innerHeight;
+      const header = document.querySelector('.header');
+      if (y <= initialHeight / 5 || y < lastY) {
+        header.classList.remove('header-hide');
+      } else if (y > lastY) {
+        header.classList.add('header-hide');
+      }
+      lastY = y;
+    });
   }, [itemId]);
 
   if (!loading) {
@@ -117,6 +176,29 @@ function App() {
           }
           }
         >
+          <header>
+            {/* Replace with anchor if needed */}
+            <div className="header">
+              <h1>Atelier</h1>
+              <div className="search-bar">
+                <input
+                  className="search-itemId-input"
+                  type="text"
+                  placeholder="Input ID..."
+                  onKeyPress={(e) => {
+                    e.target.classList.remove('search-itemId-input-err');
+                    e.target.placeholder = 'Input ID...';
+                    if (e.key === 'Enter') {
+                      switchProductPage(e);
+                    }
+                  }}
+                />
+                <button id="search-itemId" type="button" onClick={switchProductPage}>
+                  <i className="fa-solid fa-magnifying-glass" />
+                </button>
+              </div>
+            </div>
+          </header>
           <ItemOverview />
           <RelatedOutfitView />
           <QuestionsAndAnswers />
