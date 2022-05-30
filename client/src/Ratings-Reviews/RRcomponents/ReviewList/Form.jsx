@@ -10,7 +10,7 @@ export default function Form({ productId }) {
   const [rating, setRating] = useState(5);
   const [summary, setSummary] = useState('');
   const [body, setBody] = useState('');
-  const [recommend, setRecommend] = useState('true');
+  const [recommend, setRecommend] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [photos, setPhotos] = useState([]);
@@ -25,10 +25,7 @@ export default function Form({ productId }) {
   };
 
   const handleCheck = () => {
-    if (recommend === 'true') {
-      setRecommend('false');
-    }
-    setRecommend('true');
+    setRecommend(!recommend);
   };
 
   const handleSubmit = () => {

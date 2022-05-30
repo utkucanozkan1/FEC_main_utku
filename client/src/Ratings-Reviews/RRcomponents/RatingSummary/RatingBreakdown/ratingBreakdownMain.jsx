@@ -57,8 +57,8 @@ export default function RatingBreakdownMain({ data, setRatingFilter }) {
                 average={((data.characteristics[char].value / 5) * 100).toFixed(0)}
               />
               <Character>
-                {characteristics[char].map((element, index) =>
-                  (<span key={index}>{element}</span>))}
+                {characteristics[char].map((element, i) =>
+                  (<span key={i}>{element}</span>))}
               </Character>
             </CharacterGraph>
           )) : (null)
