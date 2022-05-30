@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import { ProductIdContext } from '../../../index';
 import styled from 'styled-components';
 import {
   FormStyle, Header, GridContainer, FormButtonRow, RadioButtonLabel,
 } from '../../RR-styled-components/RRsectionContainerStyle';
 // import withRangeOption from "./withRangeOption.jsx"
 
-export default function Form({ productId }) {
+export default function Form() {
+  const { itemId, characteristics } = useContext(ProductIdContext);
   const [rating, setRating] = useState(5);
   const [summary, setSummary] = useState('');
   const [body, setBody] = useState('');
@@ -14,7 +16,6 @@ export default function Form({ productId }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [photos, setPhotos] = useState([]);
-  const [characteristics, setChar] = useState({});
   const chars = {
     Size: ['A size too small', '1/2 a size too small', 'Perfect', '1/2 a size too big', 'A size too wide'],
     Width: ['Too narrow', 'Slightly narrow', 'Perfect', 'Slightly wide', 'Too wide'],
@@ -23,6 +24,25 @@ export default function Form({ productId }) {
     Length: ['Runs Short', 'Runs slightly short', 'Perfect', 'Runs slightly long', 'Runs long'],
     Fit: ['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly long', 'Runs long'],
   };
+  const product_id = itemId
+  const initialCharacteristics = {
+    Comfort: false,
+    Fit: false,
+    Length: false,
+    Quality: false,
+    Size: false,
+    Width: false,
+  };
+  const [reviewCharacteristics, setCharacteristics] = useState(initialCharacteristics);
+
+  useEffect(() => {
+    setCharacteristics(initialCharacteristics);
+    const newChars = { ...initialCharacteristics };
+    for(let key in characteristics) {
+      newChars[key] = true;
+    }
+    setCharacteristics(newChars);
+  }, [itemId]);
 
   const handleCheck = () => {
     setRecommend(!recommend);
@@ -30,7 +50,7 @@ export default function Form({ productId }) {
 
   const handleSubmit = () => {
     axios.post('/reviews', {
-      productId, rating, summary, body, recommend, name, email, photos, characteristics,
+      product_id, rating, summary, body, recommend, name, email, photos, reviewCharacteristics,
     })
       .then(() => {
         console.log('Added a review! ');
@@ -41,7 +61,7 @@ export default function Form({ productId }) {
   };
 
   return (
-    <FormStyle>
+    <div className="reviewForm">
       <header>
         <h2>What do you think of this product?</h2>
       </header>
@@ -200,6 +220,6 @@ export default function Form({ productId }) {
           </button>
         </div>
       </form>
-    </FormStyle>
+    </div>
   );
 }

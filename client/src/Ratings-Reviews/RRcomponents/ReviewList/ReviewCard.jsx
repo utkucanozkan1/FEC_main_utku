@@ -8,7 +8,7 @@ import {
 import StarRating from '../../../shared/StarRating';
 import { putIsHelpful, putReported } from './serverAction';
 
-export default function ReviewEntry({ review, retrieveReviews }) {
+export default function ReviewEntry({ review }) {
   const [isHelpful, setIsHelpful] = useState(false);
   const [reported, setReported] = useState(false);
   const [showAll, setShowAll] = useState(review.body.length < 250);

@@ -11,9 +11,12 @@ justify-items: stretch;
 const ReviewListContainer = styled.div`
 grid-column-start: 3;
 display: flex;
-flex-flow: column wrap;
+flex-flow: column nowrap;
 align-items: center;
 justify-content: flex-start;
+width: 100%;
+height: 600px;
+overflow-y: auto;
 `;
 
 /*-------------------*/

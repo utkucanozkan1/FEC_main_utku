@@ -29,3 +29,13 @@ html, body {
 .reviewer {
   font-size: 20px;
 }
+
+.reviewForm {
+  width: 90%;
+  height: 70%;
+  background: slategray;
+  margin: 10px auto;
+  top: 10;
+  left: 10;
+  overflow: scroll;
+}
