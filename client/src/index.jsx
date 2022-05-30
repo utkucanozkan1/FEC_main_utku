@@ -116,7 +116,7 @@ function App() {
       .catch((err) => {
         // TODO: if
         if (err.toJSON()?.status === 400) {
-          console.log('--> 🚫Err: Outfit already exists in outfitter.json!\nP.S. I 💛 My Little Pony 🥺\n');
+          console.log('--> 🚫Err: Outfit already exists in shoppingData.json!\nP.S. I 💛 My Little Pony 🥺\n');
         } else {
           console.error(err);
         }
