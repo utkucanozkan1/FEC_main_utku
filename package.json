@@ -41,6 +41,7 @@
     "start": "webpack --watch --mode=development",
     "build": "webpack --watch --mode=production",
     "client-dev": "webpack --watch --mode=development",
-    "server-dev": "nodemon --watch server server/index.js"
+    "server-dev": "nodemon --watch server server/index.js",
+    "sass-val": "sass client/dist/styles/styles-val.scss client/dist/styles/styles-val.css --watch"
   }
 }

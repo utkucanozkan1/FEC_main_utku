@@ -14,7 +14,6 @@ const Chart = styled.div`
   position: fixed;
   background: white;
   width: 65%;
-  max-width: 300px;
   height: 70%;
   top: 55%;
   left: 50%;
@@ -28,16 +27,12 @@ const Chart = styled.div`
 const CompareContainer = styled.div`
   display: flex;
   flex-direction: column;
-  text-align: center;
   border-style: solid;
 `;
 
 const RowContainer = styled.div`
   display: flex;
   justify-content: space-around;
-  border-style: solid;
-  text-align: center;
-  border-style: solid;
 `;
 
 export {
