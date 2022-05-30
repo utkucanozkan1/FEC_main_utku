@@ -15,7 +15,9 @@ export default function Form() {
   const [recommend, setRecommend] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [photoList, setPhotos] = useState([]);
+  const [photoList, setPhotos] = useState('');
+  const [subChar, setSubChar] = useState({});
+  const [product_id, changeProductid] = useState(itemId);
   const chars = {
     Size: ['A size too small', '1/2 a size too small', 'Perfect', '1/2 a size too big', 'A size too wide'],
     Width: ['Too narrow', 'Slightly narrow', 'Perfect', 'Slightly wide', 'Too wide'],
@@ -24,36 +26,55 @@ export default function Form() {
     Length: ['Runs Short', 'Runs slightly short', 'Perfect', 'Runs slightly long', 'Runs long'],
     Fit: ['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly long', 'Runs long'],
   };
-  const product_id = itemId
-  const initialCharacteristics = {
-    Comfort: false,
-    Fit: false,
-    Length: false,
-    Quality: false,
-    Size: false,
-    Width: false,
+  const charNumber = {
+    Size: 14,
+    Width: 15,
+    Comfort: 16,
+    Quality: 17,
+    Length: 18,
+    Fit: 19,
   };
-  const [reviewCharacteristics, setCharacteristics] = useState(initialCharacteristics);
+
+  const [reviewCharacteristics, setCharacteristics] = useState({});
 
   useEffect(() => {
-    setCharacteristics(initialCharacteristics);
-    const newChars = { ...initialCharacteristics };
+    const newChars = {}
     for(let key in characteristics) {
       newChars[key] = true;
     }
     setCharacteristics(newChars);
   }, [itemId]);
 
+  function submitCharacteristics() {
+    for (let char in reviewCharacteristics) {
+      let ele = document.getElementsByName(char);
+      for(let i = 0; i < ele.length; i += 1) {
+        if (ele[i].checked) {
+          const updateKey = charNumber[ele[i].name]
+          const updateVal = Number(ele[i].value)
+          const updateChar = {}
+          updateChar[updateKey] = updateVal,
+          setSubChar(subChar => ({
+            ...subChar,
+            ...updateChar
+        }));
+        }
+      }
+    }
+  }
+
   const handleCheck = () => {
     setRecommend(!recommend);
   };
 
   const handleSubmit = () => {
+    const photos = photoList.toString().split(',');
+    submitCharacteristics();
     axios.post('/reviews', {
-      product_id, rating, summary, body, recommend, name, email, photos, reviewCharacteristics,
+      product_id, rating, summary, body, recommend, name, email, photos, subChar,
     })
       .then(() => {
-        console.log('Added a review! ');
+        console.log('Review added');
       })
       .catch((err) => {
         console.log('axios post reviews error', err);
@@ -70,7 +91,7 @@ export default function Form() {
           <h3>
             <label>
               <span>Overall rating</span>
-              <select required name="overall" defaultValue="5" onChange={(e) => setRating(e.target.value)}>
+              <select required name="overall" defaultValue="5" onChange={(e) => setRating(Number(e.target.value))}>
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -97,14 +118,15 @@ export default function Form() {
               <span>Characteristics</span>
             </label>
           </h3>
-          {Object.keys(chars).map((char) => (
+          {Object.keys(reviewCharacteristics).map((char) => (
+
             <GridContainer key={char}>
               <span>{char}</span>
               {' '}
               {chars[char].map((elem, i) => (
                 <FormButtonRow key={i}>
-                  <RadioButtonLabel key={i + 10} htmlFor={elem}>
-                    <input type="radio" key={i} value={i + 1} name={char} />
+                  <RadioButtonLabel required key={i + 13} htmlFor={elem} >
+                    <input type="radio" key={i + 13} value={i + 1} name={char} />
                     {elem}
                   </RadioButtonLabel>
                 </FormButtonRow>
@@ -172,7 +194,7 @@ export default function Form() {
             id="photo"
             value={photoList}
             placeholder="Add up to 5 photo Urls , separated by comma"
-            onChange={(e) => setPhotos(photoList => [...photoList, e.target.value])}
+            onChange={(e) => setPhotos(e.target.value)}
           />
         </div>
         <hr />
@@ -188,6 +210,7 @@ export default function Form() {
           <label>
             <input
               value={name}
+              required
               maxLength="60"
               width="100%"
               placeholder="username"
@@ -208,11 +231,11 @@ export default function Form() {
           <label>
             <input
               type="email"
+              required
               value={email}
-              maxLength="60"
-              placeholder="email"
+              placeholder="name@example.com"
               onChange={(e) => setEmail(e.target.value)}
-              />
+            />
           </label>
         </div>
         <hr />
