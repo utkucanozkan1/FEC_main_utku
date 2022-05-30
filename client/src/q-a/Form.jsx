@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { FormStyle } from './q&a-styled-components/q&aSectionContainerStyle';
 
-export default function Form({ questionId }) {
+export default function Form({ questionId ,productName, handleExit }) {
   const [body, setBody] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -27,13 +27,16 @@ export default function Form({ questionId }) {
   return (
     <FormStyle>
       <div className="answer-header">
+        <div>
+          <button type="button" onClick={handleExit} className="closeQuestion-btn">X</button>
+        </div>
         &nbsp; &nbsp;
         <h1> Submit Your Answer</h1>
         &nbsp; &nbsp;
         <h3>
-          Question :
+          [ {productName.toUpperCase()} ] :
           {' '}
-          {questionId.question_body}
+        [ {questionId.question_body} ]
         </h3>
       </div>
       <div className="whole-answer-text">
@@ -53,7 +56,7 @@ export default function Form({ questionId }) {
             </div>
             &nbsp; &nbsp;
             <div className="form-group">
-              <h3 htmlFor="name">Nickname: </h3>
+              <span htmlFor="name">Nickname: </span>
               <input className="form-control" id="nickName" placeholder="Example:jack453" value={name} onChange={(e) => setName(e.target.value)} />
               <div>
                 <mark>
@@ -67,7 +70,7 @@ export default function Form({ questionId }) {
             </div>
             &nbsp; &nbsp;
             <div className="form-group">
-              <h3>Email address: </h3>
+              <span>Email address: </span>
               <input
                 type="email"
                 className="form-control"
@@ -95,7 +98,7 @@ export default function Form({ questionId }) {
             </div>
             &nbsp; &nbsp;
             <div className="form-group">
-              <button className="form-control btn btn-primary" type="submit">
+              <button className="text-border-btn" type="submit">
                 Submit
               </button>
             </div>
