@@ -15,7 +15,7 @@ function Checkout(props) {
     item, styles, styleIndex, setStyleIndex,
   } = { ...props }.data;
 
-  const { outfitterListener, addToOutfitter } = useContext(ProductIdContext);
+  const { addToOutfitter } = useContext(ProductIdContext);
   // Fill style thumbnails
   const styleThumbs = styles.map((dataStyle, index) => {
     const classList = index !== styleIndex
@@ -23,7 +23,7 @@ function Checkout(props) {
 
     return (
       <li>
-        <button className={classList} style={{ backgroundImage: `url(${dataStyle.photos[0].thumbnail_url})` }} data-index={index} type="button"> </button>
+        <button className={classList} style={{ backgroundImage: `url(${dataStyle.photos[0]?.thumbnail_url || '../../dist/assets/Images/placeholder.png'})` }} data-index={index} type="button"> </button>
       </li>
     );
   }) || [];
@@ -64,7 +64,6 @@ function Checkout(props) {
   return (
     <section className="checkout-section">
       {/* Rating and Title */}
-      { console.log(outfitterListener) }
       <div className="rating-title">
         <div className="reviews-wrapper">
           <StarRating rating={item.rating} className="checkout-star-rating" />
@@ -104,6 +103,7 @@ function Checkout(props) {
             </React.Fragment>
           ))}
         </select>
+        <i className="fa-solid fa-caret-down select-icon select-icon-quantity" />
         <select className="quantity">
           <option>0</option>
           {quantityOptions.map((quantity, index) => (
@@ -113,8 +113,12 @@ function Checkout(props) {
             </React.Fragment>
           ))}
         </select>
+        <i className="fa-solid fa-caret-down select-icon select-icon-size" />
+
         <button className="checkout-button" type="button">ADD TO BAG</button>
-        <button type="button" className="outfitter-add-button" onClick={addToOutfitter}>⭐</button>
+        <button type="button" className="outfitter-add-button" onClick={addToOutfitter}>
+          <i className="fa-solid fa-heart" />
+        </button>
       </div>
     </section>
   );

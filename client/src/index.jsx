@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 /* eslint-disable camelcase */
 /* eslint-disable no-else-return */
 /* eslint-disable max-len */
@@ -5,7 +6,6 @@
 /* eslint-disable import/no-cycle */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import getAverageRating from '../../server/utils/helpers';
 
 // Major component imports
 import { createRoot } from 'react-dom/client';
@@ -13,11 +13,10 @@ import ItemOverview from './Item-Overview/ItemOverview';
 import RelatedOutfitView from './RIOC/RelatedOutfitView';
 import QuestionsAndAnswers from './q-a/QuestionAndAnswers';
 import RatingReviews from './Ratings-Reviews/RRcomponents/RRapp';
+import getAverageRating from '../../server/utils/helpers';
 
-// create the root of the app by selection where the app should be mounted in the dom
 const root = createRoot(document.getElementById('root'));
 
-// eslint-disable-next-line import/prefer-default-export
 export const ProductIdContext = React.createContext('default');
 // Scum😎 -> /products/${itemId}: all, /products/${itemId}/styles: all, /reviews/${itemId}/reviewsMeta: ratings array
 // Utz🦃 -> /qa/questions?product_id=${itemId}&count=100 , qa/questions/${questionId}/answers
@@ -30,7 +29,7 @@ export const ProductIdContext = React.createContext('default');
 // /products/${itemId}/styles: 2
 // /reviews/${itemId}/reviewsMeta: 2
 
-// Initial req count: 27
+// Initial req count: 27 -> 22, 19% cutdown
 
 function App() {
   // Read id from url
@@ -76,7 +75,7 @@ function App() {
   };
 
   const reqErr427 = () => {
-    alert('Too many requests: wait 30-60 seconds!');
+    alert('Request overload😱: wait 30-60 seconds!\nP.S. I blame the API...');
   };
 
   useEffect(() => {
