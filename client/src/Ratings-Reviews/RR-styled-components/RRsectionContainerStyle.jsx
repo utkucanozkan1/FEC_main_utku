@@ -94,7 +94,6 @@ flex-flow: column wrap;
 font-size: 15px;
 `;
 
-
 /*--------------------*/
 // Form and modal settings
 const FormContainer = styled.div`
@@ -190,6 +189,7 @@ const SmallSum = styled.span`
 
 const Date = styled.span`
 align-self: flex-end;
+font-size: 15px;
 `;
 
 const Paragraph = styled.p`
