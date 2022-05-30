@@ -23,11 +23,10 @@ function Gallery(props) {
     let thumbnailUrl = photos[i]?.thumbnail_url ? photos[i]?.thumbnail_url : '';
     if (thumbnailUrl.length > 0 && thumbnailUrl[0] !== 'h') {
       thumbnailUrl = thumbnailUrl.substring(1, thumbnailUrl.length);
+    } else if (thumbnailUrl === '' || !thumbnailUrl) {
+      thumbnailUrl = '../../assets/Images/placeholder.png';
     }
-    // else if (thumbnailUrl === '') {
-    //   thumbnailUrl = '../../../dist/assets/Images/placeholder.png';
-    // }
-    const css = { backgroundImage: `url(${thumbnailUrl})` };
+    const css = { backgroundImage: `url('${thumbnailUrl}')` };
     const classList = i !== imageIndex ? 'thumbnail' : 'thumbnail thumbnail-selected';
     thumbnails.push((
       <li>
@@ -200,11 +199,17 @@ function Gallery(props) {
     }
   });
 
+  // Check if background exists
+  let galleryBackgroundUrl = photos[imageIndex]?.url;
+  if (galleryBackgroundUrl === '' || !galleryBackgroundUrl) {
+    galleryBackgroundUrl = '../../assets/Images/placeholder.png';
+  }
+
   return (
     <section className="gallery-section" onMouseMove={expandImage}>
       <section
         className="gallery-container expand-view"
-        style={{ backgroundImage: `url(${photos[imageIndex]?.url || '../../dist/assets/Images/placeholder.png'})` }}
+        style={{ backgroundImage: `url('${galleryBackgroundUrl}')` }}
         onClick={expandView}
       >
         {/* Expand view wrapper */}

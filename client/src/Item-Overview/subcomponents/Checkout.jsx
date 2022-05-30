@@ -21,9 +21,17 @@ function Checkout(props) {
     const classList = index !== styleIndex
       ? 'style-thumbnail' : 'style-thumbnail style-thumbnail-selected';
 
+    // Replace with placeholder, if image doesn't exist
+    let thumbnailUrl = dataStyle.photos[index]?.thumbnail_url ? dataStyle.photos[index]?.thumbnail_url : '';
+    if (thumbnailUrl.length > 0 && thumbnailUrl[0] !== 'h') {
+      thumbnailUrl = thumbnailUrl.substring(1, thumbnailUrl.length);
+    } else if (thumbnailUrl === '' || !thumbnailUrl) {
+      thumbnailUrl = '../../assets/Images/placeholder.png';
+    }
+
     return (
       <li>
-        <button className={classList} style={{ backgroundImage: `url(${dataStyle.photos[0]?.thumbnail_url || '../../dist/assets/Images/placeholder.png'})` }} data-index={index} type="button"> </button>
+        <button className={classList} style={{ backgroundImage: `url('${thumbnailUrl}')` }} data-index={index} type="button"> </button>
       </li>
     );
   }) || [];
