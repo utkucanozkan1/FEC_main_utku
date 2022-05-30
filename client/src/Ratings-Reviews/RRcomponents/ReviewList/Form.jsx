@@ -15,7 +15,7 @@ export default function Form() {
   const [recommend, setRecommend] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [photos, setPhotos] = useState([]);
+  const [photoList, setPhotos] = useState([]);
   const chars = {
     Size: ['A size too small', '1/2 a size too small', 'Perfect', '1/2 a size too big', 'A size too wide'],
     Width: ['Too narrow', 'Slightly narrow', 'Perfect', 'Slightly wide', 'Too wide'],
@@ -165,13 +165,15 @@ export default function Form() {
           </h3>
         </Header>
         <div>
-          <button type="button">
-            <input
-              type="file"
-              accept="image/*,video/*"
-              // setphoto
-            />
-          </button>
+          <textarea
+            rows="5"
+            cols="50"
+            className="form-control"
+            id="photo"
+            value={photoList}
+            placeholder="Add up to 5 photo Urls , separated by comma"
+            onChange={(e) => setPhotos(photoList => [...photoList, e.target.value])}
+          />
         </div>
         <hr />
         <Header>
