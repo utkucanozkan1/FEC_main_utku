@@ -4,7 +4,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable import/extensions */
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 // Subcomponent/Context imports
 import StarRating from '../../shared/StarRating.jsx';
@@ -15,7 +15,7 @@ function Checkout(props) {
     item, styles, styleIndex, setStyleIndex,
   } = { ...props }.data;
 
-  const { addToOutfitter } = useContext(ProductIdContext);
+  const { addToOutfitter, itemId } = useContext(ProductIdContext);
   // Fill style thumbnails
   const styleThumbs = styles.map((dataStyle, index) => {
     const classList = index !== styleIndex
@@ -49,12 +49,14 @@ function Checkout(props) {
     e.preventDefault();
     if (e.target.classList.contains('style-thumbnail')) {
       // Reassign selected style
+      const index = e.target.getAttribute('data-index' || 0);
       document.querySelector('.style-thumbnail-selected')
         .classList.remove('style-thumbnail-selected');
       e.target.classList.add('style-thumbnail-selected');
-      setStyleIndex(e.target.getAttribute('data-index' || 0));
+      setStyleIndex(index);
       setQuantityOptions([]);
       document.querySelector('.size').value = 'SELECT SIZE';
+      document.querySelector('.quantity').value = '0';
     }
   };
   const sizeChange = (e) => {
@@ -68,6 +70,26 @@ function Checkout(props) {
     document.querySelector('.quantity').value = 0;
     setQuantityOptions(newQuantityOptions);
   };
+  const checkout = (e) => {
+    e.preventDefault();
+    const sizeEl = document.querySelector('.size');
+    const size = sizeEl.value.trim();
+    const quantityEl = document.querySelector('.quantity');
+    const quantity = parseInt(quantityEl.value.trim(), 10);
+    if (size === 'SELECT SIZE' || quantity === 0) {
+      alert('wrOOOng!!#@');
+    }
+  };
+
+  useEffect(() => {
+    // Reset selected style to be the first style
+    document.querySelector('.style-thumbnail-selected')
+      .classList.remove('style-thumbnail-selected');
+    console.log(document.querySelectorAll('.style-thumbnail')[0]);
+    document.querySelectorAll('.style-thumbnail')[0]
+      .classList.add('style-thumbnail-selected');
+    setStyleIndex(0);
+  }, [itemId]);
 
   return (
     <section className="checkout-section">
@@ -113,7 +135,7 @@ function Checkout(props) {
         </select>
         <i className="fa-solid fa-caret-down select-icon select-icon-quantity" />
         <select className="quantity">
-          <option>0</option>
+          <option disabled>0</option>
           {quantityOptions.map((quantity, index) => (
             // eslint-disable-next-line react/no-array-index-key
             <React.Fragment key={index}>
@@ -123,7 +145,7 @@ function Checkout(props) {
         </select>
         <i className="fa-solid fa-caret-down select-icon select-icon-size" />
 
-        <button className="checkout-button" type="button">ADD TO BAG</button>
+        <button className="checkout-button" type="button" onClick={checkout}>ADD TO BAG</button>
         <button type="button" className="outfitter-add-button" onClick={addToOutfitter}>
           <i className="fa-solid fa-heart" />
         </button>

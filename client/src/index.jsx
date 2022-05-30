@@ -154,6 +154,7 @@ function App() {
   let lastY = 0;
   useEffect(() => {
     fetchData(itemId);
+    // header hide/show on scroll
     window.addEventListener('scroll', () => {
       const y = window.scrollY;
       const initialHeight = window.innerHeight;
