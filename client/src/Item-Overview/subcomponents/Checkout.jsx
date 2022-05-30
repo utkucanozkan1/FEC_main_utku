@@ -85,7 +85,6 @@ function Checkout(props) {
     // Reset selected style to be the first style
     document.querySelector('.style-thumbnail-selected')
       .classList.remove('style-thumbnail-selected');
-    console.log(document.querySelectorAll('.style-thumbnail')[0]);
     document.querySelectorAll('.style-thumbnail')[0]
       .classList.add('style-thumbnail-selected');
     setStyleIndex(0);
