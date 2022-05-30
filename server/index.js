@@ -271,9 +271,9 @@ app.post('/reviews', (req, res) => {
       recommend: req.body.recommend,
       name: req.body.name,
       email: req.body.email,
-      photos: [],
+      photos: req.body.photos,
       body: req.body.body,
-      characteristics: req.body.characteristics,
+      characteristics: req.body.subChar,
     },
     headers: {
       Authorization: config.TOKEN,
@@ -285,7 +285,7 @@ app.post('/reviews', (req, res) => {
       res.sendStatus(201);
     })
     .catch((err) => {
-      console.log('post review error:', err.response.status);
+      console.log('post review error:', err);
       res.sendStatus(err.response.status);
     });
 });
