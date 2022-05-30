@@ -109,8 +109,8 @@ function QuestionsAndAnswers() {
             </form>
           </div>
         </div>
-        <div>
-          {noQuestions ? <h2>Looks like no answered questions are available for this product, please add a new question</h2> : null}
+        <div style={{backgroundColor:'white'}}>
+          {noQuestions ? <span className="noAnswered-text">Looks like no answered questions are available for this product, please add a new question</span> : null}
         </div>
         {searchQuestions ? (
           <div className="main-div">

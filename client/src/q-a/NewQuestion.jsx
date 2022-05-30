@@ -5,12 +5,13 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { FormStyle } from './q&a-styled-components/q&aSectionContainerStyle';
 
-export default function NewQuestion({ productName }) {
+export default function NewQuestion({ productName, handleExit, product_id }) {
   const [body, setBody] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [isClicked, setIsClicked] = useState(false);
   const onSubmit = (event) => {
+    event.preventDefault();
     axios
       .post('/questions', {
         body, name, email, product_id,
@@ -18,12 +19,14 @@ export default function NewQuestion({ productName }) {
       .then(() => console.log('post question success'))
       .catch((err) => console.log(err));
     setIsClicked(true);
-    event.preventDefault();
   };
 
   return (
     <FormStyle>
       <div className="answer-header">
+        <div>
+          <button type="button" onClick={handleExit} className="closeQuestion-btn">X</button>
+        </div>
         &nbsp; &nbsp;
         <h1> Ask Your Question</h1>
         &nbsp; &nbsp;
@@ -46,7 +49,7 @@ export default function NewQuestion({ productName }) {
             </div>
             &nbsp; &nbsp;
             <div className="form-group">
-              <h3 htmlFor="name">Nickname: </h3>
+              <span htmlFor="name">Nickname: </span>
               <input className="form-control" id="nickName" placeholder="Example:jack453" value={name} onChange={(e) => setName(e.target.value)} />
               <div>
                 <mark>
@@ -60,7 +63,7 @@ export default function NewQuestion({ productName }) {
             </div>
             &nbsp; &nbsp;
             <div className="form-group">
-              <h3>Email address: </h3>
+              <span>Email address: </span>
               <input
                 type="email"
                 className="form-control"
@@ -75,7 +78,7 @@ export default function NewQuestion({ productName }) {
             </div>
             &nbsp; &nbsp;
             <div className="form-group">
-              <button className="form-control btn btn-primary" type="submit">
+              <button className="text-border-btn" type="submit">
                 Submit
               </button>
             </div>

@@ -9,10 +9,7 @@ export default function ModalPopup({ show, handleExit, questionId, productName }
   return (
     <Modal show={show}>
       <div>
-        <CloseButton>
-          <button className="close-btn" type="button" onClick={handleExit}>X</button>
-        </CloseButton>
-        <Form questionId={questionId} productName={productName} />
+        <Form questionId={questionId} productName={productName} handleExit={handleExit} />
       </div>
     </Modal>
   );

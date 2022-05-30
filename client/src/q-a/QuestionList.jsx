@@ -120,9 +120,9 @@ function QuestionList(props) {
               {ButtonTitle} ({props.question.question_helpfulness})
             </button> */}
             {questionHelpful ? (
-              <button type="button" className="astext-btn">
+              <span className="span-helpful-btn">
                 This Question has been marked Helpful
-              </button>
+              </span>
             ) : (
               <button
                 type="button"
@@ -169,9 +169,9 @@ function QuestionList(props) {
             {moment(answerArr[0].date.slice(0, 10)).format('MMM Do YY')}
           </span>
           {answer1Helpful ? (
-            <button type="button" className="astext-btn">
+            <span className="span-helpful-btn">
               This Answer has been marked Helpful
-            </button>
+            </span>
           ) : (
             <button
               type="button"
@@ -228,9 +228,9 @@ function QuestionList(props) {
                     {moment(answerArr[1].date.slice(0, 10)).format('MMM Do YY')}
                   </span>
                   {answer2Helpful ? (
-                    <button type="button" className="astext-btn">
+                    <span className="span-helpful-btn">
                       This Answer has been marked Helpful
-                    </button>
+                    </span>
                   ) : (
                     <button
                       type="button"
