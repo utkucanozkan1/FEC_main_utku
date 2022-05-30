@@ -152,7 +152,7 @@ function QuestionList(props) {
             </div>
           </div>
         </div>
-        <div>
+        <div className="answer-text-div">
           <b>A:</b>
           <span className="answer-text">{answerArr[0].body}</span>
         </div>
@@ -165,7 +165,7 @@ function QuestionList(props) {
         <div className="answer-detail-div">
           <span style={{ fontSize: 'small' }}>
             by &nbsp;
-            <span>{answerArr[0].answerer_name.toLowerCase() === 'seller' ? <b>Seller</b> : <>{answerArr[0].answerer_name}</>}</span>, &nbsp;
+            <span>{answerArr[0].answerer_name.toLowerCase() === 'seller' ? <span className="seller-text">Seller</span> : <>{answerArr[0].answerer_name}</>}</span>, &nbsp;
             {moment(answerArr[0].date.slice(0, 10)).format('MMM Do YY')}
           </span>
           {answer1Helpful ? (
@@ -211,7 +211,7 @@ function QuestionList(props) {
           {addAnswer
             ? (
               <>
-                <div>
+                <div className="answer-text-div">
                   <b>A:</b>
                   <span className="answer-text">{answerArr[1].body}</span>
                 </div>
@@ -224,7 +224,7 @@ function QuestionList(props) {
                 <div className="answer-detail-div">
                   <span style={{ fontSize: 'small' }}>
                     by &nbsp;
-                    <span>{answerArr[1].answerer_name.toLowerCase() === 'seller' ? <b>Seller</b> : <>{answerArr[1].answerer_name}</>}</span>, &nbsp;
+                    <span>{answerArr[1].answerer_name.toLowerCase() === 'seller' ? <span className="seller-text">Seller</span> : <>{answerArr[1].answerer_name}</>}</span>, &nbsp;
                     {moment(answerArr[1].date.slice(0, 10)).format('MMM Do YY')}
                   </span>
                   {answer2Helpful ? (

@@ -93,7 +93,7 @@ function QuestionsAndAnswers() {
   if (!loading) {
     return (
       <section className="question-section">
-        <div>Questions & Answers</div>
+        <div className="title-div">Q & A</div>
         <div className="search-bar">
             <i className="fa-solid fa-magnifying-glass" />
           <div>
@@ -114,7 +114,7 @@ function QuestionsAndAnswers() {
         </div>
         {searchQuestions ? (
           <div className="main-div">
-            {searchArray.slice(0, 2).map((question, i) => (
+            {searchArray.slice(0, 4).map((question, i) => (
               <QuestionList question={question} key={i} name={name} />
             ))}
           </div>
@@ -126,10 +126,10 @@ function QuestionsAndAnswers() {
           </div>
         )}
         <div className="bottom-buttons-div">
-          <div>
+          <div style={{backgroundColor:'white'}}>
             {loadQuestions && <button className="text-border-btn" onClick={adjustQuestionCount}>MORE ANSWERED QUESTIONS</button>}
           </div>
-          <div>
+          <div style={{backgroundColor:'white'}}>
             <button type="button" className="text-border-btn" onClick={showModal}>
               ADD A QUESTION +
               {' '}
