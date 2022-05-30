@@ -91,7 +91,7 @@ export default function ReviewList() {
         <button type="button" onClick={showModal}>Add Review</button>
       </BottomButtons>
       <ModalPopup show={showModalForm} handleExit={hideModal}>
-        <FormStyle><Form productId={itemId} /></FormStyle>
+        <FormStyle><Form /></FormStyle>
       </ModalPopup>
     </ReviewListContainer>
   );
