@@ -88,6 +88,7 @@ function Gallery(props) {
   const expandImage = (e) => {
     e.preventDefault();
     const galleryContainer = document.querySelector('.gallery-container');
+    const header = document.querySelector('header');
     if (galleryContainer.classList.contains('gallery-container-zoomed')) {
       // Get % of cursor position, related to galleryContainer measurements
       const x = Math.round((e.clientX / galleryContainer.offsetWidth) * 100);
@@ -96,10 +97,12 @@ function Gallery(props) {
       // Move to the % part of the expanded image on mousemove
       galleryContainer.style.backgroundSize = '250%';
       galleryContainer.style.backgroundPosition = `${x}% ${y}%`;
+      header.style.display = 'none';
     } else {
       // Reset
       galleryContainer.style.backgroundSize = 'contain';
       galleryContainer.style.backgroundPosition = 'center';
+      header.style.display = 'block';
     }
   };
 

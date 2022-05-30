@@ -158,7 +158,7 @@ function App() {
       const y = window.scrollY;
       const initialHeight = window.innerHeight;
       const header = document.querySelector('.header');
-      if (y <= initialHeight / 5 || y < lastY) {
+      if (y <= initialHeight || y < lastY) {
         header.classList.remove('header-hide');
       } else if (y > lastY) {
         header.classList.add('header-hide');
