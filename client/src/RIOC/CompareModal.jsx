@@ -12,16 +12,35 @@ function CompareModal() {
   const { modal, setModal } = useContext(ModalContext);
   const { product } = useContext(CardProductContext);
   const [features, setFeatures] = useState([]);
-  // INFO FOR 2 PRODUCTS
+  // INFO FOR COMP PRODUCT
   useEffect(() => {
     axios.get(`/products/${product.id}`)
       .then((compProduct) => {
-        setFeatures([...data.features, ...compProduct.data.features]);
+        setFeatures(compProduct.data.features);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
+
+  function handleSharedTrait(trait, featureList) {
+    let sharedValue = featureList.reduce((prev, cur, i) => {
+      if (cur.feature === trait.feature) {
+        return cur.value;
+      }
+      return prev;
+    }, '');
+    return sharedValue;
+  }
+  // useEffect(() => {
+  //   axios.get(`/products/${product.id}`)
+  //     .then((compProduct) => {
+  //       setFeatures([...data.features, ...compProduct.data.features]);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
 
   function closeModal(event) {
     event.stopPropagation();
@@ -30,21 +49,32 @@ function CompareModal() {
   return (
     <Modal>
       <Chart>
-        {console.log(features)}
-        <h5>Comparing</h5>
-        <button type="button" onClick={closeModal}>X</button>
+        <RowContainer>
+          <h5>Comparing</h5>
+          <button type="button" onClick={closeModal}>X</button>
+        </RowContainer>
         <CompareContainer>
           <RowContainer>
-            <h6>Cur Product Name</h6>
+            <h6 className="left">{data.name}</h6>
             <p> </p>
-            <h6>{product.name}</h6>
+            <h6 className="right">{product.name}</h6>
           </RowContainer>
-          {features.map((trait) => (
+          {data.features.map((trait) => (
             <RowContainer>
               <p className="modalItem">{trait.value ? trait.value : '✓'}</p>
               <p className="modalItem">{trait.feature}</p>
-              <p className="modalItem">{trait.value ? trait.value : '✓'}</p>
+              <p className="modalItem">{handleSharedTrait(trait, features)}</p>
             </RowContainer>
+          ))}
+          {features.map((trait, i) => (
+            Object.entries(data.features[i])[0][1] === trait.feature ? <> </>
+              : (
+                <RowContainer>
+                  <p className="modalItem">{handleSharedTrait(trait, data.features)}</p>
+                  <p className="modalItem">{trait.feature}</p>
+                  <p className="modalItem">{trait.value ? trait.value : '✓'}</p>
+                </RowContainer>
+              )
           ))}
         </CompareContainer>
       </Chart>
