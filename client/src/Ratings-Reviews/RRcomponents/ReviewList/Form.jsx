@@ -15,7 +15,7 @@ export default function Form() {
   const [recommend, setRecommend] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [photoList, setPhotos] = useState('');
+  const [photoList, setPhotos] = useState([]);
   const [subChar, setSubChar] = useState({});
   const [product_id, changeProductid] = useState(itemId);
   const chars = {
@@ -26,50 +26,19 @@ export default function Form() {
     Length: ['Runs Short', 'Runs slightly short', 'Perfect', 'Runs slightly long', 'Runs long'],
     Fit: ['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly long', 'Runs long'],
   };
-  const charNumber = {
-    Size: 14,
-    Width: 15,
-    Comfort: 16,
-    Quality: 17,
-    Length: 18,
-    Fit: 19,
-  };
 
   const [reviewCharacteristics, setCharacteristics] = useState({});
 
   useEffect(() => {
-    const newChars = {}
+    const newChars = {};
     for(let key in characteristics) {
       newChars[key] = true;
     }
     setCharacteristics(newChars);
   }, [itemId]);
 
-  function submitCharacteristics() {
-    for (let char in reviewCharacteristics) {
-      let ele = document.getElementsByName(char);
-      for(let i = 0; i < ele.length; i += 1) {
-        if (ele[i].checked) {
-          const updateKey = charNumber[ele[i].name]
-          const updateVal = Number(ele[i].value)
-          const updateChar = {}
-          updateChar[updateKey] = updateVal,
-          setSubChar(subChar => ({
-            ...subChar,
-            ...updateChar
-        }));
-        }
-      }
-    }
-  }
-
-  const handleCheck = () => {
-    setRecommend(!recommend);
-  };
-
-  const handleSubmit = () => {
+  useEffect(() => {
     const photos = photoList.toString().split(',');
-    submitCharacteristics();
     axios.post('/reviews', {
       product_id, rating, summary, body, recommend, name, email, photos, subChar,
     })
@@ -79,6 +48,31 @@ export default function Form() {
       .catch((err) => {
         console.log('axios post reviews error', err);
       });
+  }), [subChar];
+
+  function submitCharacteristics() {
+    const submitObj = {};
+    for (let char in reviewCharacteristics) {
+      let ele = document.getElementsByName(char);
+      for(let i = 0; i < ele.length; i += 1) {
+        if (ele[i].checked) {
+          const updateKey = characteristics[ele[i].name].id
+          const updateVal = Number(ele[i].value)
+          const updateChar = {}
+          submitObj[updateKey] = updateVal
+        }
+      }
+    }
+    console.log(submitObj);
+    setSubChar(submitObj);
+  }
+
+  const handleCheck = () => {
+    setRecommend(!recommend);
+  };
+
+  const handleSubmit = () => {
+    submitCharacteristics();
   };
 
   return (
