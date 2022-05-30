@@ -23,8 +23,10 @@ function Gallery(props) {
     let thumbnailUrl = photos[i]?.thumbnail_url ? photos[i]?.thumbnail_url : '';
     if (thumbnailUrl.length > 0 && thumbnailUrl[0] !== 'h') {
       thumbnailUrl = thumbnailUrl.substring(1, thumbnailUrl.length);
+    } else if (thumbnailUrl === '' || !thumbnailUrl) {
+      thumbnailUrl = '../../assets/Images/placeholder.png';
     }
-    const css = { backgroundImage: `url(${thumbnailUrl})` };
+    const css = { backgroundImage: `url('${thumbnailUrl}')` };
     const classList = i !== imageIndex ? 'thumbnail' : 'thumbnail thumbnail-selected';
     thumbnails.push((
       <li>
@@ -170,26 +172,44 @@ function Gallery(props) {
       navLeft.style.display = 'block';
     }
 
+    // The margin operation below keep thumbnail list as centered as possible
+    const thumbnailsEl = document.querySelector('.thumbnails');
     // Carousel Up
     if (imageIndex < 4) {
       carouselUp.style.display = 'none';
+      thumbnailsEl.style.marginTop = '10.5vh';
     } else {
       carouselUp.style.display = 'block';
+      let bottomOffset = 0;
+      if (imageIndex >= photos.length - 4) {
+        bottomOffset = (photos.length - imageIndex + 1) * 2.625;
+      }
+      thumbnailsEl.style.marginTop = '0';
+      carouselUp.style.bottom = `${bottomOffset}vh`;
+      thumbnailsEl.style.bottom = `${bottomOffset}vh`;
     }
     // Carousel Down
     const nextPageStartIndex = (Math.floor(imageIndex / 4) + 1) * 4;
     if (nextPageStartIndex < photos.length) {
       carouselDown.style.display = 'block';
+      carouselUp.style.bottom = '0';
+      thumbnailsEl.style.bottom = '0';
     } else {
       carouselDown.style.display = 'none';
     }
   });
 
+  // Check if background exists
+  let galleryBackgroundUrl = photos[imageIndex]?.url;
+  if (galleryBackgroundUrl === '' || !galleryBackgroundUrl) {
+    galleryBackgroundUrl = '../../assets/Images/placeholder.png';
+  }
+
   return (
     <section className="gallery-section" onMouseMove={expandImage}>
       <section
         className="gallery-container expand-view"
-        style={{ backgroundImage: `url(${photos[imageIndex]?.url})` }}
+        style={{ backgroundImage: `url('${galleryBackgroundUrl}')` }}
         onClick={expandView}
       >
         {/* Expand view wrapper */}
@@ -201,7 +221,8 @@ function Gallery(props) {
 
         <div className="image-list-wrapper">
           <button type="button" className="gallery-up" data-action="carouselPrev" onClick={arrowThumbnailClick}>
-            <i className="fa-solid fa-arrow-up" data-action="carouselPrev" />
+            <img src="../../assets/Images/arrow-white.svg" alt="carousel-top" data-action="carouselPrev" className="arrow-white up" />
+            {/* <i className="fa-solid fa-arrow-up" data-action="carouselPrev" /> */}
           </button>
 
           <ul className="thumbnails" onClick={thumbnailClick}>
@@ -214,19 +235,22 @@ function Gallery(props) {
           </ul>
 
           <button type="button" className="gallery-down" data-action="carouseNext" onClick={arrowThumbnailClick}>
-            <i className="fa-solid fa-arrow-down" data-action="carouselNext" />
+            <img src="../../assets/Images/arrow-white.svg" alt="carousel-previous" data-action="carouselNext" className="arrow-white down" />
+            {/* <i className="fa-solid fa-arrow-down" data-action="carouselNext" /> */}
           </button>
         </div>
 
         <div className="image-navigation expand-view">
           <div className="nav-button-wrapper">
             <button type="button" className="gallery-left" data-action="imagePrev" onClick={arrowNavigationClick}>
-              <i className="fa-solid fa-arrow-left" data-action="imagePrev" />
+              <img src="../../assets/Images/arrow-white.svg" alt="arrow-left" data-action="imagePrev" className="arrow-white left" onClick={arrowNavigationClick} />
+              {/* <i className="fa-solid fa-arrow-left" data-action="imagePrev" /> */}
             </button>
           </div>
           <div className="nav-button-wrapper">
             <button type="button" className="gallery-right" data-action="imageNext" onClick={arrowNavigationClick}>
-              <i className="fa-solid fa-arrow-right" data-action="imageNext" />
+              <img src="../../assets/Images/arrow-white.svg" alt="arrow-right" data-action="imageNext" className="arrow-white right" onClick={arrowNavigationClick} />
+              {/* <i className="fa-solid fa-arrow-right" data-action="imageNext" /> */}
             </button>
           </div>
         </div>

@@ -42,8 +42,8 @@ function ItemOverview() {
         </section>
         <section className="description-subsection">
           <div className="description">
-            <h5>{item.slogan}</h5>
-            <p>{item.description}</p>
+            <h5 className="slogan">{item.slogan}</h5>
+            <p className="description-text">{item.description}</p>
           </div>
           <div className="features">
             <ul>
