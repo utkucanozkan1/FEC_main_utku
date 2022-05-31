@@ -34,8 +34,7 @@ function OutfitCard({card}) {
   }
 
   return (
-    <CardDiv onClick={clickHanlder}>
-      {console.log(card)}
+    <div className="card" onClick={clickHanlder}>
       <div className="prodImg" style={{ backgroundImage: `url(${card.imageUrl})` }}>
         <CardButton type="button" onClick={deleteCard}>X</CardButton>
       </div>
@@ -43,7 +42,7 @@ function OutfitCard({card}) {
       <h6>{card.title}</h6>
       <p>{card.original_price}</p>
       <StarRating rating={card.rating} className="relatedStars" />
-    </CardDiv>
+    </div>
   );
 }
 

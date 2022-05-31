@@ -19,7 +19,7 @@ function LeftArrow({outfitAttr}) {
 
   return (
     <CarouselButton onClick={scrollLeft}>
-      { position === 0 ? '' : '<' }
+      { position === 0 ? '' : <img src="../../assets/Images/arrow-black.svg" alt="carousel-next" className="arrow-black left" /> }
     </CarouselButton>
   );
 }
