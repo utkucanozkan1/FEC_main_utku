@@ -68,7 +68,7 @@ function RelatedView() {
   }, [viewable]);
 
   return (
-    <section className="relatedSection">
+    <section className="viewSection">
       <h6 className="sectionTitle">RELATED PRODUCTS</h6>
       <div className="cardContainer">
         <ViewableContext.Provider value={{ viewable, setViewable, position, setPosition, related, end, setEnd }}>
