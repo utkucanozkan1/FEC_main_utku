@@ -367,7 +367,7 @@ app.get('/outfitter', (req, res) => {
         res.status(200).send(entries[i].outfitter);
       }
     }
-    res.end();
+    res.send([]);
   });
 });
 // DELETE an item from shoppingData.json
