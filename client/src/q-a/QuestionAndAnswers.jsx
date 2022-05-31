@@ -83,47 +83,54 @@ function QuestionsAndAnswers() {
   };
   const adjustQuestionCount = () => {
     setQuestionCount((prev) => prev - 2);
-    setSliceCount((prev) => prev + 2);
+    setSliceCount((prev) => {
+      if (prev !== 8) {
+        prev + 2;
+      }
+    });
   };
 
   if (!loading) {
     return (
       <section className="question-section">
-        <div>Questions & Answers</div>
-        <div>
-          <form onSubmit={(e) => e.preventDefault()}>
-            <input
-              type="text"
-              id="header-search"
-              placeholder="Have a question? Search for answers..."
-              name="search"
-              value={searchTerm.search}
-              onChange={(e) => handleChange(e)}
-            />
-          </form>
+        <div className="title-div">Q & A</div>
+        <div className="search-bar">
+            <i className="fa-solid fa-magnifying-glass" />
+          <div>
+            <form onSubmit={(e) => e.preventDefault()}>
+              <input
+                type="text"
+                className="header-search"
+                placeholder="Have a question? Search for answers..."
+                name="search"
+                value={searchTerm.search}
+                onChange={(e) => handleChange(e)}
+              />
+            </form>
+          </div>
         </div>
-        <div>
-          {noQuestions ? <h2>Looks like no answered questions are available for this product, please add a new question</h2> : null}
+        <div style={{backgroundColor:'white'}}>
+          {noQuestions ? <span className="noAnswered-text">Looks like no answered questions are available for this product, please add a new question</span> : null}
         </div>
         {searchQuestions ? (
           <div className="main-div">
-            {searchArray.slice(0, 2).map((question, i) => (
-              <QuestionList question={question} key={i} />
+            {searchArray.slice(0, 4).map((question, i) => (
+              <QuestionList question={question} key={i} name={name} />
             ))}
           </div>
         ) : (
           <div className="main-div">
             {questionArray.slice(0, sliceCount).map((question, i) => (
-              <QuestionList question={question} key={i} />
+              <QuestionList question={question} key={i} name={name} />
             ))}
           </div>
         )}
         <div className="bottom-buttons-div">
-          <div>
-            {loadQuestions && <button onClick={adjustQuestionCount}>MORE ANSWERED QUESTIONS</button>}
+          <div style={{backgroundColor:'white'}}>
+            {loadQuestions && <button className="text-border-btn" onClick={adjustQuestionCount}>MORE ANSWERED QUESTIONS</button>}
           </div>
-          <div>
-            <button type="button" onClick={showModal}>
+          <div style={{backgroundColor:'white'}}>
+            <button type="button" className="text-border-btn" onClick={showModal}>
               ADD A QUESTION +
               {' '}
             </button>

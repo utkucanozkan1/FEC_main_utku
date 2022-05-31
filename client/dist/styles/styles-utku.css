@@ -1,110 +1,264 @@
-/* image Modal */
-/* *{
-  border: 1px solid red;
-} */
-
-.small {
-  width: 90px;
+@font-face {
+  font-family: "Kollektif";
+  src: url("../assets/fonts/Kollektif/Kollektif.ttf");
 }
-.dialog {
-  box-shadow: 0 8px 6px -6px black;
-  position: absolute;
-  right: 50%;
-  left: 20%;
-  top: 95%;
+@font-face {
+  font-family: "Montserrat";
+  src: url("../assets/fonts/Montserrat/static/Montserrat-Light.ttf");
+}
+@font-face {
+  font-family: "Montserrat-Bold";
+  src: url("../assets/fonts/Montserrat/static/Montserrat-SemiBold.ttf");
+}
+.question-section {
+  /* main stylings */
+  margin-left: auto;
+  margin-right: auto;
+  width: 50vw;
+  box-shadow: 0 0 1vw 0.1vw white, 0 0 1vw 0.1vw white inset;
+  /* main stylings */
+  /* Image Styling */
+  /* Image Styling */
+  /* searchBar styling */
+  /* searchBar styling */
+  /* Button styling */
+  /* Button styling */
+  /* answer div styling */
+  /* answer div styling */
+}
+.question-section .title-div {
+  background-color: white;
+  font-weight: bolder;
+  border-left: solid 0.5em;
+  border-color: crimson;
+  font-size: x-large;
+  font-family: "Kollektif";
+}
+.question-section .question-div {
+  display: flex;
+  align-content: space-around;
+}
+.question-section .main-div {
+  max-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: auto;
+  overflow: hidden;
+  overflow-y: scroll !important;
+}
+.question-section .flex-child {
+  flex: 1;
+  font-family: "Montserrat-Bold";
+}
+.question-section .body-text {
+  margin-top: 5vh;
+}
+.question-section .body-text textarea {
+  color: black;
+  font-family: "Montserrat";
+}
+.question-section .qa-main-div {
+  background-color: rgb(223, 223, 223);
+  border-bottom: solid 0.7em;
+  border-left: solid 0.7em;
+  border-color: white;
+  box-shadow: 0 0 1vw 0.1vw white, 0 0 1vw 0.1vw white inset;
+  margin: auto;
+  width: 100%;
+}
+.question-section .small {
+  width: 7vw;
+}
+.question-section .dialog {
+  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.956);
   width: max-content;
 }
-
-.image {
-  width: 60em;
-  height: 30em;
+.question-section .image-component {
+  display: inline-flex;
+  margin-right: 2.5%;
+  flex-direction: row;
+  justify-content: space-evenly;
+  border-color: black;
+  border-style: solid;
 }
-
-/* .main-q-a {
-  margin-left: 20%;
-} */
-
-/* Button styling */
-
-.astext-btn {
-  background:none;
-  border:none;
-  margin:0;
-  padding:0;
+.question-section .image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  overflow: hidden;
+}
+.question-section .modal-div {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+}
+.question-section .container-div {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+  width: 80%;
+  height: 80%;
+}
+.question-section .search-bar {
+  display: flex;
+  background-color: white;
+  font-family: "Montserrat";
+}
+.question-section .search-bar input {
+  color: white;
+  font-family: "Montserrat";
+}
+.question-section ::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  font-family: "Montserrat";
+  color: white;
+  opacity: 1;
+  /* Firefox */
+}
+.question-section .fa-magnifying-glass {
+  align-self: center;
+  position: relative;
+  left: 9.2vw;
+  z-index: 1000;
+  color: crimson;
+  margin-bottom: 2.2vh;
+}
+.question-section .fa-circle-question {
+  font-size: larger;
+}
+.question-section .header-search {
+  height: 3em;
+  width: 30vw;
+  margin-left: 8vw;
+  padding-left: 3vw;
+  position: relative;
+  right: 1vw;
+  border-color: black;
+  background-color: black;
+  border-style: solid;
+  border-radius: 20px;
+  margin-bottom: 2.5vh;
+}
+.question-section .astext-btn {
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
   cursor: pointer;
   font-size: small;
+  font-family: "Montserrat";
 }
-
-
-.astext-btn-answer {
-  background:none;
-  border:none;
-  margin:0;
-  padding:0;
+.question-section .span-helpful-btn {
+  font-size: small;
+  font-style: italic;
+  font-family: "Montserrat";
+  margin-left: 2vw;
+}
+.question-section .astext-btn-answer {
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
   cursor: pointer;
   text-decoration: underline;
   font-size: small;
+  font-family: "Montserrat";
 }
-.close-btn {
+.question-section .closeQuestion-btn {
   background-color: red;
   color: white;
   border: 2px solid black;
   width: 2em;
   height: 2em;
+  margin-left: 48.3vw;
 }
-
-/* Image Styling */
-
-.image-component {
-display: inline-flex;
-margin-right: 5%;
-flex-direction: row;
-justify-content: space-evenly;
-border-color: black;
-border-style: solid;
+.question-section .text-border-btn {
+  background-color: black;
+  border-radius: 20px;
+  padding: 1.5vh;
+  margin: 1vh 0vh 2vh 0vh;
+  cursor: pointer;
+  font-weight: bolder;
+  font-size: smaller;
+  color: white;
+  width: fit-content;
+  font-family: "Montserrat";
 }
-
-.answer-text {
-  font-size: medium;
+.question-section .text-border-btn:hover {
+  background-color: crimson;
 }
-
-.question-div{
-display: flex;
-align-content: space-around;
-}
-.main-div {
-min-height: 50vh;
-display: flex;
-flex-direction: column;
-justify-content: space-around;
-}
-.flex-child{
-flex: 1;
-}
-
-#header-search{
-  height: 3em;
-  width: 40em;
-  border-color: black;
-  border-style: solid;
-}
-.question-section{
-  margin-left: auto;
-  margin-right: auto;
-  border: 1px solid red;
-  width: 50vw;
-}
-.body-text {
-  margin-top: 10vh;
-}
-.answer-header {
-text-align: center;
-}
-.whole-answer-text {
-  text-align: center;
-}
-.bottom-buttons-div {
+.question-section .bottom-buttons-div {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  width: 100%;
+  height: auto;
+  background-color: white;
 }
+.question-section .moreAnswers-btn {
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  font-size: smaller;
+  font-weight: bolder;
+  margin-top: 1.5em;
+  color: crimson;
+  font-family: "Montserrat";
+}
+.question-section .moreAnswers-btn:hover {
+  color: white;
+}
+.question-section .answer-text-div {
+  font-family: "Montserrat";
+  margin: 0.9vw 0vw 0vw 0.3vw;
+}
+.question-section .answer-detail-div {
+  margin-top: 0.5em;
+  font-family: "Montserrat";
+}
+.question-section .answerer-detail-div {
+  margin-top: 1.5em;
+}
+.question-section .answerer-smallBreak {
+  margin-top: 1em;
+}
+.question-section .answer-header {
+  text-align: center;
+  font-family: "Montserrat-Bold";
+}
+.question-section .whole-answer-text {
+  text-align: center;
+  font-family: "Montserrat";
+}
+.question-section .whole-answer-text input {
+  color: black;
+  font-family: "Montserrat";
+}
+.question-section .whole-answer-text ::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  font-family: "Montserrat";
+  color: darkgray;
+  opacity: 1;
+  /* Firefox */
+}
+.question-section .seller-text {
+  font-family: "Montserrat-Bold";
+}
+.question-section .noAnswered-text {
+  font-family: "Montserrat-Bold";
+  background-color: white;
+}
+
+/*# sourceMappingURL=styles-utku.css.map */
