@@ -10,20 +10,8 @@
   font-family: "Montserrat-Bold";
   src: url("../assets/fonts/Montserrat/static/Montserrat-SemiBold.ttf");
 }
-.addCard {
-  display: flex;
-  justify-content: center;
-  height: 65%;
-  background-color: rgb(59, 59, 59);
-  font-size: 50px;
-  color: white;
-  text-align: center;
-}
-
 .relatedStars .fa-star {
-  font-size: 7px;
-  position: relative;
-  bottom: 1vh;
+  font-size: 2vw;
 }
 
 .modalItem {
@@ -49,15 +37,12 @@
 .riocSection {
   display: flex;
   flex-direction: column;
-  border-style: solid;
 }
-.riocSection .relatedSection {
+.riocSection .viewSection {
   height: 50vh;
-  border-color: red;
-  border-style: solid;
   margin-bottom: 150px;
 }
-.riocSection .relatedSection .sectionTitle {
+.riocSection .viewSection .sectionTitle {
   border-style: solid;
   background-color: black;
   color: white;
@@ -67,10 +52,11 @@
   right: 3vh;
   z-index: 100;
   padding: 1%;
-  width: 40%;
+  width: 60%;
   font-family: "Montserrat-Bold";
+  font-size: 3.5vw;
 }
-.riocSection .relatedSection .cardContainer {
+.riocSection .viewSection .cardContainer {
   display: flex;
   background-color: rgba(255, 255, 255, 0.8);
   height: 100%;
@@ -80,20 +66,39 @@
   border-right: 0.3em;
   border-bottom: 0.3em;
 }
-.riocSection .relatedSection .cardContainer .card {
+.riocSection .viewSection .cardContainer .card {
   background-color: white;
+  border-style: solid;
+  border-width: 3px;
   border-color: darkgray;
   flex: 1 1 0px;
   margin: 5px;
   height: 90%;
   cursor: pointer;
 }
-.riocSection .relatedSection .cardContainer .card p {
+.riocSection .viewSection .cardContainer .card p {
   font-family: "Montserrat";
   font-size: 1.5vw;
+  padding-left: 1vw;
+  padding-right: 1vw;
 }
-.riocSection .relatedSection .cardContainer .card h6 {
-  font-family: "Montserrat-SemiBold";
+.riocSection .viewSection .cardContainer .card .addCard {
+  display: flex;
+  justify-content: center;
+  height: 65%;
+  background-color: rgb(59, 59, 59);
+  color: white;
+  text-align: center;
+}
+.riocSection .viewSection .cardContainer .card .addCard .add {
+  font-size: 100px;
+  position: relative;
+  top: 25%;
+}
+.riocSection .viewSection .cardContainer .card h6 {
+  padding-left: 1vw;
+  padding-right: 1vw;
+  font-family: "Montserrat-Bold";
   font-size: 2vw;
 }
 
@@ -106,6 +111,19 @@
   background-position: center;
   background-color: rgb(59, 59, 59);
   box-shadow: 0 0 8px 8px darkgray inset;
+  transition: box-shadow 1s ease-in-out;
+}
+.prodImg:hover {
+  box-shadow: 0 0 2vw 0.2vw white, 0 0 2vw 0.2vw white inset;
+  transition: box-shadow 1s ease-in-out;
+}
+
+.arrow-black {
+  width: 6vw;
+  height: 6vh;
+}
+.arrow-black.left {
+  transform: rotate(180deg);
 }
 
 /*# sourceMappingURL=styles-val.css.map */

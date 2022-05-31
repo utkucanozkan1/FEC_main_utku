@@ -361,8 +361,17 @@ app.put('/reviews/:review_id/report', (req, res) => {
 // GET all outfits in shoppingData.json
 app.get('/outfitter', (req, res) => {
   fs.readFile(path.join(__dirname, 'data/shoppingData.json'), (readErr, data) => {
-    const items = JSON.parse(data);
-    res.send(items);
+    const entries = JSON.parse(data);
+    let sessionIdFound = false;
+    for (let i = 0; i < entries.length; i += 1) {
+      if (entries[i].session_id === req.session_id) {
+        sessionIdFound = true;
+        res.status(200).send(entries[i].outfitter);
+      }
+    }
+    if (!sessionIdFound) {
+      res.send([]);
+    }
   });
 });
 // DELETE an item from shoppingData.json
@@ -373,13 +382,23 @@ app.delete('/outfitter', (req, res) => {
   for (let i = 0; i < cards.length; i += 1) {
     if (cards[i].productId === productId) {
       cards.splice(i, 1);
+      break;
     }
   }
-  fs.writeFile(path.join(__dirname, 'data/shoppingData.json'), JSON.stringify(cards, null, '\t'), (writeErr) => {
-    if (writeErr) {
-      console.log(writeErr);
+
+  fs.readFile(path.join(__dirname, 'data/shoppingData.json'), (readErr, data) => {
+    const entries = JSON.parse(data);
+    for (let i = 0; i < entries.length; i += 1) {
+      if (entries[i].session_id === req.session_id) {
+        entries[i].outfitter = cards;
+      }
     }
-    res.end();
+    fs.writeFile(path.join(__dirname, 'data/shoppingData.json'), JSON.stringify(entries, null, '\t'), (writeErr) => {
+      if (writeErr) {
+        console.log(writeErr);
+      }
+      res.end();
+    });
   });
 });
 // POST new item to shoppingData.json
