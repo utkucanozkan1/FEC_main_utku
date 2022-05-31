@@ -44,7 +44,8 @@ export default function RatingBreakdownMain({ data, setRatingFilter }) {
               <OuterBarGraph key={i} onClick={setRatingFilter}>
                 <InnerBarGraph>{rating}</InnerBarGraph>
                 <InnerBarGraph>star</InnerBarGraph>
-                <BarChart length={data.ratings[rating] > 0 ? data.ratings[rating] / sumRating * 100 : 0} />
+                <BarChart length={data.ratings[rating] > 0
+                  ? data.ratings[rating] / sumRating * 100 : 0} />
                 <InnerBarGraph>{data.ratings[rating] > 0 ? data.ratings[rating] : 0}</InnerBarGraph>
               </OuterBarGraph>
             ))}
@@ -57,8 +58,8 @@ export default function RatingBreakdownMain({ data, setRatingFilter }) {
                 average={((data.characteristics[char].value / 5) * 100).toFixed(0)}
               />
               <Character>
-                {characteristics[char].map((element, index) =>
-                  (<span key={index}>{element}</span>))}
+                {characteristics[char].map((element, i) =>
+                  (<span className="characteristic" key={i}>{element}</span>))}
               </Character>
             </CharacterGraph>
           )) : (null)

@@ -11,9 +11,12 @@ justify-items: stretch;
 const ReviewListContainer = styled.div`
 grid-column-start: 3;
 display: flex;
-flex-flow: column wrap;
+flex-flow: column nowrap;
 align-items: center;
 justify-content: flex-start;
+width: 100%;
+height: 600px;
+overflow-y: auto;
 `;
 
 /*-------------------*/
@@ -94,7 +97,6 @@ flex-flow: column wrap;
 font-size: 15px;
 `;
 
-
 /*--------------------*/
 // Form and modal settings
 const FormContainer = styled.div`
@@ -106,7 +108,7 @@ width: 75%;
 
 const FormStyle = styled.div`
   width: 90%;
-  background: red;
+  background: slategray;
   margin: 10px auto;
   top: 10;
   left: 10;
@@ -117,23 +119,48 @@ width: 25%;
 `;
 
 const Header = styled.div`
-width: 25%;
+width: 100%;
 color: white;
 `;
+
+const GridContainer = styled.div`
+  display: grid;
+  width: 100%;
+  gap: 2%;
+  grid-template-columns: 18% 18% 18% 18% 18% 18%;
+  text-align: center;
+`;
+
+const FormButtonRow = styled.div`
+
+  float: left;
+  padding: 0 1%;
+  text-align: center;
+  &:hover {
+    background-color: #6291dd;
+  }
+  `;
+
+const RadioButtonLabel = styled.label`
+  display: grid;
+  justify-items: center;
+  font-size: 15px;
+  `;
 
 const Modal = styled.div`
   position: fixed;
   top: 0;
   left: 0;
   width:100%;
-  height: 100%;
+  height: 75%;
   background: rgba(0, 0, 0, 0.6);
   display: ${({ show }) => (show === 'true' ? 'block' : 'none')};
+  overflow: auto;
 `;
 
 const CloseButton = styled.div`
-  top:3%;
-  left:90%;
+  top:1%;
+  left:88.7%;
   position: absolute;
 `;
 /*-------------------*/
@@ -166,6 +193,7 @@ const SmallSum = styled.span`
 
 const Date = styled.span`
 align-self: flex-end;
+font-size: 15px;
 `;
 
 const Paragraph = styled.p`
@@ -178,5 +206,6 @@ export {
   Recommend, BottomButtons, FormStyle,
   FormElement, Header, FormContainer, CloseButton, Modal, Button,
   OuterBarGraph, InnerBarGraph, RatingsSummaryTop, SmallSum, Date,
-  Paragraph, TopOfReview, Character, CharacterGraph,
+  Paragraph, TopOfReview, Character, CharacterGraph, GridContainer,
+  FormButtonRow, RadioButtonLabel,
 };

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { format, parseISO } from 'date-fns';
 import PropTypes from 'prop-types';
+import ImageComponent from '../../../q-a/ImageComponent';
 import axios from 'axios';
 import {
   ReviewEntryStyle, SmallSum, Date, Paragraph, TopOfReview
@@ -8,7 +9,7 @@ import {
 import StarRating from '../../../shared/StarRating';
 import { putIsHelpful, putReported } from './serverAction';
 
-export default function ReviewEntry({ review, retrieveReviews }) {
+export default function ReviewEntry({ review }) {
   const [isHelpful, setIsHelpful] = useState(false);
   const [reported, setReported] = useState(false);
   const [showAll, setShowAll] = useState(review.body.length < 250);
@@ -45,7 +46,7 @@ export default function ReviewEntry({ review, retrieveReviews }) {
       <hr />
       <StarRating rating={review.rating}/>
       <TopOfReview>
-        <h2>
+        <h2 className="reviewer">
           {review.reviewer_name}
         </h2>
         <Date>
@@ -62,11 +63,9 @@ export default function ReviewEntry({ review, retrieveReviews }) {
         {
           review.photos.length !== 0
             ? review.photos.map((photo, i) => (
-              <img
+              <ImageComponent
                 key={i}
-                src={photo.url}
-                width="100"
-                alt="header img"
+                photo={photo}
               />
             )) : (null)
         }

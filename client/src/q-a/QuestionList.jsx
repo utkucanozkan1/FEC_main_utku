@@ -113,16 +113,16 @@ function QuestionList(props) {
 				&nbsp; &nbsp;
         <div className="question-div">
           <div className="flex-child">
-            <b>Q: {props.question.question_body}</b>
+            <b>{<i className="fa-solid fa-circle-question"></i>}: {props.question.question_body}</b>
           </div>
           <div className="flex-child">
             {/* <button type="button" className="astext-btn">
               {ButtonTitle} ({props.question.question_helpfulness})
             </button> */}
             {questionHelpful ? (
-              <button type="button" className="astext-btn">
+              <span className="span-helpful-btn">
                 This Question has been marked Helpful
-              </button>
+              </span>
             ) : (
               <button
                 type="button"
@@ -146,32 +146,32 @@ function QuestionList(props) {
               Add Answer
             </button>
             <div className="modal-popup">
-              <ModalPopup show={showModalForm} handleExit={hideModal} questionId={props.question}>
+              <ModalPopup show={showModalForm} handleExit={hideModal} questionId={props.question} productName={props.name}>
                 <FormStyle><Form questionId={props.question} /></FormStyle>
               </ModalPopup>
             </div>
           </div>
         </div>
-        <div>
+        <div className="answer-text-div">
           <b>A:</b>
           <span className="answer-text">{answerArr[0].body}</span>
         </div>
-        <div>
+        <div className="answerer-smallBreak">
           {answerArr[0].photos.map((photo, i) => (
             <ImageComponent key={i} photo={photo} />
           ))}
         </div>
 
-        <div>
+        <div className="answer-detail-div">
           <span style={{ fontSize: 'small' }}>
             by &nbsp;
-            <span>{answerArr[0].answerer_name.toLowerCase() === 'seller' ? <b>Seller</b> : <>{answerArr[0].answerer_name}</>}</span>, &nbsp;
+            <span>{answerArr[0].answerer_name.toLowerCase() === 'seller' ? <span className="seller-text">Seller</span> : <>{answerArr[0].answerer_name}</>}</span>, &nbsp;
             {moment(answerArr[0].date.slice(0, 10)).format('MMM Do YY')}
           </span>
           {answer1Helpful ? (
-            <button type="button" className="astext-btn">
+            <span className="span-helpful-btn">
               This Answer has been marked Helpful
-            </button>
+            </span>
           ) : (
             <button
               type="button"
@@ -205,32 +205,32 @@ function QuestionList(props) {
           )}
         </div>
         <div>
-          {moreAnswers ? <button onClick={() => handleAnswers()}>LOAD MORE ANSWERS</button> : null}
+          {moreAnswers ? <button className="moreAnswers-btn" onClick={() => handleAnswers()}>LOAD MORE ANSWERS</button> : null}
         </div>
-        <div>
+        <div className="answerer-detail-div">
           {addAnswer
             ? (
               <>
-                <div>
+                <div className="answer-text-div">
                   <b>A:</b>
                   <span className="answer-text">{answerArr[1].body}</span>
                 </div>
-                <div>
+                <div className="answerer-smallBreak">
                   {answerArr[1].photos.map((photo, i) => (
                     <ImageComponent key={i} photo={photo} />
                   ))}
                 </div>
 
-                <div>
+                <div className="answer-detail-div">
                   <span style={{ fontSize: 'small' }}>
                     by &nbsp;
-                    <span>{answerArr[1].answerer_name.toLowerCase() === 'seller' ? <b>Seller</b> : <>{answerArr[1].answerer_name}</>}</span>, &nbsp;
+                    <span>{answerArr[1].answerer_name.toLowerCase() === 'seller' ? <span className="seller-text">Seller</span> : <>{answerArr[1].answerer_name}</>}</span>, &nbsp;
                     {moment(answerArr[1].date.slice(0, 10)).format('MMM Do YY')}
                   </span>
                   {answer2Helpful ? (
-                    <button type="button" className="astext-btn">
+                    <span className="span-helpful-btn">
                       This Answer has been marked Helpful
-                    </button>
+                    </span>
                   ) : (
                     <button
                       type="button"
