@@ -475,6 +475,47 @@ app.post('/cart', (req, res) => {
   });
 });
 
+app.get('/cart', (req, res) => {
+  fs.readFile(path.join(__dirname, 'data/shoppingData.json'), (readErr, data) => {
+    const entries = JSON.parse(data);
+    let sessionIdFound = false;
+    // Check if session_id already exists
+    for (let i = 0; i < entries.length; i += 1) {
+      if (entries[i].session_id === req.session_id) {
+        const { cart } = entries[i];
+        res.json(cart);
+        sessionIdFound = true;
+        break;
+      }
+    }
+    if (!sessionIdFound) {
+      res.send([]);
+    }
+  });
+});
+
+app.delete('/cart', (req, res) => {
+  const { name } = req.body;
+  fs.readFile(path.join(__dirname, 'data/shoppingData.json'), (readErr, data) => {
+    const entries = JSON.parse(data);
+    // Look for shopping cart associated with session_id
+    for (let i = 0; i < entries.length; i += 1) {
+      if (entries[i].session_id === req.session_id) {
+        // Remove product when found
+        delete entries[i].cart[name];
+        fs.writeFile(path.join(__dirname, 'data/shoppingData.json'), JSON.stringify(entries, null, '\t'), (writeErr) => {
+          if (writeErr) {
+            console.log(writeErr);
+          }
+          res.end();
+        });
+        break;
+      }
+    }
+    res.end();
+  });
+});
+
 app.listen(port, () => {
   console.log(`listening on  http://localhost:${port}`);
 });
