@@ -88,6 +88,7 @@ function Gallery(props) {
   const expandImage = (e) => {
     e.preventDefault();
     const galleryContainer = document.querySelector('.gallery-container');
+    const header = document.querySelector('header');
     if (galleryContainer.classList.contains('gallery-container-zoomed')) {
       // Get % of cursor position, related to galleryContainer measurements
       const x = Math.round((e.clientX / galleryContainer.offsetWidth) * 100);
@@ -96,10 +97,12 @@ function Gallery(props) {
       // Move to the % part of the expanded image on mousemove
       galleryContainer.style.backgroundSize = '250%';
       galleryContainer.style.backgroundPosition = `${x}% ${y}%`;
+      header.style.display = 'none';
     } else {
       // Reset
       galleryContainer.style.backgroundSize = 'contain';
       galleryContainer.style.backgroundPosition = 'center';
+      header.style.display = 'block';
     }
   };
 
@@ -145,6 +148,11 @@ function Gallery(props) {
   };
 
   useEffect(() => {
+    // Edge case: selected imageIndex is more than photos.length
+    if (imageIndex > photos.length - 1) {
+      setImageIndex(0);
+    }
+
     // Make sure the current image has selected status
     document.querySelectorAll('[data-index]').forEach((thumbnail) => {
       thumbnail.classList.remove('thumbnail-selected');
@@ -161,41 +169,32 @@ function Gallery(props) {
 
     // Right button
     if (imageIndex + 1 > photos.length - 1) {
-      navRight.style.display = 'none';
+      navRight.style.visibility = 'hidden';
     } else {
-      navRight.style.display = 'block';
+      navRight.style.visibility = 'visible';
     }
     // Left Button
     if (imageIndex - 1 < 0) {
-      navLeft.style.display = 'none';
+      navLeft.style.visibility = 'hidden';
     } else {
-      navLeft.style.display = 'block';
+      navLeft.style.visibility = 'visible';
     }
 
     // The margin operation below keep thumbnail list as centered as possible
-    const thumbnailsEl = document.querySelector('.thumbnails');
     // Carousel Up
     if (imageIndex < 4) {
-      carouselUp.style.display = 'none';
-      thumbnailsEl.style.marginTop = '10.5vh';
+      carouselUp.style.visibility = 'hidden';
+      // thumbnailsEl.style.marginTop = '10.5vh';
     } else {
-      carouselUp.style.display = 'block';
-      let bottomOffset = 0;
-      if (imageIndex >= photos.length - 4) {
-        bottomOffset = (photos.length - imageIndex + 1) * 2.625;
-      }
-      thumbnailsEl.style.marginTop = '0';
-      carouselUp.style.bottom = `${bottomOffset}vh`;
-      thumbnailsEl.style.bottom = `${bottomOffset}vh`;
+      carouselUp.style.visibility = 'visible';
     }
+
     // Carousel Down
     const nextPageStartIndex = (Math.floor(imageIndex / 4) + 1) * 4;
     if (nextPageStartIndex < photos.length) {
-      carouselDown.style.display = 'block';
-      carouselUp.style.bottom = '0';
-      thumbnailsEl.style.bottom = '0';
+      carouselDown.style.visibility = 'visible';
     } else {
-      carouselDown.style.display = 'none';
+      carouselDown.style.visibility = 'hidden';
     }
   });
 
