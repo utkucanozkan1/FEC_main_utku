@@ -13,20 +13,11 @@
   src: url('../assets/fonts/Montserrat/static/Montserrat-SemiBold.ttf');
 }
 
-.addCard {
-  display: flex;
-  justify-content: center;
-  height: 65%;
-  background-color: rgb(59, 59, 59);
-  font-size: 50px;
-  color: white;
-  text-align: center;
-}
 
 .relatedStars .fa-star {
-  font-size: 7px;
-  position: relative;
-  bottom: 1vh;
+  font-size: 2vw;
+  // position: relative;
+  // bottom: 0vh;
 }
 
 .modalItem {
@@ -55,12 +46,9 @@
 .riocSection {
   display: flex;
   flex-direction: column;
-  border-style: solid;
 
-  .relatedSection {
+  .viewSection {
     height: 50vh;
-    border-color: red;
-    border-style: solid;
     margin-bottom: 150px;
     .sectionTitle {
       border-style: solid;
@@ -72,8 +60,9 @@
       right: 3vh;
       z-index: 100;
       padding: 1%;
-      width: 40%;
+      width: 60%;
       font-family: 'Montserrat-Bold';
+      font-size: 3.5vw;
     }
 
     .cardContainer {
@@ -88,6 +77,8 @@
 
       .card {
         background-color: white;
+        border-style: solid;
+        border-width: 3px;
         border-color: darkgray;
         flex: 1 1 0px;
         margin: 5px;
@@ -96,9 +87,26 @@
         p {
           font-family: 'Montserrat';
           font-size: 1.5vw;
+          padding-left: 1vw;
+          padding-right: 1vw;
+        }
+        .addCard {
+          display: flex;
+          justify-content: center;
+          height: 65%;
+          background-color: rgb(59, 59, 59);
+          color: white;
+          text-align: center;
+          .add {
+            font-size: 100px;
+            position: relative;
+            top: 25%;
+          }
         }
         h6 {
-          font-family: 'Montserrat-SemiBold';
+          padding-left: 1vw;
+          padding-right: 1vw;
+          font-family: 'Montserrat-Bold';
           font-size: 2vw;
         }
         // position: relative;
@@ -109,6 +117,7 @@
   }
 }
 
+
 .prodImg {
   display: flex;
   justify-content: right;
@@ -118,4 +127,13 @@
   background-position: center;
   background-color: rgb(59, 59, 59);
   box-shadow: 0 0 8px 8px darkgray inset;
+}
+
+.arrow-black {
+  width: 6vw;
+  height: 6vh;
+
+  &.left {
+    transform: rotate(180deg);
+  }
 }

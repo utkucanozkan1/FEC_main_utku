@@ -30,9 +30,9 @@ function OutfitView() {
   }, [outfit]);
 
   return (
-    <div>
-      <h6>YOUR OUTFITS</h6>
-      <CardContainer>
+    <section className="viewSection">
+      <h6 className="sectionTitle">YOUR OUTFITS</h6>
+      <div className="cardContainer">
         <OutfitContext.Provider value={{ outfit, setOutfit, oPosition, setOPosition, oEnd, setOEnd }}>
           {oPosition === 0 ? <> </> : <LeftArrow outfitAttr="outfit" />}
           <AddToOutfitCard />
@@ -41,8 +41,8 @@ function OutfitView() {
           ))}
           {oEnd ? <> </> : <RightArrow outfitAttr="outfit" />}
         </OutfitContext.Provider>
-      </CardContainer>
-    </div>
+      </div>
+    </section>
   );
 }
 

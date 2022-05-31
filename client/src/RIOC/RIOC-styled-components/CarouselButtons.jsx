@@ -5,6 +5,7 @@ const CarouselButton = styled.div`
   align-self: center;
   cursor: pointer;
   min-width: 5%;
+  padding: 2%;
 `;
 
 export default CarouselButton;
