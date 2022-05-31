@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { format, parseISO } from 'date-fns';
 import PropTypes from 'prop-types';
+import ImageComponent from '../../../q-a/ImageComponent';
 import axios from 'axios';
 import {
   ReviewEntryStyle, SmallSum, Date, Paragraph, TopOfReview
@@ -62,11 +63,9 @@ export default function ReviewEntry({ review }) {
         {
           review.photos.length !== 0
             ? review.photos.map((photo, i) => (
-              <img
+              <ImageComponent
                 key={i}
-                src={photo.url}
-                width="100"
-                alt="header img"
+                photo={photo}
               />
             )) : (null)
         }
