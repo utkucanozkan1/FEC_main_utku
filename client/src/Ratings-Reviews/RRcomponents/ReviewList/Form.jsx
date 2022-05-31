@@ -45,9 +45,6 @@ export default function Form() {
       })
         .then(() => {
           console.log('Review added');
-          console.log({
-            product_id, rating, summary, body, recommend, name, email, photos, subChar,
-          });
         })
         .catch((err) => {
           console.log('axios post reviews error', err);
