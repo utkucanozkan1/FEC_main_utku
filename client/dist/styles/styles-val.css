@@ -111,6 +111,11 @@
   background-position: center;
   background-color: rgb(59, 59, 59);
   box-shadow: 0 0 8px 8px darkgray inset;
+  transition: box-shadow 1s ease-in-out;
+}
+.prodImg:hover {
+  box-shadow: 0 0 2vw 0.2vw white, 0 0 2vw 0.2vw white inset;
+  transition: box-shadow 1s ease-in-out;
 }
 
 .arrow-black {

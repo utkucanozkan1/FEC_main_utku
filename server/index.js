@@ -362,12 +362,16 @@ app.put('/reviews/:review_id/report', (req, res) => {
 app.get('/outfitter', (req, res) => {
   fs.readFile(path.join(__dirname, 'data/shoppingData.json'), (readErr, data) => {
     const entries = JSON.parse(data);
+    let sessionIdFound = false;
     for (let i = 0; i < entries.length; i += 1) {
       if (entries[i].session_id === req.session_id) {
+        sessionIdFound = true;
         res.status(200).send(entries[i].outfitter);
       }
     }
-    res.send([]);
+    if (!sessionIdFound) {
+      res.send([]);
+    }
   });
 });
 // DELETE an item from shoppingData.json
