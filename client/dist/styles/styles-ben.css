@@ -14,10 +14,28 @@
   display: grid;
   grid-template-columns: 3fr 4fr 8fr 3fr;
   justify-items: stretch;
+}
+.reviews-section .review-list-container {
+  grid-column-start: 3;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
   /* Image Styling */
   /* Button styling */
 }
-.reviews-section .image-component {
+.reviews-section .review-list-container .review-list {
+  display: flex;
+  align-self: flex-start;
+  flex-flow: column nowrap;
+  border-top: 2px solid;
+  overflow-y: auto;
+  background-color: #ffffff;
+  max-height: 500px;
+  opacity: 0.7;
+}
+.reviews-section .review-list-container .image-component {
   display: inline-flex;
   margin-right: 2.5%;
   flex-direction: row;
@@ -25,13 +43,13 @@
   border-color: black;
   border-style: solid;
 }
-.reviews-section .image {
+.reviews-section .review-list-container .image {
   width: 100%;
   height: 100%;
   object-fit: contain;
   overflow: hidden;
 }
-.reviews-section .modal-div {
+.reviews-section .review-list-container .modal-div {
   position: fixed;
   top: 0;
   left: 0;
@@ -42,22 +60,22 @@
   background: rgba(0, 0, 0, 0.6);
   z-index: 1000;
 }
-.reviews-section .RatingSummary {
+.reviews-section .review-list-container .RatingSummary {
   display: flex;
   flex-flow: row nowrap;
   width: 100%;
   justify-content: flex-start;
   font-size: 40px;
 }
-.reviews-section .RatingSummary .average-star {
+.reviews-section .review-list-container .RatingSummary .average-star {
   display: flex;
   height: 20px;
   justify-content: center;
 }
-.reviews-section .answerer-smallBreak {
+.reviews-section .review-list-container .answerer-smallBreak {
   margin-top: 1em;
 }
-.reviews-section .container-div {
+.reviews-section .review-list-container .container-div {
   position: absolute;
   left: 0;
   right: 0;
@@ -67,7 +85,7 @@
   width: 80%;
   height: 80%;
 }
-.reviews-section .astext-btn {
+.reviews-section .review-list-container .astext-btn {
   background: none;
   border: none;
   margin: 0;
@@ -76,13 +94,13 @@
   font-size: small;
   font-family: "Montserrat";
 }
-.reviews-section .span-helpful-btn {
+.reviews-section .review-list-container .span-helpful-btn {
   font-size: small;
   font-style: italic;
   font-family: "Montserrat";
   margin-left: 2vw;
 }
-.reviews-section .astext-btn-answer {
+.reviews-section .review-list-container .astext-btn-answer {
   background: none;
   border: none;
   margin: 0;
@@ -92,7 +110,7 @@
   font-size: small;
   font-family: "Montserrat";
 }
-.reviews-section .closeQuestion-btn {
+.reviews-section .review-list-container .closeQuestion-btn {
   background-color: red;
   color: white;
   border: 2px solid black;
@@ -100,7 +118,7 @@
   height: 2em;
   margin-left: 48.3vw;
 }
-.reviews-section .text-border-btn {
+.reviews-section .review-list-container .text-border-btn {
   background-color: black;
   border-radius: 20px;
   padding: 1.5vh;
@@ -112,17 +130,38 @@
   width: fit-content;
   font-family: "Montserrat";
 }
-.reviews-section .text-border-btn:hover {
+.reviews-section .review-list-container .text-border-btn:hover {
   background-color: crimson;
 }
-.reviews-section .bottom-buttons {
+.reviews-section .review-list-container .bottom-buttons {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   width: 100%;
+  font-family: "Montserrat";
   height: auto;
 }
-.reviews-section .moreReviews-btn {
+.reviews-section .review-list-container .sort-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  padding-bottom: 5px;
+  height: auto;
+  color: white;
+}
+.reviews-section .review-list-container .sort-button {
+  width: fit-content;
+  height: auto;
+  cursor: pointer;
+  font-family: "Montserrat";
+  border-radius: 20px;
+  background-color: white;
+}
+.reviews-section .review-list-container .sort-button:hover {
+  background-color: crimson;
+}
+.reviews-section .review-list-container .moreReviews-btn {
   background: none;
   border: none;
   margin: 0;
@@ -134,7 +173,7 @@
   color: crimson;
   font-family: "Montserrat";
 }
-.reviews-section .moreReviews-btn:hover {
+.reviews-section .review-list-container .moreReviews-btn:hover {
   color: white;
 }
 

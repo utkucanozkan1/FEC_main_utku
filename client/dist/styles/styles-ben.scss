@@ -19,146 +19,183 @@
   grid-template-columns: 3fr 4fr 8fr 3fr;
   justify-items: stretch;
 
-  .image-component {
-    display: inline-flex;
-    margin-right: 2.5%;
-    flex-direction: row;
-    justify-content: space-evenly;
-    border-color: black;
-    border-style: solid;
+  .review-list-container {
+    grid-column-start: 3;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+
+
+
+    .review-list {
+      display: flex;
+      align-self: flex-start;
+      flex-flow: column nowrap;
+      border-top: 2px solid;
+      overflow-y: auto;
+      background-color: #ffffff;
+      max-height: 500px;
+      opacity: 0.7;
     }
 
-    .image {
+    .image-component {
+      display: inline-flex;
+      margin-right: 2.5%;
+      flex-direction: row;
+      justify-content: space-evenly;
+      border-color: black;
+      border-style: solid;
+      }
+
+      .image {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        overflow: hidden;
+      }
+
+    .modal-div {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       width: 100%;
       height: 100%;
-      object-fit: contain;
-      overflow: hidden;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1000;
     }
 
-  .modal-div {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    z-index: 1000;
-  }
-
-  .RatingSummary {
-    display: flex;
-    flex-flow: row nowrap;
-    width: 100%;
-    justify-content: flex-start;
-    font-size: 40px;
-
-    .average-star {
+    .RatingSummary {
       display: flex;
-      height: 20px;
-      // width: 100vw;
-      justify-content: center;
+      flex-flow: row nowrap;
+      width: 100%;
+      justify-content: flex-start;
+      font-size: 40px;
+
+      .average-star {
+        display: flex;
+        height: 20px;
+        // width: 100vw;
+        justify-content: center;
+      }
     }
-  }
 
-  .answerer-smallBreak {
-    margin-top: 1em;
-  }
-  .container-div {
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 5%;
-    width: 80%;
-    height: 80%;
-  }
-  /* Image Styling */
-
-
-  /* Button styling */
-  .astext-btn {
-    background:none;
-    border:none;
-    margin:0;
-    padding:0;
-    cursor: pointer;
-    font-size: small;
-    font-family: 'Montserrat';
-  }
-  .span-helpful-btn {
-    font-size: small;
-    font-style: italic;
-    font-family: 'Montserrat';
-    margin-left: 2vw;
-  }
+    .answerer-smallBreak {
+      margin-top: 1em;
+    }
+    .container-div {
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 5%;
+      width: 80%;
+      height: 80%;
+    }
+    /* Image Styling */
 
 
-  .astext-btn-answer {
-    background:none;
-    border:none;
-    margin:0;
-    padding:0;
-    cursor: pointer;
-    text-decoration: underline;
-    font-size: small;
-    font-family: 'Montserrat';
-  }
+    /* Button styling */
+    .astext-btn {
+      background:none;
+      border:none;
+      margin:0;
+      padding:0;
+      cursor: pointer;
+      font-size: small;
+      font-family: 'Montserrat';
+    }
+    .span-helpful-btn {
+      font-size: small;
+      font-style: italic;
+      font-family: 'Montserrat';
+      margin-left: 2vw;
+    }
 
-  .closeQuestion-btn {
-    background-color: red;
-    color: white;
-    border: 2px solid black;
-    width: 2em;
-    height: 2em;
-    margin-left: 48.3vw;
-  }
-  .text-border-btn {
-    background-color:black;
-    border-radius: 20px;
-    padding: 1.5vh;
-    margin: 1vh 0vh 2vh 0vh;
-    cursor: pointer;
-    font-weight: bolder;
-    font-size:smaller;
-    color: white;
-    width: fit-content;
-    font-family: 'Montserrat';
-    &:hover {
-      background-color: crimson;
-  }
-}
-  .bottom-buttons {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    width: 100%;
-    height: auto;
-  }
 
-  .sort-button {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 100%;
-    height: auto;
-  }
+    .astext-btn-answer {
+      background:none;
+      border:none;
+      margin:0;
+      padding:0;
+      cursor: pointer;
+      text-decoration: underline;
+      font-size: small;
+      font-family: 'Montserrat';
+    }
 
-  .moreReviews-btn {
-    background:none;
-    border:none;
-    margin:0;
-    padding:0;
-    cursor: pointer;
-    font-size:smaller;
-    font-weight: bolder;
-    margin-top: 1.5em;
-    color:crimson;
-    &:hover {
+    .closeQuestion-btn {
+      background-color: red;
+      color: white;
+      border: 2px solid black;
+      width: 2em;
+      height: 2em;
+      margin-left: 48.3vw;
+    }
+    .text-border-btn {
+      background-color:black;
+      border-radius: 20px;
+      padding: 1.5vh;
+      margin: 1vh 0vh 2vh 0vh;
+      cursor: pointer;
+      font-weight: bolder;
+      font-size:smaller;
+      color: white;
+      width: fit-content;
+      font-family: 'Montserrat';
+      &:hover {
+        background-color: crimson;
+      }
+   }
+    .bottom-buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      width: 100%;
+      font-family: 'Montserrat';
+      height: auto;
+    }
+
+    .sort-bar {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      width: 100%;
+      padding-bottom: 5px;
+      height: auto;
       color: white;
     }
-    font-family: 'Montserrat';
-  }
+
+    .sort-button {
+      width: fit-content;
+      height: auto;
+      cursor: pointer;
+      font-family: 'Montserrat';
+      border-radius: 20px;
+      background-color: white;
+      &:hover {
+        background-color: crimson;
+    }
+    }
+
+    .moreReviews-btn {
+      background:none;
+      border:none;
+      margin:0;
+      padding:0;
+      cursor: pointer;
+      font-size:smaller;
+      font-weight: bolder;
+      margin-top: 1.5em;
+      color:crimson;
+      &:hover {
+        color: white;
+      }
+      font-family: 'Montserrat';
+    }
+   }
 }
