@@ -16,7 +16,7 @@
 
 .reviews-section {
   display: grid;
-  grid-template-columns: 5fr 4fr 8fr 2fr;
+  grid-template-columns: 3fr 4fr 8fr 3fr;
   justify-items: stretch;
 
   .image-component {
@@ -46,6 +46,22 @@
     background: rgba(0, 0, 0, 0.6);
     z-index: 1000;
   }
+
+  .RatingSummary {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+    justify-content: flex-start;
+    font-size: 40px;
+
+    .average-star {
+      display: flex;
+      height: 20px;
+      // width: 100vw;
+      justify-content: center;
+    }
+  }
+
   .answerer-smallBreak {
     margin-top: 1em;
   }
@@ -114,16 +130,23 @@
       background-color: crimson;
   }
 }
-  .bottom-buttons-div {
+  .bottom-buttons {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     width: 100%;
     height: auto;
-    background-color: white;
   }
 
-  .moreAnswers-btn {
+  .sort-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    height: auto;
+  }
+
+  .moreReviews-btn {
     background:none;
     border:none;
     margin:0;

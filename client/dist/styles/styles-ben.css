@@ -12,7 +12,7 @@
 }
 .reviews-section {
   display: grid;
-  grid-template-columns: 5fr 4fr 8fr 2fr;
+  grid-template-columns: 3fr 4fr 8fr 3fr;
   justify-items: stretch;
   /* Image Styling */
   /* Button styling */
@@ -41,6 +41,18 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
   z-index: 1000;
+}
+.reviews-section .RatingSummary {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+  justify-content: flex-start;
+  font-size: 40px;
+}
+.reviews-section .RatingSummary .average-star {
+  display: flex;
+  height: 20px;
+  justify-content: center;
 }
 .reviews-section .answerer-smallBreak {
   margin-top: 1em;
@@ -103,15 +115,14 @@
 .reviews-section .text-border-btn:hover {
   background-color: crimson;
 }
-.reviews-section .bottom-buttons-div {
+.reviews-section .bottom-buttons {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   width: 100%;
   height: auto;
-  background-color: white;
 }
-.reviews-section .moreAnswers-btn {
+.reviews-section .moreReviews-btn {
   background: none;
   border: none;
   margin: 0;
@@ -123,7 +134,7 @@
   color: crimson;
   font-family: "Montserrat";
 }
-.reviews-section .moreAnswers-btn:hover {
+.reviews-section .moreReviews-btn:hover {
   color: white;
 }
 

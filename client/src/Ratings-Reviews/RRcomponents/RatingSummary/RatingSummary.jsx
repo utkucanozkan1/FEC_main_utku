@@ -20,10 +20,10 @@ export default function RatingSummary({ setRatingFilter }) {
     <SummaryLeft>
       <h3>Ratings and Reviews</h3>
       <br />
-      <RatingsSummaryTop>
+      <div className="RatingSummary">
         {productRatings}
-        <StarRating rating={productRatings} />
-      </RatingsSummaryTop>
+        <StarRating rating={productRatings} className="average-star" />
+      </div>
       <RatingBreakdownMain data={data} setRatingFilter={setRatingFilter} />
     </SummaryLeft>
   );
