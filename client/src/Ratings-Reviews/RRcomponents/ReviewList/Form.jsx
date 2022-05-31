@@ -37,18 +37,23 @@ export default function Form() {
     setCharacteristics(newChars);
   }, [itemId]);
 
-  useEffect(() => {
-    const photos = photoList.toString().split(',');
-    axios.post('/reviews', {
-      product_id, rating, summary, body, recommend, name, email, photos, subChar,
-    })
-      .then(() => {
-        console.log('Review added');
+  function submitAxios() {
+    if (email !== '') {
+      const photos = photoList.toString().split(',');
+      axios.post('/reviews', {
+        product_id, rating, summary, body, recommend, name, email, photos, subChar,
       })
-      .catch((err) => {
-        console.log('axios post reviews error', err);
-      });
-  }), [subChar];
+        .then(() => {
+          console.log('Review added');
+          console.log({
+            product_id, rating, summary, body, recommend, name, email, photos, subChar,
+          });
+        })
+        .catch((err) => {
+          console.log('axios post reviews error', err);
+        });
+    }
+  }
 
   function submitCharacteristics() {
     const submitObj = {};
@@ -63,15 +68,16 @@ export default function Form() {
         }
       }
     }
-    console.log(submitObj);
     setSubChar(submitObj);
+    submitAxios();
   }
 
   const handleCheck = () => {
     setRecommend(!recommend);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     submitCharacteristics();
   };
 
