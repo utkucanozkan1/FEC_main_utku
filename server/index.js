@@ -362,7 +362,6 @@ app.put('/reviews/:review_id/report', (req, res) => {
 app.get('/outfitter', (req, res) => {
   fs.readFile(path.join(__dirname, 'data/shoppingData.json'), (readErr, data) => {
     const items = JSON.parse(data);
-    // TODO: leaving space for more meaningfull comparison
     res.send(items);
   });
 });
@@ -389,7 +388,9 @@ app.post('/outfitter', (req, res) => {
   fs.readFile(path.join(__dirname, 'data/shoppingData.json'), (readErr, data) => {
     const entries = JSON.parse(data);
     let sessionIdFound = false;
-    // res.end(), res.send()
+    // res.end(), res.sendStatus(), etc... don't stop
+    // your chunk of code from running fully, it seems,
+    // hence the MVP variable
     let errorEncountered = false;
     // Check if session_id already exists
     for (let i = 0; i < entries.length; i += 1) {
@@ -410,7 +411,7 @@ app.post('/outfitter', (req, res) => {
     if (!errorEncountered) {
     // If sessionId was not found, add new entry
       if (!sessionIdFound) {
-        entries.push({ session_id: req.session_id, outfitter: [item] });
+        entries.push({ session_id: req.session_id, outfitter: [item], cart: {} });
       }
       // Write new outfitter
       fs.writeFile(path.join(__dirname, 'data/shoppingData.json'), JSON.stringify(entries, null, '\t'), (writeErr) => {
@@ -420,6 +421,57 @@ app.post('/outfitter', (req, res) => {
         res.end();
       });
     }
+  });
+});
+
+// ShoppingCart requests
+app.post('/cart', (req, res) => {
+  // TODO: find better way to store thumbnail_url
+  const {
+    name, size, quantity, thumbnail,
+  } = req.body;
+
+  fs.readFile(path.join(__dirname, 'data/shoppingData.json'), (readErr, data) => {
+    const entries = JSON.parse(data);
+    let sessionIdFound = false;
+    // Check if session_id already exists
+    for (let i = 0; i < entries.length; i += 1) {
+      if (entries[i].session_id === req.session_id) {
+        sessionIdFound = true;
+        // If users shopping card includes the item name...
+        if (name in entries[i].cart) {
+          const productMeta = entries[i].cart[name];
+          // If given size is already in cart...
+          if (size.toString() in productMeta) {
+            // Add to quantity
+            productMeta[size.toString()] += parseInt(quantity, 10);
+          } else {
+            productMeta[size.toString()] = parseInt(quantity, 10);
+          }
+        } else {
+          // Add new product to cart, if doesn't exist
+          const newProduct = {};
+          newProduct[size] = quantity;
+          entries[i].cart[name] = { ...newProduct, thumbnail };
+        }
+        break;
+      }
+    }
+    // If sessionId was not found, add new entry
+    if (!sessionIdFound) {
+      const newSize = {};
+      newSize[size] = quantity;
+      const newCartEntry = {};
+      newCartEntry[name] = { ...newSize, thumbnail };
+      entries.push({ session_id: req.session_id, outfitter: [], cart: newCartEntry });
+    }
+    // Write new outfitter
+    fs.writeFile(path.join(__dirname, 'data/shoppingData.json'), JSON.stringify(entries, null, '\t'), (writeErr) => {
+      if (writeErr) {
+        console.log(writeErr);
+      }
+      res.end();
+    });
   });
 });
 

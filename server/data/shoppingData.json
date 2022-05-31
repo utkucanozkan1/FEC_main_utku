@@ -1,57 +1,13 @@
 [
 	{
-		"session_id": "dadc70cf-5f10-4de1-8424-09c684d5cced",
-		"outfitter": [
-			{
-				"productId": 37316,
-				"title": "Pumped Up Kicks",
-				"category": "Kicks",
-				"original_price": "89.00",
-				"sale_price": null,
-				"rating": 3.9146341463414633,
-				"imageUrl": "https://images.unsplash.com/photo-1477420143023-6a0e0b04b69a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
-			},
-			{
-				"productId": 37313,
-				"title": "Morning Joggers",
-				"category": "Pants",
-				"original_price": "40.00",
-				"sale_price": null,
-				"rating": 4.121212121212121,
-				"imageUrl": "https://images.unsplash.com/photo-1552902865-b72c031ac5ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
-			},
-			{
-				"productId": 37312,
-				"title": "Bright Future Sunglasses",
-				"category": "Accessories",
-				"original_price": "69.00",
-				"sale_price": null,
-				"rating": 2.1666666666666665,
-				"imageUrl": "../dist/assets/images/placeholder.png"
-			},
-			{
-				"productId": 37317,
-				"title": "Blues Suede Shoes",
-				"category": "Dress Shoes",
-				"original_price": "120.00",
-				"sale_price": null,
-				"rating": 3.857142857142857,
-				"imageUrl": "https://images.unsplash.com/photo-1561861422-a549073e547a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
-			}
-		]
-	},
-	{
 		"session_id": "e5ee133f-c2e9-416e-97c3-ebf3e674b190",
-		"outfitter": [
-			{
-				"productId": 37317,
-				"title": "Blues Suede Shoes",
-				"category": "Dress Shoes",
-				"original_price": "120.00",
-				"sale_price": null,
-				"rating": 3.857142857142857,
-				"imageUrl": "https://images.unsplash.com/photo-1561861422-a549073e547a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
+		"outfitter": [],
+		"cart": {
+			"Pumped Up Kicks": {
+				"10": 5,
+				"8.5": 2,
+				"thumbnail": "https://images.unsplash.com/photo-1477420143023-6a0e0b04b69a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
 			}
-		]
+		}
 	}
 ]

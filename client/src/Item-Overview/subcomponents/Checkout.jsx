@@ -4,6 +4,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable import/extensions */
+import axios from 'axios';
 import React, { useState, useEffect, useContext } from 'react';
 
 // Subcomponent/Context imports
@@ -70,14 +71,27 @@ function Checkout(props) {
     document.querySelector('.quantity').value = 0;
     setQuantityOptions(newQuantityOptions);
   };
-  const checkout = (e) => {
+  const addToCart = (e) => {
     e.preventDefault();
     const sizeEl = document.querySelector('.size');
     const size = sizeEl.value.trim();
     const quantityEl = document.querySelector('.quantity');
     const quantity = parseInt(quantityEl.value.trim(), 10);
     if (size === 'SELECT SIZE' || quantity === 0) {
+      // If size or quantity are not selected, warn the user
       alert('wrOOOng!!#@');
+    } else {
+      // If valid data is collected, attempt to update shopping cart
+      axios.post('/cart', {
+        name: item.name,
+        thumbnail: styles[0].photos[0].thumbnail_url || styles[0].photos[0].url,
+        size,
+        quantity,
+      })
+        .then()
+        .catch((err) => {
+          console.log(err);
+        });
     }
   };
 
@@ -144,7 +158,7 @@ function Checkout(props) {
         </select>
         <i className="fa-solid fa-caret-down select-icon select-icon-size" />
 
-        <button className="checkout-button" type="button" onClick={checkout}>ADD TO BAG</button>
+        <button className="checkout-button" type="button" onClick={addToCart}>ADD TO BAG</button>
         <button type="button" className="outfitter-add-button" onClick={addToOutfitter}>
           <i className="fa-solid fa-heart" />
         </button>
