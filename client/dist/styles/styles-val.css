@@ -14,26 +14,6 @@
   font-size: 2vw;
 }
 
-.modalItem {
-  width: 33%;
-  background-color: pink;
-  border-style: solid;
-  font-size: 20px;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.sc-eCYdqJ .right {
-  justify-self: right;
-  color: blue;
-}
-.sc-eCYdqJ h6 {
-  font-size: 20px;
-}
-.sc-eCYdqJ .left {
-  justify-content: left;
-}
-
 .riocSection {
   display: flex;
   flex-direction: column;
@@ -124,6 +104,52 @@
 }
 .arrow-black.left {
   transform: rotate(180deg);
+}
+
+.modalBG {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  font-family: "Montserrat-Bold";
+}
+.modalBG .modal {
+  position: fixed;
+  background: white;
+  width: 65%;
+  height: 70%;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 5%;
+  border-style: solid;
+  text-align: center;
+  border-style: solid;
+}
+.modalBG .modal .chartContainer {
+  display: flex;
+  flex-direction: column;
+  border-style: solid;
+}
+.modalBG .modal .rowContainer {
+  display: flex;
+  justify-content: space-around;
+  font-family: "Kollektif";
+  color: red;
+}
+.modalBG .modal .rowContainer .modalItem {
+  width: 33%;
+  background-color: pink;
+  border-style: solid;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 1px;
+}
+.modalBG .modal .rowContainer .modalItem p {
+  color: blue;
 }
 
 /*# sourceMappingURL=styles-val.css.map */

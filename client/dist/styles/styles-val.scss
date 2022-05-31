@@ -20,29 +20,21 @@
   // bottom: 0vh;
 }
 
-.modalItem {
-  width: 33%;
-  background-color: pink;
-  border-style: solid;
-  font-size: 20px;
-  white-space: nowrap;
-  overflow: hidden;
-}
 
-.sc-eCYdqJ {
-  .right {
-    justify-self: right;
-    color: blue;
-  }
+// .sc-eCYdqJ {
+//   .right {
+//     justify-self: right;
+//     color: blue;
+//   }
 
-  h6 {
-    font-size: 20px;
-  }
+//   h6 {
+//     font-size: 20px;
+//   }
 
-  .left {
-    justify-content: left;
-  }
-}
+//   .left {
+//     justify-content: left;
+//   }
+// }
 .riocSection {
   display: flex;
   flex-direction: column;
@@ -132,7 +124,7 @@
     box-shadow: 0 0 2vw 0.2vw white, 0 0 2vw 0.2vw white inset;
     // hover-in
     transition: box-shadow 1s ease-in-out;
-    }
+  }
 }
 
 .arrow-black {
@@ -143,3 +135,52 @@
     transform: rotate(180deg);
   }
 }
+
+
+.modalBG {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0, 0.6);
+  z-index: 1000;
+  font-family: 'Montserrat-Bold';
+  .modal {
+    position: fixed;
+    background: white;
+    width: 65%;
+    height: 70%;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 5%;
+    border-style: solid;
+    text-align: center;
+    border-style: solid;
+    .chartContainer {
+      display: flex;
+      flex-direction: column;
+      border-style: solid;
+    }
+    .rowContainer {
+      display: flex;
+      justify-content: space-around;
+      font-family: 'Kollektif';
+      color: red;
+      .modalItem {
+        width: 33%;
+        background-color: pink;
+        border-style: solid;
+        white-space: nowrap;
+        overflow: hidden;
+        font-size: 1px;
+        p {
+          color: blue;
+        }
+      }
+    }
+  }
+}
+
+
