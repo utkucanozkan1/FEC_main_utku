@@ -54,7 +54,7 @@ header .header {
   left: 0;
   right: 0;
   z-index: 1000000;
-  transition: visibility 1s linear, top 1s linear;
+  transition: visibility 0.5s linear, top 0.5s linear;
 }
 header .header h1 {
   font-size: 103.2px;
