@@ -10,16 +10,6 @@
   font-family: "Montserrat-Bold";
   src: url("../assets/fonts/Montserrat/static/Montserrat-SemiBold.ttf");
 }
-.addCard {
-  display: flex;
-  justify-content: center;
-  height: 65%;
-  background-color: rgb(59, 59, 59);
-  font-size: 50px;
-  color: white;
-  text-align: center;
-}
-
 .relatedStars .fa-star {
   font-size: 2vw;
 }
@@ -91,6 +81,19 @@
   font-size: 1.5vw;
   padding-left: 1vw;
   padding-right: 1vw;
+}
+.riocSection .viewSection .cardContainer .card .addCard {
+  display: flex;
+  justify-content: center;
+  height: 65%;
+  background-color: rgb(59, 59, 59);
+  color: white;
+  text-align: center;
+}
+.riocSection .viewSection .cardContainer .card .addCard .add {
+  font-size: 100px;
+  position: relative;
+  top: 25%;
 }
 .riocSection .viewSection .cardContainer .card h6 {
   padding-left: 1vw;

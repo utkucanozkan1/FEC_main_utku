@@ -10,7 +10,9 @@ function AddToOutfitCard() {
 
   return (
     <div className="card" onClick={addToOutfitter}>
-      <div className="addCard">+</div>
+      <div className="addCard">
+        <p className="add">+</p>
+      </div>
       <h6 style={{ whiteSpace: 'normal', textAlign: 'center' }}>ADD TO OUTFIT</h6>
     </div>
   );

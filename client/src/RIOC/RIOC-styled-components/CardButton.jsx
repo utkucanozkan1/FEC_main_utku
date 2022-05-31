@@ -4,8 +4,8 @@ const CardButton = styled.button`
 background-color: white;
 font-size: 15px;
 border-radius: 50%;
-height: 30px;
-width: 30px;
+height: 33px;
+width: 33px;
 &:hover {
   background-color: rgba(0, 0, 0, 0.3);
   cursor: pointer;
