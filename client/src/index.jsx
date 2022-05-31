@@ -116,7 +116,7 @@ function App() {
       .catch((err) => {
         // TODO: if
         if (err.toJSON()?.status === 400) {
-          console.log('--> 🚫Err: Outfit already exists in outfitter.json!\nP.S. I 💛 My Little Pony 🥺\n');
+          console.log('--> 🚫Err: Outfit already exists in shoppingData.json!\nP.S. I 💛 My Little Pony 🥺\n');
         } else {
           console.error(err);
         }
@@ -154,11 +154,12 @@ function App() {
   let lastY = 0;
   useEffect(() => {
     fetchData(itemId);
+    // header hide/show on scroll
     window.addEventListener('scroll', () => {
       const y = window.scrollY;
       const initialHeight = window.innerHeight;
       const header = document.querySelector('.header');
-      if (y <= initialHeight / 5 || y < lastY) {
+      if (y <= initialHeight || y < lastY) {
         header.classList.remove('header-hide');
       } else if (y > lastY) {
         header.classList.add('header-hide');
