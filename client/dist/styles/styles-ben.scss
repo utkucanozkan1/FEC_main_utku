@@ -36,8 +36,15 @@
       border-top: 2px solid;
       overflow-y: auto;
       background-color: #ffffff;
-      max-height: 500px;
-      opacity: 0.7;
+      max-height: 450px;
+      opacity: 0.9;
+    }
+
+    .review-card {
+      display: flex;
+      align-self: flex-start;
+      flex-flow: column wrap;
+      border-top: 2px solid;
     }
 
     .image-component {

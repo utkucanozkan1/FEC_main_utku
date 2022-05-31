@@ -32,8 +32,14 @@
   border-top: 2px solid;
   overflow-y: auto;
   background-color: #ffffff;
-  max-height: 500px;
-  opacity: 0.7;
+  max-height: 450px;
+  opacity: 0.9;
+}
+.reviews-section .review-list-container .review-card {
+  display: flex;
+  align-self: flex-start;
+  flex-flow: column wrap;
+  border-top: 2px solid;
 }
 .reviews-section .review-list-container .image-component {
   display: inline-flex;

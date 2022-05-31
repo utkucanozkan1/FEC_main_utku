@@ -48,7 +48,7 @@ export default function ReviewEntry({ review }) {
   }
 
   return (
-    <ReviewEntryStyle>
+    <div className="review-card">
       <hr />
       <StarRating rating={review.rating}/>
       <TopOfReview>
@@ -86,6 +86,6 @@ export default function ReviewEntry({ review }) {
         {reported ? ' Report' : <a href="#" role="button" onClick={clickReportFunction}>Report</a>}
       </span>
       <hr />
-    </ReviewEntryStyle>
+    </div>
   );
 }
