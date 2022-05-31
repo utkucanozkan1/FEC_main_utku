@@ -9,10 +9,10 @@ function AddToOutfitCard() {
   const { addToOutfitter } = useContext(ProductIdContext);
 
   return (
-    <CardDiv onClick={addToOutfitter}>
+    <div className="card" onClick={addToOutfitter}>
       <div className="addCard">+</div>
-      <h3 style={{ whiteSpace: 'normal', textAlign: 'center' }}>ADD TO OUTFIT</h3>
-    </CardDiv>
+      <h6 style={{ whiteSpace: 'normal', textAlign: 'center' }}>ADD TO OUTFIT</h6>
+    </div>
   );
 }
 

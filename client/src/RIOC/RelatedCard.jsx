@@ -27,7 +27,9 @@ function RelatedCard({ cardRating }) {
     <ModalContext.Provider value={{ modal, setModal }}>
       <div className="card" onClick={clickHanlder}>
         <div className="prodImg" style={{ backgroundImage: `url(${productImage})` }}>
-          <CardButton type="button" onClick={modalHandler}>⭐️</CardButton>
+          <CardButton type="button" onClick={modalHandler}>
+            <i className="fa-star fa-star-fill-100" />
+          </CardButton>
         </div>
         {modal ? <CompareModal /> : <> </>}
         <p>{product.category}</p>
