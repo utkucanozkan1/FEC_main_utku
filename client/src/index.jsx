@@ -112,11 +112,6 @@ function App() {
     );
   });
 
-  // Reusable functions
-  const reqErr427 = () => {
-    alert('Request overload😱: wait 30-60 seconds!\nP.S. I blame the API...');
-  };
-
   // Timer for hiding checkout popup (addToOutfitter, addToCart)
   let checkoutPopupSeconds = 0;
   const hideCheckoutPopup = () => {
@@ -125,6 +120,7 @@ function App() {
         const popupEl = document.querySelector('.checkout-popup');
         popupEl.classList.remove('checkout-popup-display');
         checkoutPopupSeconds = 0;
+        popupEl.style.color = 'white';
         // eslint-disable-next-line no-useless-return
         return;
       } else {
@@ -132,6 +128,15 @@ function App() {
         hideCheckoutPopup();
       }
     }, 1000);
+  };
+
+  // Reusable functions
+  const reqErr427 = () => {
+    const popupEl = document.querySelector('.checkout-popup');
+    popupEl.innerText = 'Too many requests, try later!';
+    popupEl.style.color = 'crimson';
+    popupEl.classList.add('checkout-popup-display');
+    hideCheckoutPopup();
   };
   // featchData was being reused by me until refactor,
   // I've left it in here for better UseEffect readability
@@ -198,9 +203,10 @@ function App() {
     const starredItem = {
       productId, title, category, original_price, sale_price, rating, imageUrl,
     };
+
+    const popupEl = document.querySelector('.checkout-popup');
     axios.post('/outfitter', starredItem)
       .then(() => {
-        const popupEl = document.querySelector('.checkout-popup');
         popupEl.innerText = 'Added to outfitter...';
         popupEl.classList.add('checkout-popup-display');
         hideCheckoutPopup();
@@ -209,6 +215,10 @@ function App() {
       .catch((err) => {
         // TODO: if
         if (err.toJSON()?.status === 400) {
+          popupEl.innerText = 'Item already in outfitter!';
+          popupEl.style.color = 'crimson';
+          popupEl.classList.add('checkout-popup-display');
+          hideCheckoutPopup();
           console.log('--> 🚫Err: Outfit already exists in shoppingData.json!\nP.S. I 💛 My Little Pony 🥺\n');
         } else {
           console.error(err);
