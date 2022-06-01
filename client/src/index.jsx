@@ -131,7 +131,7 @@ function App() {
   };
 
   // Reusable functions
-  const reqErr427 = () => {
+  const reqErr429 = () => {
     const popupEl = document.querySelector('.checkout-popup');
     popupEl.innerText = 'Too many requests, try later!';
     popupEl.style.color = 'crimson';
@@ -158,24 +158,24 @@ function App() {
                 toogleLoading(false);
               })
               .catch((err) => {
-                if (err.toJSON()?.status === 427) {
-                  reqErr427();
+                if (err.toJSON()?.status === 429) {
+                  reqErr429();
                 } else {
                   console.error(err);
                 }
               });
           })
           .catch((err) => {
-            if (err.toJSON()?.status === 427) {
-              reqErr427();
+            if (err.toJSON()?.status === 429) {
+              reqErr429();
             } else {
               console.error(err);
             }
           });
       })
       .catch((err) => {
-        if (err.toJSON()?.status === 427) {
-          reqErr427();
+        if (err.toJSON()?.status === 429) {
+          reqErr429();
         } else {
           console.error(err);
         }
