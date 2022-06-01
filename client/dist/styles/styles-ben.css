@@ -60,7 +60,7 @@
   border-top: 2px solid;
   overflow-y: auto;
   background-color: #ffffff;
-  max-height: 450px;
+  max-height: 350px;
   opacity: 0.9;
 }
 .reviews-section .review-list-container .review-card {
