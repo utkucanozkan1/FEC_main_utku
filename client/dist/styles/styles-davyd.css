@@ -16,6 +16,7 @@
   width: auto;
   font-family: "Montserrat";
   font-size: 24px;
+  box-shadow: 0 0.1vw 1vw rgba(0, 0, 0, 0.891) inset, 0 0.1vw 5vw rgba(0, 0, 0, 0.891);
   display: flex;
   justify-content: space-around;
 }
@@ -37,7 +38,7 @@
   justify-content: space-around;
 }
 .item-overview-section .gallery-section .gallery-container:hover {
-  cursor: zoom-in;
+  cursor: crosshair;
 }
 .item-overview-section .gallery-section .gallery-container .expand-view-wrapper {
   flex-basis: 100%;
@@ -145,15 +146,49 @@
   height: 100vh;
 }
 .item-overview-section .gallery-section.gallery-section-expanded .gallery-container:hover {
-  cursor: crosshair;
+  cursor: url("../assets/Images/magnifying-glass.png"), crosshair;
 }
 .item-overview-section .gallery-section.gallery-section-expanded .gallery-container.gallery-container-zoomed {
-  cursor: zoom-out;
+  cursor: url("../assets/Images/reducing-glass.png"), crosshair;
 }
 .item-overview-section .checkout-section {
   background-color: white;
   flex-basis: 35%;
   padding-left: 0.5vw;
+}
+.item-overview-section .checkout-section .checkout-popup {
+  display: none;
+}
+.item-overview-section .checkout-section .checkout-popup-display {
+  display: block;
+  background-color: black;
+  box-shadow: 0 0 1vw 0.1vw #D8315B, 0 0 1vw 0.1vw white inset;
+  text-align: center;
+  user-select: none;
+  border-radius: 0 0 2vw 2vw;
+  color: white;
+  font-family: "Montserrat";
+  font-size: 24px;
+  width: 12vw;
+  padding: 1vw;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin: 0 auto 0 auto;
+  z-index: 50000000000;
+  visibility: hidden;
+  animation: fade-away 6s;
+}
+@keyframes fade-away {
+  0% {
+    visibility: visible;
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 .item-overview-section .checkout-section .rating-title .category {
   font-size: 24px;
@@ -251,6 +286,7 @@
 .item-overview-section .checkout-section .checkout button, .item-overview-section .checkout-section .checkout select {
   background-color: black;
   color: white;
+  outline: none;
   border: 0.3vw solid rgb(202, 202, 202);
   box-shadow: 0 0 0.25vw 0 0.5vw white, 0 0 0.25vw 0.05vw white inset;
   border-radius: 0.1vw;
@@ -270,6 +306,27 @@
   cursor: pointer;
   box-shadow: 0 0 0.5vw 0vw white inset;
   color: #D8315B;
+}
+.item-overview-section .checkout-section .checkout button:active, .item-overview-section .checkout-section .checkout select:active {
+  transform: scale(0.98);
+  /* Scaling button to 0.98 to its original size */
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+  /* Lowering the shadow */
+}
+.item-overview-section .checkout-section .checkout button.select-error, .item-overview-section .checkout-section .checkout select.select-error {
+  animation: color-change 1s infinite;
+  animation-timing-function: linear;
+}
+@keyframes color-change {
+  0% {
+    color: white;
+  }
+  50% {
+    color: red;
+  }
+  100% {
+    color: white;
+  }
 }
 .item-overview-section .checkout-section .checkout .select-icon {
   color: white;
@@ -307,6 +364,9 @@
 
 .description-subsection {
   color: white;
+  background-color: rgba(63, 42, 53, 0.663);
+  border: 0.1vw solid white;
+  box-shadow: 0 0 1vw 0.1vw #D8315B, 0 0 1vw 0.1vw #D8315B inset;
   margin: 3vw 10vw;
   padding: 2vw;
   display: flex;
@@ -335,7 +395,7 @@
 .description-subsection .features {
   flex-basis: 20%;
   padding-left: 2.5vw;
-  border-left: 0.2vw solid rgba(0, 0, 0, 0.61);
+  border-left: 0.3vw solid white;
 }
 .description-subsection .features ul {
   list-style: none;
