@@ -147,7 +147,7 @@ function Checkout(props) {
           ))}
         </select>
         <i className="fa-solid fa-caret-down select-icon select-icon-quantity" />
-        <select className="quantity">
+        <select className="quantity" defaultValue="0">
           <option disabled>0</option>
           {quantityOptions.map((quantity, index) => (
             // eslint-disable-next-line react/no-array-index-key
