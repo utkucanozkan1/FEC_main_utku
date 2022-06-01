@@ -61,7 +61,7 @@ $boxShadowTransition: box-shadow 1s ease-in-out;
       // }
 
       &:hover {
-        cursor: url('../assets/Images/magnifying-glass.png'), pointer;
+        cursor: crosshair;
       }
 
       display: flex;
@@ -205,10 +205,10 @@ $boxShadowTransition: box-shadow 1s ease-in-out;
 
       .gallery-container {
         &:hover {
-          cursor: crosshair;
+          cursor: url('../assets/Images/magnifying-glass.png'), crosshair;;
         }
         &.gallery-container-zoomed {
-          cursor: url('../assets/Images/reducing-glass.png'), pointer;
+          cursor: url('../assets/Images/reducing-glass.png'), crosshair;
         }
       }
     }

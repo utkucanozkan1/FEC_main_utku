@@ -37,7 +37,7 @@
   justify-content: space-around;
 }
 .item-overview-section .gallery-section .gallery-container:hover {
-  cursor: url("../assets/Images/magnifying-glass.png"), pointer;
+  cursor: crosshair;
 }
 .item-overview-section .gallery-section .gallery-container .expand-view-wrapper {
   flex-basis: 100%;
@@ -145,10 +145,10 @@
   height: 100vh;
 }
 .item-overview-section .gallery-section.gallery-section-expanded .gallery-container:hover {
-  cursor: crosshair;
+  cursor: url("../assets/Images/magnifying-glass.png"), crosshair;
 }
 .item-overview-section .gallery-section.gallery-section-expanded .gallery-container.gallery-container-zoomed {
-  cursor: url("../assets/Images/reducing-glass.png"), pointer;
+  cursor: url("../assets/Images/reducing-glass.png"), crosshair;
 }
 .item-overview-section .checkout-section {
   background-color: white;
