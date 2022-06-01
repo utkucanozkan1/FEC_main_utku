@@ -16,6 +16,7 @@
   width: auto;
   font-family: "Montserrat";
   font-size: 24px;
+  box-shadow: 0 0.1vw 1vw rgba(0, 0, 0, 0.891) inset, 0 0.1vw 5vw rgba(0, 0, 0, 0.891);
   display: flex;
   justify-content: space-around;
 }
@@ -363,6 +364,9 @@
 
 .description-subsection {
   color: white;
+  background-color: rgba(63, 42, 53, 0.663);
+  border: 0.1vw solid white;
+  box-shadow: 0 0 1vw 0.1vw #D8315B, 0 0 1vw 0.1vw #D8315B inset;
   margin: 3vw 10vw;
   padding: 2vw;
   display: flex;
@@ -391,7 +395,7 @@
 .description-subsection .features {
   flex-basis: 20%;
   padding-left: 2.5vw;
-  border-left: 0.2vw solid rgba(0, 0, 0, 0.61);
+  border-left: 0.3vw solid white;
 }
 .description-subsection .features ul {
   list-style: none;
