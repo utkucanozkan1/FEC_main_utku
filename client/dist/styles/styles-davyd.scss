@@ -51,8 +51,17 @@ $boxShadowTransition: box-shadow 1s ease-in-out;
       background-position: center;
       height: 100%;
 
+      // z-index: -1;
+
+      // animation: slideFromLeft 1s linear;
+
+      // @keyframes slideFromLeft {
+      //   0% { transform: translateX(100vw); }
+      //   100% { transform: translateX(0); }
+      // }
+
       &:hover {
-        cursor: zoom-in;
+        cursor: url('../assets/Images/magnifying-glass.png'), pointer;
       }
 
       display: flex;
@@ -199,7 +208,7 @@ $boxShadowTransition: box-shadow 1s ease-in-out;
           cursor: crosshair;
         }
         &.gallery-container-zoomed {
-          cursor: zoom-out;
+          cursor: url('../assets/Images/reducing-glass.png'), pointer;
         }
       }
     }
@@ -209,6 +218,44 @@ $boxShadowTransition: box-shadow 1s ease-in-out;
     background-color: white;
     flex-basis: 35%;
     padding-left: 0.5vw;
+
+    .checkout-popup {
+      display: none;
+    }
+
+    .checkout-popup-display {
+      display: block;
+      background-color: $main;
+      box-shadow: 0 0 1vw 0.1vw $crimson, 0 0 1vw 0.1vw $second inset;
+      text-align: center;
+      user-select: none;
+      border-radius: 0 0 2vw 2vw;
+      color: $second;
+      font-family: 'Montserrat';
+      font-size: $fontSize;
+      width: 12vw;
+      padding: 1vw;
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      margin: 0 auto 0 auto;
+      z-index: 50000000000;
+      visibility: hidden;
+
+      animation: fade-away 6s;
+
+      @keyframes fade-away {
+        0% {
+          visibility: visible;
+          opacity: 1;
+       }
+        100% {
+          opacity: 0;
+          visibility: hidden
+       }
+      }
+    }
 
     .rating-title {
       .category {
@@ -327,6 +374,7 @@ $boxShadowTransition: box-shadow 1s ease-in-out;
       button, select {
         background-color: $main;
         color: $second;
+        outline: none;
         border: 0.3vw solid $gray;
         box-shadow: 0 0 0.25vw 0.0.5vw $second, 0 0 0.25vw 0.05vw $second inset;
         border-radius: 0.1vw;
@@ -346,6 +394,33 @@ $boxShadowTransition: box-shadow 1s ease-in-out;
           cursor: pointer;
           box-shadow: 0 0 0.5vw 0vw $second inset;
           color: $crimson;
+        }
+
+      &:active {
+          transform: scale(0.98);
+          /* Scaling button to 0.98 to its original size */
+          box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+          /* Lowering the shadow */
+      }
+
+        &.select-error {
+          animation: color-change 1s infinite;
+          animation-timing-function: linear;
+
+          @keyframes color-change {
+            0% {
+              color: white;
+              // transform: scale(1);
+           }
+            50% {
+              color: red;
+              // transform: scale(0.98);
+          }
+            100% {
+              color: white;
+              // transform: scale(1);
+           }
+          }
         }
 
         // &:focus {

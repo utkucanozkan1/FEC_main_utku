@@ -19,13 +19,23 @@
 				"sale_price": null,
 				"rating": 2.5714285714285716,
 				"imageUrl": "https://images.unsplash.com/photo-1544441892-794166f1e3be?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
+			},
+			{
+				"productId": 37318,
+				"title": "YEasy 350",
+				"category": "Kicks",
+				"original_price": "450.00",
+				"sale_price": null,
+				"rating": 3.774193548387097,
+				"imageUrl": "https://images.unsplash.com/photo-1505248254168-1de4e1abfa78?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
 			}
 		],
 		"cart": {
-			"Morning Joggers": {
-				"L": 6,
-				"thumbnail": "https://images.unsplash.com/photo-1552902865-b72c031ac5ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80",
-				"XL": 2
+			"Pumped Up Kicks": {
+				"8": 23,
+				"thumbnail": "https://images.unsplash.com/photo-1477420143023-6a0e0b04b69a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80",
+				"7.5": 8,
+				"8.5": 6
 			}
 		}
 	}

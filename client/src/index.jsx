@@ -116,6 +116,23 @@ function App() {
   const reqErr427 = () => {
     alert('Request overload😱: wait 30-60 seconds!\nP.S. I blame the API...');
   };
+
+  // Timer for hiding checkout popup (addToOutfitter, addToCart)
+  let checkoutPopupSeconds = 0;
+  const hideCheckoutPopup = () => {
+    setTimeout(() => {
+      if (checkoutPopupSeconds > 6) {
+        const popupEl = document.querySelector('.checkout-popup');
+        popupEl.classList.remove('checkout-popup-display');
+        checkoutPopupSeconds = 0;
+        // eslint-disable-next-line no-useless-return
+        return;
+      } else {
+        checkoutPopupSeconds += 1;
+        hideCheckoutPopup();
+      }
+    }, 1000);
+  };
   // featchData was being reused by me until refactor,
   // I've left it in here for better UseEffect readability
   // and potenial reuse in the future.
@@ -183,6 +200,10 @@ function App() {
     };
     axios.post('/outfitter', starredItem)
       .then(() => {
+        const popupEl = document.querySelector('.checkout-popup');
+        popupEl.innerText = 'Added to outfitter...';
+        popupEl.classList.add('checkout-popup-display');
+        hideCheckoutPopup();
         triggerOutfitterListener(new Date());
       })
       .catch((err) => {
@@ -242,10 +263,10 @@ function App() {
 
   if (!loading) {
     return (
-      <div>
+      <div className="main">
         <ProductIdContext.Provider value={
           {
-            ...data, outfitterListener, triggerOutfitterListener, addToOutfitter,
+            ...data, outfitterListener, triggerOutfitterListener, addToOutfitter, hideCheckoutPopup,
           }
           }
         >
@@ -324,8 +345,8 @@ function App() {
     );
   } else {
     return (
-      <section className="item-overview-section">
-        <div>Loading...</div>
+      <section className="loading">
+        <div className="loading-spinner"> </div>
       </section>
     );
   }
