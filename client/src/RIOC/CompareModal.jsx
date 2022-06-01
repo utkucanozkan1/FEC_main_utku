@@ -38,8 +38,8 @@ function CompareModal() {
     <div className="modalBG" onClick={closeModal}>
       <div className="modal" onClick={(event) => { event.stopPropagation(); }}>
         <div className="rowContainer">
-          <h5>Comparing</h5>
-          <button type="button" onClick={closeModal}>X</button>
+          <h5>COMPARING</h5>
+          <button type="button" className="modalButton" onClick={closeModal}>X</button>
         </div>
         <div className="chartContainer">
           <div className="rowContainer">
@@ -54,16 +54,25 @@ function CompareModal() {
               <p className="modalItem">{handleSharedTrait(trait, features)}</p>
             </div>
           ))}
-          {features.map((trait, i) => (
-            Object.entries(data.features[i])[0][1] === trait.feature ? <> </>
-              : (
-                <div className="rowContainer">
-                  <p className="modalItem">{handleSharedTrait(trait, data.features)}</p>
-                  <p className="modalItem">{trait.feature}</p>
-                  <p className="modalItem">{trait.value ? trait.value : '✓'}</p>
-                </div>
-              )
-          ))}
+          {features.map((trait, i) => {
+            if (data.features.length > i) {
+              return Object.entries(data.features[i])[0][1] === trait.feature ? <> </>
+                : (
+                  <div className="rowContainer">
+                    <p className="modalItem">{handleSharedTrait(trait, data.features)}</p>
+                    <p className="modalItem">{trait.feature}</p>
+                    <p className="modalItem">{trait.value ? trait.value : '✓'}</p>
+                  </div>
+                );
+            }
+            return (
+              <div className="rowContainer">
+                <p className="modalItem">{handleSharedTrait(trait, data.features)}</p>
+                <p className="modalItem">{trait.feature}</p>
+                <p className="modalItem">{trait.value ? trait.value : '✓'}</p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

@@ -28,13 +28,13 @@
   color: white;
   text-align: right;
   position: relative;
-  top: 2vh;
+  top: 4vh;
   right: 3vh;
   z-index: 100;
   padding: 1%;
   width: 60%;
   font-family: "Montserrat-Bold";
-  font-size: 3.5vw;
+  font-size: 30px;
 }
 .riocSection .viewSection .cardContainer {
   display: flex;
@@ -47,13 +47,15 @@
   border-bottom: 0.3em;
 }
 .riocSection .viewSection .cardContainer .card {
+  display: flex;
+  flex-direction: column;
   background-color: white;
   border-style: solid;
   border-width: 3px;
   border-color: darkgray;
   flex: 1 1 0px;
   margin: 5px;
-  height: 90%;
+  padding-bottom: 5px;
   cursor: pointer;
 }
 .riocSection .viewSection .cardContainer .card p {
@@ -65,7 +67,7 @@
 .riocSection .viewSection .cardContainer .card .addCard {
   display: flex;
   justify-content: center;
-  height: 65%;
+  height: 50%;
   background-color: rgb(59, 59, 59);
   color: white;
   text-align: center;
@@ -85,7 +87,8 @@
 .prodImg {
   display: flex;
   justify-content: right;
-  height: 65%;
+  height: 50%;
+  min-height: 50%;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -115,41 +118,70 @@
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 1000;
   font-family: "Montserrat-Bold";
+  cursor: default;
 }
 .modalBG .modal {
   position: fixed;
   background: white;
   width: 65%;
-  height: 70%;
+  height: 30%;
   top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 5%;
   border-style: solid;
   text-align: center;
-  border-style: solid;
+  border-color: darkgray;
+  overflow-y: scroll;
 }
 .modalBG .modal .chartContainer {
   display: flex;
   flex-direction: column;
   border-style: solid;
+  border-color: darkgray;
 }
-.modalBG .modal .rowContainer {
+.modalBG .modal .chartContainer .rowContainer {
   display: flex;
   justify-content: space-around;
   font-family: "Kollektif";
-  color: red;
+  background-color: white;
 }
-.modalBG .modal .rowContainer .modalItem {
+.modalBG .modal .chartContainer .rowContainer .modalItem {
   width: 33%;
-  background-color: pink;
   border-style: solid;
+  border-color: darkgray;
   white-space: nowrap;
   overflow: hidden;
-  font-size: 1px;
+  font-size: 3vw;
+  color: black;
 }
-.modalBG .modal .rowContainer .modalItem p {
+.modalBG .modal .rowContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex: 1 1 0px;
   color: blue;
+  font-size: 25px;
+}
+.modalBG .modal .rowContainer h5 {
+  color: black;
+  align-self: center;
+  margin: 5px;
+  font-family: "Montserrat-Bold";
+}
+.modalBG .modal .rowContainer .modalButton {
+  margin: 5px;
+  cursor: pointer;
+  background-color: white;
+  font-size: 15px;
+  border-radius: 50%;
+  height: 33px;
+  width: 33px;
+  color: #D8315B;
+  font-weight: bold;
+}
+.modalBG .modal .rowContainer .modalButton:hover {
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 /*# sourceMappingURL=styles-val.css.map */
