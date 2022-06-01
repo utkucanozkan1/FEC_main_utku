@@ -17,14 +17,14 @@ export default function RatingSummary({ setRatingFilter }) {
   });
 
   return (
-    <SummaryLeft>
-      <h3>Ratings and Reviews</h3>
+    <div className="summary-left">
+      <h3 style={{ padding: '20px' }}>Ratings and Reviews</h3>
       <br />
-      <RatingsSummaryTop>
+      <div className="RatingSummary">
         {productRatings}
-        <StarRating rating={productRatings} />
-      </RatingsSummaryTop>
+        <StarRating rating={productRatings} className="average-star" />
+      </div>
       <RatingBreakdownMain data={data} setRatingFilter={setRatingFilter} />
-    </SummaryLeft>
+    </div>
   );
 }

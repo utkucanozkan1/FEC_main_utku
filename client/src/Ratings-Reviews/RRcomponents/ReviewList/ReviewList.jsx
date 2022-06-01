@@ -70,29 +70,30 @@ export default function ReviewList() {
   }, [itemId, sort]);
 
   return (
-    <ReviewListContainer>
-      <br />
+    <div className="review-list-container">
       {/* Attempting to render message when no reviews */}
       {/* {{reviews}.length ? */}
-      <Button>
+      <div className="sort-bar">
         {totalReviews} reviews
-        <select onChange={changeSort}>
+        <select onChange={changeSort} className="sort-button">
           <option value="relevant">Sort by Relevant</option>
           <option value="newest">Sort by Newest</option>
           <option value="helpful">Sort by Helpful</option>
         </select>
-      </Button>
-      {reviews.map((review) => (
-        <ReviewCard key={review.review_id} review={review} />
-      ))}
+      </div>
+      <div className="review-list">
+        {reviews.map((review) => (
+          <ReviewCard key={review.review_id} review={review} />
+        ))}
+      </div>
       {/* : <div>No reviews. Be the first to submit! Click "Add Review"</div>> } */}
-      <BottomButtons>
-        <button onClick={clickMoreReviews}>More Reviews</button>
-        <button type="button" onClick={showModal}>Add Review</button>
-      </BottomButtons>
+      <div className="bottom-buttons">
+        <button className="text-border-btn" onClick={clickMoreReviews}>More Reviews</button>
+        <button className="text-border-btn" type="button" onClick={showModal}>Add Review</button>
+      </div>
       <ModalPopup show={showModalForm} handleExit={hideModal}>
         <FormStyle><Form /></FormStyle>
       </ModalPopup>
-    </ReviewListContainer>
+    </div>
   );
 }

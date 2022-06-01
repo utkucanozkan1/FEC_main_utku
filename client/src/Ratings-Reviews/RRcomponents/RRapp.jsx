@@ -16,9 +16,9 @@ export default function RatingReviews() {
   }
 
   return (
-    <RatingReviewContainer>
+    <section id="reviews" className="reviews-section">
       <RatingSummary setRatingFilter={filterByRating} />
       <ReviewList ratingFilter={ratingFilter} />
-    </RatingReviewContainer>
+    </section>
   );
 }
