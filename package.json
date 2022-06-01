@@ -6,20 +6,27 @@
   "author": "Benjamin Thornton <benjamin.l.thornton@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/user-event": "^14.2.0",
     "axios": "^0.27.2",
     "date-fns": "^2.28.0",
     "dotenv": "^16.0.1",
     "enzyme": "^3.11.0",
     "express": "^4.18.1",
+    "jest-environment-jsdom": "^28.1.0",
+    "jsdom": "^19.0.0",
     "moment": "^2.29.3",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
+    "react-test-renderer": "^18.1.0",
     "styled-components": "^5.3.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.12",
-    "@babel/preset-env": "^7.17.12",
+    "@babel/core": "^7.18.2",
+    "@babel/preset-env": "^7.18.2",
     "@babel/preset-react": "^7.17.12",
+    "babel-jest": "^28.1.0",
     "babel-loader": "^8.2.5",
     "css-loader": "^6.7.1",
     "eslint": "^7.32.0 || ^8.2.0",
@@ -31,6 +38,7 @@
     "fs": "^0.0.1-security",
     "jest": "^28.1.0",
     "nodemon": "^2.0.16",
+    "regenerator-runtime": "^0.13.9",
     "sass": "^1.52.1",
     "style-loader": "^3.3.1",
     "webpack": "^5.72.1",
@@ -42,6 +50,8 @@
     "build": "webpack --watch --mode=production",
     "client-dev": "webpack --watch --mode=development",
     "server-dev": "nodemon --watch server server/index.js",
-    "sass-val": "sass client/dist/styles/styles-val.scss client/dist/styles/styles-val.css --watch"
+    "sass-val": "sass client/dist/styles/styles-val.scss client/dist/styles/styles-val.css --watch",
+    "test": "jest --config ./jest.config.json",
+    "test-watch": "yarn test -- --watch"
   }
 }

@@ -96,7 +96,7 @@ function QuestionsAndAnswers() {
         <div className="title-div">Q & A</div>
         <div className="search-bar">
             <i className="fa-solid fa-magnifying-glass" />
-          <div>
+          <div data-testid="search-bar">
             <form onSubmit={(e) => e.preventDefault()}>
               <input
                 type="text"
@@ -153,7 +153,7 @@ function QuestionsAndAnswers() {
   } else {
     return (
       <section>
-        <div> Questions Loading...</div>
+        <div>Questions Loading...</div>
       </section>
     );
   }

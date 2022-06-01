@@ -16,7 +16,7 @@ import QuestionsAndAnswers from './q-a/QuestionAndAnswers';
 import RatingReviews from './Ratings-Reviews/RRcomponents/RRapp';
 import getAverageRating from '../../server/utils/helpers';
 
-const root = createRoot(document.getElementById('root'));
+const root = createRoot(document.getElementById('root') || document.createElement('div'));
 
 export const ProductIdContext = React.createContext('default');
 // Scum😎 -> /products/${itemId}: all, /products/${itemId}/styles: all, /reviews/${itemId}/reviewsMeta: ratings array
@@ -217,3 +217,4 @@ function App() {
 
 // render the root element with the provided component
 root.render(<App />);
+export default App;
