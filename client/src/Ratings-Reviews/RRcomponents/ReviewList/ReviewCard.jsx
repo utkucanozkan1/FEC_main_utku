@@ -76,7 +76,7 @@ export default function ReviewEntry({ review }) {
             )) : (null)
         }
       </div>
-      <span>
+      <span className="span-helpful-btn">
         Helpful?
         {isHelpful ? 'Yes ' : <a href="#" role="button" onClick={clickHelpFunction}>Yes</a>}
         (

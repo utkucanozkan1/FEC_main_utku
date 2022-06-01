@@ -71,7 +71,6 @@ export default function ReviewList() {
 
   return (
     <div className="review-list-container">
-      <br />
       {/* Attempting to render message when no reviews */}
       {/* {{reviews}.length ? */}
       <div className="sort-bar">

@@ -31,7 +31,7 @@ export default function RatingBreakdownMain({ data, setRatingFilter }) {
   recommend = recommend.toFixed(0);
 
   return (
-    <RatingsBreakdown>
+    <div className= "ratings-breakdown">
       {
       Object.keys(data).length !== 0
         ? (
@@ -68,6 +68,6 @@ export default function RatingBreakdownMain({ data, setRatingFilter }) {
           </div>
         ) : null
       }
-    </RatingsBreakdown>
+    </div>
   );
 }

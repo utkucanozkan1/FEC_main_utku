@@ -26,23 +26,32 @@
     display: flex;
     flex-flow: column wrap;
     justify-content: flex-start;
+    margin-right: 10vw;
     width: 100%;
 
 
     .RatingSummary {
       display: flex;
       flex-flow: row nowrap;
-      justify-content: center;
+      justify-content: flex-start;
       font-size: 40px;
+      margin-right: 2vw;
+      color: #000000;
 
       .average-star {
         display: flex;
         height: 20px;
-        width: 75%;
-        // justify-content: center;
+        // width: 75%;
         font-size: 20px;
       }
     }
+
+    .ratings-breakdown {
+      display: flex;
+      align-self: flex-start;
+      flex-flow: row wrap;
+    }
+
   }
 
   .review-list-container {
@@ -132,22 +141,10 @@
       font-size: small;
       font-style: italic;
       font-family: 'Montserrat';
-      margin-left: 2vw;
+      // margin-left: 2vw;
     }
 
-
-    .astext-btn-answer {
-      background:none;
-      border:none;
-      margin:0;
-      padding:0;
-      cursor: pointer;
-      text-decoration: underline;
-      font-size: small;
-      font-family: 'Montserrat';
-    }
-
-    .closeQuestion-btn {
+    .closeForm-btn {
       background-color: red;
       color: white;
       border: 2px solid black;
@@ -184,7 +181,7 @@
       flex-direction: row;
       justify-content: center;
       width: 100%;
-      padding-bottom: 5px;
+      padding-bottom: 10px;
       height: auto;
       color: white;
     }
@@ -194,6 +191,7 @@
       height: auto;
       cursor: pointer;
       font-family: 'Montserrat';
+      margin-left: 10px;
       border-radius: 20px;
       background-color: white;
       &:hover {
