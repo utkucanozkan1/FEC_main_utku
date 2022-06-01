@@ -45,7 +45,7 @@ function App() {
 
   const [cart, setCart] = useState([]);
 
-  // Handle shopping cart popup
+  // Handle shopping cart popup -> 0.8 Functional, with minor bugs
   const getShoppingCart = (e) => {
     e.preventDefault();
     const cartModal = document.querySelector('.cart-modal');
@@ -306,6 +306,7 @@ function App() {
               <p style={{
                 color: 'red',
                 paddingTop: '1vw',
+                fontSize: '24px',
               }}
               >
                 {document.cookie}

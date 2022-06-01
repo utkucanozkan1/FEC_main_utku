@@ -340,12 +340,19 @@ $boxShadowTransition: box-shadow 1s ease-in-out;
         margin: 1.5vh 0.25vw;
         position: relative;
         -webkit-appearance: none;
+        transform: translateY(-4px);
 
         &:hover {
           cursor: pointer;
           box-shadow: 0 0 0.5vw 0vw $second inset;
           color: $crimson;
         }
+
+        // &:focus {
+        //   background-color: $crimson;
+        //   color: $main;
+        // }
+
       }
 
       .select-icon {

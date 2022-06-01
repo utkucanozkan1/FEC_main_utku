@@ -264,6 +264,7 @@
   margin: 1.5vh 0.25vw;
   position: relative;
   -webkit-appearance: none;
+  transform: translateY(-4px);
 }
 .item-overview-section .checkout-section .checkout button:hover, .item-overview-section .checkout-section .checkout select:hover {
   cursor: pointer;
