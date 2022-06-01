@@ -1,3 +1,9 @@
+// eslint-disable jsx-a11y/no-noninteractive-element-interactions
+// eslint-disable react/no-access-state-in-setstate
+// eslint-disable react/destructuring-assignment
+// eslint-disable react/prop-types
+// eslint-disable jsx-a11y/img-redundant-alt
+// eslint-disable jsx-a11y/click-events-have-key-events
 import React, { useState } from 'react';
 import { format, parseISO } from 'date-fns';
 import PropTypes from 'prop-types';
@@ -42,7 +48,7 @@ export default function ReviewEntry({ review }) {
   }
 
   return (
-    <ReviewEntryStyle>
+    <div className="review-card">
       <hr />
       <StarRating rating={review.rating}/>
       <TopOfReview>
@@ -59,7 +65,7 @@ export default function ReviewEntry({ review }) {
         : (review.body.length > 250) ? <a href="#" type="button" onClick={showMore}>Show More</a> : <a></a> }
       {review.recommend ? <p> Recommend Product </p> : <p> </p>}
       {review.response ? <SmallSum>{review.response}</SmallSum> : <p> </p>}
-      <div>
+      <div className="answerer-smallBreak">
         {
           review.photos.length !== 0
             ? review.photos.map((photo, i) => (
@@ -70,7 +76,7 @@ export default function ReviewEntry({ review }) {
             )) : (null)
         }
       </div>
-      <span>
+      <span className="span-helpful-btn">
         Helpful?
         {isHelpful ? 'Yes ' : <a href="#" role="button" onClick={clickHelpFunction}>Yes</a>}
         (
@@ -80,6 +86,6 @@ export default function ReviewEntry({ review }) {
         {reported ? ' Report' : <a href="#" role="button" onClick={clickReportFunction}>Report</a>}
       </span>
       <hr />
-    </ReviewEntryStyle>
+    </div>
   );
 }
