@@ -1,6 +1,6 @@
 [
 	{
-		"session_id": "d33583d7-fde0-4056-9ed5-23df0187f15a",
+		"session_id": "e5ee133f-c2e9-416e-97c3-ebf3e674b190",
 		"outfitter": [
 			{
 				"productId": 37316,
@@ -10,8 +10,24 @@
 				"sale_price": null,
 				"rating": 4.021978021978022,
 				"imageUrl": "https://images.unsplash.com/photo-1477420143023-6a0e0b04b69a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
+			},
+			{
+				"productId": 37315,
+				"title": "Heir Force Ones",
+				"category": "Kicks",
+				"original_price": "99.00",
+				"sale_price": null,
+				"rating": 2.5714285714285716,
+				"imageUrl": "https://images.unsplash.com/photo-1544441892-794166f1e3be?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
 			}
 		],
-		"cart": {}
+		"cart": {
+			"Pumped Up Kicks": {
+				"8": 16,
+				"9": 3,
+				"8.5": 4,
+				"thumbnail": "https://images.unsplash.com/photo-1477420143023-6a0e0b04b69a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
+			}
+		}
 	}
 ]

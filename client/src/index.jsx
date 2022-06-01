@@ -1,3 +1,6 @@
+/* eslint-disable consistent-return */
+/* eslint-disable array-callback-return */
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable camelcase */
@@ -40,9 +43,100 @@ function App() {
   const [data, setData] = useState({});
   const [outfitterListener, triggerOutfitterListener] = useState('🍕');
 
+  const [cart, setCart] = useState([]);
+
+  // Handle shopping cart popup -> 0.8 Functional, with minor bugs
+  const getShoppingCart = (e) => {
+    e.preventDefault();
+    const cartModal = document.querySelector('.cart-modal');
+    if (cartModal.style.display === 'none') {
+      cartModal.style.display = 'block';
+    }
+    axios.get(('/cart'))
+      .then((res) => {
+        // Conversion of object to array for setCart
+        const responseObject = res.data;
+        const newCart = Object.keys(responseObject).map((key) => {
+          const product = {};
+          product[key] = responseObject[key];
+          return product;
+        });
+        setCart(newCart);
+      })
+      .catch();
+  };
+  // Delete item from shopping cart
+  const cartDeleteProduct = (e) => {
+    e.preventDefault();
+    // Read the item name
+    const name = e.target.getAttribute('data-name-pointer');
+    axios.delete('/cart', { data: { name } })
+      .then(() => {
+        document.querySelector(`[data-name='${name}']`).style.display = 'none';
+      })
+      .catch((err) => {
+        console.log('Failed to delete cart item:', name, err);
+      });
+  };
+  // Fills up shopping cart modal with products
+  const cartProducts = cart.map((product, i) => {
+    const name = Object.keys(product)[0];
+    const sizes = Object.entries(product[name]);
+    const { thumbnail } = Object.values(product)[0];
+
+    return (
+      <div className="cart-product" data-name={name} key={i}>
+        <div className="cart-product-header">
+          <div className="cart-product-thumbnail-wrap">
+            <div style={{ backgroundImage: `url('${thumbnail}')` }} className="cart-product-thumbnail" />
+          </div>
+          <span className="cart-name">{name}</span>
+          <button className="cart-delete-button" type="button" data-name-pointer={name} onClick={cartDeleteProduct}>
+            <i className="fa-solid fa-xmark" data-name-pointer={name} />
+          </button>
+        </div>
+        <ul>
+          {sizes.map((entry, j) => {
+            const [size, quantity] = entry;
+            if (size !== 'thumbnail') {
+              return (
+                <li key={j}>
+                  <span className="cart-product-size">{`size${size}:`}</span>
+                  <span className="cart-product-quantity">{`x${quantity}`}</span>
+                </li>
+              );
+            }
+          })}
+        </ul>
+      </div>
+    );
+  });
+
+  // Timer for hiding checkout popup (addToOutfitter, addToCart)
+  let checkoutPopupSeconds = 0;
+  const hideCheckoutPopup = () => {
+    setTimeout(() => {
+      if (checkoutPopupSeconds > 6) {
+        const popupEl = document.querySelector('.checkout-popup');
+        popupEl.classList.remove('checkout-popup-display');
+        checkoutPopupSeconds = 0;
+        popupEl.style.color = 'white';
+        // eslint-disable-next-line no-useless-return
+        return;
+      } else {
+        checkoutPopupSeconds += 1;
+        hideCheckoutPopup();
+      }
+    }, 1000);
+  };
+
   // Reusable functions
-  const reqErr427 = () => {
-    alert('Request overload😱: wait 30-60 seconds!\nP.S. I blame the API...');
+  const reqErr429 = () => {
+    const popupEl = document.querySelector('.checkout-popup');
+    popupEl.innerText = 'Too many requests, try later!';
+    popupEl.style.color = 'crimson';
+    popupEl.classList.add('checkout-popup-display');
+    hideCheckoutPopup();
   };
   // featchData was being reused by me until refactor,
   // I've left it in here for better UseEffect readability
@@ -64,24 +158,24 @@ function App() {
                 toogleLoading(false);
               })
               .catch((err) => {
-                if (err.toJSON()?.status === 427) {
-                  reqErr427();
+                if (err.toJSON()?.status === 429) {
+                  reqErr429();
                 } else {
                   console.error(err);
                 }
               });
           })
           .catch((err) => {
-            if (err.toJSON()?.status === 427) {
-              reqErr427();
+            if (err.toJSON()?.status === 429) {
+              reqErr429();
             } else {
               console.error(err);
             }
           });
       })
       .catch((err) => {
-        if (err.toJSON()?.status === 427) {
-          reqErr427();
+        if (err.toJSON()?.status === 429) {
+          reqErr429();
         } else {
           console.error(err);
         }
@@ -109,13 +203,22 @@ function App() {
     const starredItem = {
       productId, title, category, original_price, sale_price, rating, imageUrl,
     };
+
+    const popupEl = document.querySelector('.checkout-popup');
     axios.post('/outfitter', starredItem)
       .then(() => {
+        popupEl.innerText = 'Added to outfitter...';
+        popupEl.classList.add('checkout-popup-display');
+        hideCheckoutPopup();
         triggerOutfitterListener(new Date());
       })
       .catch((err) => {
         // TODO: if
         if (err.toJSON()?.status === 400) {
+          popupEl.innerText = 'Item already in outfitter!';
+          popupEl.style.color = 'crimson';
+          popupEl.classList.add('checkout-popup-display');
+          hideCheckoutPopup();
           console.log('--> 🚫Err: Outfit already exists in shoppingData.json!\nP.S. I 💛 My Little Pony 🥺\n');
         } else {
           console.error(err);
@@ -170,17 +273,19 @@ function App() {
 
   if (!loading) {
     return (
-      <div>
+      <div className="main">
         <ProductIdContext.Provider value={
           {
-            ...data, outfitterListener, triggerOutfitterListener, addToOutfitter,
+            ...data, outfitterListener, triggerOutfitterListener, addToOutfitter, hideCheckoutPopup,
           }
           }
         >
+          {/* Header */}
           <header>
-            {/* Replace with anchor if needed */}
             <div className="header">
+              {/* Brand */}
               <h1>Atelier</h1>
+              {/* Search bar/Website nav */}
               <div className="search-bar">
                 <input
                   className="search-itemId-input"
@@ -197,9 +302,50 @@ function App() {
                 <button id="search-itemId" type="button" onClick={switchProductPage}>
                   <i className="fa-solid fa-magnifying-glass" />
                 </button>
+                <button type="button" onClick={getShoppingCart} className="cart-button">
+                  <i className="fa-solid fa-cart-shopping" role="button" />
+                </button>
               </div>
             </div>
           </header>
+
+          {/* Shopping cart modal */}
+          <div className="cart-modal" style={{ display: 'none' }}>
+            <div className="cart-modal-content">
+              {/* Modal Header */}
+              <div className="cart-modal-header">
+                <h3>
+                  Shopping Cart
+                </h3>
+                {/* Close cart button */}
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.querySelector('.cart-modal').style.display = 'none';
+                  }}
+                >
+                  <i className="fa-solid fa-xmark cart-modal-close" />
+                </button>
+              </div>
+
+              <div className="cart-products">
+                {cartProducts.map((product) => product)}
+              </div>
+
+              {/* Display session cookie */}
+              <p style={{
+                color: 'red',
+                paddingTop: '1vw',
+                fontSize: '24px',
+              }}
+              >
+                {document.cookie}
+              </p>
+            </div>
+          </div>
+
+          {/* Widgets */}
           <ItemOverview />
           <RelatedOutfitView />
           <QuestionsAndAnswers />
@@ -209,8 +355,8 @@ function App() {
     );
   } else {
     return (
-      <section className="item-overview-section">
-        <div>Loading...</div>
+      <section className="loading">
+        <div className="loading-spinner"> </div>
       </section>
     );
   }

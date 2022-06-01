@@ -16,7 +16,7 @@ function Checkout(props) {
     item, styles, styleIndex, setStyleIndex,
   } = { ...props }.data;
 
-  const { addToOutfitter, itemId } = useContext(ProductIdContext);
+  const { addToOutfitter, itemId, hideCheckoutPopup } = useContext(ProductIdContext);
   // Fill style thumbnails
   const styleThumbs = styles.map((dataStyle, index) => {
     const classList = index !== styleIndex
@@ -79,7 +79,12 @@ function Checkout(props) {
     const quantity = parseInt(quantityEl.value.trim(), 10);
     if (size === 'SELECT SIZE' || quantity === 0) {
       // If size or quantity are not selected, warn the user
-      alert('wrOOOng!!#@');
+      if (size === 'SELECT SIZE') {
+        sizeEl.classList.add('select-error');
+      }
+      if (quantity === 0) {
+        quantityEl.classList.add('select-error');
+      }
     } else {
       // If valid data is collected, attempt to update shopping cart
       axios.post('/cart', {
@@ -88,7 +93,13 @@ function Checkout(props) {
         size,
         quantity,
       })
-        .then()
+        .then(() => {
+          // Display success popup
+          const popupEl = document.querySelector('.checkout-popup');
+          popupEl.innerText = 'Added to cart...';
+          popupEl.classList.add('checkout-popup-display');
+          hideCheckoutPopup();
+        })
         .catch((err) => {
           console.log(err);
         });
@@ -106,6 +117,7 @@ function Checkout(props) {
 
   return (
     <section className="checkout-section">
+      <p className="checkout-popup">Added to cart...</p>
       {/* Rating and Title */}
       <div className="rating-title">
         <div className="reviews-wrapper">
@@ -137,7 +149,7 @@ function Checkout(props) {
 
       {/* Checkout Options */}
       <div className="checkout">
-        <select className="size" onChange={sizeChange} defaultValue="SELECT SIZE">
+        <select className="size" onChange={sizeChange} defaultValue="SELECT SIZE" onClick={(e) => e.target.classList.remove('select-error')}>
           <option disabled>SELECT SIZE</option>
           {sizeOptions.map((size, index) => (
             // eslint-disable-next-line react/no-array-index-key
@@ -147,7 +159,7 @@ function Checkout(props) {
           ))}
         </select>
         <i className="fa-solid fa-caret-down select-icon select-icon-quantity" />
-        <select className="quantity">
+        <select className="quantity" defaultValue="0" onClick={(e) => e.target.classList.remove('select-error')}>
           <option disabled>0</option>
           {quantityOptions.map((quantity, index) => (
             // eslint-disable-next-line react/no-array-index-key
