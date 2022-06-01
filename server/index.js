@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 // eslint-disable-next-line no-unused-vars
 const fs = require('fs');
+const { v4: uuidv4 } = require('uuid');
 const axios = require('axios');
 const express = require('express');
 const path = require('path');
@@ -46,6 +47,36 @@ app.use((req, res, next) => {
     console.log(counterMsg);
   }
   next();
+});
+
+// Cookie parser middleware (Practice Apps: Part2 reuse)
+// session_id cookie is now accessible in every route -> req.session_id
+app.use((req, res, next) => {
+  const cookieString = req.get('Cookie') || '';
+
+  const parsedCookies = cookieString.split('; ').reduce((cookies, cookie) => {
+    if (cookie.length) {
+      const index = cookie.indexOf('=');
+      const key = cookie.slice(0, index);
+      const token = cookie.slice(index + 1);
+      // eslint-disable-next-line no-param-reassign
+      cookies[key] = token;
+    }
+    return cookies;
+  }, {});
+
+  if (parsedCookies.s_id) {
+    req.session_id = parsedCookies.s_id;
+  } else {
+    req.session_id = uuidv4();
+    res.cookie('s_id', req.session_id);
+  }
+
+  next();
+});
+
+app.get('/test', (req, res) => {
+  res.end();
 });
 
 // GET item overview
@@ -327,15 +358,23 @@ app.put('/reviews/:review_id/report', (req, res) => {
 });
 
 // Outfitter requests
-// GET all items in outfitter.json
+// GET all outfits in shoppingData.json
 app.get('/outfitter', (req, res) => {
-  fs.readFile(path.join(__dirname, 'data/outfitter.json'), (readErr, data) => {
-    const items = JSON.parse(data);
-    // TODO: leaving space for more meaningfull comparison
-    res.send(items);
+  fs.readFile(path.join(__dirname, 'data/shoppingData.json'), (readErr, data) => {
+    const entries = JSON.parse(data);
+    let sessionIdFound = false;
+    for (let i = 0; i < entries.length; i += 1) {
+      if (entries[i].session_id === req.session_id) {
+        sessionIdFound = true;
+        res.status(200).send(entries[i].outfitter);
+      }
+    }
+    if (!sessionIdFound) {
+      res.send([]);
+    }
   });
 });
-// DELETE an item from outfitter.json
+// DELETE an item from shoppingData.json
 app.delete('/outfitter', (req, res) => {
   // req.body.productId is productId for card
   // req.body.cards is all card data for all cards
@@ -343,33 +382,156 @@ app.delete('/outfitter', (req, res) => {
   for (let i = 0; i < cards.length; i += 1) {
     if (cards[i].productId === productId) {
       cards.splice(i, 1);
+      break;
     }
   }
-  fs.writeFile(path.join(__dirname, 'data/outfitter.json'), JSON.stringify(cards, null, '\t'), (writeErr) => {
-    if (writeErr) {
-      console.log(writeErr);
+
+  fs.readFile(path.join(__dirname, 'data/shoppingData.json'), (readErr, data) => {
+    const entries = JSON.parse(data);
+    for (let i = 0; i < entries.length; i += 1) {
+      if (entries[i].session_id === req.session_id) {
+        entries[i].outfitter = cards;
+      }
     }
-    res.end();
+    fs.writeFile(path.join(__dirname, 'data/shoppingData.json'), JSON.stringify(entries, null, '\t'), (writeErr) => {
+      if (writeErr) {
+        console.log(writeErr);
+      }
+      res.end();
+    });
   });
 });
-// POST new item to outfitter.json
+// POST new item to shoppingData.json
 app.post('/outfitter', (req, res) => {
   const item = req.body;
-  fs.readFile(path.join(__dirname, 'data/outfitter.json'), (readErr, data) => {
-    const items = JSON.parse(data);
-    // TODO: leaving space for more meaningfull comparison
-    if (JSON.stringify(items).includes(JSON.stringify(item))) {
-      console.error('\n🚫Err: Outfit already exists in outfitter.json!\nI 💛 My Little Pony 🥺\n');
-      res.status(400).send({ message: 'duplicate entry!' });
-    } else {
-      items.push(item);
-      fs.writeFile(path.join(__dirname, 'data/outfitter.json'), JSON.stringify(items, null, '\t'), (writeErr) => {
+  fs.readFile(path.join(__dirname, 'data/shoppingData.json'), (readErr, data) => {
+    const entries = JSON.parse(data);
+    let sessionIdFound = false;
+    // res.end(), res.sendStatus(), etc... don't stop
+    // your chunk of code from running fully, it seems,
+    // hence the MVP variable
+    let errorEncountered = false;
+    // Check if session_id already exists
+    for (let i = 0; i < entries.length; i += 1) {
+      if (entries[i].session_id === req.session_id) {
+        // TODO: leaving space for more meaningfull comparison
+        if (JSON.stringify(entries[i]).includes(JSON.stringify(item))) {
+          console.error('\n🚫Err: Outfit already exists in shoppingData.json!\nI 💛 My Little Pony 🥺\n');
+          res.status(400).send({ message: 'duplicate entry!' });
+          errorEncountered = true;
+        } else {
+          entries[i].outfitter.push(item);
+          sessionIdFound = true;
+        }
+        break;
+      }
+    }
+    // Don't carry on if error was encountered
+    if (!errorEncountered) {
+    // If sessionId was not found, add new entry
+      if (!sessionIdFound) {
+        entries.push({ session_id: req.session_id, outfitter: [item], cart: {} });
+      }
+      // Write new outfitter
+      fs.writeFile(path.join(__dirname, 'data/shoppingData.json'), JSON.stringify(entries, null, '\t'), (writeErr) => {
         if (writeErr) {
           console.log(writeErr);
         }
         res.end();
       });
     }
+  });
+});
+
+// ShoppingCart requests
+app.post('/cart', (req, res) => {
+  // TODO: find better way to store thumbnail_url
+  const {
+    name, size, quantity, thumbnail,
+  } = req.body;
+
+  fs.readFile(path.join(__dirname, 'data/shoppingData.json'), (readErr, data) => {
+    const entries = JSON.parse(data);
+    let sessionIdFound = false;
+    // Check if session_id already exists
+    for (let i = 0; i < entries.length; i += 1) {
+      if (entries[i].session_id === req.session_id) {
+        sessionIdFound = true;
+        // If users shopping card includes the item name...
+        if (name in entries[i].cart) {
+          const productMeta = entries[i].cart[name];
+          // If given size is already in cart...
+          if (size.toString() in productMeta) {
+            // Add to quantity
+            productMeta[size.toString()] += parseInt(quantity, 10);
+          } else {
+            productMeta[size.toString()] = parseInt(quantity, 10);
+          }
+        } else {
+          // Add new product to cart, if doesn't exist
+          const newProduct = {};
+          newProduct[size] = quantity;
+          entries[i].cart[name] = { ...newProduct, thumbnail };
+        }
+        break;
+      }
+    }
+    // If sessionId was not found, add new entry
+    if (!sessionIdFound) {
+      const newSize = {};
+      newSize[size] = quantity;
+      const newCartEntry = {};
+      newCartEntry[name] = { ...newSize, thumbnail };
+      entries.push({ session_id: req.session_id, outfitter: [], cart: newCartEntry });
+    }
+    // Write new outfitter
+    fs.writeFile(path.join(__dirname, 'data/shoppingData.json'), JSON.stringify(entries, null, '\t'), (writeErr) => {
+      if (writeErr) {
+        console.log(writeErr);
+      }
+      res.end();
+    });
+  });
+});
+
+app.get('/cart', (req, res) => {
+  fs.readFile(path.join(__dirname, 'data/shoppingData.json'), (readErr, data) => {
+    const entries = JSON.parse(data);
+    let sessionIdFound = false;
+    // Check if session_id already exists
+    for (let i = 0; i < entries.length; i += 1) {
+      if (entries[i].session_id === req.session_id) {
+        const { cart } = entries[i];
+        res.json(cart);
+        sessionIdFound = true;
+        break;
+      }
+    }
+    if (!sessionIdFound) {
+      res.send([]);
+    }
+  });
+});
+
+app.delete('/cart', (req, res) => {
+  const { name } = req.body;
+  fs.readFile(path.join(__dirname, 'data/shoppingData.json'), (readErr, data) => {
+    const entries = JSON.parse(data);
+    // Look for shopping cart associated with session_id
+    for (let i = 0; i < entries.length; i += 1) {
+      if (entries[i].session_id === req.session_id) {
+        // Remove product when found
+        delete entries[i].cart[name];
+        fs.writeFile(path.join(__dirname, 'data/shoppingData.json'), JSON.stringify(entries, null, '\t'), (writeErr) => {
+          if (writeErr) {
+            console.log(writeErr);
+          }
+          res.end();
+        });
+        break;
+      }
+    }
+    res.end();
   });
 });
 

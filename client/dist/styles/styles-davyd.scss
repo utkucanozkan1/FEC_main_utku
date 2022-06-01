@@ -25,6 +25,8 @@ $defaultBorder: 0.075vw solid black;
 $mainBorder: 0.3vw solid $second;
 $mainBoxShadow: 0 0 1vw 0.1vw $second, 0 0 1vw 0.1vw $second inset;
 
+$boxShadowTransition: box-shadow 1s ease-in-out;
+
 .item-overview-section {
   min-height: 80vh;
   width: auto;
@@ -93,6 +95,7 @@ $mainBoxShadow: 0 0 1vw 0.1vw $second, 0 0 1vw 0.1vw $second inset;
           margin-left: 15%;
           padding: 1vw 0;
           position: relative;
+          height: 2.8vw * 8;
 
           .thumbnail {
             padding: 2.3vw;
@@ -277,8 +280,14 @@ $mainBoxShadow: 0 0 1vw 0.1vw $second, 0 0 1vw 0.1vw $second inset;
           background-repeat: no-repeat;
           border: $mainBorder;
           border-radius: 50%;
-          box-shadow: $mainBoxShadow;
           cursor: pointer;
+          box-shadow: $mainBoxShadow;
+          transition: box-shadow 1s ease-in-out;
+
+          &:hover {
+            box-shadow: 0 0 2vw 0.2vw $second, 0 0 2vw 0.2vw $second inset;
+            transition: box-shadow 1s ease-in-out;
+          }
           }
 
           .style-thumbnail-selected  {
@@ -286,13 +295,13 @@ $mainBoxShadow: 0 0 1vw 0.1vw $second, 0 0 1vw 0.1vw $second inset;
           }
           .style-thumbnail-selected::after  {
             content: '✓';
-            font-size: 0.8 * $fontSize;
+            font-size: 1vw;
             font-weight: bold;
             text-align: center;
             position: absolute;
             padding: 0.22vw;
             top: -0.4vw;
-            left: 2.75vw;
+            left: 3vw;
             width: 1vw;
             height: 1vw;
             border-radius: 50%;
@@ -315,9 +324,6 @@ $mainBoxShadow: 0 0 1vw 0.1vw $second, 0 0 1vw 0.1vw $second inset;
       justify-content: space-between;
       flex-wrap: wrap;
 
-      .outfitter-add-button-wrap, .checkout-button-wrap, .quantity-wrap, .size-wrap{
-      }
-
       button, select {
         background-color: $main;
         color: $second;
@@ -334,19 +340,26 @@ $mainBoxShadow: 0 0 1vw 0.1vw $second, 0 0 1vw 0.1vw $second inset;
         margin: 1.5vh 0.25vw;
         position: relative;
         -webkit-appearance: none;
+        transform: translateY(-4px);
 
         &:hover {
           cursor: pointer;
           box-shadow: 0 0 0.5vw 0vw $second inset;
           color: $crimson;
         }
+
+        // &:focus {
+        //   background-color: $crimson;
+        //   color: $main;
+        // }
+
       }
 
       .select-icon {
         color: $second;
         font-size: 2.6vw;
         position: absolute;
-        top: 10%;
+        top: 2.3vh;
 
         &.select-icon-size {
           right: 5%;

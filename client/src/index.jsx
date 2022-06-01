@@ -1,3 +1,6 @@
+/* eslint-disable consistent-return */
+/* eslint-disable array-callback-return */
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable camelcase */
@@ -39,6 +42,75 @@ function App() {
   // Data object to pass to provider
   const [data, setData] = useState({});
   const [outfitterListener, triggerOutfitterListener] = useState('🍕');
+
+  const [cart, setCart] = useState([]);
+
+  // Handle shopping cart popup -> 0.8 Functional, with minor bugs
+  const getShoppingCart = (e) => {
+    e.preventDefault();
+    const cartModal = document.querySelector('.cart-modal');
+    if (cartModal.style.display === 'none') {
+      cartModal.style.display = 'block';
+    }
+    axios.get(('/cart'))
+      .then((res) => {
+        // Conversion of object to array for setCart
+        const responseObject = res.data;
+        const newCart = Object.keys(responseObject).map((key) => {
+          const product = {};
+          product[key] = responseObject[key];
+          return product;
+        });
+        setCart(newCart);
+      })
+      .catch();
+  };
+  // Delete item from shopping cart
+  const cartDeleteProduct = (e) => {
+    e.preventDefault();
+    // Read the item name
+    const name = e.target.getAttribute('data-name-pointer');
+    axios.delete('/cart', { data: { name } })
+      .then(() => {
+        document.querySelector(`[data-name='${name}']`).style.display = 'none';
+      })
+      .catch((err) => {
+        console.log('Failed to delete cart item:', name, err);
+      });
+  };
+  // Fills up shopping cart modal with products
+  const cartProducts = cart.map((product, i) => {
+    const name = Object.keys(product)[0];
+    const sizes = Object.entries(product[name]);
+    const { thumbnail } = Object.values(product)[0];
+
+    return (
+      <div className="cart-product" data-name={name} key={i}>
+        <div className="cart-product-header">
+          <div className="cart-product-thumbnail-wrap">
+            <div style={{ backgroundImage: `url('${thumbnail}')` }} className="cart-product-thumbnail" />
+          </div>
+          <span className="cart-name">{name}</span>
+          <button className="cart-delete-button" type="button" data-name-pointer={name} onClick={cartDeleteProduct}>
+            <i className="fa-solid fa-xmark" data-name-pointer={name} />
+          </button>
+        </div>
+        <ul>
+          {sizes.map((entry, j) => {
+            const [size, quantity] = entry;
+            if (size !== 'thumbnail') {
+              return (
+                <li key={j}>
+                  <span className="cart-product-size">{`size${size}:`}</span>
+                  <span className="cart-product-quantity">{`x${quantity}`}</span>
+                </li>
+              );
+            }
+          })}
+        </ul>
+      </div>
+    );
+  });
 
   // Reusable functions
   const reqErr427 = () => {
@@ -116,7 +188,7 @@ function App() {
       .catch((err) => {
         // TODO: if
         if (err.toJSON()?.status === 400) {
-          console.log('--> 🚫Err: Outfit already exists in outfitter.json!\nP.S. I 💛 My Little Pony 🥺\n');
+          console.log('--> 🚫Err: Outfit already exists in shoppingData.json!\nP.S. I 💛 My Little Pony 🥺\n');
         } else {
           console.error(err);
         }
@@ -154,11 +226,12 @@ function App() {
   let lastY = 0;
   useEffect(() => {
     fetchData(itemId);
+    // header hide/show on scroll
     window.addEventListener('scroll', () => {
       const y = window.scrollY;
       const initialHeight = window.innerHeight;
       const header = document.querySelector('.header');
-      if (y <= initialHeight / 5 || y < lastY) {
+      if (y <= initialHeight || y < lastY) {
         header.classList.remove('header-hide');
       } else if (y > lastY) {
         header.classList.add('header-hide');
@@ -176,10 +249,12 @@ function App() {
           }
           }
         >
+          {/* Header */}
           <header>
-            {/* Replace with anchor if needed */}
             <div className="header">
+              {/* Brand */}
               <h1>Atelier</h1>
+              {/* Search bar/Website nav */}
               <div className="search-bar">
                 <input
                   className="search-itemId-input"
@@ -196,9 +271,50 @@ function App() {
                 <button id="search-itemId" type="button" onClick={switchProductPage}>
                   <i className="fa-solid fa-magnifying-glass" />
                 </button>
+                <button type="button" onClick={getShoppingCart} className="cart-button">
+                  <i className="fa-solid fa-cart-shopping" role="button" />
+                </button>
               </div>
             </div>
           </header>
+
+          {/* Shopping cart modal */}
+          <div className="cart-modal" style={{ display: 'none' }}>
+            <div className="cart-modal-content">
+              {/* Modal Header */}
+              <div className="cart-modal-header">
+                <h3>
+                  Shopping Cart
+                </h3>
+                {/* Close cart button */}
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.querySelector('.cart-modal').style.display = 'none';
+                  }}
+                >
+                  <i className="fa-solid fa-xmark cart-modal-close" />
+                </button>
+              </div>
+
+              <div className="cart-products">
+                {cartProducts.map((product) => product)}
+              </div>
+
+              {/* Display session cookie */}
+              <p style={{
+                color: 'red',
+                paddingTop: '1vw',
+                fontSize: '24px',
+              }}
+              >
+                {document.cookie}
+              </p>
+            </div>
+          </div>
+
+          {/* Widgets */}
           <ItemOverview />
           <RelatedOutfitView />
           <QuestionsAndAnswers />

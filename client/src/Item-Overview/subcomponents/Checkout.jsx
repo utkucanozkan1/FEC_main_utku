@@ -4,7 +4,8 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable import/extensions */
-import React, { useState, useContext } from 'react';
+import axios from 'axios';
+import React, { useState, useEffect, useContext } from 'react';
 
 // Subcomponent/Context imports
 import StarRating from '../../shared/StarRating.jsx';
@@ -15,7 +16,7 @@ function Checkout(props) {
     item, styles, styleIndex, setStyleIndex,
   } = { ...props }.data;
 
-  const { addToOutfitter } = useContext(ProductIdContext);
+  const { addToOutfitter, itemId } = useContext(ProductIdContext);
   // Fill style thumbnails
   const styleThumbs = styles.map((dataStyle, index) => {
     const classList = index !== styleIndex
@@ -49,12 +50,14 @@ function Checkout(props) {
     e.preventDefault();
     if (e.target.classList.contains('style-thumbnail')) {
       // Reassign selected style
+      const index = e.target.getAttribute('data-index' || 0);
       document.querySelector('.style-thumbnail-selected')
         .classList.remove('style-thumbnail-selected');
       e.target.classList.add('style-thumbnail-selected');
-      setStyleIndex(e.target.getAttribute('data-index' || 0));
+      setStyleIndex(index);
       setQuantityOptions([]);
       document.querySelector('.size').value = 'SELECT SIZE';
+      document.querySelector('.quantity').value = '0';
     }
   };
   const sizeChange = (e) => {
@@ -68,6 +71,38 @@ function Checkout(props) {
     document.querySelector('.quantity').value = 0;
     setQuantityOptions(newQuantityOptions);
   };
+  const addToCart = (e) => {
+    e.preventDefault();
+    const sizeEl = document.querySelector('.size');
+    const size = sizeEl.value.trim();
+    const quantityEl = document.querySelector('.quantity');
+    const quantity = parseInt(quantityEl.value.trim(), 10);
+    if (size === 'SELECT SIZE' || quantity === 0) {
+      // If size or quantity are not selected, warn the user
+      alert('wrOOOng!!#@');
+    } else {
+      // If valid data is collected, attempt to update shopping cart
+      axios.post('/cart', {
+        name: item.name,
+        thumbnail: styles[0].photos[0].thumbnail_url || styles[0].photos[0].url,
+        size,
+        quantity,
+      })
+        .then()
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
+  useEffect(() => {
+    // Reset selected style to be the first style
+    document.querySelector('.style-thumbnail-selected')
+      .classList.remove('style-thumbnail-selected');
+    document.querySelectorAll('.style-thumbnail')[0]
+      .classList.add('style-thumbnail-selected');
+    setStyleIndex(0);
+  }, [itemId]);
 
   return (
     <section className="checkout-section">
@@ -112,8 +147,8 @@ function Checkout(props) {
           ))}
         </select>
         <i className="fa-solid fa-caret-down select-icon select-icon-quantity" />
-        <select className="quantity">
-          <option>0</option>
+        <select className="quantity" defaultValue="0">
+          <option disabled>0</option>
           {quantityOptions.map((quantity, index) => (
             // eslint-disable-next-line react/no-array-index-key
             <React.Fragment key={index}>
@@ -123,7 +158,7 @@ function Checkout(props) {
         </select>
         <i className="fa-solid fa-caret-down select-icon select-icon-size" />
 
-        <button className="checkout-button" type="button">ADD TO BAG</button>
+        <button className="checkout-button" type="button" onClick={addToCart}>ADD TO BAG</button>
         <button type="button" className="outfitter-add-button" onClick={addToOutfitter}>
           <i className="fa-solid fa-heart" />
         </button>
