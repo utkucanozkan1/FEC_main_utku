@@ -43,9 +43,9 @@ function CompareModal() {
         </div>
         <div className="chartContainer">
           <div className="rowContainer">
-            <h6 className="left">{data.name}</h6>
+            <h4 className="left">{data.name}</h4>
             <p> </p>
-            <h6 className="right">{product.name}</h6>
+            <h4 className="right">{product.name}</h4>
           </div>
           {data.features.map((trait) => (
             <div className="rowContainer">
