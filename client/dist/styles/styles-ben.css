@@ -66,6 +66,7 @@
 .reviews-section .inner-triangle-container {
   height: 10 px;
   width: 18%;
+  margin: 10%;
 }
 .reviews-section .review-list-container {
   grid-column-start: 3;
