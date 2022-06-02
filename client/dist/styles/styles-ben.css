@@ -89,12 +89,17 @@
   position: relative;
   border-radius: 10px;
   padding: 2%;
+  min-width: 25vw;
+  max-width: 25vw;
+  resize: horizontal;
 }
 .reviews-section .review-list-container .review-list .review-card {
   display: flex;
   align-self: center;
   flex-flow: column wrap;
   border-top: 2px solid;
+  margin-top: 2%;
+  background-color: lightgray;
   width: 100%;
 }
 .reviews-section .review-list-container .review-list .review-card .top-of-review {

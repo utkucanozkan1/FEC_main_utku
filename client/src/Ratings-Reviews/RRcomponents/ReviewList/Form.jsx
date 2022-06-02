@@ -122,8 +122,8 @@ export default function Form() {
               {' '}
               {chars[char].map((elem, i) => (
                 <FormButtonRow key={i}>
-                  <RadioButtonLabel required key={i + 13} htmlFor={elem} >
-                    <input type="radio" key={i + 13} value={i + 1} name={char} />
+                  <RadioButtonLabel required key={i} htmlFor={elem}>
+                    <input type="radio" key={i+1} value={i + 1} name={char} />
                     {elem}
                   </RadioButtonLabel>
                 </FormButtonRow>

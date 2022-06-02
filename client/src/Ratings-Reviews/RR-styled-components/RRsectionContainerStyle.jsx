@@ -127,7 +127,7 @@ const GridContainer = styled.div`
   display: grid;
   width: 100%;
   gap: 2%;
-  grid-template-columns: 18% 18% 18% 18% 18% 18%;
+  grid-template-columns: 15% 15% 15% 15% 15% 15%;
   text-align: center;
 `;
 

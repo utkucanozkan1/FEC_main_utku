@@ -82,8 +82,6 @@
       width: 18%;
     }
 
-
-
   .review-list-container {
     grid-column-start: 3;
     display: flex;
@@ -103,16 +101,20 @@
       height: 35vh;
       position: relative;
       border-radius: 10px;
-      // top: 1vh;
       padding: 2%;
-
+      min-width: 25vw;
+      max-width: 25vw;
+      resize: horizontal;
 
     .review-card {
       display: flex;
       align-self: center;
       flex-flow: column wrap;
       border-top: 2px solid;
+      margin-top: 2%;
+      background-color: lightgray;
       width: 100%;
+
 
       .top-of-review {
         display: flex;
