@@ -18,6 +18,7 @@
   border-radius: 10px;
   margin-top: 5vh;
   padding-bottom: 15vh;
+  resize: horizontal;
 }
 
 .reviews-section {
@@ -25,6 +26,7 @@
   margin-left: auto;
   margin-right: auto;
   width: 50vw;
+  resize: horizontal;
 }
 .reviews-section .summary-left {
   padding-top: 2vh;
@@ -84,14 +86,14 @@
   overflow-y: auto;
   background-color: rgba(255, 255, 255, 0.8);
   height: 35vh;
-  width: 100%;
+  position: relative;
   border-radius: 10px;
   top: 1vh;
-  padding: 1vh;
+  padding: 5%;
 }
 .reviews-section .review-list-container .review-card {
   display: flex;
-  align-self: flex-start;
+  align-self: center;
   flex-flow: column wrap;
   border-top: 2px solid;
   width: 100%;
@@ -140,6 +142,13 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
   z-index: 1000;
+}
+.reviews-section .review-list-container .small {
+  width: 7vw;
+}
+.reviews-section .review-list-container .dialog {
+  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.956);
+  width: max-content;
 }
 .reviews-section .review-list-container .answerer-smallBreak {
   margin-top: 1em;
