@@ -50,7 +50,7 @@ function CompareModal() {
           {data.features.map((trait) => (
             <div className="rowContainer">
               <p className="modalItem">{trait.value ? trait.value : '✓'}</p>
-              <p className="modalItem">{trait.feature}</p>
+              <h5 className="modalItem">{trait.feature}</h5>
               <p className="modalItem">{handleSharedTrait(trait, features)}</p>
             </div>
           ))}
@@ -60,7 +60,7 @@ function CompareModal() {
                 : (
                   <div className="rowContainer">
                     <p className="modalItem">{handleSharedTrait(trait, data.features)}</p>
-                    <p className="modalItem">{trait.feature}</p>
+                    <h5 className="modalItem">{trait.feature}</h5>
                     <p className="modalItem">{trait.value ? trait.value : '✓'}</p>
                   </div>
                 );
@@ -68,7 +68,7 @@ function CompareModal() {
             return (
               <div className="rowContainer">
                 <p className="modalItem">{handleSharedTrait(trait, data.features)}</p>
-                <p className="modalItem">{trait.feature}</p>
+                <h5 className="modalItem">{trait.feature}</h5>
                 <p className="modalItem">{trait.value ? trait.value : '✓'}</p>
               </div>
             );

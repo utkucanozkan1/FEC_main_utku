@@ -23,10 +23,10 @@
 .riocSection {
   display: flex;
   flex-direction: column;
-
+  margin-bottom: 50px;
   .viewSection {
     height: 50vh;
-    margin-bottom: 150px;
+    margin-bottom: 170px;
     .sectionTitle {
       border-style: solid;
       background-color: black;
@@ -76,6 +76,13 @@
           background-color: rgb(59, 59, 59);
           color: white;
           text-align: center;
+          box-shadow: 0 0 8px 8px darkgray inset;
+          transition: box-shadow 1s ease-in-out;
+          &:hover {
+            box-shadow: 0 0 2vw 0.2vw white, 0 0 2vw 0.2vw white inset;
+            // hover-in
+            transition: box-shadow 1s ease-in-out;
+          }
           .add {
             font-size: 100px;
             position: relative;
@@ -134,9 +141,8 @@
   cursor: default;
   .modal {
     position: fixed;
-    background: white;
     width: 65%;
-    height: 30%;
+    height: 40%;
     top: 55%;
     left: 50%;
     transform: translate(-50%,-50%);
@@ -145,36 +151,17 @@
     text-align: center;
     border-color: darkgray;
     overflow-y: scroll;
-    .chartContainer {
-      display: flex;
-      flex-direction: column;
-      border-style: solid;
-      border-color: darkgray;
-      .rowContainer {
-        display: flex;
-        justify-content: space-around;
-        font-family: 'Kollektif';
-        background-color: white;
-        .modalItem {
-          width: 33%;
-          border-style: solid;
-          border-color: darkgray;
-          white-space: nowrap;
-          overflow: hidden;
-          font-size: 3vw;
-          color: black;
-        }
-      }
-    }
+    color: black;
+    background-color: white;
     .rowContainer {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       flex: 1 1 0px;
-      color: blue;
       font-size: 25px;
+      background-color: black;
       h5 {
-        color: black;
+        color: white;
         align-self: center;
         margin: 5px;
         font-family: 'Montserrat-Bold';
@@ -194,6 +181,40 @@
 
         color: #D8315B;
         font-weight: bold;
+      }
+    }
+    .chartContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-style: solid;
+      border-color: darkgray;
+      .rowContainer {
+        display: flex;
+        flex: 1 1 0px;
+        justify-content: space-around;
+        font-family: 'Kollektif';
+        background-color: white;
+        .modalItem {
+          width: 33%;
+          height: 40px;
+          padding-top: 5%;
+          align-self: center;
+          align-items: center;
+          // border-style: solid;
+          // border-color: darkgray;
+          white-space: nowrap;
+          overflow: hidden;
+          font-size: 15px;
+          // color: black;
+          // background-color: crimson;
+        }
+        h5 {
+          font-family: 'Montserrat-Bold';
+          width: 33%;
+          background-color: black;
+          color: crimson;
+        }
       }
     }
   }

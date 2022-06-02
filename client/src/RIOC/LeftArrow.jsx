@@ -15,11 +15,14 @@ function LeftArrow({outfitAttr}) {
       setPosition((prevPosition) => prevPosition - 1);
       setEnd(false);
     }
+    if (position === 0) {
+
+    }
   }
 
   return (
-    <CarouselButton onClick={scrollLeft}>
-      { position === 0 ? '' : <img src="../../assets/Images/arrow-black.svg" alt="carousel-next" className="arrow-black left" /> }
+    <CarouselButton>
+      { position === 0 ? '' : <img src="../../assets/Images/arrow-black.svg" alt="carousel-next" className="arrow-black left" onClick={scrollLeft} /> }
     </CarouselButton>
   );
 }
