@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  RatingsBreakdown, OuterBarGraph, InnerBarGraph, ProductBreakdownContainer, Recommend,
+  OuterBarGraph, InnerBarGraph, ProductBreakdownContainer, Recommend,
   Character, CharacterGraph,
 } from '../../../RR-styled-components/RRsectionContainerStyle';
 import BarChart from './barChart';

@@ -8,10 +8,6 @@ import React, { useState } from 'react';
 import { format, parseISO } from 'date-fns';
 import PropTypes from 'prop-types';
 import ImageComponent from '../../../q-a/ImageComponent';
-import axios from 'axios';
-import {
-  ReviewEntryStyle, SmallSum, Date, Paragraph, TopOfReview
-} from '../../RR-styled-components/RRsectionContainerStyle';
 import StarRating from '../../../shared/StarRating';
 import { putIsHelpful, putReported } from './serverAction';
 
