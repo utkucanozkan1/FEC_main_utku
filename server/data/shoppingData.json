@@ -59,6 +59,15 @@
 				"sale_price": "3.00",
 				"rating": 3.0285714285714285,
 				"imageUrl": "https://images.unsplash.com/photo-1553830591-d8632a99e6ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
+			},
+			{
+				"productId": 37965,
+				"title": "The Edd Suit",
+				"category": "Suit",
+				"original_price": "586.00",
+				"sale_price": null,
+				"rating": null,
+				"imageUrl": "https://images.unsplash.com/photo-1513531926349-466f15ec8cc7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
 			}
 		],
 		"cart": {}
