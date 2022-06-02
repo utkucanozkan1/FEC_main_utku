@@ -146,7 +146,7 @@ export default function Form() {
               value={summary}
               maxLength="60"
               rows="1"
-              cols="100"
+              cols="70"
               placeholder="Summary"
               onChange={(e) => setSummary(e.target.value)}
             />
@@ -166,7 +166,7 @@ export default function Form() {
               maxLength="1000"
               minLength="250"
               rows="10"
-              cols="100"
+              cols="70"
               value={body}
               placeholder="Body"
               required
