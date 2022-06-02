@@ -10,19 +10,27 @@
   font-family: "Montserrat-Bold";
   src: url("../assets/fonts/Montserrat/static/Montserrat-SemiBold.ttf");
 }
+.outer-review {
+  background-color: rgba(255, 255, 255, 0.6);
+  margin-left: auto;
+  margin-right: auto;
+  width: 60vw;
+  border-radius: 10px;
+  margin-top: 5vh;
+}
+
 .reviews-section {
   display: grid;
-  grid-template-columns: 3fr 4fr 8fr 3fr;
-  justify-items: stretch;
-  padding-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50vw;
 }
 .reviews-section .summary-left {
-  padding-top: 10px;
-  grid-column-start: 2;
+  padding-top: 2vh;
   display: flex;
   flex-flow: column wrap;
   justify-content: flex-start;
-  margin-right: 10vw;
+  margin-right: 2vw;
   width: 100%;
 }
 .reviews-section .summary-left .RatingSummary {
@@ -31,7 +39,6 @@
   justify-content: flex-start;
   font-size: 40px;
   margin-right: 2vw;
-  color: #000000;
 }
 .reviews-section .summary-left .RatingSummary .average-star {
   display: flex;
@@ -43,6 +50,20 @@
   align-self: flex-start;
   flex-flow: row wrap;
 }
+.reviews-section .outer-char-breakdown {
+  position: relative;
+  background-color: darkgray;
+}
+.reviews-section .triangle-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: space-between;
+  flex-direction: row nowrap;
+}
+.reviews-section .inner-triangle-container {
+  height: 10 px;
+  width: 18%;
+}
 .reviews-section .review-list-container {
   grid-column-start: 3;
   display: flex;
@@ -50,6 +71,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+  padding-top: 2vh;
   /* Image Styling */
   /* Button styling */
 }
@@ -59,9 +81,13 @@
   flex-flow: column nowrap;
   border-top: 2px solid;
   overflow-y: auto;
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.8);
   max-height: 350px;
-  opacity: 0.9;
+  min-height: 350px;
+  border-radius: 10px;
+  position: relative;
+  top: 1vh;
+  padding: 1vh;
 }
 .reviews-section .review-list-container .review-card {
   display: flex;
@@ -152,6 +178,7 @@
   width: 100%;
   font-family: "Montserrat";
   height: auto;
+  margin-top: 1vh;
 }
 .reviews-section .review-list-container .sort-bar {
   display: flex;
