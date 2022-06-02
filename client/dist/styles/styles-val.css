@@ -14,33 +14,14 @@
   font-size: 2vw;
 }
 
-.modalItem {
-  width: 33%;
-  background-color: pink;
-  border-style: solid;
-  font-size: 20px;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.sc-eCYdqJ .right {
-  justify-self: right;
-  color: blue;
-}
-.sc-eCYdqJ h6 {
-  font-size: 20px;
-}
-.sc-eCYdqJ .left {
-  justify-content: left;
-}
-
 .riocSection {
   display: flex;
   flex-direction: column;
+  margin-bottom: 50px;
 }
 .riocSection .viewSection {
   height: 50vh;
-  margin-bottom: 150px;
+  margin-bottom: 170px;
 }
 .riocSection .viewSection .sectionTitle {
   border-style: solid;
@@ -48,13 +29,13 @@
   color: white;
   text-align: right;
   position: relative;
-  top: 2vh;
+  top: 4vh;
   right: 3vh;
   z-index: 100;
   padding: 1%;
   width: 60%;
   font-family: "Montserrat-Bold";
-  font-size: 3.5vw;
+  font-size: 30px;
 }
 .riocSection .viewSection .cardContainer {
   display: flex;
@@ -67,13 +48,15 @@
   border-bottom: 0.3em;
 }
 .riocSection .viewSection .cardContainer .card {
+  display: flex;
+  flex-direction: column;
   background-color: white;
   border-style: solid;
   border-width: 3px;
   border-color: darkgray;
   flex: 1 1 0px;
   margin: 5px;
-  height: 90%;
+  padding-bottom: 5px;
   cursor: pointer;
 }
 .riocSection .viewSection .cardContainer .card p {
@@ -85,10 +68,16 @@
 .riocSection .viewSection .cardContainer .card .addCard {
   display: flex;
   justify-content: center;
-  height: 65%;
+  height: 50%;
   background-color: rgb(59, 59, 59);
   color: white;
   text-align: center;
+  box-shadow: 0 0 8px 8px darkgray inset;
+  transition: box-shadow 1s ease-in-out;
+}
+.riocSection .viewSection .cardContainer .card .addCard:hover {
+  box-shadow: 0 0 2vw 0.2vw white, 0 0 2vw 0.2vw white inset;
+  transition: box-shadow 1s ease-in-out;
 }
 .riocSection .viewSection .cardContainer .card .addCard .add {
   font-size: 100px;
@@ -105,7 +94,8 @@
 .prodImg {
   display: flex;
   justify-content: right;
-  height: 65%;
+  height: 50%;
+  min-height: 50%;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -124,6 +114,104 @@
 }
 .arrow-black.left {
   transform: rotate(180deg);
+}
+
+.modalBG {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  font-family: "Montserrat-Bold";
+  cursor: default;
+}
+.modalBG .modal {
+  position: fixed;
+  width: 65%;
+  height: 40%;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 5%;
+  border-style: solid;
+  text-align: center;
+  border-color: darkgray;
+  overflow-y: scroll;
+  color: black;
+  background-color: white;
+}
+.modalBG .modal .rowContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex: 1 1 0px;
+  font-size: 25px;
+  background-color: black;
+}
+.modalBG .modal .rowContainer h5 {
+  color: white;
+  align-self: center;
+  font-family: "Montserrat-Bold";
+}
+.modalBG .modal .rowContainer .left {
+  position: relative;
+  width: 25%;
+  font-family: "Kollektif";
+  font-size: 20px;
+  padding-top: 5px;
+}
+.modalBG .modal .rowContainer .right {
+  width: 25%;
+  font-family: "Kollektif";
+  font-size: 20px;
+  padding-top: 5px;
+}
+.modalBG .modal .rowContainer .modalButton {
+  margin: 5px;
+  cursor: pointer;
+  background-color: white;
+  font-size: 15px;
+  border-radius: 50%;
+  height: 33px;
+  width: 33px;
+  color: #D8315B;
+  font-weight: bold;
+}
+.modalBG .modal .rowContainer .modalButton:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.modalBG .modal .chartContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.modalBG .modal .chartContainer .rowContainer {
+  display: flex;
+  flex: 1 1 0px;
+  justify-content: space-around;
+  background-color: white;
+}
+.modalBG .modal .chartContainer .rowContainer .modalItem {
+  width: 33%;
+  height: 40px;
+  padding-top: 3%;
+  align-self: center;
+  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 15px;
+  border-bottom-style: solid;
+  border-bottom-color: black;
+}
+.modalBG .modal .chartContainer .rowContainer h5 {
+  font-family: "Montserrat-Bold";
+  width: 33%;
+  background-color: black;
+  color: white;
+  box-shadow: 0 0 0.5vw 0.1vw crimson, 0 0 0.5vw 0.1vw crimson inset;
+  z-index: 1000;
 }
 
 /*# sourceMappingURL=styles-val.css.map */

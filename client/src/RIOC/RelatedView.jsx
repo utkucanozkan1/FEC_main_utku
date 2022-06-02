@@ -20,9 +20,12 @@ function RelatedView() {
   useEffect(() => {
     axios.get(`/related/${itemId}`)
       .then((relatedIds) => {
-        setRelated(relatedIds.data);
+        const uniqueIds = relatedIds.data.filter((id, index) => (
+          relatedIds.data.indexOf(id) === index && id !== itemId
+        ));
+        setRelated(uniqueIds);
         setPosition(0);
-        const viewableRelatedIds = relatedIds.data.slice(0, 4);
+        const viewableRelatedIds = uniqueIds.slice(0, 4);
         const relatedPromises = viewableRelatedIds.map((id) => (
           axios.get(`/products/${id}`)
         ));
