@@ -75,6 +75,8 @@
   justify-content: center;
   width: 100%;
   padding-top: 2vh;
+  margin-left: 1vw;
+  resize: horizontal;
   /* Image Styling */
   /* Button styling */
 }
@@ -89,8 +91,8 @@
   position: relative;
   border-radius: 10px;
   padding: 2%;
-  min-width: 25vw;
-  max-width: 25vw;
+  min-width: 30vw;
+  max-width: 30vw;
   resize: horizontal;
 }
 .reviews-section .review-list-container .review-list .review-card {
@@ -101,6 +103,7 @@
   margin-top: 2%;
   background-color: lightgray;
   width: 100%;
+  resize: horizontal;
 }
 .reviews-section .review-list-container .review-list .review-card .top-of-review {
   display: flex;

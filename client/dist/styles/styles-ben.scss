@@ -26,9 +26,6 @@
 
 .reviews-section {
   display: grid;
-  // grid-template-columns: 3fr 4fr 8fr 3fr;
-  // justify-items: center;
-  // padding-top: .5vh;
   margin-left: auto;
   margin-right: auto;
   width: 50vw;
@@ -90,6 +87,8 @@
     justify-content: center;
     width: 100%;
     padding-top: 2vh;
+    margin-left: 1vw;
+    resize: horizontal;
 
     .review-list {
       display: flex;
@@ -102,8 +101,8 @@
       position: relative;
       border-radius: 10px;
       padding: 2%;
-      min-width: 25vw;
-      max-width: 25vw;
+      min-width: 30vw;
+      max-width: 30vw;
       resize: horizontal;
 
     .review-card {
@@ -114,6 +113,7 @@
       margin-top: 2%;
       background-color: lightgray;
       width: 100%;
+      resize: horizontal;
 
 
       .top-of-review {
