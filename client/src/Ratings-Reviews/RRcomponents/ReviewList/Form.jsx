@@ -83,7 +83,7 @@ export default function Form() {
       <header>
         <h2>What do you think of this product?</h2>
       </header>
-      <form>
+      <form className="form">
         <Header>
           <h3>
             <label>
@@ -145,8 +145,8 @@ export default function Form() {
             <textarea
               value={summary}
               maxLength="60"
-              rows="3"
-              cols="50"
+              rows="1"
+              cols="100"
               placeholder="Summary"
               onChange={(e) => setSummary(e.target.value)}
             />
@@ -165,8 +165,8 @@ export default function Form() {
             <textarea
               maxLength="1000"
               minLength="250"
-              rows="5"
-              cols="50"
+              rows="10"
+              cols="100"
               value={body}
               placeholder="Body"
               required
