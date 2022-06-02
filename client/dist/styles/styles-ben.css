@@ -17,6 +17,7 @@
   width: 60vw;
   border-radius: 10px;
   margin-top: 5vh;
+  padding-bottom: 15vh;
 }
 
 .reviews-section {
@@ -82,10 +83,9 @@
   border-top: 2px solid;
   overflow-y: auto;
   background-color: rgba(255, 255, 255, 0.8);
-  max-height: 350px;
-  min-height: 350px;
+  height: 35vh;
+  width: 100%;
   border-radius: 10px;
-  position: relative;
   top: 1vh;
   padding: 1vh;
 }
@@ -95,6 +95,26 @@
   flex-flow: column wrap;
   border-top: 2px solid;
   width: 100%;
+}
+.reviews-section .review-list-container .review-card .top-of-review {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+}
+.reviews-section .review-list-container .review-card .top-of-review .reviewer {
+  font-size: 15px;
+}
+.reviews-section .review-list-container .review-card .top-of-review .date {
+  align-self: flex-end;
+  font-size: 15px;
+}
+.reviews-section .review-list-container .review-card .top-of-review .review-summary {
+  align-self: flex-start;
+  font-size: 20px;
+  border-bottom: 3px solid;
+}
+.reviews-section .review-list-container .review-card .top-of-review .review-body {
+  font-size: 17px;
 }
 .reviews-section .review-list-container .image-component {
   display: inline-flex;

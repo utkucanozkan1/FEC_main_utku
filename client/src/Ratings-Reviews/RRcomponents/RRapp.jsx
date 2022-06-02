@@ -16,11 +16,14 @@ export default function RatingReviews() {
   }
 
   return (
-    <div className="outer-review">
-      <section id="reviews" className="reviews-section">
-        <RatingSummary setRatingFilter={filterByRating} />
-        <ReviewList ratingFilter={ratingFilter} />
-      </section>
-    </div>
+    <>
+      <div className="outer-review">
+        <section id="reviews" className="reviews-section">
+          <RatingSummary setRatingFilter={filterByRating} />
+          <ReviewList ratingFilter={ratingFilter} />
+        </section>
+      </div>
+      <br />
+    </>
   );
 }

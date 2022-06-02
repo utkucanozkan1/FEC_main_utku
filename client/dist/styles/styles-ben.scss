@@ -20,6 +20,7 @@
   width: 60vw;
   border-radius: 10px;
   margin-top: 5vh;
+  padding-bottom: 15vh;
 }
 
 .reviews-section {
@@ -50,7 +51,6 @@
       .average-star {
         display: flex;
         height: 20px;
-        // width: 75%;
         font-size: 20px;
       }
     }
@@ -98,10 +98,11 @@
       border-top: 2px solid;
       overflow-y: auto;
       background-color: rgba(255,255,255,0.8);;
-      max-height: 350px;
-      min-height: 350px;
+      // max-height: 50%;
+      // min-height: 50%;
+      height: 35vh;
+      width: 100%;
       border-radius: 10px;
-      position: relative;
       top: 1vh;
       padding: 1vh;
     }
@@ -112,6 +113,32 @@
       flex-flow: column wrap;
       border-top: 2px solid;
       width: 100%;
+
+      .top-of-review {
+        display: flex;
+        flex-flow: row;
+        justify-content: space-between;
+
+        .reviewer {
+          font-size: 15px;
+        }
+
+        .date {
+          align-self: flex-end;
+          font-size: 15px;
+        }
+
+        .review-summary {
+          align-self: flex-start;
+          font-size: 20px;
+          border-bottom: 3px solid;
+        }
+
+        .review-body {
+          font-size: 17px;
+        }
+
+      }
     }
 
     .image-component {

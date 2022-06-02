@@ -51,20 +51,20 @@ export default function ReviewEntry({ review }) {
     <div className="review-card">
       <hr />
       <StarRating rating={review.rating}/>
-      <TopOfReview>
+      <div className="top-of-review">
         <h2 className="reviewer">
           {review.reviewer_name}
         </h2>
-        <Date>
+        <span className="date">
           {format(parseISO(review.date), 'MMMM do, yyyy')}
-        </Date>
-      </TopOfReview>
-      <SmallSum>{review.summary}</SmallSum>
-      {showAll ? <Paragraph>{review.body}</Paragraph> : <Paragraph>{shortBody}...</Paragraph>}
+        </span>
+      </div>
+      <span className="review-summary">{review.summary}</span>
+      {showAll ? <p className="review-body">{review.body}</p> : <p className="review-body">{shortBody}...</p>}
       {(showAll && review.body.length > 250 )? <a href="#" type="button" onClick={showMore}>Show Less</a>
         : (review.body.length > 250) ? <a href="#" type="button" onClick={showMore}>Show More</a> : <a></a> }
       {review.recommend ? <p> Recommend Product </p> : <p> </p>}
-      {review.response ? <SmallSum>{review.response}</SmallSum> : <p> </p>}
+      {review.response ? <span className="review-summary">{review.response}</span> : <p> </p>}
       <div className="answerer-smallBreak">
         {
           review.photos.length !== 0
