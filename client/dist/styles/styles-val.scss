@@ -20,49 +20,26 @@
   // bottom: 0vh;
 }
 
-.modalItem {
-  width: 33%;
-  background-color: pink;
-  border-style: solid;
-  font-size: 20px;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.sc-eCYdqJ {
-  .right {
-    justify-self: right;
-    color: blue;
-  }
-
-  h6 {
-    font-size: 20px;
-  }
-
-  .left {
-    justify-content: left;
-  }
-}
 .riocSection {
   display: flex;
   flex-direction: column;
-
+  margin-bottom: 50px;
   .viewSection {
     height: 50vh;
-    margin-bottom: 150px;
+    margin-bottom: 170px;
     .sectionTitle {
       border-style: solid;
       background-color: black;
       color: white;
       text-align: right;
       position: relative;
-      top: 2vh;
+      top: 4vh;
       right: 3vh;
       z-index: 100;
       padding: 1%;
       width: 60%;
       font-family: 'Montserrat-Bold';
-      font-size: 3.5vw;
+      font-size: 30px;
     }
 
     .cardContainer {
@@ -76,13 +53,15 @@
       border-bottom: .3em;
 
       .card {
+        display: flex;
+        flex-direction: column;
         background-color: white;
         border-style: solid;
         border-width: 3px;
         border-color: darkgray;
         flex: 1 1 0px;
         margin: 5px;
-        height: 90%;
+        padding-bottom: 5px;
         cursor: pointer;
         p {
           font-family: 'Montserrat';
@@ -93,10 +72,17 @@
         .addCard {
           display: flex;
           justify-content: center;
-          height: 65%;
+          height: 50%;
           background-color: rgb(59, 59, 59);
           color: white;
           text-align: center;
+          box-shadow: 0 0 8px 8px darkgray inset;
+          transition: box-shadow 1s ease-in-out;
+          &:hover {
+            box-shadow: 0 0 2vw 0.2vw white, 0 0 2vw 0.2vw white inset;
+            // hover-in
+            transition: box-shadow 1s ease-in-out;
+          }
           .add {
             font-size: 100px;
             position: relative;
@@ -109,9 +95,6 @@
           font-family: 'Montserrat-Bold';
           font-size: 2vw;
         }
-        // position: relative;
-        // right: 2vw;
-        // bottom: 2vh;
       }
     }
   }
@@ -121,7 +104,8 @@
 .prodImg {
   display: flex;
   justify-content: right;
-  height: 65%;
+  height: 50%;
+  min-height: 50%;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -132,7 +116,7 @@
     box-shadow: 0 0 2vw 0.2vw white, 0 0 2vw 0.2vw white inset;
     // hover-in
     transition: box-shadow 1s ease-in-out;
-    }
+  }
 }
 
 .arrow-black {
@@ -143,3 +127,97 @@
     transform: rotate(180deg);
   }
 }
+
+
+.modalBG {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0, 0.6);
+  z-index: 1000;
+  font-family: 'Montserrat-Bold';
+  cursor: default;
+  .modal {
+    position: fixed;
+    width: 65%;
+    height: 40%;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 5%;
+    border-style: solid;
+    text-align: center;
+    border-color: darkgray;
+    overflow-y: scroll;
+    color: black;
+    background-color: white;
+    .rowContainer {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      flex: 1 1 0px;
+      font-size: 25px;
+      background-color: black;
+      h5 {
+        color: white;
+        align-self: center;
+        margin: 5px;
+        font-family: 'Montserrat-Bold';
+      }
+      .modalButton {
+        margin: 5px;
+        cursor: pointer;
+        background-color: white;
+        font-size: 15px;
+        border-radius: 50%;
+        height: 33px;
+        width: 33px;
+
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        color: #D8315B;
+        font-weight: bold;
+      }
+    }
+    .chartContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-style: solid;
+      border-color: darkgray;
+      .rowContainer {
+        display: flex;
+        flex: 1 1 0px;
+        justify-content: space-around;
+        font-family: 'Kollektif';
+        background-color: white;
+        .modalItem {
+          width: 33%;
+          height: 40px;
+          padding-top: 5%;
+          align-self: center;
+          align-items: center;
+          // border-style: solid;
+          // border-color: darkgray;
+          white-space: nowrap;
+          overflow: hidden;
+          font-size: 15px;
+          // color: black;
+          // background-color: crimson;
+        }
+        h5 {
+          font-family: 'Montserrat-Bold';
+          width: 33%;
+          background-color: black;
+          color: crimson;
+        }
+      }
+    }
+  }
+}
+
+

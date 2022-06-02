@@ -11,7 +11,11 @@ export const ModalContext = React.createContext();
 function RelatedCard({ cardRating }) {
   const { setItemId, product } = useContext(CardProductContext);
   const [modal, setModal] = useState(false);
-  const productImage = product ? product.results[0].photos[0].thumbnail_url : '';
+  // const productImage = product ? product.results[0].photos[0].thumbnail_url
+  //   : '../../dist/assets/images/placeholder.png';
+  const productImage = product.results[0].photos[0].thumbnail_url
+    ? product.results[0].photos[0].thumbnail_url
+    : '../assets/Images/placeholder.png';
 
   function clickHanlder() {
     setItemId(product.id);
