@@ -150,18 +150,18 @@ const RadioButtonLabel = styled.label`
 const Modal = styled.div`
   position: fixed;
   top: 0;
-  left: 0;
-  width:100%;
+  left: 20%;
+  width:60%;
   height: 75%;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.8);
   display: ${({ show }) => (show === 'true' ? 'block' : 'none')};
   overflow: auto;
 `;
 
 const CloseButton = styled.div`
   top:1%;
-  left:88.7%;
-  position: absolute;
+  left:93%;
+  position: relative;
 `;
 /*-------------------*/
 // Star rating breakdown settings.

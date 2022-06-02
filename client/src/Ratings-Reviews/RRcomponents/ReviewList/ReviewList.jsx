@@ -22,9 +22,11 @@ export default function ReviewList() {
   const [totalReviews, setTotalReviews] = useState(0);
 
   function retrieveReviews() {
+    console.log("retrieve reviews", itemId, page, count, sort)
     return retrieve2Reviews(itemId, page, count, sort)
       .then((res) => {
         setReviews([...res.data.results]);
+        // console.log(reviews)
       })
       .catch((err) => {
         console.log('Error, could not retrieve reviews, retrieve', err);
@@ -35,12 +37,8 @@ export default function ReviewList() {
     return accumulator + Number(a);
   }
 
-  useEffect(() => {
-    const allReviews = Object.values(ratings).reduce(add, 0);
-    setTotalReviews(allReviews);
-  }, [itemId]);
-
   function clickMoreReviews() {
+    console.log("click reviews", page, sort)
     return retrieve2Reviews(itemId, page + 1, count, sort)
       .then((res) => {
         setReviews((r) => r.concat(res.data.results));
@@ -66,6 +64,12 @@ export default function ReviewList() {
   };
 
   useEffect(() => {
+    const allReviews = Object.values(ratings).reduce(add, 0);
+    setTotalReviews(allReviews);
+  }, [itemId]);
+
+  useEffect(() => {
+    setPage(1);
     retrieveReviews();
   }, [itemId, sort]);
 
