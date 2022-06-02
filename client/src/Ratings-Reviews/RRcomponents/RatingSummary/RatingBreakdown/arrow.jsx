@@ -14,45 +14,24 @@ const TriangleMarker = styled.div`
   border-right-width: 10px;
   border-top-width: 20px;
   border-bottom-width: 0px;
-  border-top-color: slategray;
+  border-top-color: black;
   border-left-color: transparent;
   border-right-color: transparent;
   border-bottom-color: transparent;
 `;
 
-const TriangleContainer = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  align-items: space-between;
-  flex-direction: row nowrap;
-`;
-
-const Top = styled.div`
-  position: relative;
-  background-color: lightgray;
-`;
-
-const InnerContainer = styled.div`
-  height: 10 px;
-  width: 18%;
-`;
-
-const OtherInnerContainer = styled.div`
-  height: 10 px;
-  width: 18%;
-`;
 
 export default function Arrow({ average }) {
   return (
-      <Top>
-        <TriangleContainer>
-          <InnerContainer />
-          <OtherInnerContainer />
-          <InnerContainer />
-          <OtherInnerContainer />
-          <InnerContainer />
-          <TriangleMarker average={average} />
-        </TriangleContainer>
-      </Top>
+    <div className="outer-char-breakdown">
+      <div className="triangle-container">
+        <div className="inner-triangle-container" />
+        <div className="inner-triangle-container" />
+        <div className="inner-triangle-container" />
+        <div className="inner-triangle-container" />
+        <div className="inner-triangle-container" />
+        <TriangleMarker average={average} />
+      </div>
+    </div>
   );
 }

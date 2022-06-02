@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import {
-  ReviewListContainer, BottomButtons, FormStyle, Button,
-} from '../../RR-styled-components/RRsectionContainerStyle';
+import { FormStyle } from '../../RR-styled-components/RRsectionContainerStyle';
 import ReviewCard from './ReviewCard';
 import ModalPopup from './Modal';
 import Form from './Form';
@@ -35,11 +33,6 @@ export default function ReviewList() {
     return accumulator + Number(a);
   }
 
-  useEffect(() => {
-    const allReviews = Object.values(ratings).reduce(add, 0);
-    setTotalReviews(allReviews);
-  }, [itemId]);
-
   function clickMoreReviews() {
     return retrieve2Reviews(itemId, page + 1, count, sort)
       .then((res) => {
@@ -66,6 +59,12 @@ export default function ReviewList() {
   };
 
   useEffect(() => {
+    const allReviews = Object.values(ratings).reduce(add, 0);
+    setTotalReviews(allReviews);
+  }, [itemId]);
+
+  useEffect(() => {
+    setPage(1);
     retrieveReviews();
   }, [itemId, sort]);
 
