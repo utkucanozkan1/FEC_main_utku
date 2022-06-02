@@ -88,34 +88,33 @@
   height: 35vh;
   position: relative;
   border-radius: 10px;
-  top: 1vh;
-  padding: 5%;
+  padding: 2%;
 }
-.reviews-section .review-list-container .review-card {
+.reviews-section .review-list-container .review-list .review-card {
   display: flex;
   align-self: center;
   flex-flow: column wrap;
   border-top: 2px solid;
   width: 100%;
 }
-.reviews-section .review-list-container .review-card .top-of-review {
+.reviews-section .review-list-container .review-list .review-card .top-of-review {
   display: flex;
   flex-flow: row;
   justify-content: space-between;
 }
-.reviews-section .review-list-container .review-card .top-of-review .reviewer {
+.reviews-section .review-list-container .review-list .review-card .top-of-review .reviewer {
   font-size: 15px;
 }
-.reviews-section .review-list-container .review-card .top-of-review .date {
+.reviews-section .review-list-container .review-list .review-card .top-of-review .date {
   align-self: flex-end;
   font-size: 15px;
 }
-.reviews-section .review-list-container .review-card .top-of-review .review-summary {
+.reviews-section .review-list-container .review-list .review-card .top-of-review .review-summary {
   align-self: flex-start;
   font-size: 20px;
   border-bottom: 3px solid;
 }
-.reviews-section .review-list-container .review-card .top-of-review .review-body {
+.reviews-section .review-list-container .review-list .review-card .top-of-review .review-body {
   font-size: 17px;
 }
 .reviews-section .review-list-container .image-component {

@@ -103,9 +103,9 @@
       height: 35vh;
       position: relative;
       border-radius: 10px;
-      top: 1vh;
-      padding: 5%;
-    }
+      // top: 1vh;
+      padding: 2%;
+
 
     .review-card {
       display: flex;
@@ -137,6 +137,7 @@
         .review-body {
           font-size: 17px;
         }
+      }
 
       }
     }
