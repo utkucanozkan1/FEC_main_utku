@@ -153,8 +153,20 @@
 .modalBG .modal .rowContainer h5 {
   color: white;
   align-self: center;
-  margin: 5px;
   font-family: "Montserrat-Bold";
+}
+.modalBG .modal .rowContainer .left {
+  position: relative;
+  width: 25%;
+  font-family: "Kollektif";
+  font-size: 20px;
+  padding-top: 5px;
+}
+.modalBG .modal .rowContainer .right {
+  width: 25%;
+  font-family: "Kollektif";
+  font-size: 20px;
+  padding-top: 5px;
 }
 .modalBG .modal .rowContainer .modalButton {
   margin: 5px;
@@ -174,31 +186,32 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border-style: solid;
-  border-color: darkgray;
 }
 .modalBG .modal .chartContainer .rowContainer {
   display: flex;
   flex: 1 1 0px;
   justify-content: space-around;
-  font-family: "Kollektif";
   background-color: white;
 }
 .modalBG .modal .chartContainer .rowContainer .modalItem {
   width: 33%;
   height: 40px;
-  padding-top: 5%;
+  padding-top: 3%;
   align-self: center;
   align-items: center;
   white-space: nowrap;
   overflow: hidden;
   font-size: 15px;
+  border-bottom-style: solid;
+  border-bottom-color: black;
 }
 .modalBG .modal .chartContainer .rowContainer h5 {
   font-family: "Montserrat-Bold";
   width: 33%;
   background-color: black;
-  color: crimson;
+  color: white;
+  box-shadow: 0 0 0.5vw 0.1vw crimson, 0 0 0.5vw 0.1vw crimson inset;
+  z-index: 1000;
 }
 
 /*# sourceMappingURL=styles-val.css.map */

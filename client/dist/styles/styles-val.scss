@@ -16,8 +16,6 @@
 
 .relatedStars .fa-star {
   font-size: 2vw;
-  // position: relative;
-  // bottom: 0vh;
 }
 
 .riocSection {
@@ -163,8 +161,23 @@
       h5 {
         color: white;
         align-self: center;
-        margin: 5px;
+        //margin: 5px;
         font-family: 'Montserrat-Bold';
+      }
+      .left {
+        position: relative;
+        width: 25%;
+        font-family: 'Kollektif';
+        font-size: 20px;
+        padding-top: 5px;
+      }
+      .right {
+        // position: relative;
+        // left: 4vw;
+        width: 25%;
+        font-family: 'Kollektif';
+        font-size: 20px;
+        padding-top: 5px;
       }
       .modalButton {
         margin: 5px;
@@ -187,33 +200,30 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      border-style: solid;
-      border-color: darkgray;
       .rowContainer {
         display: flex;
         flex: 1 1 0px;
         justify-content: space-around;
-        font-family: 'Kollektif';
         background-color: white;
         .modalItem {
           width: 33%;
           height: 40px;
-          padding-top: 5%;
+          padding-top: 3%;
           align-self: center;
           align-items: center;
-          // border-style: solid;
-          // border-color: darkgray;
           white-space: nowrap;
           overflow: hidden;
           font-size: 15px;
-          // color: black;
-          // background-color: crimson;
+          border-bottom-style: solid;
+          border-bottom-color: black;
         }
         h5 {
           font-family: 'Montserrat-Bold';
           width: 33%;
           background-color: black;
-          color: crimson;
+          color: white;
+          box-shadow: 0 0 .5vw 0.1vw crimson, 0 0 .5vw 0.1vw crimson inset;
+          z-index: 1000;
         }
       }
     }
