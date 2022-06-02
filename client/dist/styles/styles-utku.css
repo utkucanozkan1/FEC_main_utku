@@ -15,6 +15,8 @@
   margin-left: auto;
   margin-right: auto;
   font-size: 15px;
+  margin-top: 15vh;
+  margin-bottom: 5vh;
   width: 50vw;
   box-shadow: 0 0 1vw 0.1vw white, 0 0 1vw 0.1vw white inset;
   /* main stylings */
