@@ -14,6 +14,9 @@
   /* main stylings */
   margin-left: auto;
   margin-right: auto;
+  font-size: 15px;
+  margin-top: 15vh;
+  margin-bottom: 5vh;
   width: 50vw;
   box-shadow: 0 0 1vw 0.1vw white, 0 0 1vw 0.1vw white inset;
   /* main stylings */
@@ -39,7 +42,7 @@
   align-content: space-around;
 }
 .question-section .main-div {
-  max-height: 60vh;
+  max-height: 70vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -175,12 +178,16 @@
   font-family: "Montserrat";
 }
 .question-section .closeQuestion-btn {
-  background-color: red;
-  color: white;
-  border: 2px solid black;
+  margin-bottom: 4vh;
+  font-size: 1.2vw;
   width: 2em;
-  height: 2em;
-  margin-left: 48.3vw;
+  height: 1.8em;
+  margin-left: 47.3vw;
+  color: white;
+  background-color: crimson;
+  text-align: center;
+  border-radius: 50%;
+  cursor: pointer;
 }
 .question-section .text-border-btn {
   background-color: black;
