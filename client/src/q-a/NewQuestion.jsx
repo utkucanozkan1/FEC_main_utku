@@ -25,7 +25,7 @@ export default function NewQuestion({ productName, handleExit, product_id }) {
     <FormStyle>
       <div className="answer-header">
         <div>
-          <button type="button" onClick={handleExit} className="closeQuestion-btn">X</button>
+          <button type="button" onClick={handleExit} className="closeQuestion-btn"><i className="fa-solid fa-xmark cart-modal-close"></i></button>
         </div>
         &nbsp; &nbsp;
         <h1> Ask Your Question</h1>
