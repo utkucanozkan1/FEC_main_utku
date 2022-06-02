@@ -56,7 +56,7 @@ function ItemOverview() {
   // eslint-disable-next-line no-else-return
   } else {
     return (
-      <section className="item-overview-section">
+      <section className="item-overview-section loading">
         <div>Loading...</div>
       </section>
     );

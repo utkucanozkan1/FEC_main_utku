@@ -44,6 +44,7 @@
     "client-dev": "webpack --watch --mode=development",
     "server-dev": "nodemon --watch server server/index.js",
     "sass-val": "sass client/dist/styles/styles-val.scss client/dist/styles/styles-val.css --watch",
-    "sassy-scum": "sass client/dist/styles/styles-davyd.scss client/dist/styles/styles-davyd.css --watch"
+    "sassy-scum": "sass client/dist/styles/styles-davyd.scss client/dist/styles/styles-davyd.css --watch",
+    "sass-utz": "sass client/dist/styles/styles-utku.scss client/dist/styles/styles-utku.css --watch"
   }
 }
