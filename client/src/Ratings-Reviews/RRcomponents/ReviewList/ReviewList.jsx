@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import {
-  ReviewListContainer, BottomButtons, FormStyle, Button,
-} from '../../RR-styled-components/RRsectionContainerStyle';
+import { FormStyle } from '../../RR-styled-components/RRsectionContainerStyle';
 import ReviewCard from './ReviewCard';
 import ModalPopup from './Modal';
 import Form from './Form';
@@ -22,11 +20,9 @@ export default function ReviewList() {
   const [totalReviews, setTotalReviews] = useState(0);
 
   function retrieveReviews() {
-    console.log("retrieve reviews", itemId, page, count, sort)
     return retrieve2Reviews(itemId, page, count, sort)
       .then((res) => {
         setReviews([...res.data.results]);
-        // console.log(reviews)
       })
       .catch((err) => {
         console.log('Error, could not retrieve reviews, retrieve', err);
@@ -38,7 +34,6 @@ export default function ReviewList() {
   }
 
   function clickMoreReviews() {
-    console.log("click reviews", page, sort)
     return retrieve2Reviews(itemId, page + 1, count, sort)
       .then((res) => {
         setReviews((r) => r.concat(res.data.results));
