@@ -34,12 +34,24 @@ function OutfitView() {
       <h6 className="sectionTitle">YOUR OUTFITS</h6>
       <div className="cardContainer">
         <OutfitContext.Provider value={{ outfit, setOutfit, oPosition, setOPosition, oEnd, setOEnd }}>
-          {oPosition === 0 ? <> </> : <LeftArrow outfitAttr="outfit" />}
+          {oPosition === 0
+            ? (
+              <div className="nonButton">
+                <img src="../../assets/Images/arrow-black.svg" alt="" className="arrow-black left" />
+              </div>
+            )
+            : <LeftArrow outfitAttr="outfit" />}
           <AddToOutfitCard />
           {outfit.slice(oPosition, oPosition + 3).map((card, i) => (
             <OutfitCard key={i} card={card} />
           ))}
-          {oEnd ? <> </> : <RightArrow outfitAttr="outfit" />}
+          {oEnd
+            ? (
+              <div className="nonButton">
+                <img src="../../assets/Images/arrow-black.svg" alt="" className="arrow-black right" />
+              </div>
+            )
+            : <RightArrow outfitAttr="outfit" />}
         </OutfitContext.Provider>
       </div>
     </section>

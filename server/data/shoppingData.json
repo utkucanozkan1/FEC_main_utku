@@ -34,15 +34,6 @@
 		"session_id": "d33583d7-fde0-4056-9ed5-23df0187f15a",
 		"outfitter": [
 			{
-				"productId": 37325,
-				"title": "Lela Pants",
-				"category": "Pants",
-				"original_price": "120.00",
-				"sale_price": "44.00",
-				"rating": 3.4375,
-				"imageUrl": "https://images.unsplash.com/photo-1519482816300-1490fdf2c2bd?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
-			},
-			{
 				"productId": 38274,
 				"title": "Ellen Coat",
 				"category": "Coat",
@@ -68,6 +59,15 @@
 				"sale_price": null,
 				"rating": null,
 				"imageUrl": "https://images.unsplash.com/photo-1513531926349-466f15ec8cc7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
+			},
+			{
+				"productId": 37349,
+				"title": "Kadin Dress",
+				"category": "Dress",
+				"original_price": "149.00",
+				"sale_price": "3.00",
+				"rating": 3.25,
+				"imageUrl": "https://images.unsplash.com/photo-1558191053-c03db2757e3d?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
 			}
 		],
 		"cart": {}

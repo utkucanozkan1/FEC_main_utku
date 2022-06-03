@@ -49,7 +49,6 @@
       padding-bottom: 50px;
       border-right: .3em;
       border-bottom: .3em;
-
       .card {
         display: flex;
         flex-direction: column;
@@ -61,6 +60,10 @@
         margin: 5px;
         padding-bottom: 5px;
         cursor: pointer;
+        transition: transform .2s ease-in-out;
+        &:hover {
+          transform: scale(1.04);
+        }
         p {
           font-family: 'Montserrat';
           font-size: 1.5vw;
@@ -109,7 +112,6 @@
   background-position: center;
   background-color: rgb(59, 59, 59);
   box-shadow: 0 0 8px 8px darkgray inset;
-  transition: box-shadow 1s ease-in-out;
   &:hover {
     box-shadow: 0 0 2vw 0.2vw white, 0 0 2vw 0.2vw white inset;
     // hover-in
@@ -126,6 +128,21 @@
   }
 }
 
+.carouselButton {
+  font-size: 50px;
+  align-self: center;
+  cursor: pointer;
+  min-width: 5%;
+  padding: 2%;
+}
+
+.nonButton {
+  font-size: 50px;
+  align-self: center;
+  min-width: 5%;
+  padding: 2%;
+  visibility: hidden;;
+}
 
 .modalBG {
   position: fixed;
