@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
 /* eslint-disable react/no-array-index-key */
@@ -42,6 +44,8 @@ function App() {
   // Data object to pass to provider
   const [data, setData] = useState({});
   const [outfitterListener, triggerOutfitterListener] = useState('🍕');
+  // Clicker listener added?
+  // const [clickerActive, setClickerActive] = useState(false);
 
   const [cart, setCart] = useState([]);
 
@@ -269,6 +273,21 @@ function App() {
       }
       lastY = y;
     });
+    // Add clicker listener : unfinished
+    // if (!clickerActive) {
+    //   const clickListener = (e) => {
+    //     e.preventDefault();
+    //     const id = e.target.id;
+    //     let className = '';
+    //     for (let i = 0; i < e.target.classList.length; i += 1) {
+    //       className += e.target.classList[i];
+    //     }
+    //     const clickMetaBody = { id, className, time: new Date() };
+    //     console.log(clickMetaBody);
+    //   };
+    //   document.querySelector('#root').addEventListener('click', clickListener);
+    //   setClickerActive(true);
+    // }
   }, [itemId]);
 
   if (!loading) {

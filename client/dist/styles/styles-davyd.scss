@@ -284,15 +284,28 @@ $boxShadowTransition: box-shadow 1s ease-in-out;
         font-size: 3 * $fontSize;
         max-width: 80%;
         font-family: 'Kollektif';
+        margin-bottom: 1vw;
       }
 
       .price {
         font-size: 1.3 * $fontSize;
-        margin: 1vw 0;
+
+        &.price-cross-out {
+          font-size: 1.3 * $fontSize;
+          text-decoration: line-through;
+          color: $gray;
+        }
+      }
+
+      .sale-price {
+        font-size: 1.3 * $fontSize;
+        text-decoration: none;
+        color: red;
       }
     }
 
     .style {
+      margin-top: 1vw;
       font-family: 'Montserrat-Bold';
 
       .style-selected-span {
@@ -536,6 +549,16 @@ $boxShadowTransition: box-shadow 1s ease-in-out;
 
   h5, li {
     margin-bottom: 1vw;
+  }
+
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-name: breathe;
+
+  @keyframes breathe {
+    50% {
+      box-shadow: 0 0 3vw 0.3vw $crimson, 0 0 3vw 0.3vw $crimson inset;
+    }
   }
 }
 
