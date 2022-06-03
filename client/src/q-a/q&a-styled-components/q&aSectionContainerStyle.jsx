@@ -19,7 +19,6 @@ const FormContainer = styled.div`
 	margin: 10px auto;
 	top: 10;
 	left: 10;
-	border: 2px solid red;
 `;
 
 const FormStyle = styled.div`
