@@ -16,7 +16,13 @@ function Checkout(props) {
     item, styles, styleIndex, setStyleIndex,
   } = { ...props }.data;
 
-  const { addToOutfitter, itemId, hideCheckoutPopup } = useContext(ProductIdContext);
+  const {
+    addToOutfitter, itemId, hideCheckoutPopup, ratings,
+  } = useContext(ProductIdContext);
+
+  const ratingsAmount = Object.values(ratings)
+    .reduce((prev, curr) => parseInt(prev, 10) + parseInt(curr, 10), 0);
+
   // Fill style thumbnails
   const styleThumbs = styles.map((dataStyle, index) => {
     const classList = index !== styleIndex
@@ -106,6 +112,15 @@ function Checkout(props) {
     }
   };
 
+  // Scroll to reviews
+  const scrollToReviews = (e) => {
+    e.preventDefault();
+    const reviewsEl = document.querySelector('#reviews');
+    const { top, left } = reviewsEl.getBoundingClientRect();
+
+    window.scroll({ top, left, behavior: 'smooth' });
+  };
+
   useEffect(() => {
     // Reset selected style to be the first style
     document.querySelector('.style-thumbnail-selected')
@@ -115,20 +130,35 @@ function Checkout(props) {
     setStyleIndex(0);
   }, [itemId]);
 
+  console.log(styles[styleIndex]);
+
   return (
     <section className="checkout-section">
       <p className="checkout-popup">Added to cart...</p>
       {/* Rating and Title */}
       <div className="rating-title">
-        <div className="reviews-wrapper">
-          <StarRating rating={item.rating} className="checkout-star-rating" />
-          <a href="https://www.google.com/" className="reviews-link" target="_blank" rel="noreferrer">
-            Read all reviews
-          </a>
-        </div>
+        {/* Conditional rewiews link */}
+        { ratingsAmount > 0 ? (
+          <div className="reviews-wrapper">
+            <StarRating rating={item.rating} className="checkout-star-rating" />
+            <a href="#reviews" className="reviews-link" onClick={scrollToReviews}>
+              {`Read all ${ratingsAmount} reviews`}
+            </a>
+          </div>
+        ) : ''}
         <p className="category">{item.category.toUpperCase()}</p>
         <h2 className="category-title">{item.name}</h2>
-        <p className="price">{`$${Math.round(styles[styleIndex].original_price)}`}</p>
+        {/* Price +- Sale */}
+        {styles[styleIndex].sale_price === null || styles[styleIndex].sale_price === undefined
+          ? <p className="price">{`$${Math.round(styles[styleIndex].original_price)}`}</p>
+          : (
+            <>
+              <span className="sale-price">{`$${Math.round(styles[styleIndex].sale_price)} `}</span>
+              <span className="price price-cross-out">
+                {`${Math.round(styles[styleIndex].original_price)}`}
+              </span>
+            </>
+          )}
       </div>
 
       {/* Style */}

@@ -209,12 +209,23 @@
   font-size: 72px;
   max-width: 80%;
   font-family: "Kollektif";
+  margin-bottom: 1vw;
 }
 .item-overview-section .checkout-section .rating-title .price {
   font-size: 31.2px;
-  margin: 1vw 0;
+}
+.item-overview-section .checkout-section .rating-title .price.price-cross-out {
+  font-size: 31.2px;
+  text-decoration: line-through;
+  color: rgb(202, 202, 202);
+}
+.item-overview-section .checkout-section .rating-title .sale-price {
+  font-size: 31.2px;
+  text-decoration: none;
+  color: red;
 }
 .item-overview-section .checkout-section .style {
+  margin-top: 1vw;
   font-family: "Montserrat-Bold";
 }
 .item-overview-section .checkout-section .style .style-selected-span {
@@ -374,6 +385,9 @@
   align-items: center;
   display: flex;
   flex-wrap: nowrap;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-name: breathe;
 }
 .description-subsection .description {
   flex-basis: 70%;
@@ -414,6 +428,11 @@
 }
 .description-subsection h5, .description-subsection li {
   margin-bottom: 1vw;
+}
+@keyframes breathe {
+  50% {
+    box-shadow: 0 0 3vw 0.3vw #D8315B, 0 0 3vw 0.3vw #D8315B inset;
+  }
 }
 
 #root.dark-mode * {
