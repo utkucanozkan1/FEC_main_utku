@@ -19,6 +19,7 @@ function RelatedCard({ cardRating }) {
 
   function clickHanlder() {
     setItemId(product.id);
+    document.documentElement.scrollTop = 0;
   }
   function modalHandler(event) {
     event.cancelBubble = true;
@@ -35,7 +36,6 @@ function RelatedCard({ cardRating }) {
             <i className="fa-star fa-star-fill-100" />
           </CardButton>
         </div>
-        {modal ? <CompareModal /> : <> </>}
         <p>{product.category}</p>
         <h6>{product.name}</h6>
         {product.results[0].sale_price
@@ -47,8 +47,9 @@ function RelatedCard({ cardRating }) {
             </p>
           )
           : <p>{product.default_price}</p>}
-        <StarRating rating={cardRating} className="relatedStars" />
+        {cardRating ? <StarRating rating={cardRating} className="relatedStars" /> : <> </>}
       </div>
+      {modal ? <CompareModal /> : <> </>}
     </ModalContext.Provider>
   );
 }
