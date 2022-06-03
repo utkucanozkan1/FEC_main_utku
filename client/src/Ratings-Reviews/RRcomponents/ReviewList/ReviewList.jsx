@@ -75,7 +75,7 @@ export default function ReviewList() {
       <div className="sort-bar">
         {totalReviews} reviews
         <select onChange={changeSort} className="sort-button">
-          <option value="relevant">Sort by Relevant</option>
+          <option value="relevant">Sort by Relevance</option>
           <option value="newest">Sort by Newest</option>
           <option value="helpful">Sort by Helpful</option>
         </select>

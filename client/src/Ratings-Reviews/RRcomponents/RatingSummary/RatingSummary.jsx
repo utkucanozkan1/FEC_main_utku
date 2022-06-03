@@ -11,13 +11,13 @@ export default function RatingSummary({ setRatingFilter }) {
 
   useEffect(() => {
     const ratingCounts = Object.entries(data.ratings);
-    const averageRating = Math.round(AverageStarRating(ratingCounts) * 10) / 10;
+    const averageRating = (Math.round(AverageStarRating(ratingCounts) * 10) / 10).toFixed(1);
     setRatings(averageRating);
   });
 
   return (
     <div className="summary-left">
-      <h3 style={{ padding: '20px' }}>Ratings and Reviews</h3>
+      <h3 className="header-reviews">Ratings and Reviews</h3>
       <br />
       <div className="RatingSummary">
         {productRatings}

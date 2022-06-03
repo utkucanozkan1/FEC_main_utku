@@ -112,13 +112,14 @@ const RadioButtonLabel = styled.label`
 
 const Modal = styled.div`
   position: fixed;
-  top: 0;
-  left: 20%;
-  width:60%;
+  padding: 0.5em;
+  top: 15%;
+  left: 25%;
+  width: 60%;
   height: 75%;
   background: rgba(0, 0, 0, 0.8);
   display: ${({ show }) => (show === 'true' ? 'block' : 'none')};
-  overflow: auto;
+  overflow-y: auto;
 `;
 
 const CloseButton = styled.div`
