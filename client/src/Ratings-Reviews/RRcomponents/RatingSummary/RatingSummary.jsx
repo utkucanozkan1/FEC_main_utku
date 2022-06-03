@@ -17,7 +17,7 @@ export default function RatingSummary({ setRatingFilter }) {
 
   return (
     <div className="summary-left">
-      <h3 className="header" style={{ padding: '20px' }}>Ratings and Reviews</h3>
+      <h3 className="header-reviews">Ratings and Reviews</h3>
       <br />
       <div className="RatingSummary">
         {productRatings}
