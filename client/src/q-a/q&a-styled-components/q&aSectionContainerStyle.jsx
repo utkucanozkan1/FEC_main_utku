@@ -19,19 +19,18 @@ const FormContainer = styled.div`
 	margin: 10px auto;
 	top: 10;
 	left: 10;
-	border: 2px solid red;
 `;
 
 const FormStyle = styled.div`
-border: 2px solid black;
-width: 50%;
-background: white;
-position: fixed;
-left: 25%;
-top: 35%;
-display: flex;
-flex-direction: column;
-justify-content: center;
+	border: 2px solid black;
+	width: 50%;
+	background: white;
+	position: fixed;
+	left: 25%;
+	top: 15%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 `;
 
 const CloseButton = styled.div`

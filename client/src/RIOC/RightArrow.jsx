@@ -55,9 +55,9 @@ function RightArrow({ outfitAttr }) {
   }, [position]);
 
   return (
-    <CarouselButton>
+    <div className="carouselButton">
       { end ? '' : <img src="../../assets/Images/arrow-black.svg" alt="carousel-next" className="arrow-black right" onClick={scrollRight} /> }
-    </CarouselButton>
+    </div>
   );
 }
 
