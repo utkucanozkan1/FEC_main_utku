@@ -74,6 +74,9 @@
   width: 18%;
   margin: 10%;
 }
+.reviews-section .characteristic {
+  font-size: 12px;
+}
 .reviews-section .review-list-container {
   grid-column-start: 3;
   display: flex;
@@ -124,12 +127,13 @@
   align-self: flex-end;
   font-size: 15px;
 }
-.reviews-section .review-list-container .review-list .review-card .top-of-review .review-summary {
+.reviews-section .review-list-container .review-list .review-card .review-summary {
   align-self: flex-start;
   font-size: 20px;
   border-bottom: 3px solid;
+  font-style: "Montserrat-Bold";
 }
-.reviews-section .review-list-container .review-list .review-card .top-of-review .review-body {
+.reviews-section .review-list-container .review-list .review-card .review-body {
   font-size: 17px;
 }
 .reviews-section .review-list-container .image-component {

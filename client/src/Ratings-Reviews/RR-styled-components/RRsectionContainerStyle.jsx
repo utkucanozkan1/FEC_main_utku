@@ -32,9 +32,7 @@ width: 100%;
 // Container for characteristic breakdown
 const ProductBreakdownContainer = styled.div`
   display: grid;
-  /* width: 100%;
-  padding-top: 30px;
-  gap: 20px; */
+  /* padding: 5px; */
 `;
 
 // Top portion of ratings and summary with the average rating
@@ -43,6 +41,7 @@ const ProductBreakdownContainer = styled.div`
 const CharacterGraph = styled.div`
   display: grid;
   grid-template-rows: 30px 20px 20px;
+  margin: 7px;
 `;
 
 // formatting for each characteristic breakdown
