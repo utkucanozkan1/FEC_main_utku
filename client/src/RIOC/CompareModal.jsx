@@ -1,8 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import {
-  Modal, Chart, CompareContainer, RowContainer,
-} from './RIOC-styled-components/ModalStyles';
 import { ModalContext } from './RelatedCard';
 import { ProductIdContext } from '../index';
 import { CardProductContext } from './RelatedView';
@@ -32,53 +29,53 @@ function CompareModal() {
     }, '');
     return sharedValue;
   }
-  // useEffect(() => {
-  //   axios.get(`/products/${product.id}`)
-  //     .then((compProduct) => {
-  //       setFeatures([...data.features, ...compProduct.data.features]);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
 
   function closeModal(event) {
     event.stopPropagation();
     setModal(!modal);
   }
   return (
-    <Modal>
-      <Chart>
-        <RowContainer>
-          <h5>Comparing</h5>
-          <button type="button" onClick={closeModal}>X</button>
-        </RowContainer>
-        <CompareContainer>
-          <RowContainer>
-            <h6 className="left">{data.name}</h6>
+    <div className="modalBG" onClick={closeModal}>
+      <div className="modal" onClick={(event) => { event.stopPropagation(); }}>
+        <div className="rowContainer">
+          <h5>COMPARING</h5>
+          <button type="button" className="modalButton" onClick={closeModal}>X</button>
+        </div>
+        <div className="chartContainer">
+          <div className="rowContainer">
+            <h4 className="left">{data.name}</h4>
             <p> </p>
-            <h6 className="right">{product.name}</h6>
-          </RowContainer>
+            <h4 className="right">{product.name}</h4>
+          </div>
           {data.features.map((trait) => (
-            <RowContainer>
+            <div className="rowContainer">
               <p className="modalItem">{trait.value ? trait.value : '✓'}</p>
-              <p className="modalItem">{trait.feature}</p>
+              <h5 className="modalItem">{trait.feature}</h5>
               <p className="modalItem">{handleSharedTrait(trait, features)}</p>
-            </RowContainer>
+            </div>
           ))}
-          {features.map((trait, i) => (
-            Object.entries(data.features[i])[0][1] === trait.feature ? <> </>
-              : (
-                <RowContainer>
-                  <p className="modalItem">{handleSharedTrait(trait, data.features)}</p>
-                  <p className="modalItem">{trait.feature}</p>
-                  <p className="modalItem">{trait.value ? trait.value : '✓'}</p>
-                </RowContainer>
-              )
-          ))}
-        </CompareContainer>
-      </Chart>
-    </Modal>
+          {features.map((trait, i) => {
+            if (data.features.length > i) {
+              return Object.entries(data.features[i])[0][1] === trait.feature ? <> </>
+                : (
+                  <div className="rowContainer">
+                    <p className="modalItem">{handleSharedTrait(trait, data.features)}</p>
+                    <h5 className="modalItem">{trait.feature}</h5>
+                    <p className="modalItem">{trait.value ? trait.value : '✓'}</p>
+                  </div>
+                );
+            }
+            return (
+              <div className="rowContainer">
+                <p className="modalItem">{handleSharedTrait(trait, data.features)}</p>
+                <h5 className="modalItem">{trait.feature}</h5>
+                <p className="modalItem">{trait.value ? trait.value : '✓'}</p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
   );
 }
 

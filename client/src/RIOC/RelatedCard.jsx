@@ -11,7 +11,11 @@ export const ModalContext = React.createContext();
 function RelatedCard({ cardRating }) {
   const { setItemId, product } = useContext(CardProductContext);
   const [modal, setModal] = useState(false);
-  const productImage = product ? product.results[0].photos[0].thumbnail_url : '';
+  // const productImage = product ? product.results[0].photos[0].thumbnail_url
+  //   : '../../dist/assets/images/placeholder.png';
+  const productImage = product.results[0].photos[0].thumbnail_url
+    ? product.results[0].photos[0].thumbnail_url
+    : '../assets/Images/placeholder.png';
 
   function clickHanlder() {
     setItemId(product.id);
@@ -34,7 +38,15 @@ function RelatedCard({ cardRating }) {
         {modal ? <CompareModal /> : <> </>}
         <p>{product.category}</p>
         <h6>{product.name}</h6>
-        <p>{product.default_price}</p>
+        {product.results[0].sale_price
+          ? (
+            <p style={{ color: 'red' }}>
+              {product.results[0].sale_price}
+              &nbsp;&nbsp;
+              <strike style={{ color: 'black' }}>{product.default_price}</strike>
+            </p>
+          )
+          : <p>{product.default_price}</p>}
         <StarRating rating={cardRating} className="relatedStars" />
       </div>
     </ModalContext.Provider>
