@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { ProductIdContext } from '../../../index';
-import styled from 'styled-components';
 import {
-  FormStyle, Header, GridContainer, FormButtonRow, RadioButtonLabel,
+  Header, GridContainer, FormButtonRow, RadioButtonLabel,
 } from '../../RR-styled-components/RRsectionContainerStyle';
 // import withRangeOption from "./withRangeOption.jsx"
 
@@ -52,6 +51,7 @@ export default function Form() {
     }
   }
 
+  // assigns characteristic with unique char id for item
   function submitCharacteristics() {
     const submitObj = {};
     for (let char in reviewCharacteristics) {

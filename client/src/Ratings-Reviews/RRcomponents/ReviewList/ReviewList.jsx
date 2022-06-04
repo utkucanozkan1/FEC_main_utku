@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-import PropTypes from 'prop-types';
-import axios from 'axios';
 import { FormStyle } from '../../RR-styled-components/RRsectionContainerStyle';
 import ReviewCard from './ReviewCard';
 import ModalPopup from './Modal';

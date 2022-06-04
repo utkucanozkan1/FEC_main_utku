@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
 import RatingBreakdownMain from './RatingBreakdown/ratingBreakdownMain';
 import { ProductIdContext } from '../../../index';
 import AverageStarRating from '../../../../../server/utils/helpers';

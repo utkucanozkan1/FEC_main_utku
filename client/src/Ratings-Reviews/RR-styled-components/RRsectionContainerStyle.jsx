@@ -1,34 +1,5 @@
 import styled from 'styled-components';
 
-// Main view container
-
-// Review entry settings.
-// main container for each review
-
-// used for add filter drop-down on review list
-const Button = styled.div`
-width: 50%;
-flex-flow: row nowrap;
-align-self: center;
-`;
-
-const BottomButtons = styled.div`
-align-self: center;
-`;
-
-/*-------------------*/
-// main container for the ratings summary
-const SummaryLeft = styled.div`
-grid-column-start: 2;
-display: flex;
-flex-flow: column wrap;
-justify-content: flex-start;
-width: 100%;
-`;
-
-/*-----------------*/
-//  product characterstic breakdown format
-
 // Container for characteristic breakdown
 const ProductBreakdownContainer = styled.div`
   display: grid;
@@ -61,12 +32,6 @@ font-size: 15px;
 
 /*--------------------*/
 // Form and modal settings
-const FormContainer = styled.div`
-width: 75%;
-  margin: 10px auto;
-  top: 10;
-  left: 10;
-`;
 
 const FormStyle = styled.div`
   width: 90%;
@@ -143,9 +108,18 @@ margin: 5px;
 `;
 
 export {
-  SummaryLeft, ProductBreakdownContainer,
-  Recommend, BottomButtons, FormStyle,
-  FormElement, Header, FormContainer, CloseButton, Modal, Button,
-  OuterBarGraph, InnerBarGraph, Character, CharacterGraph, GridContainer,
-  FormButtonRow, RadioButtonLabel,
+  ProductBreakdownContainer,
+  Recommend,
+  FormStyle,
+  FormElement,
+  Header,
+  CloseButton,
+  Modal,
+  OuterBarGraph,
+  InnerBarGraph,
+  Character,
+  CharacterGraph,
+  GridContainer,
+  FormButtonRow,
+  RadioButtonLabel,
 };
