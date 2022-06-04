@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Modal, CloseButton } from '../../RR-styled-components/RRsectionContainerStyle';
 import Form from './Form';
 

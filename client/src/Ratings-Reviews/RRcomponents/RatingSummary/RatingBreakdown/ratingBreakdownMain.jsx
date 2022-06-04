@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   OuterBarGraph, InnerBarGraph, ProductBreakdownContainer, Recommend,
   Character, CharacterGraph,
@@ -20,6 +20,7 @@ export default function RatingBreakdownMain({ data, setRatingFilter }) {
   let sumRating = 0;
   let recommend = 100;
 
+  // calculates percentage of recommended reviews
   if (Object.keys(data).length !== 0) {
     for (const star in data.ratings) {
       totalReviews += Number(data.ratings)

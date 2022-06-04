@@ -1,11 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
-import PropTypes from 'prop-types';
-import axios from 'axios';
-import { ProductIdContext } from '../../index';
-import { RatingReviewContainer } from '../RR-styled-components/RRsectionContainerStyle';
+import React, { useState } from 'react';
 import RatingSummary from './RatingSummary/RatingSummary';
 import ReviewList from './ReviewList/ReviewList';
-import { retrieve2Reviews, retrieveMeta } from './ReviewList/serverAction';
 
 export default function RatingReviews() {
   const [ratingFilter, setRatingFilter] = useState('');
