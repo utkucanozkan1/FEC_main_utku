@@ -17,10 +17,11 @@
 
 ## Important
 config.js structure(must create in the root directory yourself):
-module.exports = {
+
+<module.exports = {
   TOKEN: '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',
   PORT: 3000,
-};
+};>
 
 
 ## Description
