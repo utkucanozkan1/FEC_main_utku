@@ -1,12 +1,17 @@
 # FEC Temple of Artemis
 
-> Deliver a fully functional web application that meets the specifications and requirements outlined by project stakeholders. Work together on a single code base by dividing up the work among team members but working collaboratively to produce a single front end application. Integrate your front end with the existing API for the product, and demonstrate your working application at the end of the project timeline.
+Create a modern client-facing retail web portal that improves the user experience and increases sales for the company. The website consists of four main components: the Overview section, Related Items, Questions and Answers, and Ratings and Reviews.
+
+Upon entering the website, users can interact with existing items, view different styles in an image gallery, select styles and add them to the cart.
+Following the Overview, another section is the Related Items carousel, where users will see additional items related to the current overview in a carousel-style layout and be able to add items to their personal Your Outfit section.
+In addition, each item will have a questions and answers section where users can interact with other users to gain more information about a particular product and share their current experiences.
+Lastly, users can share reviews on a product they have already purchased with other users and rate the item on many features.
 
 ## Team Members
 
   - Davyd Zakorchennyi
   - Utku Ozkan
-  - VAl Pizzo
+  - Val Pizzo
   - Ben Thornton
 
 ## Table of Contents
