@@ -1,6 +1,6 @@
 # FEC Project Atelier - Temple of Artemis
 
-Create a modern client-facing retail web portal that improves the user experience and increases sales for the company. The website consists of four main components: the Overview section, Related Items, Questions and Answers, and Ratings and Reviews.
+A modern client-facing retail web portal that improves the user experience and increases sales for the company. The website consists of four main components: the Overview section, Related Items, Questions and Answers, and Ratings and Reviews.
 
 Upon entering the website, users can interact with existing items, view different styles in an image gallery, select styles and add them to the cart.
 Following the Overview, another section is the Related Items carousel, where users will see additional items related to the current overview in a carousel-style layout and be able to add items to their personal Your Outfit section.
